@@ -1,0 +1,9 @@
+<%= form_for @offer do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :available %><br />
+    <%= f.check_box :available %>
+  </p>
+  <%=render('photos_form', :f=> f)%>
+  <p><%= f.submit %></p>
+<% end %>
