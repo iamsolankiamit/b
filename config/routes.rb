@@ -1,5 +1,5 @@
 Roomnhouse::Application.routes.draw do
-
+  root_to => "offers#{}index"
   resources :offers
   resources :steps
 
