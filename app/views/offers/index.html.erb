@@ -2,11 +2,73 @@
 
 <table>
   <tr>
-    <th>Available</th>
+    <th>U</th>
+    <th>Visiblity</th>
+    <th>Email</th>
+    <th>Contact Phone</th>
+    <th>Contact Phone Backup</th>
+    <th>Object Type</th>
+    <th>Size</th>
+    <th>Size Type</th>
+    <th>Bathroom Count</th>
+    <th>Max Guest Count</th>
+    <th>Bed Count</th>
+    <th>Bedroom Count</th>
+    <th>Bed Type</th>
+    <th>Allow Marketing</th>
+    <th>Street</th>
+    <th>Street No</th>
+    <th>Address Addon</th>
+    <th>City</th>
+    <th>Zip</th>
+    <th>Country Code Iso</th>
+    <th>Currency</th>
+    <th>Nightly Rate Amount</th>
+    <th>Weekly Rate Amount</th>
+    <th>Monthly Rate Amount</th>
+    <th>Extra Guest Charge Amount</th>
+    <th>Included Guest Count</th>
+    <th>Service Charge Amount</th>
+    <th>Cancelation Policy</th>
+    <th>Min Nights</th>
+    <th>Max Nights</th>
+    <th>Checkin After</th>
+    <th>Checkout Before</th>
   </tr>
   <% for offer in @offers %>
     <tr>
-      <td><%= offer.available %></td>
+      <td><%= offer.u_id %></td>
+      <td><%= offer.visiblity %></td>
+      <td><%= offer.email %></td>
+      <td><%= offer.contact_phone %></td>
+      <td><%= offer.contact_phone_backup %></td>
+      <td><%= offer.object_type %></td>
+      <td><%= offer.size %></td>
+      <td><%= offer.size_type %></td>
+      <td><%= offer.bathroom_count %></td>
+      <td><%= offer.max_guest_count %></td>
+      <td><%= offer.bed_count %></td>
+      <td><%= offer.bedroom_count %></td>
+      <td><%= offer.bed_type %></td>
+      <td><%= offer.allow_marketing %></td>
+      <td><%= offer.street %></td>
+      <td><%= offer.street_no %></td>
+      <td><%= offer.address_addon %></td>
+      <td><%= offer.city %></td>
+      <td><%= offer.zip %></td>
+      <td><%= offer.country_code_iso %></td>
+      <td><%= offer.currency %></td>
+      <td><%= offer.nightly_rate_amount %></td>
+      <td><%= offer.weekly_rate_amount %></td>
+      <td><%= offer.monthly_rate_amount %></td>
+      <td><%= offer.extra_guest_charge_amount %></td>
+      <td><%= offer.included_guest_count %></td>
+      <td><%= offer.service_charge_amount %></td>
+      <td><%= offer.cancelation_policy %></td>
+      <td><%= offer.min_nights %></td>
+      <td><%= offer.max_nights %></td>
+      <td><%= offer.checkin_after %></td>
+      <td><%= offer.checkout_before %></td>
       <td><%= link_to "Show", offer %></td>
       <td><%= link_to "Edit", edit_offer_path(offer) %></td>
       <td><%= link_to "Destroy", offer, :confirm => 'Are you sure?', :method => :delete %></td>

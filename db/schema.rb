@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307150100) do
+ActiveRecord::Schema.define(:version => 20130319181623) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20130307150100) do
     t.float    "lng"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "details", :force => true do |t|
@@ -41,9 +48,40 @@ ActiveRecord::Schema.define(:version => 20130307150100) do
   end
 
   create_table "offers", :force => true do |t|
-    t.boolean  "available"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "u_id"
+    t.boolean  "visiblity"
+    t.string   "email"
+    t.integer  "contact_phone"
+    t.integer  "contact_phone_backup"
+    t.string   "object_type"
+    t.integer  "size"
+    t.string   "size_type"
+    t.integer  "bathroom_count"
+    t.integer  "max_guest_count"
+    t.integer  "bed_count"
+    t.integer  "bedroom_count"
+    t.string   "bed_type"
+    t.boolean  "allow_marketing"
+    t.string   "street"
+    t.integer  "street_no"
+    t.string   "address_addon"
+    t.string   "city"
+    t.integer  "zip"
+    t.string   "country_code_iso"
+    t.string   "currency"
+    t.integer  "nightly_rate_amount"
+    t.integer  "weekly_rate_amount"
+    t.integer  "monthly_rate_amount"
+    t.integer  "extra_guest_charge_amount"
+    t.integer  "included_guest_count"
+    t.integer  "service_charge_amount"
+    t.string   "cancelation_policy"
+    t.integer  "min_nights"
+    t.integer  "max_nights"
+    t.string   "checkin_after"
+    t.string   "checkout_before"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -73,9 +111,12 @@ ActiveRecord::Schema.define(:version => 20130307150100) do
   create_table "translations", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "lang"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "rules"
+    t.string   "locale"
+    t.string   "title_translated_by_google"
+    t.text     "description_translated_by_google"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
 end

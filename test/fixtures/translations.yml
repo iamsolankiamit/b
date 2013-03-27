@@ -3,9 +3,15 @@
 one:
   title: MyString
   description: MyText
-  lang: MyString
+  rules: MyText
+  locale: MyString
+  title_translated_by_google: MyString
+  description_translated_by_google: MyText
 
 two:
   title: MyString
   description: MyText
-  lang: MyString
+  rules: MyText
+  locale: MyString
+  title_translated_by_google: MyString
+  description_translated_by_google: MyText
