@@ -20,6 +20,7 @@ class Ability
       can :manage, Offer, :user_id => user.id
     else
       can :read, Offer # guest user
+    end
 
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
