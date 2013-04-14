@@ -4,7 +4,7 @@ Roomnhouse::Application.routes.draw do
   resources :offers
   resources :steps
   
-  root :to => "offers#index"
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

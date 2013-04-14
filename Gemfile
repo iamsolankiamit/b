@@ -14,10 +14,9 @@ gem 'aws-s3'
 gem 'fog', :git => 'git://github.com/fog/fog.git'
 gem 'newrelic_rpm'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
-
+gem "paperclip"
 
 	gem 'simple_form'
-
 	gem 'twitter-bootstrap-rails'
 	gem 'nifty-generators'
 # Gems used only for assets and not required

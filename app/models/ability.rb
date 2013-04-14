@@ -12,6 +12,15 @@ class Ability
     #   end
     #
     
+    user ||= User.new # guest user (not logged in)
+
+    if user.role == "admin"
+      can :manage, :all
+    elsif user.role == "default"
+      can :manage, Offer, :user_id => user.id
+    else
+      can :read, Offer # guest user
+
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

@@ -1,5 +1,6 @@
 class OffersController < ApplicationController
-  before_filter :authenticate_user!, except: [:show]
+  before_filter :authenticate_user!, :except => :show
+  load_and_authorize_resource
   def index
     @offers = current_user.offers.all
   end
