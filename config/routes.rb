@@ -1,7 +1,10 @@
 Roomnhouse::Application.routes.draw do
-  root_to => "offers#{}index"
+  devise_for :users 
+  
   resources :offers
   resources :steps
+  
+  root :to => "offers#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

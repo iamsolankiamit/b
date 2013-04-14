@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
+  before_filter :authenticate_user!, except: [:show]
   def index
-    @offers = Offer.all
+    @offers = current_user.offers.all
   end
 
   def show
@@ -12,7 +13,7 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = Offer.new(params[:offer])
+    @offer = current_user.offers.new(params[:offer])
     if @offer.save
       redirect_to @offer, :notice => "Successfully created offer."
     else
@@ -21,11 +22,11 @@ class OffersController < ApplicationController
   end
 
   def edit
-    @offer = Offer.find(params[:id])
+    @offer = current_user.Offer.find(params[:id])
   end
 
   def update
-    @offer = Offer.find(params[:id])
+    @offer = current_user.Offer.find(params[:id])
     if @offer.update_attributes(params[:offer])
       redirect_to @offer, :notice  => "Successfully updated offer."
     else
@@ -34,7 +35,7 @@ class OffersController < ApplicationController
   end
 
   def destroy
-    @offer = Offer.find(params[:id])
+    @offer = current_user.Offer.find(params[:id])
     @offer.destroy
     redirect_to offers_url, :notice => "Successfully destroyed offer."
   end

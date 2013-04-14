@@ -1,136 +1,74 @@
-<% title "Offer" %>
+<%- model_class = Offer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <strong>U:</strong>
-  <%= @offer.u_id %>
-</p>
-<p>
-  <strong>Visiblity:</strong>
-  <%= @offer.visiblity %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @offer.email %>
-</p>
-<p>
-  <strong>Contact Phone:</strong>
-  <%= @offer.contact_phone %>
-</p>
-<p>
-  <strong>Contact Phone Backup:</strong>
-  <%= @offer.contact_phone_backup %>
-</p>
-<p>
-  <strong>Object Type:</strong>
-  <%= @offer.object_type %>
-</p>
-<p>
-  <strong>Size:</strong>
-  <%= @offer.size %>
-</p>
-<p>
-  <strong>Size Type:</strong>
-  <%= @offer.size_type %>
-</p>
-<p>
-  <strong>Bathroom Count:</strong>
-  <%= @offer.bathroom_count %>
-</p>
-<p>
-  <strong>Max Guest Count:</strong>
-  <%= @offer.max_guest_count %>
-</p>
-<p>
-  <strong>Bed Count:</strong>
-  <%= @offer.bed_count %>
-</p>
-<p>
-  <strong>Bedroom Count:</strong>
-  <%= @offer.bedroom_count %>
-</p>
-<p>
-  <strong>Bed Type:</strong>
-  <%= @offer.bed_type %>
-</p>
-<p>
-  <strong>Allow Marketing:</strong>
-  <%= @offer.allow_marketing %>
-</p>
-<p>
-  <strong>Street:</strong>
-  <%= @offer.street %>
-</p>
-<p>
-  <strong>Street No:</strong>
-  <%= @offer.street_no %>
-</p>
-<p>
-  <strong>Address Addon:</strong>
-  <%= @offer.address_addon %>
-</p>
-<p>
-  <strong>City:</strong>
-  <%= @offer.city %>
-</p>
-<p>
-  <strong>Zip:</strong>
-  <%= @offer.zip %>
-</p>
-<p>
-  <strong>Country Code Iso:</strong>
-  <%= @offer.country_code_iso %>
-</p>
-<p>
-  <strong>Currency:</strong>
-  <%= @offer.currency %>
-</p>
-<p>
-  <strong>Nightly Rate Amount:</strong>
-  <%= @offer.nightly_rate_amount %>
-</p>
-<p>
-  <strong>Weekly Rate Amount:</strong>
-  <%= @offer.weekly_rate_amount %>
-</p>
-<p>
-  <strong>Monthly Rate Amount:</strong>
-  <%= @offer.monthly_rate_amount %>
-</p>
-<p>
-  <strong>Extra Guest Charge Amount:</strong>
-  <%= @offer.extra_guest_charge_amount %>
-</p>
-<p>
-  <strong>Included Guest Count:</strong>
-  <%= @offer.included_guest_count %>
-</p>
-<p>
-  <strong>Service Charge Amount:</strong>
-  <%= @offer.service_charge_amount %>
-</p>
-<p>
-  <strong>Cancelation Policy:</strong>
-  <%= @offer.cancelation_policy %>
-</p>
-<p>
-  <strong>Min Nights:</strong>
-  <%= @offer.min_nights %>
-</p>
-<p>
-  <strong>Max Nights:</strong>
-  <%= @offer.max_nights %>
-</p>
-<p>
-  <strong>Checkin After:</strong>
-  <%= @offer.checkin_after %>
-</p>
-<p>
-  <strong>Checkout Before:</strong>
-  <%= @offer.checkout_before %>
-</p>
+<dl class="dl-horizontal">
+  
+  <dt><strong><%= model_class.human_attribute_name(:visiblity) %>:</strong></dt>
+  <dd><%= @offer.visiblity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @offer.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contact_phone) %>:</strong></dt>
+  <dd><%= @offer.contact_phone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:contact_phone_backup) %>:</strong></dt>
+  <dd><%= @offer.contact_phone_backup %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:object_type) %>:</strong></dt>
+  <dd><%= @offer.object_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:size) %>:</strong></dt>
+  <dd><%= @offer.size %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:size_type) %>:</strong></dt>
+  <dd><%= @offer.size_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:bed_type) %>:</strong></dt>
+  <dd><%= @offer.bed_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:allow_marketing) %>:</strong></dt>
+  <dd><%= @offer.allow_marketing %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street) %>:</strong></dt>
+  <dd><%= @offer.street %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_no) %>:</strong></dt>
+  <dd><%= @offer.street_no %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_addon) %>:</strong></dt>
+  <dd><%= @offer.address_addon %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @offer.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:zip) %>:</strong></dt>
+  <dd><%= @offer.zip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country_code_iso) %>:</strong></dt>
+  <dd><%= @offer.country_code_iso %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:currency) %>:</strong></dt>
+  <dd><%= @offer.currency %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:nightly_rate_amount) %>:</strong></dt>
+  <dd><%= @offer.nightly_rate_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:weekly_rate_amount) %>:</strong></dt>
+  <dd><%= @offer.weekly_rate_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:monthly_rate_amount) %>:</strong></dt>
+  <dd><%= @offer.monthly_rate_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:extra_guest_charge_amount) %>:</strong></dt>
+  <dd><%= @offer.extra_guest_charge_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:service_charge_amount) %>:</strong></dt>
+  <dd><%= @offer.service_charge_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cancelation_policy) %>:</strong></dt>
+  <dd><%= @offer.cancelation_policy %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:min_nights) %>:</strong></dt>
+  <dd><%= @offer.min_nights %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:max_nights) %>:</strong></dt>
+  <dd><%= @offer.max_nights %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:checkin_after) %>:</strong></dt>
+  <dd><%= @offer.checkin_after %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:checkout_before) %>:</strong></dt>
+  <dd><%= @offer.checkout_before %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
+  <dd><%= @offer.user_id %></dd>
+</dl>
 
-<p>
-  <%= link_to "Edit", edit_offer_path(@offer) %> |
-  <%= link_to "Destroy", @offer, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", offers_path %>
-</p>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              offers_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_offer_path(@offer), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              offer_path(@offer),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

@@ -1,6 +1,5 @@
 class Offer < ActiveRecord::Base
-  attr_accessible :u_id, 
-  								:visiblity,
+  attr_accessible :visiblity,
   								:email, 
   								:contact_phone, 
   								:contact_phone_backup, 
@@ -34,8 +33,10 @@ class Offer < ActiveRecord::Base
   								:confidential_lng,
   								:confidential_lat,
   								:geo_precision,
-                  :translations_attributes
+                  :translation_attributes,
+                  :user_id
   has_many :translations, :dependent => :destroy
+  belongs_to :users
   accepts_nested_attributes_for :translations,
                                 :reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
                                 
