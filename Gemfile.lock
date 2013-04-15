@@ -61,6 +61,10 @@ GEM
       builder
       mime-types
       xml-simple
+    aws-sdk (1.8.5)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     cancan (1.6.9)
@@ -206,6 +210,7 @@ PLATFORMS
 DEPENDENCIES
   asset_sync
   aws-s3
+  aws-sdk
   cancan
   coffee-rails (~> 3.2.1)
   debugger
