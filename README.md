@@ -8,8 +8,8 @@ TODO:
 	Make the offer form multipart.
 	Add admin controller for managing offers.
 
-	To be done later:
+To be done later:
 
-		add search system.
-		add booking system.
-		add payment system.
+	add search system.
+	add booking system.
+	add payment system.
