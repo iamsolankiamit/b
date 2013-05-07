@@ -10,7 +10,12 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :offers, :dependent => :destroy
   before_create :setup_default_role_for_new_users
-  has_attached_file :avatar,
+  has_attached_file :avatar, 
+    :styles => { 
+      :medium => "300x300>", 
+      :thumb => "100x100>" 
+    }, 
+    :default_url => "/images/avatar/:style/no-avatar.png",
     :storage => :s3,
     :bucket => 'roomnhouse-assets',
     :s3_credentials => {

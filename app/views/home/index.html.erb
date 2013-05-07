@@ -1,2 +1,21 @@
-<h1>This is the home page</h1>
-<p>We currently only serve in mumbai</p>
+<% content_for :header do %>
+<div class="header-main" style="background: url(<%= image_path("main-header-background.jpg") %>)">
+	<div class="container">
+		<div class="row">
+			<header class="brandbar">
+				<div class="span5 logo">Roomnhouse</div>
+				<div class="span16">
+					<div class="claim">Where Travelers Stay</div>
+				</div>
+			</header>
+		</div>
+	</div>
+</div>
+<div class="searchbar">
+	<div class="container">
+		<div class="row">
+			<div class="" style="text-align:center">We currently only list in Mumbai</div>
+		</div>
+	</div>
+</div>
+<% end %>

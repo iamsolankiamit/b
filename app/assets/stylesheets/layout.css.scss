@@ -1,0 +1,16 @@
+
+
+ $color-blue : #60a3d9;
+ $color-cream : #fffde8;
+ $color-pink : #e66586;
+ $color-green : #94c33d;
+
+body{
+ 	background: $color-cream;
+}
+.navbar-inner{
+	background: $color-cream;
+}
+.navbar .nav {
+	float:right;
+}
