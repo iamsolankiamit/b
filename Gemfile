@@ -16,20 +16,24 @@ gem 'newrelic_rpm'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem "paperclip"
 gem "aws-sdk"
+gem "haml"
+gem "sass"
 
-	gem 'simple_form'
-	gem 'twitter-bootstrap-rails'
-	gem 'nifty-generators'
+gem "rails_admin"
+
+gem 'simple_form'
+gem 'twitter-bootstrap-rails'
+gem 'nifty-generators'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+	gem 'sass-rails',   '~> 3.2.3'
+	gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
   
-	gem 'asset_sync'
+  gem 'asset_sync'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -50,4 +54,8 @@ gem 'unicorn'
 # To use debugger
 gem 'debugger'
 
-gem "mocha", :group => :test
+group :test do
+	gem "rspec-rails", :group => :development
+	gem "mocha"
+end
+

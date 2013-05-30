@@ -34,7 +34,8 @@ class Offer < ActiveRecord::Base
   								:confidential_lat,
   								:geo_precision,
                   :translation_attributes,
-                  :user_id
+                  :user_id,
+                  :is_verified
   has_many :translations, :dependent => :destroy
   belongs_to :users
   accepts_nested_attributes_for :translations,

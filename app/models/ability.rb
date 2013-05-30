@@ -13,9 +13,10 @@ class Ability
     #
     
     user ||= User.new # guest user (not logged in)
-
+    can :read, Offer
     if user.role == "admin"
       can :manage, :all
+      can :access, :rails_admin #only admin can access rails_admin.
     elsif user.role == "default"
       can :manage, Offer, :user_id => user.id
     else

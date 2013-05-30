@@ -24,3 +24,18 @@
     <% end %>
   </tbody>
 </table>
+
+<%= f.fields_for(:transaltions) do |translations_form| %>
+
+  <%= translations_form.text_field(:locale) %>
+  <%= translations_form.text_field(:title) %>
+  <%= translations_form.text_area(:description) %>
+  <%= translations_form.text_area(:rules) %>
+  <%= translations_form.text_area(:description_translated_by_google) %>
+  <% if current_page?(new_offer_path) || current_page?(edit_offer_path) %>
+  
+    <%= link_to_remove_fields('<i class="icon-remove"></i>'.html_safe, translations_form, :title => "delete this translation.") %>
+  
+  <% end %>
+</tr>
+<% end %>
