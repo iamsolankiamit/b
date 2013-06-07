@@ -16,8 +16,7 @@ gem 'newrelic_rpm'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem "paperclip"
 gem "aws-sdk"
-gem "haml"
-gem "sass"
+
 gem 'kaminari' #pagination
 gem "rails_admin" , :git => "https://github.com/sferik/rails_admin.git"
 gem "thin", :group => :development
@@ -29,7 +28,8 @@ gem 'nifty-generators'
 group :assets do
 	gem 'sass-rails',   '~> 3.2.3'
 	gem 'coffee-rails', '~> 3.2.1'
-
+	gem "haml"
+	gem "sass"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
   
