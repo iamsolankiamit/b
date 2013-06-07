@@ -31,8 +31,8 @@ class Offer < ActiveRecord::Base
   								:max_nights, 
   								:checkin_after, 
   								:checkout_before,
-  								:confidential_lng,
-  								:confidential_lat,
+  								:confidential_lng,  # to be used when PostGIS is done
+  								:confidential_lat,  # to be used when PostGIS is done
   								:geo_precision,
                   :translations_attributes,
                   :user_id,
@@ -67,6 +67,7 @@ class Offer < ActiveRecord::Base
   end
 
   def self.search(search)
+    # Currently only normal search is needed
     search_string = "%"+ search +"%"
     find(:all, :conditions => ['city LIKE ?', search_string] )
   end
