@@ -1,8 +1,46 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.header-main{
-	background: image-path("main-header-background.jpg");
+
+	.navbar,.navbar-main {
+		position: absolute;
+		top:0;
+		width:100%;
+		z-index:1000;
+	}
+
+.header-main {
+	background: image-path("main-header-background.jpg") no-repeat;
+	background-position: top center;
 	height: 396px;
 	padding-top:40px;
+	-webkit-background-size : cover;
+	-moz-kit-background-size : cover;
+	-o-kit-background-size : cover;
+}
+.brandbar {
+	font-family: 'Source Sans Pro', helvetica, Arial, sans-serif;
+	margin-bottom:154px;
+	height : 88px;
+	line-height: 88px;
+	font-weight:200;
+	margin-bottom:0;
+	text-rendering : optimizelegibility;
+
+	.claim {
+		font-size: 30px;
+		text-align: center;
+	}
+	
+	.logo {
+		font: 0/0 a;
+		color: transparent;
+		background: image-url("logo.png") no-repeat center center;
+		-webkit-background-size : contain;
+		-moz-kit-background-size : contain;
+		-o-kit-background-size : contain;
+		height:60px;
+		margin-top:14px;
+		font-weight: 0;
+	}
 }

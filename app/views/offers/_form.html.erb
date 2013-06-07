@@ -18,7 +18,7 @@
     <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
     <%= f.input :city , :as => :string%>
     <%= f.input :zip , :as => :string%>
-    <%= f.input :country_code_iso, :as => :select, :collection => Hash[Country.all.map{|c| [c.name,c.code]}]%>
+    <%= f.input :country_code_iso, :as => :select, :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false %>
     <%= f.input :currency , :as => :string%>
     <%= f.input :nightly_rate_amount , :as => :string%>
     <%= f.input :weekly_rate_amount , :as => :string%> 
@@ -31,6 +31,16 @@
     <%= f.input :max_nights , :as => :string%>
     <%= f.input :checkin_after , :as => :string%>
     <%= f.input :checkout_before , :as => :string%>
+
+    <hr>
+    <fieldset>
+        <p>
+            <%= render('photos_table', :f => f ) %>
+            <%= link_to_add_fields("Add Photo",f,:photos,:class=> "btn btn-primary",:title => "add a photo.") %>
+        </p>
+    </fieldset>
+    <hr>
+
     <fieldset>
       <%= render('translations_table', :f => f) %>
       <%= link_to_add_fields("Add a translation", f, :translations, :class => "btn btn-primary", :title => "add a translation.") %>
@@ -39,8 +49,7 @@
   
   
     <%= f.button :submit, :class => 'btn-primary'%>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                offers_path, :class => 'btn' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),offers_path, :class => 'btn' %>
   
   <%= f.error_messages %>
 <% end %>

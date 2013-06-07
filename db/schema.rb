@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530140216) do
+ActiveRecord::Schema.define(:version => 20130530213705) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -20,8 +20,7 @@ ActiveRecord::Schema.define(:version => 20130530140216) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "offers", :id => false, :force => true do |t|
-    t.integer  "id",                                           :null => false
+  create_table "offers", :force => true do |t|
     t.boolean  "visiblity",                 :default => false, :null => false
     t.string   "email"
     t.string   "contact_phone"
@@ -60,11 +59,14 @@ ActiveRecord::Schema.define(:version => 20130530140216) do
   end
 
   create_table "photos", :force => true do |t|
-    t.string   "aws_path"
-    t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "offer_id"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

@@ -1,0 +1,20 @@
+<table id="translation-table" class="table table-hover table-striped">
+  <thead>
+    <th>description</th>
+    <th>photo</th>
+  <th></th>
+  </thead>
+  <tbody>
+    <%= f.fields_for(:photos) do |photos_form| %>
+      <tr class="fields">
+        <td><%= photos_form.text_area(:description) %></td>
+        <td><%= photos_form.file_field(:image) %></td>
+        <% if current_page?(new_offer_path) || current_page?(edit_offer_path) %>
+            <td>
+              <%= link_to_remove_fields('<i class="icon-remove"></i>'.html_safe, photos_form, :title => "delete this translation.") %>
+            </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

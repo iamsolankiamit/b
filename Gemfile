@@ -18,9 +18,9 @@ gem "paperclip"
 gem "aws-sdk"
 gem "haml"
 gem "sass"
-
+gem 'kaminari' #pagination
 gem "rails_admin"
-
+gem "thin", :group => :development
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'nifty-generators'

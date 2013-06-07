@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
   before_filter :authenticate_user!, :except => :show
   load_and_authorize_resource
+
   def index
     @offers = current_user.offers.all
   end
@@ -11,6 +12,8 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
+    @offer.translations.build
+    @offer.photos.build
   end
 
   def create
@@ -18,26 +21,32 @@ class OffersController < ApplicationController
     if @offer.save
       redirect_to @offer, :notice => "Successfully created offer."
     else
-      render :action => 'new'
+      render :new
     end
   end
 
   def edit
-    @offer = current_user.Offer.find(params[:id])
+    @offer = current_user.offers.find(params[:id])
+    @offer.translations.build
+    @offer.photos.build
   end
 
   def update
-    @offer = current_user.Offer.find(params[:id])
+    @offer = current_user.offers.find(params[:id])
     if @offer.update_attributes(params[:offer])
       redirect_to @offer, :notice  => "Successfully updated offer."
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
   def destroy
-    @offer = current_user.Offer.find(params[:id])
+    @offer = current_user.offers.find(params[:id])
     @offer.destroy
     redirect_to offers_url, :notice => "Successfully destroyed offer."
+  end
+
+  def search
+    @offer = Offer.search(params[:search])
   end
 end
