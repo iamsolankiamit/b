@@ -19,7 +19,7 @@ gem "aws-sdk"
 gem "haml"
 gem "sass"
 gem 'kaminari' #pagination
-gem "rails_admin"
+gem "rails_admin" , :git => "https://github.com/sferik/rails_admin.git"
 gem "thin", :group => :development
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
