@@ -21,7 +21,7 @@ gem 'kaminari' #pagination
 gem "rails_admin" , :git => "https://github.com/sferik/rails_admin.git"
 gem "thin", :group => :development
 gem 'simple_form'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'nifty-generators'
 # Gems used only for assets and not required
 # in production environments by default.
