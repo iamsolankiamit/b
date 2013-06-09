@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 $color-blue : #60a3d9;
+=======
+ $color-blue : #60a3d9;
+>>>>>>> c5fc909539773b77110672c4a55a14a7215f7915
  $color-cream : #fffde8;
  $color-pink : #e66586;
  $color-green : #94c33d;
@@ -18,10 +22,17 @@ body{
 	background: $color-cream;
 } 
 .navbar,.navbar-main{
+<<<<<<< HEAD
 	//position: absolute;
 	//top:0;
 	width:100%;
 	//z-index:1000;
+=======
+	position: absolute;
+	top:0;
+	width:100%;
+	z-index:1000;
+>>>>>>> c5fc909539773b77110672c4a55a14a7215f7915
 
 	.nav {
 		float:right;
