@@ -1,0 +1,70 @@
+#head{
+  height: 100px;
+  img{
+    margin-top: 30px;
+  }
+  .links{
+    float: right;
+    margin-top: 40px;
+    word-spacing: 10px;
+    a,span{
+      color: #00CCFF;
+      font-size: 1.5em;
+    }
+    span{
+      color: #000;
+    }
+  }
+}
+#login_box{
+  height: 500px;
+  margin-top: 50px;
+  border: 1px solid #E6E4D1;
+  background: white;
+  #main_box{
+    height: 450px;
+    margin-top: 25px;
+    #banner{
+      background: #E6E4D1;
+      height: 80px;
+      padding: 20px;
+      #heading{
+        font-size: 2em;
+        font-weight: bold;
+      }
+      #signup_text{
+        color:#807E74;
+        word-spacing: 3px;
+      }
+    }
+    #login_form{
+      margin-top: 50px;
+      label{
+        font-size: 1em;
+        color: #807E74;
+        a{
+          margin-left: 20px;
+        }
+      }
+      .login_input{
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 300px;
+      }
+    }
+    .span1{
+      .vert_line{
+        width: 1px;
+        height: 300px;
+        margin: 30px 30px;
+        background:#807E74;
+      }
+    }
+    #info{
+      font-size: 1.8em;
+      line-height: 40px;
+      text-align: left;
+      margin-top: 50px;
+    }
+  }
+}

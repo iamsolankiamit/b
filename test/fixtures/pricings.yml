@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  night: 9.99
+  week: 9.99
+  month: 9.99
+  extra_on_person: 9.99
+  cleaning: 9.99
+  extra_after: 1
+  min_stay: 1
+  max_stay: 1
+  cancellation_policy: MyString
+  checkin_after: 1
+  checkout_before: 1
+
+two:
+  night: 9.99
+  week: 9.99
+  month: 9.99
+  extra_on_person: 9.99
+  cleaning: 9.99
+  extra_after: 1
+  min_stay: 1
+  max_stay: 1
+  cancellation_policy: MyString
+  checkin_after: 1
+  checkout_before: 1

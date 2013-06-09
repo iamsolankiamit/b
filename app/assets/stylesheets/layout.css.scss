@@ -1,0 +1,29 @@
+$color-blue : #60a3d9;
+ $color-cream : #fffde8;
+ $color-pink : #e66586;
+ $color-green : #94c33d;
+
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700);
+body{
+	font-family: 'Source Sans Pro','Helvetica-Neue',Helvetica,Arial,sans-serif;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+
+body{
+ 	background: $color-cream;
+}
+.navbar-inner{
+	background: $color-cream;
+} 
+.navbar,.navbar-main{
+	//position: absolute;
+	//top:0;
+	width:100%;
+	//z-index:1000;
+
+	.nav {
+		float:right;
+	}
+}

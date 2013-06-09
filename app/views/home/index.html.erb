@@ -1,0 +1,200 @@
+<% content_for :header do %>
+<div class="header-main" style="background: url(<%= image_path("main-header-background.jpg") %>)">
+	<div class="container">
+		<div class="row">
+			<header class="brandbar">
+				<div class="span4 logo">Roomnhouse</div>
+				<div class="span4">
+					<div class="claim">Where Travelers Stay</div>
+				</div>
+			</header>
+		</div>
+	</div>
+</div>
+
+<div class="searchbar" style="background: #99CC00;">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+      <%= form_tag search_index_path , :method => 'get', id: "search_form" do %>
+        <%= text_field_tag :destination, params[:search], :id => 'search_field', class: "search" , placeholder: "Enter Your Destination" %>
+        <%= text_field_tag :checkin,nil, placeholder: "Check in", id: "check_in", class: "search"  %>
+        <%= text_field_tag :checkout,nil, placeholder: "Check out", id: "check_out", class: "search" %>
+        <%= text_field_tag :guests,nil, placeholder: "Guests", id: "guests", class: "search" %>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-danger btn-large", style: "margin-top: 15px;" %>
+        <%#<%= link_to_function "Clear", "$('search_field').clear()" %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" id="pictures">
+    <div class="span12">
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="text">
+          2 Bedroom Chariot Style
+          Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+    </div>
+    <div class="span12">
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+      <div class="span2">
+        <%= image_tag "room.jpg" %>
+        <span class="title">
+          2 Bedroom Chariot Style Apartment minutes away
+        </span>
+        <div class="stars">
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+          <div class="icon-star-empty icon-white"></div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<% end %>
