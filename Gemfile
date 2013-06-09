@@ -31,9 +31,15 @@ group :assets do
 	gem "haml"
 	gem "sass"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+<<<<<<< HEAD
+  #gem 'therubyracer', :platforms => :ruby
+  
+  #gem 'asset_sync'
+=======
   gem 'therubyracer', :platforms => :ruby
   
   gem 'asset_sync'
+>>>>>>> c5fc909539773b77110672c4a55a14a7215f7915
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -46,16 +52,29 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
+<<<<<<< HEAD
+#gem 'unicorn'
+=======
 gem 'unicorn'
+>>>>>>> c5fc909539773b77110672c4a55a14a7215f7915
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
 gem 'debugger'
+<<<<<<< HEAD
+group :test do
+  gem "rspec-rails", :group => :development
+  gem "mocha"
+end
+
+
+=======
 
 group :test do
 	gem "rspec-rails", :group => :development
 	gem "mocha"
 end
 
+>>>>>>> c5fc909539773b77110672c4a55a14a7215f7915

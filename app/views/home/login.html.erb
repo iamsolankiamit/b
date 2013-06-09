@@ -1,0 +1,12 @@
+<% content_for :login do %>
+    <%= form_tag do %>
+        <%= label_tag "email" %>
+        <%= text_field_tag :email,nil, class: "login_input" %>
+        <%= label_tag "password" do %>
+            password
+            <a href="#">Forgotten your password?</a>
+        <% end %>
+        <%= password_field_tag :password,nil, class: "login_input" %>  <br />
+        <%= submit_tag "log in", class: "btn btn-medium" %>
+    <% end  %>
+<% end %>
