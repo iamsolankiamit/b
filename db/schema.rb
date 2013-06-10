@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530213705) do
+ActiveRecord::Schema.define(:version => 20130609111545) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -21,41 +21,41 @@ ActiveRecord::Schema.define(:version => 20130530213705) do
   end
 
   create_table "offers", :force => true do |t|
-    t.boolean  "visiblity",                 :default => false, :null => false
+    t.boolean  "visiblity",                                :default => false, :null => false
     t.string   "email"
-    t.string   "contact_phone"
-    t.string   "contact_phone_backup"
+    t.integer  "contact_phone",             :limit => 255
+    t.integer  "contact_phone_backup",      :limit => 255
     t.string   "object_type"
-    t.string   "size"
+    t.integer  "size",                      :limit => 255
     t.string   "size_type"
-    t.string   "bathroom_count"
-    t.string   "max_guest_count"
-    t.string   "bed_count"
-    t.string   "bedroom_count"
+    t.integer  "bathroom_count",            :limit => 255
+    t.integer  "max_guest_count",           :limit => 255
+    t.integer  "bed_count",                 :limit => 255
+    t.integer  "bedroom_count",             :limit => 255
     t.string   "bed_type"
-    t.boolean  "allow_marketing",           :default => true
+    t.boolean  "allow_marketing",                          :default => true
     t.string   "street"
     t.string   "street_no"
     t.string   "address_addon"
     t.string   "city"
-    t.string   "zip"
+    t.integer  "zip",                       :limit => 255
     t.string   "country_code_iso"
     t.string   "currency"
-    t.string   "nightly_rate_amount"
-    t.string   "weekly_rate_amount"
-    t.string   "monthly_rate_amount"
-    t.string   "extra_guest_charge_amount"
-    t.string   "included_guest_count"
-    t.string   "service_charge_amount"
+    t.float    "nightly_rate_amount",       :limit => 255
+    t.float    "weekly_rate_amount",        :limit => 255
+    t.float    "monthly_rate_amount",       :limit => 255
+    t.integer  "extra_guest_charge_amount", :limit => 255
+    t.integer  "included_guest_count",      :limit => 255
+    t.integer  "service_charge_amount",     :limit => 255
     t.string   "cancelation_policy"
-    t.string   "min_nights"
-    t.string   "max_nights"
+    t.integer  "min_nights",                :limit => 255
+    t.integer  "max_nights",                :limit => 255
     t.string   "checkin_after"
     t.string   "checkout_before"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "user_id"
-    t.boolean  "is_verified",               :default => false
+    t.boolean  "is_verified",                              :default => false
   end
 
   create_table "photos", :force => true do |t|

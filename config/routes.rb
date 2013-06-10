@@ -11,10 +11,8 @@ Roomnhouse::Application.routes.draw do
   resources :offers
   
   root :to => "home#index"
-<<<<<<< HEAD
+
   match "/login" => "home#login"
-=======
->>>>>>> c5fc909539773b77110672c4a55a14a7215f7915
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

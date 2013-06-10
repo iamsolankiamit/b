@@ -1,0 +1,22 @@
+<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+  
+
+    <!-- Hideen from other users until room is brought -->
+    <%= f.input :country_code_iso, :as => :select, :label => "Country", :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false %>
+    <%= f.input :street , :as => :string%>
+    <%= f.input :street_no , :as => :string, :label => "House no."%>
+    <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
+    <%= f.input :city , :as => :string%>
+    <%= f.input :zip , :as => :string%>
+
+    <!-- Show to interested users -->
+    <%= f.input :object_type, :as => :select, :collection => {"Holiday home" => "house", "Apartment" => "apartment", "Private room" => "private_room", "Chalet or cabin" => "cabin", "Villa" => "villa","Castle" => "castle", "Farmhouse" => "farmhouse", "Treehouse" => "treehouse", "Boat" => "boat", "Car" => "automobile"}, :label => "Property Type", :include_blank => false %>
+    <%= f.input :max_guest_count , :as => :select, :collection =>(1..30), :label => "Accomodates", :include_blank => false %>
+    <%= f.input :bedroom_count , :as => :select, :collection =>(1..10), :label => "Bedrooms", :include_blank => false%>
+    <%= f.input :nightly_rate_amount , :as => :string%>
+    <%= f.input :currency , :as => :string%>
+
+  
+    <%= f.button :submit, :label => "Save & Continue", :class => 'btn-primary'%>
+    
+<% end %>

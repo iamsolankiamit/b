@@ -48,21 +48,39 @@ class Offer < ActiveRecord::Base
  
   belongs_to :users                       
 
-  validates_presence_of :address_addon, :street, :street_no, :city, :country_code_iso, :user_id, :nightly_rate_amount
-
-  validates_numericality_of :contact_phone_backup, :contact_phone, :max_nights, :max_guest_count, :zip, :size, :nightly_rate_amount, :weekly_rate_amount, :monthly_rate_amount       
 
   #Validations below, need to recheck If I missed some.
+
+  validates_presence_of :address_addon, 
+                        :street, 
+                        :street_no, 
+                        :city, 
+                        :country_code_iso, 
+                        :user_id, 
+                        :nightly_rate_amount
+
+  validates_numericality_of :contact_phone_backup, 
+                            :contact_phone, 
+                            :max_nights, 
+                            :max_guest_count, 
+                            :zip, 
+                            :size, 
+                            :weekly_rate_amount, 
+                            :monthly_rate_amount,
+                            :allow_nil => true
+
+
+  validates_numericality_of :nightly_rate_amount
 
 
 
   def all_rate_setter
     if(self.monthly_rate_amount==nil)
-      self.monthly_rate_amount=self.nightly_rate_amount
+      self.monthly_rate_amount=self.nightly_rate_amount*30
     end
     
     if(self.weekly_rate_amount==nil)
-        self.weekly_rate_amount=self.nightly_rate_amount
+        self.weekly_rate_amount=self.nightly_rate_amount*7
     end
   end
 

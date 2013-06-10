@@ -19,7 +19,7 @@ class OffersController < ApplicationController
   def create
     @offer = current_user.offers.new(params[:offer])
     if @offer.save
-      redirect_to @offer, :notice => "Successfully created offer."
+      render :edit, :notice => "Successfully created offer, now fill in other details."
     else
       render :new
     end
@@ -46,7 +46,4 @@ class OffersController < ApplicationController
     redirect_to offers_url, :notice => "Successfully destroyed offer."
   end
 
-  def search
-    @offer = Offer.search(params[:search])
-  end
 end
