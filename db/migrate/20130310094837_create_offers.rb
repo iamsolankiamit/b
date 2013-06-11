@@ -19,12 +19,12 @@ class CreateOffers < ActiveRecord::Migration
       t.string :street_no
       t.string :address_addon
       t.string :city
-      t.string :zip
+      t.integer :zip
       t.string :country_code_iso
       t.string :currency
-      t.integer :nightly_rate_amount
-      t.integer :weekly_rate_amount
-      t.integer :monthly_rate_amount
+      t.float :nightly_rate_amount
+      t.float :weekly_rate_amount
+      t.float :monthly_rate_amount
       t.integer :extra_guest_charge_amount
       t.integer :included_guest_count
       t.integer :service_charge_amount
