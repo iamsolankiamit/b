@@ -1,7 +1,7 @@
 class CreateOffers < ActiveRecord::Migration
   def self.up
     create_table :offers do |t|
-      t.string :u_id
+      t.integer :user_id
       t.boolean :visiblity
       t.string :email
       t.integer :contact_phone
@@ -36,6 +36,7 @@ class CreateOffers < ActiveRecord::Migration
       t.float :confidential_lng
       t.float :confidential_lat
       t.float :geo_precision
+      t.boolean :is_verified , :default =>false
       t.timestamps
     end
   end

@@ -1,10 +1,10 @@
 class CreatePhotos < ActiveRecord::Migration
   def change
     create_table :photos do |t|
-      t.string :aws_path
-      t.string :title
+      t.integer :offer_id
       t.text :description
-
+      t.integer :offer_id
+      t.attachment :image
       t.timestamps
     end
   end
