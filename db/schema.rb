@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(:version => 20130609111545) do
     t.integer  "zip",                       :limit => 255
     t.string   "country_code_iso"
     t.string   "currency"
-    t.float    "nightly_rate_amount",       :limit => 255
-    t.float    "weekly_rate_amount",        :limit => 255
-    t.float    "monthly_rate_amount",       :limit => 255
+    t.float    "nightly_rate_amount",       :limit => 54
+    t.float    "weekly_rate_amount",        :limit => 54
+    t.float    "monthly_rate_amount",       :limit => 54
     t.integer  "extra_guest_charge_amount", :limit => 255
     t.integer  "included_guest_count",      :limit => 255
     t.integer  "service_charge_amount",     :limit => 255
