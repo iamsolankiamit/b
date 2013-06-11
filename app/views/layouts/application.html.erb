@@ -21,8 +21,11 @@
       <header role="banner">
         <nav class="navbar navbar-main navbar-static-top">
           <div class="navbar-inner">
-            <div class="container-fluid">
-              <div class="container-fluid nav-collapse">
+            <div class="container">
+              <div class="container nav-collapse">
+                <%if content_for(:logo) %>
+                  <%= link_to root_path do%><%= image_tag "logo.png", class: "head-logo" %><% end %>
+                <% end %>
                 <ul class="nav">
                   <% if !user_signed_in? %>
                   <li><%= link_to "Login", new_user_session_path  %></li>
@@ -38,19 +41,12 @@
         </nav>
       </header>
       <%= yield :header %>
-      <div class="container-fluid">
-        <div class="row-fluid">
-
           <%= bootstrap_flash %>
           <%= yield :body%>
-        </div><!--/row-->
-
-      </div> <!-- /container -->
-
       <footer>
 
-        <div class="container-fluid"style="background:#140A00;color:white; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
-          <div class="row-fluid" >
+        <div class="container"style=" width:100%;background:#140A00;color:white; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
+          <div class="row" >
             <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
               <h3 style="font-weight:200;font-size:2em">Customer Service</h3>
               <hr style="margin:10px 0px">

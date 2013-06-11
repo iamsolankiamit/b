@@ -16,95 +16,101 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
 </head>
 <body>
-<div class="container" xmlns="http://www.w3.org/1999/html">
-  <div class="row-fluid">
-    <div class="span12" id="head">
-      <%= image_tag "logo.png" %>
-      <div class="links">
-        <a href="#">login</a>
-        <span>or</span>
-        <a href="#">register</a>
-        <button class="btn btn-primary btn-large">list your place</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container" style="min-height: 800px;">
-  <div class="row-fluid">
-    <div class="span12" id="login_box">
-      <div class="container">
-        <div class="span11" id="main_box" style="margin-left: 50px;">
-          <div class="span12" id="banner">
-            <span id="heading">Log in</span> <br/>
-            <span id="signup_text">Not registered yet?</span>
-            <a href="">Sign up here</a>
-          </div>
-          <div class="span11" style="background: #fffde8;">
-            <div class="span4 offset1">
-              <div id="login_form">
-                <%= yield :login %>
-              </div>
-            </div>
-            <div class="span1">
-              <div class="vert_line"></div>
-            </div>
-            <div class="span5" id="info">
-              <a href=="#">Learn more</a> about Roomnhouse.<br/>
-              Like us on <a href="">facebook</a> <br />
-              Follow us on <a href="">twitter</a> <br />
-              <a href="">How we work.</a>
-            </div>
+  <div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+      <div id="head">
+        <div class="span3">
+          <%= link_to root_path do%><%= image_tag "logo.png" %><% end %>
+        </div>
+        <div class="span5 offset4" style="word-spacing: 3px;margin-top: 30px;">
+          <button class="btn btn-primary btn-medium" style="float:right; margin-left:10px">list your place</button>
+          <div style="float:right;">
+            <%= link_to "Login", new_user_session_path , style: "font-size: 1em;" %>
+            <span style="font-size: 0.7em;">or</span>
+            <%= link_to "register", new_user_registration_path , style: "font-size: 1em;" %>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<footer>
-  <div class="container-fluid"style="background:#140A00;color:white; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
-    <div class="row-fluid" >
-      <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
-        <h3 style="font-weight:200;font-size:2em">Customer Service</h3>
-        <hr style="margin:10px 0px">
-        <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-          <li>How RoomNHouse works</li>
-          <li>FAQ</li>
-          <li>Contact support</li>
-        </ul>
+  <div class="container" style="margin-top: 20px; margin-bottom:50px;background:white;border: 1px solid #E6E4D1;">
+    <div class=""  style="">
+      <div class="span11 " id="banner" style="padding-right:40px;margin-top:30px;padding-top:20px;padding-bottom:20px;background: #E6E4D1;">
+      <div class="span3 offset1">
+        <% if content_for?(:signup) %>
+        <%= render partial: "devise/shared/login", locals: { head: "Sign up for free", sub_text: "Already registered?", sub_text_link: "login here", sub_link: new_user_session_path } %>
+        <% elsif content_for?(:login)%>
+        <%= render partial: "devise/shared/login", locals: { head: "Login", sub_text: "Not registered yet?", sub_text_link: "Sign up here",sub_link: new_user_registration_path } %>
+        <% else %>
+        <%= render partial: "devise/shared/login", locals: { head: "Password",sub_text: "Not registered yet?", sub_text_link: "Sign up here", sub_link: new_user_registration_path} %>
+        <% end %>
       </div>
-      <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
-        <h3 style="font-weight:200;font-size:2em">ABOUT RnH</h3>
-        <hr style="margin:10px 0px">
-        <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-          <li>About RoomnHouse</li>
-          <li>About us</li>
-          <li>Jobs</li>
-          <li>Testimonials</li>
-        </ul>
       </div>
-      <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
-        <h3 style="font-weight:200;font-size:2em">Follow us on</h3>
-        <hr style="margin:10px 0px">
-        <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-          <li>Facebook</li>
-          <li>Twitter</li>
-          <li>Google +</li>
-          <li>Youtube</li>
-          <li>Blog</li>
-        </ul>
-      </div>
-      <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
-        <h3 style="font-weight:200;font-size:2em">Secure payment</h3>
-        <hr style="margin:10px 0px">
-        <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-          <li>Paypal</li>
-          <li>Visa</li>
-          <li>Norton secure</li>
-        </ul>
+    </div>
+    <div class="">
+      <div class="span11" style="background: #fffde8;padding-right:40px;margin-bottom:30px;">
+        <div class="span4 offset1" style="margin-bottom: 20px;border-right: 2px solid #E6E4D1;padding: 10px;;margin-top:20px;">
+          <%=if content_for?(:signup) 
+              yield(:signup) 
+            elsif content_for?(:login) 
+              yield(:login) 
+              else 
+                yield(:password) end%>
+        </div>
+        <div class="span5" id="info" style="margin-top:20px;margin-bottom:20px;padding: 10px;font-size: 1.4em;line-height: 30px;">
+          <a href="#">Learn more</a> about Roomnhouse.<br/>
+          Like us on <a href="">facebook.</a> <br />
+          Follow us on <a href="">twitter.</a> <br />
+          <a href="">How we work.</a>
+        </div>
       </div>
     </div>
   </div>
-</footer>
+  <footer>
+    <div class="container footer">
+      <div class="row" >
+        <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+          <h3 style="font-weight:200;font-size:1.5em;">Customer Service</h3>
+          <hr style="margin:10px 0px;">
+          <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
+            <li>How RoomNHouse works</li>
+            <li>FAQ</li>
+            <li>Contact support</li>
+          </ul>
+        </div>
+        <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+          <h3 style="font-weight:200;font-size:1.5em">About RnH</h3>
+          <hr style="margin:10px 0px">
+          <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
+            <li>About RoomnHouse</li>
+            <li>About us</li>
+            <li>Jobs</li>
+            <li>Testimonials</li>
+          </ul>
+        </div>
+        <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+          <h3 style="font-weight:200;font-size:1.5em">Follow us on</h3>
+          <hr style="margin:10px 0px">
+          <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Google +</li>
+            <li>Youtube</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+        <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+          <h3 style="font-weight:200;font-size:1.5em">Secure payment</h3>
+          <hr style="margin:10px 0px">
+          <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
+            <li>Paypal</li>
+            <li>Visa</li>
+            <li>Norton secure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 
 </body>
