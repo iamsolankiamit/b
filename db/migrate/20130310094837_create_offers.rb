@@ -4,15 +4,15 @@ class CreateOffers < ActiveRecord::Migration
       t.string :u_id
       t.boolean :visiblity
       t.string :email
-      t.string :contact_phone
-      t.string :contact_phone_backup
+      t.integer :contact_phone
+      t.integer :contact_phone_backup
       t.string :object_type
-      t.string :size
+      t.integer :size
       t.string :size_type
-      t.string :bathroom_count
-      t.string :max_guest_count
-      t.string :bed_count
-      t.string :bedroom_count
+      t.integer :bathroom_count
+      t.integer :max_guest_count
+      t.integer :bed_count
+      t.integer :bedroom_count
       t.string :bed_type
       t.boolean :allow_marketing
       t.string :street
@@ -22,12 +22,12 @@ class CreateOffers < ActiveRecord::Migration
       t.string :zip
       t.string :country_code_iso
       t.string :currency
-      t.string :nightly_rate_amount
-      t.string :weekly_rate_amount
-      t.string :monthly_rate_amount
-      t.string :extra_guest_charge_amount
-      t.string :included_guest_count
-      t.string :service_charge_amount
+      t.integer :nightly_rate_amount
+      t.integer :weekly_rate_amount
+      t.integer :monthly_rate_amount
+      t.integer :extra_guest_charge_amount
+      t.integer :included_guest_count
+      t.integer :service_charge_amount
       t.string :cancelation_policy
       t.string :min_nights
       t.string :max_nights
