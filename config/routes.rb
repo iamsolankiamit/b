@@ -6,13 +6,14 @@ Roomnhouse::Application.routes.draw do
 
   devise_for :users 
   
-  resources :search , :only => [:index]
+  resources :search , only:  [:index]
 
-  resources :offers
+  resources :offers do
+    resource :translations, only: [:edit,:update]
+    resources :photos
+  end
   
   root :to => "home#index"
-
-  match "/login" => "home#login"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

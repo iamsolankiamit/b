@@ -24,6 +24,8 @@ gem "thin", :group => :development
 gem 'simple_form'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'nifty-generators'
+
+gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

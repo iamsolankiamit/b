@@ -1,4 +1,6 @@
 class Photo < ActiveRecord::Base
+
+  include Rails.application.routes.url_helpers
   attr_accessible :description, :offer_id, :image
   has_attached_file :image, 
     :styles => { 
@@ -14,4 +16,17 @@ class Photo < ActiveRecord::Base
     }
 
   belongs_to :offers
+
+  
+
+
+  def to_jq_upload
+    {
+      "name" => read_attribute(:image_file_name),
+      "size" => read_attribute(:image_file_size),
+      "url" => image.url(:original),
+      "delete_url" => offer_photo_path(self.offer_id,self),
+      "delete_type" => "DELETE"
+    }
+  end
 end

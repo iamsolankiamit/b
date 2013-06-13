@@ -1,22 +1,23 @@
+<% content_for :body do %>
+<% @photos.each do |photo| %>
+<%= image_tag(photo.image.url(:medium)) %>
+<% end %>
 
-    <div class="container photos">
+
+ <div class="container photos">
   <h2>Upload file</h2>
-    <%= f.fields_for :photos, :html => { :multipart => true, :id => "fileupload"  } do |photos_form| %>
-      
-        <%= photos_form.text_field(:description) %>
-    
-
   
+<%= form_tag offer_photos_path, :method => :post, :multipart => true, :id => "fileupload" do %>
+
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <% if !photos_form.object.image.exists? %>
     <div class="row fileupload-buttonbar">
       <div class="span7">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-          
-          <%= photos_form.file_field :image , :multiple => true%>
+	
+<%= file_field_tag :image, :name => "photo[image]" , :multiple => true %>
 
 
         </span>
@@ -45,9 +46,6 @@
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
     <br>
-    <% else %>
-          <%= image_tag photos_form.object.image.url(:thumb) %>
-          <% end %>
     <!-- The table listing the files available for upload/download -->
     <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
     </table>
@@ -148,3 +146,4 @@
 
   });
 </script>
+<% end %>

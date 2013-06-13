@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap 
+//= require jquery-fileupload
+//= require jquery
 //= require_tree .
 
 

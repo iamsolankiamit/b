@@ -1,5 +1,6 @@
 class Offer < ActiveRecord::Base
-  before_save :all_rate_setter
+  before_save :set_email
+  before_update :set_email
   attr_accessible :visiblity,
   								:email, 
   								:contact_phone, 
@@ -72,21 +73,17 @@ class Offer < ActiveRecord::Base
 
   validates_numericality_of :nightly_rate_amount
 
-
-
-  def all_rate_setter
-    if(self.monthly_rate_amount==nil)
-      self.monthly_rate_amount=self.nightly_rate_amount*30
-    end
-    
-    if(self.weekly_rate_amount==nil)
-        self.weekly_rate_amount=self.nightly_rate_amount*7
+  def set_email
+    if self.email.nil?
+      self.email=User.find(:all, :conditions => ['id =?', self.user_id ]).first.email;
     end
   end
-
   def self.search(search)
     # Currently only normal search is needed
+    if search.nil?
+      search=""
+    end
     search_string = "%"+ search +"%"
-    find(:all, :conditions => ['city LIKE ?', search_string] )
+    find(:all, :conditions => ['city LIKE ? and visiblity = "t"', search_string] )
   end
 end

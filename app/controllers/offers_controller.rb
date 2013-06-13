@@ -12,14 +12,16 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @offer.translations.build
     @offer.photos.build
   end
 
   def create
     @offer = current_user.offers.new(params[:offer])
+    @offer.translations.build(params[:id])
+    @photo = @offer.uploads.last
     if @offer.save
-      render :edit, :notice => "Successfully created offer, now fill in other details."
+      redirect_to edit_offer_translations_path(@offer), :notice => "Successfully created offer, now fill in other details."
+      format.html { render :json => [@photo.to_jq_upload].to_json, :content_type => 'text/html',:layout => false }
     else
       render :new
     end
@@ -27,7 +29,6 @@ class OffersController < ApplicationController
 
   def edit
     @offer = current_user.offers.find(params[:id])
-    @offer.translations.build
     @offer.photos.build
   end
 

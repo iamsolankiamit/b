@@ -1,0 +1,7 @@
+<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+      
+      <%= render('translations_table', :f => f) %>
+    <%= f.button :submit, :class => 'btn-primary'%>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),offers_path, :class => 'btn' %>
+  <%= f.error_messages %>
+<% end %>
