@@ -1,7 +1,5 @@
 Roomnhouse::Application.routes.draw do
   
-
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users 
@@ -11,6 +9,9 @@ Roomnhouse::Application.routes.draw do
   resources :offers do
     resource :translations, only: [:edit,:update]
     resources :photos
+    resource :details, only: [:edit,:update]
+    resource :addresses, only: [:edit,:update]
+    resource :pricing, only: [:edit,:update]
   end
   
   root :to => "home#index"

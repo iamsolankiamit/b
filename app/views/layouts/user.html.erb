@@ -24,7 +24,7 @@
           <div class="navbar-inner">
             <div class="container">
               <div class="container nav-collapse">
-                <%if content_for(:logo) %>
+                <%if !content_for(:logo) %>
                   <%= link_to root_path do%><%= image_tag "logo.png", class: "head-logo" %><% end %>
                 <% end %>
                 <ul class="nav">
@@ -32,9 +32,6 @@
                   <li><%= link_to "Login", new_user_session_path  %></li>
                   <li><%= link_to "Signup", new_user_registration_path  %></li>
                   <% else %>
-                  <li><%= link_to "Welcome, "+current_user.firstname.capitalize, edit_user_registration_path  %></li>
-                  <li><%= link_to "My offers", offers_path %></li>
-                  
                   <li><%= link_to "logout", destroy_user_session_path %></li>
                   <% end %>
                   <li><span>  <%= link_to "List Your Place", new_offer_path, :class => "btn btn-primary" %></span></li>
@@ -44,17 +41,21 @@
           </div>
         </nav>
       </header>
-      
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
+
+      <header class="conatiner_24">
+        <div class="grid_6 logo"><%= link_to root_path do%><%= image_tag "logo.png", class: "head-logo" %><% end %> </div>
+        <div class="grid_6 prefix_9"></div>
+        <div class="grid_3"><%= link_to "List Your Place", new_offer_path, :class => "btn btn-primary" %></div>
+      </header>
       <%= bootstrap_flash %>
-      <%= yield :header %>
-      
+      <% if content_for(:userheader) %>
+      <%= yield :userheader  %>
+      <% end %>
       <div style="padding-top:41px"></div>
-          
-          <%= yield :body%>
+          <% if  content_for(:userbody) %>
+          <%= yield :userbody%>
+            
+          <% end %>
       <footer>
 
         <div class="container"style=" width:100%;background:#140A00;color:white; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
@@ -102,5 +103,9 @@
         
       </footer>
 
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
   </body>
   </html>

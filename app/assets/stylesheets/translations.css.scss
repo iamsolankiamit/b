@@ -1,3 +1,74 @@
 // Place all the styles related to the translations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.edit-offer-container{
+	margin: 25px 0px;
+	background-color: #E6E4D1;
+	box-shadow: 0px 0px 2px grey;
+	font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+	h2,h3{
+		font-weight:400;
+		font-size:1.7em;
+		margin-bottom: 5px;
+	}
+	h3{
+		font-weight:300;
+		font-size:1.5em
+	}
+	.title{
+		padding-left: 180px;
+		padding-bottom: 0px;
+	}
+	.offer-overview{
+		padding:10px;
+	}
+	.offer-side-menu-content{
+		padding:25px 0px;		
+		ul{
+			list-style: none;
+			margin-left:0px;
+			z-index:1;
+			li{
+				padding:10px 20px;
+				border-bottom: 1px solid #c5c5c5;
+
+			}
+			.active{
+					border-right: 1px solid #fffde8;
+		background-color:#fffde8;
+				}
+		}
+	}
+	.offer-edit-main-content{
+		border-left: 1px solid #c5c5c5;
+		padding:0px 0px;
+		padding-bottom:25px;
+		background-color:#fffde8;
+		padding-right:9px;
+		.offer-hr{
+			margin:15px;
+		}
+		.submenu{
+			margin-top:20px;
+			border-bottom:1px solid #dfdfdf;
+			border-top:1px solid #dfdfdf;
+			padding-top:5px;
+			ul{
+				list-style: none;
+				li{
+
+				display: inline-block;
+				padding:5px 20px;
+				}
+				.active{
+					a{
+						color: black;
+					}
+					font-weight: 400
+				}
+			}
+		}
+	}
+
+}

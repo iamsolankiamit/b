@@ -23,14 +23,12 @@
 <div class="container content">
   <div class="row ">
     <% if offer.photos.exists? %>
-    <% offer.photos.each do |photo| %>
-    <%= image_tag photo.image.url(:medium), class: "span3 img-polaroid" %>
-    <% end %>
+    <%= image_tag offer.photos.first.image.url(:medium), class: "span3 img-polaroid", width:"300", height: "300"%>
     <% end %>
     <div class="span7">
       <% if offer.translations(locale: "en").exists? %>
       <% offer.translations.each do |t| %>
-      <span class="title"><%= t.title.capitalize %></span>
+      <span class="title"><%= t.title.titlecase %></span>
       <% end %>
       <% end %>
       <section class="address">
@@ -47,13 +45,13 @@
       <section class="description">
         <% if offer.translations.exists? %>
         <% offer.translations.each do |t|  %>
-        <b>Description: </b> <%= t.description %>
+        <b>Description: </b> <%= t.description.truncate(450) %>
         <% end %>
         <% end %>
       </section>
     </div>
     <div class="span1 seeoffer-button">
-      <a href="#" id="offer" class="btn btn-info btn-small">See offer</a>
+      <%= link_to "See Offer", offer_path(offer), class: "btn btn-info btn-small" %>
     </div>
   </div>
 </div>

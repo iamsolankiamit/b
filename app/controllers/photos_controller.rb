@@ -56,7 +56,7 @@ def show
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to photo_url }
+      format.html { redirect_to offer_photos_url }
       format.json { head :no_content }
     end
   end

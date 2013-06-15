@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  before_save :set_email
+  before_save :set_email, :set_cancellation_policy
   before_update :set_email
   attr_accessible :visiblity,
   								:email, 
@@ -78,6 +78,13 @@ class Offer < ActiveRecord::Base
       self.email=User.find(:all, :conditions => ['id =?', self.user_id ]).first.email;
     end
   end
+
+  def set_cancellation_policy
+    if self.cancelation_policy.nil?
+      self.cancelation_policy="strict"
+    end
+  end
+
   def self.search(search)
     # Currently only normal search is needed
     if search.nil?

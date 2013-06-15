@@ -1,76 +1,73 @@
 <% content_for :body do %>
-<%- model_class = Offer -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<div class="container_24">
+  <div class="grid_24 offer-content"> <!-- coverup span -->
+      <div class="grid_18"> <!-- main content span -->
+        <div class="title"><%= @offer.translations.first.title.titlecase %></div>
+        <div class="shortinfo">
+          <%= @offer.object_type.humanize %> 
+          &#8209; 
+          <%= @offer.address_addon.humanize %></div>
 
-<dl class="dl-horizontal">
-  
-  <dt><strong><%= model_class.human_attribute_name(:visiblity) %>:</strong></dt>
-  <dd><%= @offer.visiblity %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
-  <dd><%= @offer.email %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_phone) %>:</strong></dt>
-  <dd><%= @offer.contact_phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_phone_backup) %>:</strong></dt>
-  <dd><%= @offer.contact_phone_backup %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:object_type) %>:</strong></dt>
-  <dd><%= @offer.object_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:size) %>:</strong></dt>
-  <dd><%= @offer.size %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:size_type) %>:</strong></dt>
-  <dd><%= @offer.size_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:bed_type) %>:</strong></dt>
-  <dd><%= @offer.bed_type %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:allow_marketing) %>:</strong></dt>
-  <dd><%= @offer.allow_marketing %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:street) %>:</strong></dt>
-  <dd><%= @offer.street %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:street_no) %>:</strong></dt>
-  <dd><%= @offer.street_no %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:address_addon) %>:</strong></dt>
-  <dd><%= @offer.address_addon %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @offer.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:zip) %>:</strong></dt>
-  <dd><%= @offer.zip %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:country_code_iso) %>:</strong></dt>
-  <dd><%= @offer.country_code_iso %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:currency) %>:</strong></dt>
-  <dd><%= @offer.currency %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:nightly_rate_amount) %>:</strong></dt>
-  <dd><%= @offer.nightly_rate_amount %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:weekly_rate_amount) %>:</strong></dt>
-  <dd><%= @offer.weekly_rate_amount %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:monthly_rate_amount) %>:</strong></dt>
-  <dd><%= @offer.monthly_rate_amount %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:extra_guest_charge_amount) %>:</strong></dt>
-  <dd><%= @offer.extra_guest_charge_amount %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:service_charge_amount) %>:</strong></dt>
-  <dd><%= @offer.service_charge_amount %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:cancelation_policy) %>:</strong></dt>
-  <dd><%= @offer.cancelation_policy %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:min_nights) %>:</strong></dt>
-  <dd><%= @offer.min_nights %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:max_nights) %>:</strong></dt>
-  <dd><%= @offer.max_nights %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:checkin_after) %>:</strong></dt>
-  <dd><%= @offer.checkin_after %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:checkout_before) %>:</strong></dt>
-  <dd><%= @offer.checkout_before %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
-  <dd><%= @offer.user_id %></dd>
-</dl>
+          <div class="grid_16 prefix_1">
+            <div class="gallery">
+            <ul id="carousel" class="elastislide-list">
+              <% @offer.photos.each do |p| %>
+              <li data-preview="<%=p.image.url(:original)%>"> <a href="#"><%= image_tag p.image.url(:thumb) %></a></li>
+              <% end %>
+            </ul>
+            
+          <div class="image-preview">
+            <%= image_tag @offer.photos.first.image.url(:original), :id => "preview" %>
+          </div>
+          </div> 
+          </div> <!-- large image container -->
+          
+          <div  class="grid_6 offer-overview">
+            <h2>Quick Overview</h2>
+            <hr>
+            <h3>The Place</h3>
+            <ul>
+              <li><%= @offer.object_type.humanize %></li>
+              <li>Accommodates :<%= @offer.max_guest_count %></li>
+              <li>Bed Type: <%= @offer.bed_type.humanize %></li>
+              <li>Bedrooms: <%= @offer.bedroom_count %></li>
+              <li>Number of Bathrooms: <%= @offer.bathroom_count %></li>
+              <li>Size: <%= @offer.size %> <%= @offer.size_type %></li>
+              <li>Property Id: <%= @offer.id %></li>
+            </ul>
+            <hr>
+            <h3>Prices</h3>
+            <ul>
+              <li>Nightly: <%= @offer.nightly_rate_amount %> <%= @offer.currency %></li>
+              <li>Weekly: <%= @offer.weekly_rate_amount %> <%= @offer.currency %></li>
+              <li>Monthly: <%= @offer.monthly_rate_amount %> <%= @offer.currency %></li>
+            </ul>
+            <hr>
+            <h3>Details</h3>
+            <ul>
+              <li>Maximum Nights: <%= @offer.max_nights %></li>
+              <li>Check-in after: <%= @offer.checkin_after %></li>
+              <li>Check-out before: <%= @offer.checkout_before %></li>
+              <li>Cancellation policy: <%= @offer.cancelation_policy %></li>
+            </ul>
+          </div><!-- shorthand details -->
+          <div class="grid_11 omega offer-detailed">
+            <h2>Description</h2>
+            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
+            <hr>
+            <h2>House rules</h2>
+            <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
+            <hr>
+          </div> <!-- full details, description and title -->
+           </div>
+          <div class="grid_5 alpha omega sidebar-show">
+            <h2>Your Host</h2>
+            <div class="grid_3 prefix_1"> <%= image_tag current_user.avatar.url(:medium), class: "img-polaroid" %></div>
+            <h3><%= current_user.firstname.humanize %> <%= current_user.lastname.humanize[0,1] %></h3>
+            <hr>
+            <div class="grid_3 prefix_1"><a href="#" class="btn btn-primary large">Book Now</a></div>
 
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              offers_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_offer_path(@offer), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              offer_path(@offer),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-</div>
+          </div> <!-- sidebar span -->
+      </div>
+  </div>
 <% end %>

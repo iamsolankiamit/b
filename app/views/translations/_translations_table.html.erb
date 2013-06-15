@@ -1,12 +1,21 @@
-<%= f.fields_for(:translations) do |translations_form| %>
-
-<%= translations_form.hidden_field :locale, :value => "en" %>
-Title <br>
-
-<%= translations_form.text_field :title, :value => translations_form.object.title %><br>
-
-Description<br>
-<%= translations_form.text_area :description , :value => translations_form.object.description %><br>
-House Rules:<br>
-<%= translations_form.text_area :rules , :value => translations_form.object.rules %><br>
+<%= f.fields_for(:translations) do |t| %>
+<%= t.hidden_field :locale, :value => "en" %>
+<div class="control-group">
+<label class="string optional control-label" for="offer_translations_attributes_0_title">Title:</label>
+<div class="controls">
+<%= t.text_field :title, :value => t.object.title, :class=>"string optional", :size =>"50", :style => " width: 450px " %>
+</div>
+</div>
+<div class="control-group">
+<label class="string optional control-label" for="offer_translations_attributes_0_description">Description:</label>
+<div class="controls">
+<%= t.text_area :description , :value => t.object.description, :class=>"string optional", :size => 150, :style => " width: 450px " %>
+</div>
+</div>
+<div class="control-group">
+<label class="string optional control-label" for="offer_translations_attributes_0_rules">House Rules:</label>
+<div class="controls">
+<%= t.text_area :rules , :value => t.object.rules, :class=>"string optional", :size => 150, :style => " width: 450px " %>
+</div>
+</div>
 <% end %>

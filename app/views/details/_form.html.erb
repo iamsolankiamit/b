@@ -1,0 +1,72 @@
+<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+
+  <%= f.error_messages %>
+  
+  <%= f.input :visiblity %>
+
+  <%= f.input :email, :as => :email %>
+
+  <%= f.input :contact_phone, :as => :string%>
+
+  <%= f.input :contact_phone_backup, :as => :string %>
+
+  <%= f.input :object_type, 
+  :as => :select, 
+  :collection => {
+    "Service Apartment" => "service_apartment",
+    "Shared Room"=>"shared_room", 
+    "Holiday home" => "house", 
+    "Apartment" => "apartment", 
+    "Private room" => "private_room", 
+    "Chalet or cabin" => "cabin", 
+    "Villa" => "villa",
+    "Castle" => "castle", 
+    "Farmhouse" => "farmhouse", 
+    "Treehouse" => "treehouse", 
+    "Boat" => "boat", 
+    "Car" => "automobile"}, 
+  :label => "Property Type", 
+  :include_blank => false %>
+
+    <%= f.input :size ,:as => :string%>
+
+  <%= f.input :size_type , 
+  :as => :select, 
+  :collection => {
+    "Square meter" => "square_meter", 
+    "Square feet" => "square_feet"}, 
+  :include_blank => false %>
+
+  <%= f.input :bathroom_count , :as => :select, :collection =>(1..10), :include_blank =>false %>
+
+  <%= f.input :max_guest_count , 
+  :as => :select, 
+  :collection =>(1..30), 
+  :label => "Accomodates", 
+  :include_blank => false %>
+
+  <%= f.input :bed_count , 
+  :as => :select, 
+  :collection =>(1..30), 
+  :label => "Beds"%>
+
+  <%= f.input :bedroom_count , 
+  :as => :select, 
+  :collection =>(1..10), 
+  :label => "Bedrooms", 
+  :include_blank => false%>
+
+  <%= f.input :bed_type , 
+  :as => :select, 
+  :collection => {
+    "Real Bed" => "real_bed", 
+    "Airbed" => "airbed", 
+    "Futon" => "futon", 
+    "Pull-Out" => "pull_out", 
+    "Couch" => "couch"}, 
+  :include_blank => false %>
+
+  <%= f.input :allow_marketing, :label => "Marketing" %>
+
+<%= f.button :submit, :class => 'btn-primary'%>
+<% end %>

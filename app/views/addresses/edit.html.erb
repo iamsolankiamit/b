@@ -25,27 +25,19 @@
 				<div class="submenu">
 					<ul>
 						<li><a href="">Overview</a></li>
-						<li class="active"><%= link_to "Title & Description", edit_offer_translations_path %></li>
+						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
 						<li><%= link_to "Details", edit_offer_details_path %></li>
-						<li><%= link_to "Address", edit_offer_addresses_path %></li>
+						<li class="active"><%= link_to "Address", edit_offer_addresses_path %></li>
 						<li><%= link_to "Photos", offer_photos_path %></li>
 						<li><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
 					</ul>
 				</div>
-				<div class="title"><h2>Title &amp; Description</h2>
+				<div class="title"><h2>Address</h2>
 
 				</div>
 				<hr class=" offer-hr">
-				<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
-				<%= f.error_messages %>
-				<%= render('translations_table', :f => f) %>
-				<div class="control-group">
-					<div class="controls">
-						<%= f.button :submit, :value => "Save and Continue", :class => 'btn-primary'%>
-					</div>
-				</div>
+				<%= render(:partial => "form") %>
 			</div>
-			<% end %>
 		</div>
 	</div>
 </div>

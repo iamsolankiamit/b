@@ -1,22 +1,51 @@
 <% content_for :body do %>
+<div class="container_24 ">
+  <div class="grid_24 edit-offer-container">
+    <div class="grid_5 alpha omega offer-side-menu-content">
+      <ul>
+        <li class="blank"></li>
+        <li><%= link_to "Dashboard", offers_path %></li>
+        <li class="active"><%= link_to "My Listings", offers_path %></li>
+        <li><%= link_to "Profile settings", edit_user_registration_path %></li>
+      </ul>
+    </div>
+
+    <div class="grid_19 alpha omega offer-edit-main-content">
+      <div class="grid_19">
+        <div class="submenu">
+          <ul>
+            <li><a href="">Overview</a></li>
+            <li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
+            <li><%= link_to "Details", edit_offer_details_path %></li>
+            <li><%= link_to "Address", edit_offer_addresses_path %></li>
+            <li><%= link_to "Photos", offer_photos_path %></li>
+            <li class="active"><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+          </ul>
+        </div>
+        <div class="title"><h2>Photos</h2>
+
+        </div>
+        <hr class=" offer-hr">
+
+
 <% @photos.each do |photo| %>
-<%= image_tag(photo.image.url(:medium)) %>
+<div class="img-polaroid">
+<%= image_tag(photo.image.url(:thumb)) %>
+<%= link_to "delete", offer_photo_path(photo.offer_id,photo), :method => "delete" %>
+</div>
 <% end %>
 
 
  <div class="container photos">
-  <h2>Upload file</h2>
-  
 <%= form_tag offer_photos_path, :method => :post, :multipart => true, :id => "fileupload" do %>
 
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="row fileupload-buttonbar">
-      <div class="span7">
+    <div class="fileupload-buttonbar">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-	
+  
 <%= file_field_tag :image, :name => "photo[image]" , :multiple => true %>
 
 
@@ -36,13 +65,12 @@
         </button>
         <input type="checkbox" class="toggle">
       </div>
-      <div class="span5">
+      <div class="">
         <!-- The global progress bar -->
         <div class="progress progress-success progress-striped active fade">
           <div class="bar" style="width:0%;"></div>
         </div>
       </div>
-    </div>
     <!-- The loading indicator is shown during image processing -->
     <div class="fileupload-loading"></div>
     <br>
@@ -52,6 +80,12 @@
   <% end %>
 
 </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
   var fileUploadErrors = {
   maxFileSize: 'File is too big',
