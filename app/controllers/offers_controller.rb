@@ -18,10 +18,9 @@ class OffersController < ApplicationController
   def create
     @offer = current_user.offers.new(params[:offer])
     @offer.translations.build(params[:id])
-    @photo = @offer.photos.last
     if @offer.save
       redirect_to edit_offer_translations_path(@offer), :notice => "Successfully created offer, now fill in other details."
-      format.html { render :json => [@photo.to_jq_upload].to_json, :content_type => 'text/html',:layout => false }
+      
     else
       render :new
     end
