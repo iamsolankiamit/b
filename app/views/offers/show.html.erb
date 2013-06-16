@@ -8,10 +8,15 @@
         <% end %>
         <% end %>
         <div class="shortinfo">
+          <% if !@offer.object_type.nil? %>
           <%= @offer.object_type.humanize %> 
+          <% end %>
           &#8209; 
+          <% if !@offer.address_addon.nil? %>
           <%= @offer.address_addon.humanize %></div>
 
+          <% end %>
+          
           <div class="grid_16 prefix_1">
             <div class="gallery">
             <ul id="carousel" class="elastislide-list">
