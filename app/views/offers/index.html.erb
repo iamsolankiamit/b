@@ -14,15 +14,19 @@
 				<div class="heading"><h2>My Listing Offers</h2></div>
 			<% @offers.each do |offer| %>
 			<div class="grid_17 prefix_1 offer-index-container">
-				<div class="title"><h2><% if !offer.translations.first.title.nil? || offer.translations.exists? %>
+				<div class="title"><h2>
+					<% if offer.translations.exists? %>
+					<% if !offer.translations.first.title.nil? %>
 					  <%= offer.translations.first.title.titlecase %>
+					  <% end %>
 					<%else%>
 					Your New Offer(<%= offer.id %>)
 					<% end %>
 				</h2></div>
 				<div class="grid_4 index-image-container">
-					<%if !offer.photos.first.nil? || offer.photos.exists? %>
-					<%= image_tag offer.photos.first.image.url(:medium), class: "img-polaroid", height:"150" %> 
+					<% if offer.photos.exists?  %>
+					<%if !offer.photos.first.nil? %>
+					<%= image_tag offer.photos.first.image.url(:medium), class: "img-polaroid", height:"150" %> <% end %>
 					<% end %>
 				</div>
 				<div class="grid_5 prefix_8 alpha omega offer-links">

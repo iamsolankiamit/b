@@ -2,7 +2,11 @@
 <div class="container_24">
   <div class="grid_24 offer-content"> <!-- coverup span -->
       <div class="grid_18"> <!-- main content span -->
+        <% if @offer.translations.exists? %>
+        <% if !@offer.translations.title.nil? %>
         <div class="title"><%= @offer.translations.first.title.titlecase %></div>
+        <% end %>
+        <% end %>
         <div class="shortinfo">
           <%= @offer.object_type.humanize %> 
           &#8209; 
@@ -17,7 +21,9 @@
             </ul>
             
           <div class="image-preview">
+            <% if @offer.photos.exists? %>
             <%= image_tag @offer.photos.first.image.url(:original), :id => "preview" %>
+            <% end %>
           </div>
           </div> 
           </div> <!-- large image container -->

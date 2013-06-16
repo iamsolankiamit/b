@@ -91,6 +91,6 @@ class Offer < ActiveRecord::Base
       search=""
     end
     search_string = "%"+ search +"%"
-    find(:all, :conditions => ['city LIKE ? and visiblity = "t"', search_string] )
+    find(:all, :conditions => ['city LIKE ?', search_string] )
   end
 end
