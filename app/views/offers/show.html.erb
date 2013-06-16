@@ -38,12 +38,12 @@
             <hr>
             <h3>The Place</h3>
             <ul>
-              <li><%= @offer.object_type.humanize %></li>
-              <li>Accommodates :<%= @offer.max_guest_count %></li>
-              <li>Bed Type: <%= @offer.bed_type.humanize %></li>
-              <li>Bedrooms: <%= @offer.bedroom_count %></li>
-              <li>Number of Bathrooms: <%= @offer.bathroom_count %></li>
-              <li>Size: <%= @offer.size %> <%= @offer.size_type %></li>
+              <li><%= @offer.object_type.nil? ? "" : @offer.object_type.humanize %></li>
+              <li>Accommodates :<%= @offer.max_guest_count.nil? "" : @offer.max_guest_count %></li>
+              <li>Bed Type: <%= @offer.bed_type.nil? ? "" : @offer.bed_type.humanize %></li>
+              <li>Bedrooms: <%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></li>
+              <li>Number of Bathrooms: <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></li>
+              <li>Size: <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type %></li>
               <li>Property Id: <%= @offer.id %></li>
             </ul>
             <hr>
@@ -64,11 +64,13 @@
           </div><!-- shorthand details -->
           <div class="grid_11 omega offer-detailed">
             <h2>Description</h2>
+            <% if @offer.translations.exists? %>
             <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
             <hr>
             <h2>House rules</h2>
             <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
             <hr>
+            <% end %>
           </div> <!-- full details, description and title -->
            </div>
           <div class="grid_5 alpha omega sidebar-show">
