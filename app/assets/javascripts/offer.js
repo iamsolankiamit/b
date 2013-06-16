@@ -1,31 +1,31 @@
 
-			var current = 0,
-				$preview = $( '#preview' ),
-				$carouselEl = $( '#carousel' ),
-				$carouselItems = $carouselEl.children(),
-				carousel = $carouselEl.elastislide( {
-					current : current,
-					minItems : 4,
-					onClick : function( el, pos, evt ) {
+var current = 0,
+$preview = $( '#preview' ),
+$carouselEl = $( '#carousel' ),
+$carouselItems = $carouselEl.children(),
+carousel = $carouselEl.elastislide( {
+	current : current,
+	minItems : 4,
+	onClick : function( el, pos, evt ) {
 
-						changeImage( el, pos );
-						evt.preventDefault();
+		changeImage( el, pos );
+		evt.preventDefault();
 
-					},
-					onReady : function() {
+	},
+	onReady : function() {
 
-						changeImage( $carouselItems.eq( current ), current );
-						
-					}
-				} );
+		changeImage( $carouselItems.eq( current ), current );
+		
+	}
+} );
 
-			function changeImage( el, pos ) {
+function changeImage( el, pos ) {
 
-				$preview.attr( 'src', el.data( 'preview' ) );
-				$carouselItems.removeClass( 'current-img' );
-				el.addClass( 'current-img' );
-				carousel.setCurrent( pos );
+	$preview.attr( 'src', el.data( 'preview' ) );
+	$carouselItems.removeClass( 'current-img' );
+	el.addClass( 'current-img' );
+	carousel.setCurrent( pos );
 
-			}
-			
-	jQuery.noConflict()
+}
+
+	//jQuery.noConflict()
