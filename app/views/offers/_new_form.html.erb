@@ -2,6 +2,7 @@
   
 
     <!-- Hideen from other users until room is brought -->
+    <p>These will be hidden from the user until booking is done</p>
     <%= f.input :country_code_iso, :as => :select, :label => "Country", :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false %>
     <%= f.input :street , :as => :string%>
     <%= f.input :street_no , :as => :string, :label => "House no."%>
@@ -10,11 +11,28 @@
     <%= f.input :zip , :as => :string%>
 
     <!-- Show to interested users -->
-    <%= f.input :object_type, :as => :select, :collection => {"Holiday home" => "house", "Apartment" => "apartment", "Private room" => "private_room", "Chalet or cabin" => "cabin", "Villa" => "villa","Castle" => "castle", "Farmhouse" => "farmhouse", "Treehouse" => "treehouse", "Boat" => "boat", "Car" => "automobile"}, :label => "Property Type", :include_blank => false %>
+    <p>These will be shown to users</p>
+    <%= f.input :object_type, 
+  :as => :select, 
+  :collection => {
+    "Service Apartment" => "service_apartment",
+    "Shared Room"=>"shared_room", 
+    "Holiday home" => "house", 
+    "Apartment" => "apartment", 
+    "Private room" => "private_room", 
+    "Chalet or cabin" => "cabin", 
+    "Villa" => "villa",
+    "Castle" => "castle", 
+    "Farmhouse" => "farmhouse", 
+    "Treehouse" => "treehouse", 
+    "Boat" => "boat", 
+    "Car" => "automobile"}, 
+  :label => "Property Type", 
+  :include_blank => false %>
     <%= f.input :max_guest_count , :as => :select, :collection =>(1..30), :label => "Accomodates", :include_blank => false %>
     <%= f.input :bedroom_count , :as => :select, :collection =>(1..10), :label => "Bedrooms", :include_blank => false%>
-    <%= f.input :nightly_rate_amount , :as => :string%>
-    <%= f.input :currency , :as => :string%>
+    <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
+    <%= f.input :currency , :as => :select, :collection => {"INR: &#x20B9;".html_safe => "INR","USD: US &#36;".html_safe => "USD","EUR: &#8364;".html_safe => "EUR"}, :include_blank => false %>
 
   
     <%= f.button :submit, :label => "Save & Continue", :class => 'btn-primary'%>

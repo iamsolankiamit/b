@@ -69,29 +69,28 @@
           
           <%= yield :body%>
       <footer>
-
-        <div class="container"style=" width:100%;background:#140A00;color:white; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
-          <div class="row" >
-            <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+        <div class="container" style="background:#94c33d;width:100%">
+        <div class="container_24"style="color:black; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
+          
+            <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
               <h3 style="font-weight:200;font-size:2em">Customer Service</h3>
               <hr style="margin:10px 0px">
               <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-                <li>How RoomNHouse works</li>
+                <li><%= link_to "How RoomNHouse works", howitworks_path, style:"color:black;" %></li>
                 <li>FAQ</li>
                 <li>Contact support</li>
               </ul> 
             </div>
-            <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+            <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
               <h3 style="font-weight:200;font-size:2em">ABOUT RnH</h3>
               <hr style="margin:10px 0px">
               <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-                <li>About RoomnHouse</li>
-                <li>About us</li>
+                
+                <li><%= link_to "About Us", aboutus_path, style:"color:black;" %></li>
                 <li>Jobs</li>
-                <li>Testimonials</li>
               </ul> 
             </div>
-            <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+            <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
               <h3 style="font-weight:200;font-size:2em">Follow us on</h3>
               <hr style="margin:10px 0px">
               <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
@@ -102,7 +101,7 @@
                 <li>Blog</li>
               </ul> 
             </div>
-            <div class="span3" style="margin-top: 20px; padding-bottom:30px;">
+            <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
               <h3 style="font-weight:200;font-size:2em">Secure payment</h3>
               <hr style="margin:10px 0px">
               <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
@@ -111,8 +110,8 @@
                 <li>Norton secure</li>
               </ul>
             </div>
-
-        
+</div>
+        </div>
       </footer>
 
   </body>

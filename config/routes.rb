@@ -5,7 +5,8 @@ Roomnhouse::Application.routes.draw do
   devise_for :users 
   
   resources :search , only:  [:index]
-
+  resources :aboutus, only: [:index]
+  resources :howitworks, only: [:index]
   resources :offers do
     resource :translations, only: [:edit,:update]
     resources :photos
