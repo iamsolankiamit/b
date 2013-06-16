@@ -77,8 +77,8 @@
            </div>
           <div class="grid_5 alpha omega sidebar-show">
             <h2>Your Host</h2>
-            <div class="grid_3 prefix_1"> <%= image_tag current_user.avatar.url(:medium), class: "img-polaroid" %></div>
-            <h3><%= current_user.firstname.humanize %> <%= current_user.lastname.humanize[0,1] %></h3>
+            <div class="grid_3 prefix_1"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium), class: "img-polaroid" %></div>
+            <h3><%= @user.firstname.humanize %> <%= @user.lastname.humanize[0,1] %></h3>
             <hr>
             <div class="grid_3 prefix_1"><a href="#" class="btn btn-primary large">Book Now</a></div>
 
