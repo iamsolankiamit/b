@@ -27,7 +27,7 @@
             
           <div class="image-preview">
             <% if @offer.photos.exists? %>
-          <%if !offer.photos.first.nil? %>
+          <%if !@offer.photos.first.nil? %>
             <%= image_tag @offer.photos.first.image.url(:original), :id => "preview" %>
             <% end %>
             <% end %>

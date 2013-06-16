@@ -13,7 +13,11 @@
 		<div class="grid_19 alpha omega offer-edit-main-content">
 			<div class="offer-overview">
 				<div class="grid_4">
+					<% if @offer.photos.exists?  %>
+					<%if !@offer.photos.first.nil? %>
 					<%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
+					<% end %>
+					<% end %>
 				</div>
 				<div class="grid_9" style="padding-left:10px;">
 					<h3>Your new listing (<%= @offer.id %>)</h3>
