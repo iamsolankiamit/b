@@ -39,7 +39,7 @@
             <h3>The Place</h3>
             <ul>
               <li><%= @offer.object_type.nil? ? "" : @offer.object_type.humanize %></li>
-              <li>Accommodates :<%= @offer.max_guest_count.nil? "" : @offer.max_guest_count %></li>
+              <li>Accommodates :<%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count %></li>
               <li>Bed Type: <%= @offer.bed_type.nil? ? "" : @offer.bed_type.humanize %></li>
               <li>Bedrooms: <%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></li>
               <li>Number of Bathrooms: <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></li>
