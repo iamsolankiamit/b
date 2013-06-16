@@ -6,7 +6,7 @@ class AddressesController < ApplicationController
   def update
   	@offer = current_user.offers.find(params[:offer_id])
     if @offer.update_attributes(params[:offer])
-      redirect_to @offer, :notice  => "Successfully updated offer's Address."
+      render :edit, :notice  => "Successfully updated offer's Address."
     else
       render :edit
     end

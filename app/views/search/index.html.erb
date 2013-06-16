@@ -28,7 +28,9 @@
     <div class="span7">
       <% if offer.translations(locale: "en").exists? %>
       <% offer.translations.each do |t| %>
+      <% if !t.title.nil? %>
       <span class="title"><%= t.title.titlecase %></span>
+      <% end %>
       <% end %>
       <% end %>
       <section class="address">
@@ -45,7 +47,9 @@
       <section class="description">
         <% if offer.translations.exists? %>
         <% offer.translations.each do |t|  %>
+        <% if !t.description.nil? %>
         <b>Description: </b> <%= t.description.truncate(450) %>
+        <% end %>
         <% end %>
         <% end %>
       </section>
