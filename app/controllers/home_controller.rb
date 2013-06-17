@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
   def index
-  end
-  def login
-    render layout: "registration"
+  	@offers = Offer.where(:visiblity => true, :is_verified => true).order(:created_at).limit(6)
   end
 end

@@ -13,22 +13,46 @@
 </div>
 
 <div class="searchbar" style="background: #60a3d9; color:black;">
-  <div class="container">
-    <div class="row">
-      <div class="span12">
+  <div class="container_24">
+      <div class="grid_24">
       <%= form_tag search_index_path , :method => 'get', id: "search_form" do %>
-        <%= text_field_tag :destination, params[:search], :id => 'search_field', class: "search" , placeholder: "Enter Your Destination" %>
-        <%= text_field_tag :checkin,nil, placeholder: "Check in", id: "check_in", class: "search"  %>
-        <%= text_field_tag :checkout,nil, placeholder: "Check out", id: "check_out", class: "search" %>
-        <%= text_field_tag :guests,nil, placeholder: "Guests", id: "guests", class: "search" %>
-        <%= submit_tag "Search", :name => nil, class: "btn btn-danger btn-large", style: "margin-top: 15px;" %>
+        <%= text_field_tag :destination, params[:search], :id => 'search_field', class: "search grid_9" , placeholder: "Enter Your Destination" %>
+        <%= text_field_tag :checkin,nil, placeholder: "Check in", id: "check_in", class: "search grid_3"  %>
+        <%= text_field_tag :checkout,nil, placeholder: "Check out", id: "check_out", class: "search grid_3" %>
+        <%= text_field_tag :guests,nil, placeholder: "Guests", id: "guests", class: "search grid_3" %>
+        <%= submit_tag "Search", :name => nil, class: "btn btn-danger btn-large grid_3", style: "margin-top: 15px;" %>
         <%#<%= link_to_function "Clear", "$('search_field').clear()" %>
       <% end %>
       </div>
     </div>
-  </div>
 </div>
 
-      <div class="container" style="height:300px;"></div>
+
+      <div class="container_24 " >
+        <ul class="thumbnails latest-listings-bar">
+          <% @offers.each do |offer| %>
+          
+              <li class="grid_4 home-thumbs">
+                <div class="thumbnail">
+                  <% if offer.photos.exists? %>
+            <% if !offer.photos.first.nil? %>
+                  <%= image_tag offer.photos.first.image.url(:thumb)%>
+
+            <% end %>
+          <% end %>
+                  <% if offer.translations.exists? %>
+                  <% if !offer.translations.first.title.nil? %>
+                  <h3><%= offer.translations.first.title.titlecase %></h3> 
+                  <% end %>
+                  <% else %>
+                  <h3>Offer (<%= offer.id %>).</h3>
+                  <% end %>
+                  <p><%= offer.address_addon %></p>
+                  
+                </div>
+              </li>
+          <% end %>
+        </ul>
+      </div>
 
 <% end %>
