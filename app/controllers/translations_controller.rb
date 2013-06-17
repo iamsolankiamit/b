@@ -6,7 +6,7 @@ class TranslationsController < ApplicationController
 	def update
 		@offer = current_user.offers.find(params[:offer_id])
     if @offer.update_attributes(params[:offer])
-      rener :edit, :notice  => "Successfully updated offer."
+      redirect_to edit_offer_details_path(@offer.id), :notice  => "Successfully updated offer."
     else
       render :edit
     end

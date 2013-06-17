@@ -19,22 +19,34 @@
           
           <div class="grid_16 prefix_1">
             <div class="gallery">
-            <ul id="carousel" class="elastislide-list">
-              <% @offer.photos.each do |p| %>
-              <li data-preview="<%=p.image.url(:original)%>"> <a href="#"><%= image_tag p.image.url(:thumb) %></a></li>
+            <div id="this-carousel-id" class="carousel slide">
+              <div class="carousel-inner">
+                <% photos = @offer.photos%>
+                <% if !photos.nil? %>
+          <%if !photos.first.nil? %>
+            <div class="item active">  <%= image_tag photos.shift.image.url(:medium), :style => "height:350px;max-width:500px;"%></div>
+            <% end %>
+            <% end %>
+              <% photos.each do |p| %>
+              <div class="item">
+                <%=image_tag p.image.url(:medium), :style => "height:350px; margin:auto;" %>
+              </div>
               <% end %>
-            </ul>
+            </div>
+            </div>
             
-          <div class="image-preview">
-            <% if @offer.photos.exists? %>
-          <%if !@offer.photos.first.nil? %>
-            <%= image_tag @offer.photos.first.image.url(:original), :id => "preview" %>
-            <% end %>
-            <% end %>
-          </div>
-          </div> 
-          </div> <!-- large image container -->
           
+          </div> 
+          <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+          </div> <!-- large image container -->
+          <script>
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 5000
+    });
+  });
+</script>
           <div  class="grid_6 offer-overview">
             <h2>Quick Overview</h2>
             <hr>

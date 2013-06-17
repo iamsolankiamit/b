@@ -6,7 +6,7 @@ class PricingsController < ApplicationController
   def update
   	@offer = current_user.offers.find(params[:offer_id])
     if @offer.update_attributes(params[:offer])
-      render :edit, :notice  => "Successfully updated offer's Details."
+      redirect_to offer_photos_path(@offer.id), :notice  => "Successfully updated offer's Details."
     else
       render :edit
     end
