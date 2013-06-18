@@ -4,8 +4,10 @@ class Photo < ActiveRecord::Base
   attr_accessible :description, :offer_id, :image
   has_attached_file :image, 
     :styles => { 
-      :medium => "300x300>", 
-      :thumb => "100x100>" 
+      :slider1 => "630x350#",
+      :slider2 => "630x350>",
+      :medium => "300x300#", 
+      :thumb => "100x100#" 
     }, 
     :default_url => "/images/photo/:style/no-image.jpg",
     :storage => :s3,
