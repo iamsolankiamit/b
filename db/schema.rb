@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609111545) do
+ActiveRecord::Schema.define(:version => 20130618204245) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -21,53 +21,59 @@ ActiveRecord::Schema.define(:version => 20130609111545) do
   end
 
   create_table "offers", :force => true do |t|
-    t.boolean  "visiblity",                                :default => false, :null => false
+    t.integer  "user_id"
+    t.boolean  "visiblity"
     t.string   "email"
-    t.integer  "contact_phone",             :limit => 255
-    t.integer  "contact_phone_backup",      :limit => 255
+    t.integer  "contact_phone",             :limit => 8
+    t.integer  "contact_phone_backup",      :limit => 8
     t.string   "object_type"
-    t.integer  "size",                      :limit => 255
+    t.integer  "size"
     t.string   "size_type"
-    t.integer  "bathroom_count",            :limit => 255
-    t.integer  "max_guest_count",           :limit => 255
-    t.integer  "bed_count",                 :limit => 255
-    t.integer  "bedroom_count",             :limit => 255
+    t.integer  "bathroom_count"
+    t.integer  "max_guest_count"
+    t.integer  "bed_count"
+    t.integer  "bedroom_count"
     t.string   "bed_type"
-    t.boolean  "allow_marketing",                          :default => true
+    t.boolean  "allow_marketing"
     t.string   "street"
     t.string   "street_no"
     t.string   "address_addon"
     t.string   "city"
-    t.integer  "zip",                       :limit => 255
+    t.integer  "zip"
     t.string   "country_code_iso"
     t.string   "currency"
-    t.float    "nightly_rate_amount",       :limit => 54
-    t.float    "weekly_rate_amount",        :limit => 54
-    t.float    "monthly_rate_amount",       :limit => 54
-    t.integer  "extra_guest_charge_amount", :limit => 255
-    t.integer  "included_guest_count",      :limit => 255
-    t.integer  "service_charge_amount",     :limit => 255
+    t.float    "nightly_rate_amount"
+    t.float    "weekly_rate_amount"
+    t.float    "monthly_rate_amount"
+    t.integer  "extra_guest_charge_amount"
+    t.integer  "included_guest_count"
+    t.integer  "service_charge_amount"
     t.string   "cancelation_policy"
-    t.integer  "min_nights",                :limit => 255
-    t.integer  "max_nights",                :limit => 255
+    t.string   "min_nights"
+    t.string   "max_nights"
     t.string   "checkin_after"
     t.string   "checkout_before"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
-    t.integer  "user_id"
-    t.boolean  "is_verified",                              :default => false
+    t.float    "confidential_lng"
+    t.float    "confidential_lat"
+    t.float    "geo_precision"
+    t.boolean  "is_verified",                            :default => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
   end
 
   create_table "photos", :force => true do |t|
+    t.integer  "offer_id"
     t.text     "description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "offer_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
+
+# Could not dump table "pri_keys" because of following StandardError
+#   Unknown type 'regclass' for column 'sequence'
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -75,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20130609111545) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -89,9 +95,9 @@ ActiveRecord::Schema.define(:version => 20130609111545) do
     t.string   "locale"
     t.string   "title_translated_by_google"
     t.text     "description_translated_by_google"
+    t.integer  "offer_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
-    t.integer  "offer_id"
   end
 
   create_table "users", :force => true do |t|

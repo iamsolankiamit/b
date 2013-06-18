@@ -6,8 +6,7 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', :group => :development
-gem "pg", :group => :production
+gem "pg"
 gem 'wicked'
 gem "devise"
 gem 'cancan'
@@ -17,6 +16,7 @@ gem 'newrelic_rpm'
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem "paperclip"
 gem "aws-sdk"
+gem 'pg_random_id', '1.0.0'
 
 gem 'kaminari' #pagination
 gem "rails_admin" , :git => "https://github.com/sferik/rails_admin.git"
@@ -36,7 +36,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   #gem 'therubyracer', :platforms => :ruby
   
-  #gem 'asset_sync'
+  gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   
   gem 'asset_sync'

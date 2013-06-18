@@ -181,6 +181,7 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.15.1)
+    pg_random_id (1.0.0)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -239,7 +240,6 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.7)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -289,6 +289,7 @@ DEPENDENCIES
   nifty-generators
   paperclip
   pg
+  pg_random_id (= 1.0.0)
   rails (= 3.2.12)
   rails_admin!
   rspec-rails
@@ -296,7 +297,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sentry-raven!
   simple_form
-  sqlite3
   therubyracer
   thin
   twitter-bootstrap-rails!
