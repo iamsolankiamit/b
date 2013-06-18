@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618204245) do
+ActiveRecord::Schema.define(:version => 20130618231912) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20130618204245) do
   end
 
   create_table "photos", :force => true do |t|
-    t.integer  "offer_id"
+    t.string   "offer_id"
     t.text     "description"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20130618204245) do
     t.string   "locale"
     t.string   "title_translated_by_google"
     t.text     "description_translated_by_google"
-    t.integer  "offer_id"
+    t.string   "offer_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
   end
