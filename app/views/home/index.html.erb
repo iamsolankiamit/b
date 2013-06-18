@@ -29,9 +29,10 @@
 
 
       <div class="container_24 " >
+        <h3>Latest Listings On Roomnhouse</h3>
         <ul class="thumbnails latest-listings-bar">
           <% @offers.each do |offer| %>
-          
+          <%= link_to offer_path(offer) do %>
               <li class="grid_4 home-thumbs">
                 <div class="thumbnail">
                   <% if offer.photos.exists? %>
@@ -51,6 +52,7 @@
                   
                 </div>
               </li>
+              <% end %>
           <% end %>
         </ul>
       </div>

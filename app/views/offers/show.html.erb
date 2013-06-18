@@ -92,7 +92,19 @@
             <div class="grid_3 prefix_1"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium), class: "img-polaroid" %></div>
             <h3><%= @user.firstname.humanize %> <%= @user.lastname.humanize[0,1] %></h3>
             <hr>
-            <div class="grid_3 prefix_1"><a href="#" class="btn btn-primary large">Book Now</a></div>
+            <div class="grid_3 prefix_1"><a href="#BuyModal" class="btn btn-primary large">Book Now</a></div>
+            <div id="BuyModal" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Note</h3>
+  </div>
+  <div class="modal-body">
+    <p>Currently, the transactions servers are not up. To do the booking You can call/SMS on : 91-9987777955, Just mention the property ID and we will get back to you.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+  </div>
+</div>
 
           </div> <!-- sidebar span -->
       </div>
