@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
     :styles => { 
       :slider1 => "630x350#",
       :slider2 => "630x350>",
-      :homeimage => "310x185"#,
+      :homeimage => "310x185#",
       :medium => "300x300#", 
       :thumb => "100x100#" 
     }, 
