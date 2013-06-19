@@ -57,62 +57,57 @@
         </div>
       </nav>
     </header>
-   
+
     <div style="padding-top:41px"></div>
     <%= bootstrap_flash %>
     <%= yield :header %>
-
     <%= yield :body%>
-    <footer>
-      <div class="container" style="background:#94c33d;width:100%">
-        <div class="container_24"style="color:black; font-family: 'Source Sans Pro', helvetica, Arial, sans-serif; ">
 
-          <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
-            <h3 style="font-weight:200;font-size:2em">Customer Service</h3>
-            <hr style="margin:10px 0px">
-            <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-              <li><%= link_to "How RoomNHouse works", howitworks_path, style:"color:black;" %></li>
-              <li>FAQ</li>
-              <li>Contact support</li>
-            </ul> 
-          </div>
-          <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
-            <h3 style="font-weight:200;font-size:2em">ABOUT RnH</h3>
-            <hr style="margin:10px 0px">
-            <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-
-              <li><%= link_to "About Us", aboutus_path, style:"color:black;" %></li>
-              <li>Jobs</li>
-            </ul> 
-          </div>
-          <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
-            <h3 style="font-weight:200;font-size:2em">Follow us on</h3>
-            <hr style="margin:10px 0px">
-            <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-              <li><a href="https://www.facebook.com/roomnhouse" style="color:black;">Facebook</a></li>
-              <li><a href="https://twitter.com/RoomNHouse" style="color:black;">Twitter</a></li>
-              <li>Google +</li>
-              <li>Youtube</li>
-              <li>Blog</li>
-            </ul> 
-          </div>
-          <div class="grid_6" style="margin-top: 20px; padding-bottom:30px;">
-            <h3 style="font-weight:200;font-size:2em">Secure payment</h3>
-            <hr style="margin:10px 0px">
-            <ul style="list-style:none;font-weight:300;font-size:1em; margin-left:0px !important">
-              <li>Paypal</li>
-              <li>Visa</li>
-              <li>Norton secure</li>
-            </ul>
-          </div>
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="grid_6">
+          <h3>Customer Service</h3>
+          <hr/>
+          <ul>
+            <li><%= link_to "How RoomNHouse works", nil %></li>
+            <li>FAQ</li>
+            <li>Contact support</li>
+          </ul>
+        </div>
+        <div class="grid_6">
+          <h3>ABOUT RoomnHouse</h3>
+          <hr/>
+          <ul>
+            <li><%= link_to "About Us", aboutus_path  %></li>
+            <li>Jobs</li>
+          </ul>
+        </div>
+        <div class="grid_6">
+          <h3>Join us on</h3>
+          <hr/>
+          <ul>
+            <li><a href="https://www.facebook.com/roomnhouse">Facebook</a></li>
+            <li><a href="https://twitter.com/RoomNHouse">Twitter</a></li>
+            <li>Google +</li>
+            <li>Youtube</li>
+            <li>Blog</li>
+          </ul>
+        </div>
+        <div class="grid_6">
+          <h3>Secure payment</h3>
+          <hr/>
+          <ul>
+            <li>Paypal</li>
+            <li>Visa</li>
+            <li>Norton secure</li>
+          </ul>
         </div>
       </div>
-    </footer>
- 
+    </div>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
   </body>
-  </html>
+</html>

@@ -167,6 +167,7 @@ $cblack : #2C3E50;
 }
 .footer{
   width: 100%;
+  min-width:980px;
   height: 300px;
   background: #00314A; //#24476B;
   .footer-inner{
@@ -176,26 +177,33 @@ $cblack : #2C3E50;
   }
   .grid_6{
     width: 220px;
-    color: #fff;
-    margin-left: 30px;
+    color: $cwhite;
+    margin-left: 20px;
     margin-top: 20px;
     padding-bottom: 30px;
     float: left;
     &:first-child{
       margin-left: 0px;
     }
+    hr{
+      margin:5px 0px;
+      border:none;
+      background:$cwhite;
+    }
     a{
-      color: #fff;
+      color: $cwhite;
     }
     ul{
+      padding-top:5px;
       list-style:none;
-      font-weight:300;
-      font-size:1em;
+      font-weight:400;
+      font-size:0.7em;
       margin-left: 10px !important
     }
     h3{
-      font-weight:200;
-      font-size:1.5em;
+      font-weight:400;
+      font-size:1em;
+      margin-bottom:5px;
     }
   }
 }
