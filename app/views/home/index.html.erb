@@ -29,7 +29,7 @@
           <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span>per night</span></div>
           <% if offer.translations.exists? %>
             <% if !offer.translations.first.title.nil? %>
-              <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 5, separator: ' ') %></div>
+              <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
             <% end %>
           <% else %>
             <div class="name">Offer (<%= offer.id %>).</div>
