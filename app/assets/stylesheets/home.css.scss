@@ -1,121 +1,201 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$cwhite : #ECF0F1;
+$clblue : #3498DB;
+$cdblue : #2980B9;
+$cred : #E74C3C;
+$cblack : #2C3E50;
 
-	.navbar,.navbar-main {
-		position: absolute;
-		top:0;
-		width:100%;
-		z-index:1000;
-	}
-  .latest-listings-bar{
-    margin:25px 0px;
+.down-arrow{
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  right: 17px;
+  top: 22px;
+  border-width: 6px 4px 0px 4px;
+  border-style: solid;
+  border-color: #666666 transparent transparent transparent;
+}
+.header{
+  width: 100%;
+  height: 50px;
+  background: #C2C2C2;
+  box-shadow: 0px 0px 50px 10px #fff inset;
+
+  .header-main{
+    width: 1200px;
+    height: 100%;
+    margin: 0px auto;
+    .logo{
+      width: 200px;
+      height: 55px;
+      padding-top: 5px;
+      float: left;
+    }
+    .nav{
+      width: 400px;
+      height: 100%;
+      float: right;
+      .item{
+        position: relative;
+        width: 100px;
+        height: 48px;
+        text-align: center;
+        line-height: 50px;
+        float: left;
+        border-style: solid;
+        border-color: #fff;
+        border:{
+          width: 1px;
+          top-color: transparent;
+          bottom-color: transparent;
+        }
+        &:nth-child(2){
+          width: 130px;
+          border-left-width: 0px;
+          .down-arrow{
+            right: 11px;
+          }
+        }
+        &:nth-child(3){
+          margin-left: 10px;
+        }
+      }
+    }
   }
-  .home-thumbs{
-    font-family: 'Source Sans Pro', helvetica, Arial, sans-serif;
-    width:200px;
-    img{
-      width:200px;
+}
+.search-container{
+  width: 100%;
+  height: 550px;
+  background-image: url("http://fantasylandhotel.com/images/flh-roman-luxury-theme.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  .title{
+    width: 1200px;
+    height: 200px;
+    margin: 0px auto;
+    padding-top: 100px;
+    text-align: center;
+    font-size: 3em;
+    color: $cwhite;
+    font-weight: 700;
+    text-shadow: 0px 0px 10px $cblack;
+  }
+  .search{
+    width: 980px;
+    height: 55px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.5);
+    margin: 130px auto 0px auto;
+    input[type=text]{
+      width: 150px;
+      height: 25px;
+      font-size: 1.2em;
+      line-height: 31px;
+      padding: 8px;
+      margin: 6px 0px 0px 15px;
     }
-    h3{
-      padding: 5px;
-      font-size:1.3em;
-      font-weight: 400;
-      line-height:20px;
+    input[type=submit]{
+      width: 130px;
+      margin: 6px 0px 0px 10px;
     }
-
-    p{
+  }
+}
+.listing-container{
+  width: 980px;
+  min-height: 600px;
+  margin: 0px auto;
+  padding: 30px 0px;
+  .list-title{
+    text-align: left;
+    font-size: 2em;
+    font-weight: 600;
+    color: $cblack;
+  }
+  .listings{
+    width: 980px;
+    height: 560px;
+    margin-top: 30px;
+    .item{
+      width: 310px;
+      height: 240px;
+      margin: 10px 0px;
+      display: inline-block;
+      position: relative;
+      .price{
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        color: $cwhite;
+        text-align: center;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        font-size: 1em;
+        box-shadow : 0px 0px 2px $cblack;
+        font-weight: 400;
+        .rs{
+          font-weight: 600;
+          font-size: 1.3em;
+        }
+      }
+      &:nth-child(2){
+        margin: 0px 18px;
+      }
+      &:nth-child(5){
+        margin: 0px 18px;
+      }
+      .image-container{
+        width: 310px;
+        height: 185px;
+        border: 1px solid $cblack;
+        padding: 2px;
+        box-shadow : 0px 0px 2px $cblack;
+      }
+      .name{
+        padding-top:10px;
+         font-size: 1.3em;
+         color: $cblack;
+         text-indent: 14px;
+         font-weight: 400;
+      }
+      .info{
+        font-size: 1em;
+        color: $cblack;
+        text-indent: 14px;
+        font-weight:400;
+      }
+    }
+  }
+}
+.footer{
+  width: 100%;
+  height: 300px;
+  background: #00314A; //#24476B;
+  .footer-inner{
+    width: 980px;
+    height: 300px;
+    margin: 0px auto;
+  }
+  .grid_6{
+    width: 220px;
+    color: #fff;
+    margin-left: 30px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+    float: left;
+    &:first-child{
+      margin-left: 0px;
+    }
+    a{
+      color: #fff;
+    }
+    ul{
+      list-style:none;
       font-weight:300;
       font-size:1em;
-      line-height:14px;
+      margin-left: 10px !important
     }
-  }
-
-.header-main {
-	background: image_url("main-header-background.jpg") no-repeat;
-	background-position: top center;
-	height: 396px;
-	padding-top:40px;
-	-webkit-background-size : cover;
-	-moz-kit-background-size : cover;
-	-o-kit-background-size : cover;
-}
-.brandbar {
-	font-family: 'Source Sans Pro', helvetica, Arial, sans-serif;
-	margin-bottom:154px;
-	height : 88px;
-	line-height: 88px;
-	font-weight:200;
-	margin-bottom:0;
-	text-rendering : optimizelegibility;
-
-	.claim {
-		font-size: 30px;
-		text-align: center;
-	}
-	
-	.logo {
-		font: 0/0 a;
-		color: transparent;
-		background: image-url("logo.png") no-repeat center center;
-		-webkit-background-size : contain;
-		-moz-kit-background-size : contain;
-		-o-kit-background-size : contain;
-		height:60px;
-		margin-top:14px;
-		font-weight: 0;
-	}
-}
-.searchbar{
-  width: 100%;
-  height: 80px;
-  background: #60a3d9;
-  color: black;
-  .container{
-    min-width: 1100px;
-    min-height: 80px;
-    height: auto;
-  }
-  #search_form .search{
-  padding: 10px 5px;
-  font-size: 18px;
-  margin: 15px 10px 0px 10px;
-  }
-}
-
-#pictures{
-  width: 100%;
-  height: 500px;
-  min-height: 500px;
-  .span12{
-    margin: 30px 250px;
-    //border: 1px solid #000;
-  }
-  .span2{
-   // border: 1px solid blue;
-    margin: 0px 10px;
-    display: inline-block;
-    img{
-      width: 150px;
-      height: 100px;
-      margin: 0px 10px;
-    }
-
-      font-size: 13px;
-      font-weight: bold;
-      text-align: center;
-    .stars{
-      width: 130px;
-      height: 18px;
-      margin: 0px auto;
-      //margin-bottom: 5px;
-
-      .icon-star-empty{
-        margin: 0px 0px;
-        margin-bottom: 5px;
-        padding: 2px;
-        background: orange;
-      }
+    h3{
+      font-weight:200;
+      font-size:1.5em;
     }
   }
 }

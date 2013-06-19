@@ -1,11 +1,8 @@
-
-$color-blue : #60a3d9;
-
- $color-blue : #60a3d9;
- $color-cream : #fffde8;
- $color-pink : #e66586;
- $color-green : #94c33d;
-
+$cwhite : #ECF0F1;
+$clblue : #3498DB;
+$cdblue : #2980B9;
+$cred : #E74C3C;
+$cblack : #2C3E50;
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700);
 body{
 	font-family: 'Source Sans Pro','Helvetica-Neue',Helvetica,Arial,sans-serif;
@@ -15,10 +12,10 @@ body{
 
 
 body{
- 	background: $color-cream;
+ 	background: $cwhite;
 }
 .navbar-inner{
-	background: $color-cream;
+	background: $cwhite;
 } 
 .navbar,.navbar-main{
 
@@ -26,6 +23,7 @@ body{
 	//top:0;
 	width:100%;
 	//z-index:1000;
+	min-width:1000px;
 
 	position: absolute;
 	top:0;
@@ -39,8 +37,8 @@ body{
 .footer{
 	width:100%; 
 	padding: 10px 0px; 
-	background:#140A00;
-	color:white;
+	background: $cblack;
+	color:$cwhite;
 	height:250;
 }
 .head-logo{
