@@ -112,7 +112,7 @@ $cblack : #2C3E50;
   }
   .listings{
     width: 980px;
-    height: 560px;
+    min-height: 560px;
     margin-top: 30px;
     .item{
       width: 310px;
@@ -140,6 +140,12 @@ $cblack : #2C3E50;
         margin: 0px 18px;
       }
       &:nth-child(5){
+        margin: 0px 18px;
+      }
+      &:nth-child(8){
+        margin: 0px 18px;
+      }
+      &:nth-child(11){
         margin: 0px 18px;
       }
       .image-container{
