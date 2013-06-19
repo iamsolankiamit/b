@@ -24,12 +24,12 @@
                 <% photos = @offer.photos%>
                 <% if !photos.nil? %>
           <%if !photos.first.nil? %>
-            <div class="item active">  <%= image_tag photos.shift.image.url(:medium), :style => "height:350px;max-width:500px;"%></div>
+            <div class="item active">  <%= image_tag photos.shift.image.url(:slider2), :style => "height:350px;  margin:auto;"%></div>
             <% end %>
             <% end %>
               <% photos.each do |p| %>
               <div class="item">
-                <%=image_tag p.image.url(:medium), :style => "height:350px; margin:auto;" %>
+                <%=image_tag p.image.url(:slider2), :style => "height:350px; margin:auto;" %>
               </div>
               <% end %>
             </div>
