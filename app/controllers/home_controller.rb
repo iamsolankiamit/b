@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-  	@offers = Offer.where(:visiblity => true, :is_verified => true).order(:created_at)
+  	@offers = Offer.where(:visiblity => true, :is_verified => true).order("created_at DESC")
   end
 end
