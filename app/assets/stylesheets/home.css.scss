@@ -117,7 +117,7 @@ $cblack : #2C3E50;
     .item{
       width: 310px;
       height: 240px;
-      margin: 10px 0px;
+      margin-top: 30px;
       display: inline-block;
       position: relative;
       .price{
@@ -146,6 +146,18 @@ $cblack : #2C3E50;
         margin: 0px 18px;
       }
       &:nth-child(11){
+        margin: 0px 18px;
+      }
+      &:nth-child(14){
+        margin: 0px 18px;
+      }
+      &:nth-child(17){
+        margin: 0px 18px;
+      }
+      &:nth-child(20){
+        margin: 0px 18px;
+      }
+      &:nth-child(23){
         margin: 0px 18px;
       }
       .image-container{
