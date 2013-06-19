@@ -18,13 +18,15 @@
     <% @offers.each do |offer| %>
       
         <div class="item">
-          <%= link_to offer_path(offer) do %>
+          
           <div class="image-container">
+            <%= link_to offer_path(offer) do %>
             <% if offer.photos.exists? %>
               <% if !offer.photos.first.nil? %>
                 <%= image_tag offer.photos.first.image.url(:homeimage)%>
               <% end %>
             <% end %>
+          <% end %>
           </div>
           <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
           <% if offer.translations.exists? %>
@@ -35,7 +37,6 @@
             <div class="name">Offer (<%= offer.id %>).</div>
           <% end %>
           <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.address_addon %></div>
-          <% end %>
         </div>
       
     <% end %>
