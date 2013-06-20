@@ -2,13 +2,19 @@
     <%= f.error_messages %>
     <%= f.input :currency , :as => :select, :collection => {"INR: &#x20B9;".html_safe => "INR","USD: US &#36;".html_safe => "USD","EUR: &#8364;".html_safe => "EUR"}, :include_blank => false %>
     <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
+    (Affordable and something that matches your services.)
     <%= f.input :weekly_rate_amount , :as => :string, :label => "Weekly Rate"%> 
+    (Do the Math)
     <%= f.input :monthly_rate_amount , :as => :string, :label => "Monthly Rate"%>
+    (You know what you want)
+
     <hr class="offer-hr">
     <h3>Additional Charges</h3>
     <%= f.input :extra_guest_charge_amount , :as => :string, :label => "Fee for extra guests"%>
     <%= f.input :included_guest_count , :as => :select, :collection =>(1..30), :label => "for each guest after"%>
     <%= f.input :service_charge_amount , :as => :string, :label => "Cleaning fee"%>
+    (Only if you provide a maid/cleaner)
+
     <hr class="offer-hr">
     <h3>Terms &amp; Conditions</h3>
     <%= f.input :cancelation_policy , :as => :select, :collection => {"Flexible" => "flexible", "Moderate" => "moderate", "Strict" => "strict"}, :include_blank => false, :label => "Cancellation Policy"%>
