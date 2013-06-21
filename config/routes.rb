@@ -7,18 +7,13 @@ Roomnhouse::Application.routes.draw do
   resources :howitworks, only: [:index]
   
   devise_for :users do
-    resources :calendars, only: [:index]
-  
-  
+    
   resources :offers do
-    resource :calendar, only: [:show, :edit, :update]
-    resources :calendar_events, only: [:update,:delete]
     resource :translations, only: [:edit,:update]
     resources :photos
     resource :details, only: [:edit,:update]
     resource :addresses, only: [:edit,:update]
     resource :pricing, only: [:edit,:update]
-  end
   end
   root :to => "home#index"
 
