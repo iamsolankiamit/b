@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar
   # attr_accessible :title, :body
   has_many :offers, :dependent => :destroy
-  
   before_create :setup_default_role_for_new_users
   has_attached_file :avatar, 
     :styles => { 

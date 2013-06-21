@@ -46,7 +46,6 @@ class Offer < ActiveRecord::Base
 
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
- 
   belongs_to :users                       
 
 
