@@ -47,6 +47,10 @@ class Offer < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
  
+  has_one :calendar, :dependent => :destroy
+
+  has_many :calendar_events, :through => :calendar, :dependent => :destroy
+
   belongs_to :users                       
 
 

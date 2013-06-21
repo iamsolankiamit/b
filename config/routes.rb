@@ -1,20 +1,25 @@
 Roomnhouse::Application.routes.draw do
-  
+ 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  devise_for :users 
-  
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :howitworks, only: [:index]
+  
+  devise_for :users do
+    resources :calendars, only: [:index]
+  
+  
   resources :offers do
+    resource :calendar, only: [:show, :edit, :update]
+    resources :calendar_events, only: [:update,:delete]
     resource :translations, only: [:edit,:update]
     resources :photos
     resource :details, only: [:edit,:update]
     resource :addresses, only: [:edit,:update]
     resource :pricing, only: [:edit,:update]
   end
-  
+  end
   root :to => "home#index"
 
   # The priority is based upon order of creation:
