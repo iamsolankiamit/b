@@ -39,6 +39,12 @@
 				</div>
 			</div>
 			<% end %>
+			<% if @offers.count = 0 %>
+				<div style="text-align:center;">
+					<h3>You currently don't have any Listings</h3>
+					<%= link_to "List your place" , new_offer_path, class: "btn btn-primary" %>
+				</div>
+			<% end %>
 			</div>
 
 	</div>
