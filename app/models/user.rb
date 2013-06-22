@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone
   # attr_accessible :title, :body
   has_many :offers, :dependent => :destroy
   before_create :setup_default_role_for_new_users
@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
     :path => "/:class/:attachment/:id_partition/:style/:filename"
 
   ROLES = %w[admin default banned]
+
+  validates_presence_of :firstname, :lastname, :phone
+  validates_numericality_of :phone
 
   private
 

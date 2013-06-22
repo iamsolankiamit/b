@@ -6,6 +6,7 @@ Roomnhouse::Application.routes.draw do
   resources :aboutus, only: [:index]
   resources :howitworks, only: [:index]
   
+  resources :floods, only: [:index]
   devise_for :users
 
   resources :offers do

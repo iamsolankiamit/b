@@ -1,19 +1,23 @@
 <% content_for :signup do %>
-
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-  <%= f.input :firstname  %>
-  <%= f.input :lastname %>
+  <style type="text/css">h2{font-size:1.3em !important; font-weight: 600; line-height:20px;}</style>
+  <div><%= f.label :firstname %>
+  <%= f.text_field :firstname %></div>
+  <div><%= f.label :lastname %>
+  <%= f.text_field :lastname %></div>
+  <div><%= f.label :phone %>
+  <%= f.phone_field :phone %></div>
   <div><%= f.label :email %>
   <%= f.email_field :email %></div>
 
   <div><%= f.label :password %>
   <%= f.password_field :password %></div>
-(Minimum 8 Characters reqd and don’t forget to make it stronger)
+Minimum 8 Characters
   <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
-(C’mon one more time)
   <div><%= f.submit "Sign up", class: "btn btn-default btn-medium" %></div>
+  
 <% end %>
 
 <%= render "devise/shared/links" %>

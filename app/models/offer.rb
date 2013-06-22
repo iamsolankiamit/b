@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  before_save :set_email, :set_cancellation_policy
+  before_save :set_email, :set_cancellation_policy, :set_contact
   before_update :set_email
   attr_accessible :visiblity,
   								:email, 
@@ -38,7 +38,9 @@ class Offer < ActiveRecord::Base
                   :translations_attributes,
                   :user_id,
                   :is_verified,
-                  :photos_attributes
+                  :photos_attributes,
+                  :donate,
+                  :full
 
 
   has_many :translations, :dependent => :destroy
@@ -72,9 +74,16 @@ class Offer < ActiveRecord::Base
 
   validates_numericality_of :nightly_rate_amount
 
+  def set_contact
+    if self.contact_phone.nil?
+      self.contact_phone = User.find(:all, :conditions => ['id=?', self.user_id]).first.phone
+    end
+  end
+
+
   def set_email
     if self.email.nil?
-      self.email=User.find(:all, :conditions => ['id =?', self.user_id ]).first.email;
+      self.email=User.find(:all, :conditions => ['id =?', self.user_id ]).first.email
     end
   end
 

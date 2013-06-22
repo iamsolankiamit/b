@@ -3,16 +3,12 @@
 
     <!-- Hideen from other users until room is brought -->
     <p>These will be hidden from the user until booking is done</p>
-    <%= f.input :country_code_iso, :as => :select, :label => "Country", :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false %>
+    <%= f.input :country_code_iso, :as => :select, :label => "Country", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
 
-    (Which part of the world do you belong to?)
 
     <%= f.input :street_no , :as => :string, :label => "House no."%>
-    (We reveal this information only after YOU confirm YOUR guest)
     <%= f.input :street ,:label => "Address Line 1", :as => :string%>
-    (Eg. M G Road, Near Let’s have Lunch)
     <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
-    (This is what everyone can see, trust me!)
     <%= f.input :city , :as => :string%>
     <%= f.input :zip , :as => :string%>
 
@@ -21,11 +17,12 @@
     <%= f.input :object_type, 
   :as => :select, 
   :collection => {
-    "Service Apartment" => "service_apartment",
     "Shared Room"=>"shared_room", 
-    "Holiday home" => "house", 
     "Apartment" => "apartment", 
+    "Holiday home" => "house", 
     "Private room" => "private_room", 
+    "Garage" => "garage", 
+    "Service Apartment" => "service_apartment",
     "Chalet or cabin" => "cabin", 
     "Villa" => "villa",
     "Castle" => "castle", 
@@ -35,14 +32,10 @@
     "Car" => "automobile"}, 
   :label => "Property Type", 
   :include_blank => false %>
-  (Very crucial. How will a guest book your place until he knows about it)
     <%= f.input :max_guest_count , :as => :select, :collection =>(1..30), :label => "Accommodates", :include_blank => false %>
-    (How many people can you entertain at the same time)
     <%= f.input :bedroom_count , :as => :select, :collection =>(1..10), :label => "Bedrooms", :include_blank => false%>
     <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
-    (Don’t lose customers by using over-the-reach rates. Keep it simple and affordable, silly)
     <%= f.input :currency , :as => :select, :collection => {"INR: &#x20B9;".html_safe => "INR","USD: US &#36;".html_safe => "USD","EUR: &#8364;".html_safe => "EUR"}, :include_blank => false %>
-    (Do you like to earn your income in Dollars or what?)
 
 
   

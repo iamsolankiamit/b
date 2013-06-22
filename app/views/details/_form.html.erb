@@ -2,17 +2,17 @@
 
   <%= f.error_messages %>
   
-  <%= f.input :visiblity %>
+  <%= f.input :donate, label: "Free for flood victims?", hint: "Help the flood victims." %>
+  <%= f.input :full, label: "Occupied?", hint: "If it is full, you won't be listed." %>
 
-  <%= f.input :email, :as => :email %>
-  (Chill, the guest won’t be able to access it until you confirm the guest)
-  <%= f.input :contact_phone, :as => :string%>
+  <%= f.input :email, as: :email %>
+  <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
 
-  <%= f.input :contact_phone_backup, :as => :string %>
+  <%= f.input :contact_phone_backup, as: :string, label: "Alternate Phone no." %>
 
   <%= f.input :object_type, 
-  :as => :select, 
-  :collection => {
+  as: :select, 
+  collection: {
     "Service Apartment" => "service_apartment",
     "Shared Room"=>"shared_room", 
     "Holiday home" => "house", 
@@ -37,12 +37,12 @@
     "Square feet" => "square_feet"}, 
   :include_blank => false %>
 
-  <%= f.input :bathroom_count , :as => :select, :collection =>(1..10), :include_blank =>false %>
+  <%= f.input :bathroom_count , :as => :select, label: "Bathrooms", :collection =>(1..10), :include_blank =>false %>
 
   <%= f.input :max_guest_count , 
   :as => :select, 
   :collection =>(1..30), 
-  :label => "Accomodates", 
+  :label => "Accommodates", 
   :include_blank => false %>
 
   <%= f.input :bed_count , 
@@ -66,7 +66,8 @@
     "Couch" => "couch"}, 
   :include_blank => false %>
 
-  <%= f.input :allow_marketing, :label => "Marketing" %>
+  <%= f.input :allow_marketing, :label => "Marketing", hint: "Can we do marketing for your listing?" %>
+  <%= f.input :visiblity, hint: "Keep it unchecked if you want it to be hidden." %>
 
 <%= f.button :submit, :class => 'btn-primary'%>
 <% end %>

@@ -1,6 +1,15 @@
 <% content_for :header do %>
 <div class="search-container">
-  <div class="title">Travelers Accomodation, simplified.</div>
+  <div class="title" style="height:100px">Travelers Accomodation, simplified.</div>
+  <div class="flood-callout" style="text-align:center;color:#ecf0f1">
+<div>
+    <h2 style="font-size:2.5em;
+font-weight: 700;
+text-shadow: 0px 0px 10px #2c3e50;">Help the Flood Victims</h2>
+    <%= link_to "Provide Shelter To Flood Victims", new_offer_path,  class: "btn btn-large" %>
+    <%= link_to "Are You A Flood Victim?",floods_path,  class: "btn btn-large" %>
+    </div>
+  </div>
   <div class="search">
     <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
     <%= text_field_tag :location, nil, placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
