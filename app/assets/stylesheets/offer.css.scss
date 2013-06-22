@@ -1,3 +1,10 @@
+
+$cwhite : #ECF0F1;
+$clblue : #3498DB;
+$cdblue : #2980B9;
+$cred : #E74C3C;
+$cblack : #2C3E50;
+
 hr{
     border: 0;
     height: 1px;
@@ -8,7 +15,7 @@ hr{
 }
 
 .offer-content{
-
+	color:$cblack;
 		font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 		padding-bottom:25px;
 		h2,h3{
@@ -68,6 +75,7 @@ hr{
 }
 
 .offer-index{
+	color:$cblack;
 		font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
 		padding-bottom:25px;
 		h2,h3{
@@ -83,7 +91,7 @@ hr{
 	.offer-index-container{
   box-shadow: 0px 0px 2px grey;
 
-		background-color: #E6E4D1;
+		background-color: $cwhite;
 		margin-bottom: 10px;
 		padding-bottom:15px;
 	}
