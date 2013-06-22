@@ -76,7 +76,9 @@ class Offer < ActiveRecord::Base
 
   def set_contact
     if self.contact_phone.nil?
-      self.contact_phone = User.find(:all, :conditions => ['id=?', self.user_id]).first.phone
+      if !User.find(:all, :conditions => ['id=?', self.user_id]).first.phone.nil?
+        self.contact_phone = User.find(:all, :conditions => ['id=?', self.user_id]).first.phone
+      end
     end
   end
 
