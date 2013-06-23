@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-  	@offers = Offer.where(donate: true, full:false)
+  	@floods = Flood.all
   end
 end

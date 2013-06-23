@@ -1,5 +1,8 @@
 Roomnhouse::Application.routes.draw do
  
+  resources :floods
+
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :search , only:  [:index]

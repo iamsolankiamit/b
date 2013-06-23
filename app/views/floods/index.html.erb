@@ -1,32 +1,30 @@
 <% content_for :body do %>
+
 <div class="container">
-	<div class="" style="margin: 20px auto;min-height:700px">
-		<table class="table table-striped table-bordered">
-			<thead>
-				<caption>List of all available places to stay</caption>
-				<tr>
-				<td>#</td>
-				<td>Name</td>
-				<td>City</td>
-				<td>Address</td>
-				<td>Accommodation</td>
-				<td>Phone</td>
-			</tr>
-			</thead>
-			<tbody>
-				<% @offers.each do |offer| %>
-				<% host = User.find(offer.user_id) %>
-				<tr>
-					<td><%= offer.id %></td>
-					<td><%= host.firstname.humanize %> <%= host.lastname.humanize %></td>
-					<td><%= offer.city.humanize %></td>
-					<td><%= offer.street_no %> <%= offer.street %> <%= offer.address_addon %>. Zip: <%= offer.zip %></td>
-					<td><%= offer.max_guest_count %></td>
-					<td><%= offer.contact_phone %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-</div>
+  <div class="" style="margin: 20px auto;min-height:700px">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <caption>List of all available places to stay</caption>
+        <tr>
+        <td>Name</td>
+        <td>City</td>
+        <td>Address</td>
+        <td>Accommodation</td>
+        <td>Phone</td>
+      </tr>
+      </thead>
+      <tbody>
+
+        <% @floods.each do |flood| %>
+  <tr>
+    <td><%= flood.firstname %> <%= flood.lastname %></td>
+    <td><%= flood.city %></td>
+    <td><%= flood.address %></td>
+    <td><%= flood.accommodates %></td>
+    <td><%= flood.phone.split[1] %></td> </tr>
 <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+ <% end %>
