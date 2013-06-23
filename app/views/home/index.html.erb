@@ -21,34 +21,34 @@ text-shadow: 0px 0px 10px #2c3e50;">Help the Flood Victims</h2>
   </div>
 </div>
 
-<div class="listing-container">
-  <div class="list-title">Latest Listings On RoomnHouse.</div>
-  <div class="listings">
-    <% @offers.each do |offer| %>
-      
-        <div class="item">
-          
-          <div class="image-container">
-            <%= link_to offer_path(offer) do %>
-            <% if offer.photos.exists? %>
-              <% if !offer.photos.first.nil? %>
-                <%= image_tag offer.photos.first.image.url(:homeimage)%>
-              <% end %>
-            <% end %>
-          <% end %>
-          </div>
-          <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
-          <% if offer.translations.exists? %>
-            <% if !offer.translations.first.title.nil? %>
-              <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
-            <% end %>
-          <% else %>
-            <div class="name">Offer (<%= offer.id %>).</div>
-          <% end %>
-          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.address_addon %></div>
-        </div>
-      
-    <% end %>
+<div class="container">
+  <div class="" style="margin: 20px auto;min-height:700px">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <caption>List of all available places to stay</caption>
+        <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>City</td>
+        <td>Address</td>
+        <td>Accommodation</td>
+        <td>Phone</td>
+      </tr>
+      </thead>
+      <tbody>
+        <% @offers.each do |offer| %>
+        <% host = User.find(offer.user_id) %>
+        <tr>
+          <td><%= offer.id %></td>
+          <td><%= host.firstname.humanize %> <%= host.lastname.humanize %></td>
+          <td><%= offer.city.humanize %></td>
+          <td><%= offer.street_no %> <%= offer.street %> <%= offer.address_addon %>. Zip: <%= offer.zip %></td>
+          <td><%= offer.max_guest_count %></td>
+          <td><%= offer.contact_phone %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 <% end %>
