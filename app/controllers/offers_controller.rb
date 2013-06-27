@@ -38,7 +38,7 @@ class OffersController < ApplicationController
     if @offer.update_attributes(params[:offer])
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
-      render :edit
+      redirect_to :back, :notice => "Offer not updated successfully."
     end
   end
 

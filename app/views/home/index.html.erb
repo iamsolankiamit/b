@@ -1,15 +1,6 @@
 <% content_for :header do %>
 <div class="search-container">
-  <div class="title" style="height:100px"></div>
-  <div class="flood-callout" style="text-align:center;color:#ecf0f1">
-<div>
-    <h2 style="font-size:2.5em;
-font-weight: 700;
-text-shadow: 0px 0px 10px #2c3e50;">Help the Flood Victims</h2>
-    <%= link_to "Provide Shelter To Flood Victims <i class='icon-heart icon-white'></i> ".html_safe, new_flood_path,  class: "btn btn-large btn-danger" %>
-    <%= link_to "Are You A Flood Victim?",floods_path,  class: "btn btn-large" %>
-    </div>
-  </div>
+  <div class="title" style="height:200px">Travellers accommodation, simplified.</div>
   <div class="search">
     <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
     <%= text_field_tag :location, nil, placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
@@ -20,32 +11,34 @@ text-shadow: 0px 0px 10px #2c3e50;">Help the Flood Victims</h2>
     <% end %>
   </div>
 </div>
-
-<div class="container">
-  <div class="" style="margin: 20px auto;min-height:700px">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <caption>List of all available places to stay</caption>
-        <tr>
-        <td>Name</td>
-        <td>City</td>
-        <td>Address</td>
-        <td>Accommodation</td>
-        <td>Phone</td>
-      </tr>
-      </thead>
-      <tbody>
-
-        <% @floods.each do |flood| %>
-  <tr>
-    <td><%= flood.firstname %> <%= flood.lastname %></td>
-    <td><%= flood.city %></td>
-    <td><%= flood.address %></td>
-    <td><%= flood.accommodates %></td>
-    <td><%= flood.phone %></td> </tr>
-<% end %>
-      </tbody>
-    </table>
+<div class="listing-container">
+  <div class="list-title">Latest Listings On RoomnHouse.</div>
+  <div class="listings">
+    <% @offers.each do |offer| %>
+      
+        <div class="item">
+          
+          <div class="image-container">
+            <%= link_to offer_path(offer) do %>
+            <% if offer.photos.exists? %>
+              <% if !offer.photos.first.nil? %>
+                <%= image_tag offer.photos.first.image.url(:homeimage)%>
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
+          <% if offer.translations.exists? %>
+            <% if !offer.translations.first.title.nil? %>
+              <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
+            <% end %>
+          <% else %>
+            <div class="name">Offer (<%= offer.id %>).</div>
+          <% end %>
+          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.address_addon %></div>
+        </div>
+      
+    <% end %>
   </div>
 </div>
 <% end %>

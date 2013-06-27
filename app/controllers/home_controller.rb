@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-  	@floods = Flood.all
+		@offers = Offer.where(visiblity: true, is_verified:true)
   end
 end
