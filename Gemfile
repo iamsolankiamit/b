@@ -19,7 +19,7 @@ gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
 
 gem 'kaminari' #pagination
-gem "rails_admin" , :git => "https://github.com/sferik/rails_admin.git"
+gem "rails_admin" , ' >= 0.4.0'
 gem "thin", :group => :development
 gem 'simple_form'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
@@ -34,12 +34,8 @@ group :assets do
   gem "haml"
   gem "sass"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  #gem 'therubyracer', :platforms => :ruby
-  
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
-  
-  gem 'asset_sync'
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -51,7 +47,6 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-#gem 'unicorn'
 gem 'unicorn'
 
 # Deploy with Capistrano
@@ -59,6 +54,7 @@ gem 'unicorn'
 
 # To use debugger
 gem 'debugger'
+
 group :test do
   gem "rspec-rails", :group => :development
   gem "mocha"
