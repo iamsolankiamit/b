@@ -53,7 +53,7 @@ gem 'unicorn'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+#gem 'debugger'
 
 group :test do
   gem "rspec-rails", :group => :development
