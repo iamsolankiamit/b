@@ -4,13 +4,4 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_path, :alert => exception.message
   end
 
-  layout :layout_by_resource
-
-  def layout_by_resource
-    if devise_controller? && resource_name == :user
-      "registration"
-    else
-      "application"
-    end
-  end
 end

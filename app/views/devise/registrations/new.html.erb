@@ -1,4 +1,6 @@
-<% content_for :signup do %>
+<% content_for :body do %>
+<div class="container_24">
+  <div class="grid_24 register-box">
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <style type="text/css">h2{font-size:1.3em !important; font-weight: 600; line-height:20px;}</style>
@@ -10,15 +12,15 @@
   <%= f.phone_field :phone %></div>
   <div><%= f.label :email %>
   <%= f.email_field :email %></div>
-
   <div><%= f.label :password %>
   <%= f.password_field :password %></div>
 Minimum 8 Characters
   <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
   <div><%= f.submit "Sign up", class: "btn btn-default btn-medium" %></div>
-  
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
 <% end %>

@@ -1,16 +1,15 @@
 Roomnhouse::Application.routes.draw do
  
   resources :floods
-
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
-  resources :howitworks, only: [:index]
+  resources :how, only: [:index]
   
   resources :floods, only: [:index]
-  devise_for :users
 
   resources :offers do
     resource :translations, only: [:edit,:update]

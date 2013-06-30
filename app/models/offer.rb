@@ -38,9 +38,7 @@ class Offer < ActiveRecord::Base
                   :translations_attributes,
                   :user_id,
                   :is_verified,
-                  :photos_attributes,
-                  :donate,
-                  :full
+                  :photos_attributes
 
 
   has_many :translations, :dependent => :destroy
