@@ -30,7 +30,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem "haml"
   gem "sass"
-
+  gem "yui-compressor"
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
