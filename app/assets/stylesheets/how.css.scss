@@ -2,50 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.how{
-	list-style:none;
-	li{
-		padding:20px 0px;
-		margin:0px;
-		border-bottom:1px solid #2c3e50;
-		&:first-child{
-			margin-top:20px;
+.how_container{
+	background:#fff;
+	box-shadow:0px 0px 1px #2C3E50;
+	//border:1px solid #e3e3e3;
+	padding:20px;
+	.title{
+		text-align:center;
+		p{
+			font-weight:1.3em;
 		}
-		&:last-child{
-			margin-bottom:20px;
-			border:none;
-		}
-		.step{
-			border-radius: 50%;
-			height:110px;
-			padding:0px;
-			text-align:center;
-			font-weight:200;
-			font-size:2em;
-			color:#ecf0f1;
-			background-color:#2c3e50;
-			p{
-				padding-top:45px;
-			} 
-		}
-		.content{
-			padding:0px;
-			padding-top:30px;
-			margin:0px;
-			font-size:1em;
-			background: none;
-			p{
-				padding:0px;
-			}
-			h3{
-				margin:0px;
-				padding:5px 0px;
-				font-weight:500;
-				font-size:1.3em
-			}
-			a{
-				text-indent: 0px;
-			}
+	}
+	.howitworks{
+		h2{
+			text-align: center;
 		}
 	}
 }

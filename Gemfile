@@ -14,7 +14,7 @@ gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 gem "paperclip"
 gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
-gem 'heroku_rails_deflate', :group => :production
+gem 'heroku-deflater', :group => :production
 gem 'kaminari' #pagination
 gem "rails_admin" , ' >= 0.4.0'
 gem "thin", :group => :development

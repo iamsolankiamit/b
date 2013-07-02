@@ -5,14 +5,47 @@ $cred : #E74C3C;
 $cblack : #2C3E50;
 body{
 	font-family: 'Source Sans Pro','Helvetica-Neue',Helvetica,Arial,sans-serif;
-	font-size: 16px;
+	font-size: 1em;
 	line-height: 22px;
-}
-
-
-body{
  	background: $cwhite;
+
+ 	h1{
+ 		font-weight: 700;
+ 		font-size:2em;
+ 	}
+ 	h2{
+ 		font-weight:600;
+ 		font-size:1.5em;
+ 	}
+ 	h3{
+ 		font-weight: 400;
+ 		font-size:1.3em;
+ 	}
+ 	h4{
+ 		font-weight:600;
+ 		font-size:1em
+ 		
+ 	}
+ 	h5{
+ 		font-weight:600;
+ 		font-size: 0.7em;
+ 		}
+ 	h6{
+ 		font-weight:600;
+ 		font-size:0.5em;
+ 	}
 }
+
+.seo-travel{
+	margin: 10px 0px;
+	p{
+	font-size:0.7em;
+	}
+	border-top: 1px dashed #2C3E50;
+	border-bottom: 1px dashed #2C3E50;
+}
+
+
 .navbar-inner{
 	background: $cwhite;
 } 
@@ -33,6 +66,8 @@ body{
 		float:right;
 	}
 }
+
+
 .footer{
 	width:100%; 
 	padding: 10px 0px; 
