@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130629105713) do
+ActiveRecord::Schema.define(:version => 20130710200009) do
+
+  create_table "calendars", :force => true do |t|
+    t.string   "offer_id"
+    t.date     "date"
+    t.float    "pricing"
+    t.boolean  "availablity"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -139,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20130629105713) do
     t.integer  "phone",                  :limit => 8
     t.integer  "work_phone",             :limit => 8
     t.integer  "vat_id_number"
+    t.string   "token"
+    t.string   "lazy_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id
   # attr_accessible :title, :body
   has_many :offers, :dependent => :destroy
   before_create :setup_default_role_for_new_users
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     :url => ':s3_domain_url',
     :path => "/:class/:attachment/:id_partition/:style/:filename"
 
-  ROLES = %w[admin default banned]
+  ROLES = %w[admin default banned guest]
 
   validates_presence_of :firstname, :lastname, :phone
   validates_numericality_of :phone

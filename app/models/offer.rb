@@ -38,7 +38,8 @@ class Offer < ActiveRecord::Base
                   :translations_attributes,
                   :user_id,
                   :is_verified,
-                  :photos_attributes
+                  :photos_attributes,
+                  :calendars_arrtibutes
 
 
   has_many :translations, :dependent => :destroy
@@ -46,10 +47,11 @@ class Offer < ActiveRecord::Base
 
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
-  belongs_to :users                       
+  belongs_to :users                      
 
+  has_many :calendars, :dependent => :destroy
+  accepts_nested_attributes_for :calendars, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
 
-  #Validations below, need to recheck If I missed some.
 
   validates_presence_of :address_addon, 
                         :street, 

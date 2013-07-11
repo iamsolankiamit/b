@@ -1,5 +1,5 @@
 class OffersController < ApplicationController
-  before_filter :authenticate_user!, :except => :show
+  before_filter :authenticate_user!, :except => [:show,:new,:create]
   load_and_authorize_resource
 
   def index
@@ -16,11 +16,14 @@ class OffersController < ApplicationController
   end
 
   def create
-    @offer = current_user.offers.new(params[:offer])
+    @offer = current_or_guest_user.offers.new(params[:offer])
     @offer.translations.build(params[:id])
     if @offer.save
-      redirect_to edit_offer_details_path(@offer), :notice => "Successfully created offer, now fill in other details."
-      
+      if guest_user
+        redirect_to new_user_registration_path, :notice => "done"
+      elsif current_user
+        redirect_to edit_offer_details_path(@offer), :notice => "successfully created offer"
+      end 
     else
       render :new
     end

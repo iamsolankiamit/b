@@ -21,6 +21,7 @@ class Ability
       can :manage, Offer, :user_id => user.id
     else
       can :read, [Offer,User] # guest user
+      can :create, [Offer]
     end
 
     # The first argument to `can` is the action you are giving the user 
