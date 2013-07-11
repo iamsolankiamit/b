@@ -39,7 +39,7 @@ helper_method :current_or_guest_user
     def create_guest_user
         uuid = rand(36**64).to_s(36)
         temp_email = "guest_#{uuid}@email_address.com"
-        u = User.create(:email => temp_email, :lazy_id => uuid)
+        u = User.create(:email => temp_email, :lazy_id => uuid, guest_account: true)
         u.save(:validate => false)
         cookies[:uuid] = { :value => uuid, :path => '/', :expires => 5.years.from_now }
         u

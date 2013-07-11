@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710200009) do
+ActiveRecord::Schema.define(:version => 20130711121259) do
 
   create_table "calendars", :force => true do |t|
     t.string   "offer_id"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20130710200009) do
     t.integer  "vat_id_number"
     t.string   "token"
     t.string   "lazy_id"
+    t.boolean  "guest_account"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
