@@ -1,4 +1,14 @@
 module ApplicationHelper
+
+  def flash_class(level)
+    case level
+    when :notice then "alert alert-info"
+    when :success then "alert alert-success"
+    when :error then "alert alert-error"
+    when :alert then "alert alert-error"
+    end
+  end
+  
 	def link_to_remove_fields(name, f, options = {})
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", options)
   end

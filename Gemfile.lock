@@ -14,16 +14,6 @@ GIT
       ruby-hmac
 
 GIT
-  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 0afff97ed0ce327688b0b049acc9744b3835ff37
-  specs:
-    twitter-bootstrap-rails (2.2.7)
-      actionpack (>= 3.1)
-      execjs
-      rails (>= 3.1)
-      railties (>= 3.1)
-
-GIT
   remote: https://github.com/getsentry/raven-ruby.git
   revision: c20198c878ed211aaa7f13e26ca81005397efa94
   specs:
@@ -272,10 +262,12 @@ DEPENDENCIES
   asset_sync
   aws-s3
   aws-sdk
+  bootstrap-sass
   cancan
   coffee-rails (~> 3.2.1)
   devise
   fog!
+  font-awesome-rails
   haml
   heroku-deflater
   jquery-fileupload-rails
@@ -296,7 +288,6 @@ DEPENDENCIES
   simple_form
   therubyracer
   thin
-  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   unicorn
   wicked

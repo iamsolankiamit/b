@@ -4,11 +4,12 @@
   <div class="search">
        <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
     <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
-    <%= text_field_tag :checkin, nil, placeholder: "Check in" %>
-    <%= text_field_tag :checkout, nil, placeholder: "Check out" %>
+    <%= text_field_tag :checkin, nil, placeholder: "Check in"%>
+    <%= text_field_tag :checkout, nil, placeholder: "Check out"%>
     <%= text_field_tag :guests, nil, placeholder: "Guests" %>
     <%= submit_tag :search, class: "btn btn-danger btn-large" %>
     <% end %>
+
   </div>
 </div>
 <% end %>
@@ -95,12 +96,31 @@
 </div>
 <% end %>
 
-<% content_for:js do %>
+<% content_for :js do %>
 <script>
 $('#myTab a:first').tab('show'); // Select first tab
 $('#myTab a').click(function (e) {
   e.preventDefault();
   $(this).tab('show');
 });
-</script>
+
+$(function() {
+  $( "#checkin" ).datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkout" ).datepicker( "option", 0, selectedDate );
+    }
+  });
+  $( "#checkout" ).datepicker({
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkin" ).datepicker( "option", "+2y", selectedDate );
+    }
+  });
+});
+  </script>
 <% end %>

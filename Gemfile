@@ -19,12 +19,6 @@ gem 'kaminari' #pagination
 gem "rails_admin" , ' >= 0.4.0'
 gem "thin", :group => :development
 gem 'simple_form'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'nifty-generators'
-
-gem "jquery-fileupload-rails"
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -35,6 +29,15 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
+# gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'nifty-generators'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+
+gem "jquery-fileupload-rails"
+# Gems used only for assets and not required
+# in production environments by default.
+
 
 gem 'jquery-rails'
 

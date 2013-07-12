@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload
-//= require twitter/bootstrap
+// Loads all Bootstrap javascripts
 //= require bootstrap
 //= require_tree .
