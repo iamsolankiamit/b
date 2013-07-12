@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
   # config.excluded_models = ['Country', 'Offer', 'Photo', 'Translation', 'User']
 
   # Include specific models (exclude the others):
-  config.included_models = ['Offer', 'Photo', 'Translation', 'User']
+  config.included_models = ['Offer', 'Photo', 'Translation', 'User','Amenity']
 
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
