@@ -40,7 +40,16 @@
 
 				</div>
 				<hr class=" offer-hr">
-				<%= render(:partial => "form") %>
+				<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+  			<%= f.error_messages %>
+				<%= render('form', f: f) %>
+				<%= render('amenity_table', f: f) %>
+				<div class="control-group">
+					<div class="controls">
+						<%= f.button :submit, :value => "Save and Continue", :class => 'btn-primary'%>
+					</div>
+				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>

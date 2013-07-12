@@ -1,7 +1,4 @@
-<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
 
-  <%= f.error_messages %>
-  
   <%= f.input :email, as: :email %>
   <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
 
@@ -65,6 +62,3 @@
 
   <%= f.input :allow_marketing, :label => "Marketing", hint: "Can we do marketing for your listing?" %>
   <%= f.input :visiblity, hint: "Keep it unchecked if you want it to be hidden." %>
-
-<%= f.button :submit, :class => 'btn-primary'%>
-<% end %>

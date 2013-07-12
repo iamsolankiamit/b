@@ -97,6 +97,42 @@
             <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
             <hr>
             <% end %>
+            <% if @offer.amenity %>
+            <% @amenity = @offer.amenity %>
+            <h2>Amenities</h2>
+            <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
+            <%= "<li>Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
+            <%= "<li>Baby Cot</li>".html_safe if @amenity.baby_cot %>
+            <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
+            <%= "<li>Cable TV</li>".html_safe if @amenity.cable_tv %>
+            <%= "<li>Doorman</li>".html_safe if @amenity.doorman %>
+            <%= "<li>Dryer</li>".html_safe if @amenity.dryer %>
+            <%= "<li>Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
+            <%= "<li>Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
+            <%= "<li>Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
+            <%= "<li>Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
+            <%= "<li>Gym</li>".html_safe if @amenity.gym %>
+            <%= "<li>Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
+            <%= "<li>Heating</li>".html_safe if @amenity.heating %>
+            <%= "<li>Hot Tub</li>".html_safe if @amenity.hot_tub %>
+            <%= "<li>Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
+            <%= "<li>Intercom</li>".html_safe if @amenity.intercom %>
+            <%= "<li>Internet</li>".html_safe if @amenity.internet %>
+            <%= "<li>Kitchen</li>".html_safe if @amenity.kitchen %>
+            <%= "<li>Lockable Room</li>".html_safe if @amenity.lockable_room %>
+            <%= "<li>Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
+            <%= "<li>Pool</li>".html_safe if @amenity.pool %>
+            <%= "<li>Sauna</li>".html_safe if @amenity.sauna %>
+            <%= "<li>Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
+            <%= "<li>Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
+            <%= "<li>Towels</li>".html_safe if @amenity.towels %>
+            <%= "<li>TV</li>".html_safe if @amenity.tv %>
+            <%= "<li>Washer</li>".html_safe if @amenity.washer %>
+
+            <hr>
+            <% end %>
+
+
           </div> <!-- full details, description and title -->
            </div>
           <div class="grid_5 alpha omega sidebar-show">

@@ -1,0 +1,45 @@
+
+<div class="title">
+	<h2>Amenities</h2>
+</div>
+<hr>
+<%= f.simple_fields_for :amenity do |t| %>
+
+
+<div class="grid_18 alpha omega">
+<div class="grid_6 alpha">
+<%= t.input :breakfast %>
+<%= t.input :air_conditioning %>
+<%= t.input :baby_cot %>
+<%= t.input :breakfast %>
+<%= t.input :cable_tv %>
+<%= t.input :doorman %>
+<%= t.input :dryer %>
+<%= t.input :elevator_in_building %>
+<%= t.input :kids_friendly %>
+<%= t.input :wireless_internet %>
+</div>
+<div class="grid_6">
+<%= t.input :free_parking_on_premise %>
+<%= t.input :gym %>
+<%= t.input :handicap_accessible %>
+<%= t.input :heating %>
+<%= t.input :hot_tub %>
+<%= t.input :indoor_fireplace %>
+<%= t.input :intercom %>
+<%= t.input :internet %>
+<%= t.input :kitchen %>
+</div>
+<div class="grid_6 omega">
+<%= t.input :lockable_room %>
+<%= t.input :pets_allowed %>
+<%= t.input :pool %>
+<%= t.input :sauna %>
+<%= t.input :smoking_allowed %>
+<%= t.input :suitable_for_events %>
+<%= t.input :towels %>
+<%= t.input :tv %>
+<%= t.input :washer %>
+</div>
+</div>
+<% end %>

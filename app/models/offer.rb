@@ -39,7 +39,8 @@ class Offer < ActiveRecord::Base
                   :user_id,
                   :is_verified,
                   :photos_attributes,
-                  :calendars_arrtibutes
+                  :calendars_attributes,
+                  :amenity_attributes
 
 
   has_many :translations, :dependent => :destroy
@@ -52,6 +53,8 @@ class Offer < ActiveRecord::Base
   has_many :calendars, :dependent => :destroy
   accepts_nested_attributes_for :calendars, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
 
+  has_one :amenity, :dependent => :destroy
+  accepts_nested_attributes_for :amenity
 
   validates_presence_of :address_addon, 
                         :street, 
