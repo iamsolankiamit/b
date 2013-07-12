@@ -21,7 +21,7 @@ class OffersController < ApplicationController
     @offer.translations.build(params[:id])
     @offer.build_amenity(params[:id])
     if @offer.save
-      if guest_user
+      if !current_user
         redirect_to new_user_registration_path(:passthru => edit_offer_details_path(@offer)), :notice => "done"
       elsif current_user
         redirect_to edit_offer_details_path(@offer), :notice => "successfully created offer"

@@ -100,7 +100,6 @@
             <% if @offer.amenity %>
             <% @amenity = @offer.amenity %>
             <h2>Amenities</h2>
-            <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
             <%= "<li>Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
             <%= "<li>Baby Cot</li>".html_safe if @amenity.baby_cot %>
             <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
