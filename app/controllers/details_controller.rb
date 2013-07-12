@@ -1,6 +1,9 @@
 class DetailsController < ApplicationController
   def edit
   	@offer = current_user.offers.find(params[:offer_id])
+    if !@offer.amenity
+      @amenity = @offer.build_amenity
+    end
   end
 
   def update
