@@ -2,10 +2,10 @@
 <div class="search-container">
   <div class="title" style="height:200px">Travellers accommodation, simplified.</div>
   <div class="search">
-    <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
-    <%= text_field_tag :location, nil, placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
-    <%= text_field_tag :time, nil, placeholder: "Check in" %>
-    <%= text_field_tag :time, nil, placeholder: "Check out" %>
+       <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
+    <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
+    <%= text_field_tag :checkin, nil, placeholder: "Check in" %>
+    <%= text_field_tag :checkout, nil, placeholder: "Check out" %>
     <%= text_field_tag :guests, nil, placeholder: "Guests" %>
     <%= submit_tag :search, class: "btn btn-danger btn-large" %>
     <% end %>
