@@ -14,7 +14,6 @@
       <![endif]-->
       <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
       <%= stylesheet_link_tag "application", :media => "all" %>
-    
     </head>
     <body >
       <header role="banner">
@@ -22,7 +21,9 @@
           <div class="navbar-inner">
             <div class="container">
               <div class="container nav-collapse p">
-                <%= link_to root_path do%><%= image_tag "logo.png", class: "head-logo" %><% end %>
+                <%= link_to root_path do %>
+                  <%= image_tag "logo.png", :class => "head-logo" %>
+                <% end %>
                 <ul class="nav">
                   <li><%= link_to "Flood Victims", floods_path %></li>
                    <li class="divider"> </li>
@@ -40,8 +41,8 @@
                       <li><%= link_to "Account Settings", edit_user_registration_path %></li>
                       <li class="divider"> </li>
                       <li><%= link_to "logout", destroy_user_session_path %></li>
-                    </ul>     
-                  </div>   
+                    </ul>
+                  </div>
                 </li>
                 <% end %>
                  <li class="divider"></li>
@@ -61,7 +62,6 @@
     <%= yield :header %>
     <%= render 'layouts/flash_messages' %>
     <%= yield :body%>
-    
     <% if content_for?(:seo) %>
       <%= yield :seo%>
     <% else %>

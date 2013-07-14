@@ -2,14 +2,13 @@
 <div class="search-container">
   <div class="title" style="height:200px">Travellers accommodation, simplified.</div>
   <div class="search">
-       <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
-    <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
-    <%= text_field_tag :checkin, nil, placeholder: "Check in"%>
-    <%= text_field_tag :checkout, nil, placeholder: "Check out"%>
-    <%= text_field_tag :guests, nil, placeholder: "Guests" %>
-    <%= submit_tag :search, class: "btn btn-danger btn-large" %>
+    <%= form_tag "/search", :method => 'get', id: 'search_form' do %>
+      <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", style: "width: 250px;margin-left: 5px;" %>
+      <%= text_field_tag :checkin, nil, placeholder: "Check in"%>
+      <%= text_field_tag :checkout, nil, placeholder: "Check out"%>
+      <%= text_field_tag :guests, nil, placeholder: "Guests" %>
+      <%= link_to "<i class='icon icon-search'></i> Search".html_safe, 'search',:type => "submit", class: "btn btn-danger btn-large" %>
     <% end %>
-
   </div>
 </div>
 <% end %>
@@ -38,12 +37,10 @@
           <% end %>
           <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.address_addon %></div>
         </div>
-      
     <% end %>
   </div>
 </div>
 <% end %>
-
 <% content_for :seo do %>
 <div class="container_24">
   <div class="grid_24">
@@ -53,7 +50,6 @@
       <li><a href="#whyhost" data-toggle="tab">Why Host</a></li>
       <li><a href="#whytravel" data-toggle="tab">Why travel with us</a></li>
     </ul>
-
     <div class="tab-content">
       <div class="tab-pane active" id="know">
         <h4>RoomNHouse simply revolutionizes your travel experience.</h4>
@@ -95,15 +91,8 @@
   </div>
 </div>
 <% end %>
-
 <% content_for :js do %>
 <script>
-$('#myTab a:first').tab('show'); // Select first tab
-$('#myTab a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-});
-
 $(function() {
   $( "#checkin" ).datepicker({
     defaultDate: "+1w",
@@ -122,5 +111,10 @@ $(function() {
     }
   });
 });
-  </script>
+$('#myTab a:first').tab('show'); // Select first tab
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+</script>
 <% end %>

@@ -9,38 +9,32 @@ gem "devise"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog', :git => 'git://github.com/fog/fog.git'
-gem 'newrelic_rpm'
-gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+gem 'newrelic_rpm', :group => :production
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git", :group => :production
 gem "paperclip"
 gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
-gem 'kaminari' #pagination
+gem 'kaminari'
 gem "rails_admin" , ' >= 0.4.0'
 gem "thin", :group => :development
 gem 'simple_form'
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'jquery-rails', '>=2.1'
+  gem 'jquery-ui-rails', '~> 3.0'
   gem 'coffee-rails', '~> 3.2.1'
   gem "haml"
-  gem "sass"
   gem "yui-compressor"
+  gem 'bootstrap-sass', '~> 2.2'
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'font-awesome-rails', '~> 3.0'
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'nifty-generators'
-gem 'bootstrap-sass'
-gem 'font-awesome-rails'
-
 gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
 # in production environments by default.
-
-
-gem 'jquery-rails'
-
 gem 'unicorn'
 
 group :test do

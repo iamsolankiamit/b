@@ -11,8 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery-fileupload
 // Loads all Bootstrap javascripts
-//= require bootstrap
 //= require_tree .
+//= require bootstrap

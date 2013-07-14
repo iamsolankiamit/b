@@ -1,0 +1,48 @@
+<% content_for :body do %>
+<div class="container_24 ">
+	<div class="grid_24 edit-offer-container">
+		<div class="grid_5 alpha omega offer-side-menu-content">
+			<ul>
+				<li class="blank"></li>
+				<li><%= link_to "Dashboard", offers_path %></li>
+				<li class="active"><%= link_to "My Listings", offers_path %></li>
+				<li><%= link_to "Profile settings", edit_user_registration_path %></li>
+			</ul>
+		</div>
+
+		<div class="grid_19 alpha omega offer-edit-main-content">
+			<div class="offer-overview">
+				<div class="grid_4">
+					<% if @offer.photos.exists?  %>
+					<%if !@offer.photos.first.nil? %>
+					<%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
+					<% end %>
+					<% end %>
+				</div>
+				<div class="grid_9" style="padding-left:10px;">
+					<h3>Your new listing (<%= @offer.id %>)</h3>
+				</div>
+				<div class="grid_3 prefix_2 "style="text-align:right;"><%= link_to "View listing", offer_path(@offer) %></div>
+			</div>
+
+			<div class="grid_19">
+				<div class="submenu">
+					<ul>
+						<li><a href="">Overview</a></li>
+						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
+						<li><%= link_to "Details", edit_offer_details_path %></li>
+						<li><%= link_to "Address", edit_offer_addresses_path %></li>
+						<li><%= link_to "Photos", offer_photos_path %></li>
+						<li class="active"><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+					</ul>
+				</div>
+				<div class="title"><h2>Pricing &amp; Terms</h2>
+
+				</div>
+				<hr class=" offer-hr">
+				<%= render(:partial => "form") %>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>

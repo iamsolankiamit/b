@@ -9,10 +9,10 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *= require 960_24_col
  *= require_self
+ *= require jquery.ui.all
  *= require jquery.fileupload-ui
+ *= require font-awesome
  *= require_tree .
  */
- $iconSpritePath : '';
- @import 'font-awesome';
  @import 'bootstrap';
  
