@@ -1,7 +1,9 @@
 Roomnhouse::Application.routes.draw do
  
-  get "support/index"
 
+  get "support/index"
+  get "cancellation/index"
+  get "terms/index"
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
 

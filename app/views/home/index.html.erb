@@ -7,7 +7,9 @@
       <%= text_field_tag :checkin, nil, placeholder: "Check in"%>
       <%= text_field_tag :checkout, nil, placeholder: "Check out"%>
       <%= text_field_tag :guests, nil, placeholder: "Guests" %>
-      <%= link_to "<i class='icon icon-search'></i> Search".html_safe, 'search',:type => "submit", class: "btn btn-danger btn-large" %>
+      <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
+        <i class="icon icon-search"></i> Search
+      </button>
     <% end %>
   </div>
 </div>
@@ -93,23 +95,25 @@
 <% end %>
 <% content_for :js do %>
 <script>
-$(function() {
-  $( "#checkin" ).datepicker({
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkout" ).datepicker( "option", 0, selectedDate );
-    }
-  });
-  $( "#checkout" ).datepicker({
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkin" ).datepicker( "option", "+2y", selectedDate );
-    }
-  });
+ $(function() {
+   $( "#checkin" ).datepicker({
+           minDate:"0",
+           defaultDate: "+1w",
+           changeMonth: true,
+           numberOfMonths: 1,
+           onClose: function( selectedDate ) {
+             $( "#checkout" ).datepicker( "option","minDate",selectedDate );
+                 }
+         });
+     $( "#checkout" ).datepicker({
+           minDate:"0",
+           defaultDate: "+1w",
+           changeMonth: true,
+           numberOfMonths: 1,
+           onClose: function( selectedDate ) {
+                   $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
+                 }
+         });
 });
 $('#myTab a:first').tab('show'); // Select first tab
 $('#myTab a').click(function (e) {
