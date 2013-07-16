@@ -1,9 +1,9 @@
 Roomnhouse::Application.routes.draw do
  
 
-  get "support/index"
-  get "cancellation/index"
-  get "terms/index"
+  match '/support' => 'info#support'
+  match '/terms' => 'info#terms'
+  match '/cancellation' => 'info#cancellation'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
 
