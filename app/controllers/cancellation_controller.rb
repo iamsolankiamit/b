@@ -1,4 +1,4 @@
-class CancellationController < ApplcationController
+class CancellationController < ApplicationController
   def index
   end
 end
