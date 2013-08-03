@@ -1,7 +1,7 @@
 <% content_for :body do %>
 <div class="container_24">
   <div class="grid_24 offer-content"> <!-- coverup span -->
-      <div class="grid_18"> <!-- main content span -->
+      <div class="span_8"> <!-- main content span -->
         <% if @offer.translations.exists? %>
         <% if !@offer.translations.first.title.nil? %>
         <div class="title"><%= @offer.translations.first.title.titlecase %></div>

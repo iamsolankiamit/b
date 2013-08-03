@@ -251,7 +251,7 @@ DEPENDENCIES
   asset_sync
   aws-s3
   aws-sdk
-  bootstrap-sass (~> 2.2)
+  bootstrap-sass (~> 2.3.2.1)
   cancan
   coffee-rails (~> 3.2.1)
   devise

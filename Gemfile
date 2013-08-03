@@ -9,8 +9,10 @@ gem "devise"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog', :git => 'git://github.com/fog/fog.git'
-gem 'newrelic_rpm', :group => :production
-gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git", :group => :production
+group :production do
+  gem 'newrelic_rpm'
+  gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+end
 gem "paperclip"
 gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
@@ -25,7 +27,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem "haml"
   gem "yui-compressor"
-  gem 'bootstrap-sass', '~> 2.2'
+  gem 'bootstrap-sass', '~> 2.3.2.1'
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
