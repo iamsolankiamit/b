@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
   helper_method :current_or_guest_user
 
 
@@ -45,11 +44,13 @@ class ApplicationController < ActionController::Base
   def logging_in
       # What should be done here is take all that belongs to user with lazy_id matching current_user's uuid cookie... then associate them with current_user
       guest_user_account = User.find_by_lazy_id(cookies[:uuid])
-      guest_offers = guest_user_account.offers.all
-      guest_offers.each do |offer|
-        offer.user_id = current_user.id
-        offer.email = current_user.email
-        offer.save!
+      if guest_user_account.offers.exists?
+        guest_offers = guest_user_account.offers.all
+        guest_offers.each do |offer|
+          offer.user_id = current_user.id
+          offer.email = current_user.email
+          offer.save!
+        end
       end
   end
 

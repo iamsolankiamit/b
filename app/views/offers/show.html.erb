@@ -1,16 +1,4 @@
 <% content_for :body do %>
-<div id="buyModal" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Note</h3>
-  </div>
-  <div class="modal-body">
-    <p>Currently, the transactions servers are not up. To do the booking You can call/SMS on : 91-9987777955, Just mention the property ID and we will get back to you.</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-  </div>
-</div>
 <div class="container_24">
   <div class="grid_24 offer-content"> <!-- coverup span -->
       <div class="grid_18"> <!-- main content span -->
@@ -26,9 +14,7 @@
           &#8209; 
           <% if !@offer.address_addon.nil? %>
           <%= @offer.address_addon.humanize %></div>
-
           <% end %>
-          
           <div class="grid_16 prefix_1">
             <div class="gallery">
             <div id="this-carousel-id" class="carousel slide">
@@ -46,9 +32,7 @@
               <% end %>
             </div>
             </div>
-            
-          
-          </div> 
+          </div>
           <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
           </div> <!-- large image container -->
@@ -127,11 +111,8 @@
             <%= "<li>Towels</li>".html_safe if @amenity.towels %>
             <%= "<li>TV</li>".html_safe if @amenity.tv %>
             <%= "<li>Washer</li>".html_safe if @amenity.washer %>
-
             <hr>
             <% end %>
-
-
           </div> <!-- full details, description and title -->
            </div>
           <div class="grid_5 alpha omega sidebar-show">
@@ -140,10 +121,7 @@
             <h3><%= @user.firstname.humanize %> <%= @user.lastname.humanize[0,1] %></h3>
             <hr>
             <div class="grid_3 prefix_1"><a href="#buyModal" class="btn btn-primary large">Book Now</a></div>
-            
                 <p>Currently, the transactions servers are not up. To do the booking You can call/SMS on : +91-9022-543-210 just mention the property ID and we will get back to you.</p>
-
-
           </div> <!-- sidebar span -->
       </div>
   </div>
