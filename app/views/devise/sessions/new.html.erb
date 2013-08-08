@@ -1,6 +1,8 @@
 <% content_for :body do %>
-<div class="container_24">
-  <div class="grid_24 login-box">
+<div class="container">
+  <div class="row main">
+    <div class="span12">
+      
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %>
   <%= f.email_field :email, :autofocus => true %></div>
@@ -20,5 +22,6 @@
 
 <%= render "devise/shared/links" %>
 </div>
+    </div>
 </div>
 <% end %>
