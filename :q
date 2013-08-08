@@ -1,2 +1,0 @@
-app/views/offers/_new_form.html.erb|2 col 35 error| unexpected ')'
-app/views/offers/_new_form.html.erb|43 error| unexpected $end, expecting ')'

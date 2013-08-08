@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.12'
 
-gem 'safe_yaml', '0.9.4'
 gem "pg"
 gem 'wicked'
 gem "devise"
