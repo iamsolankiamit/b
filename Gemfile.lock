@@ -272,6 +272,7 @@ DEPENDENCIES
   rails (= 3.2.12)
   rails_admin (>= 0.4.0)
   rspec-rails
+  safe_yaml (= 0.9.4)
   sentry-raven!
   simple_form
   therubyracer

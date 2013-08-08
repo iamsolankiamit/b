@@ -13,6 +13,7 @@ group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 end
+gem 'safe_yaml', '0.9.4'
 gem "paperclip"
 gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
