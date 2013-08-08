@@ -8,7 +8,7 @@ gem 'wicked'
 gem "devise"
 gem 'cancan'
 gem 'aws-s3'
-gem 'fog', :git => 'git://github.com/fog/fog.git'
+gem 'fog'
 group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
