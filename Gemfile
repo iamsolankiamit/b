@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.12'
 
+gem 'safe_yaml', '0.9.4'
 gem "pg"
 gem 'wicked'
 gem "devise"
@@ -13,7 +14,6 @@ group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 end
-gem 'safe_yaml', '0.9.4'
 gem "paperclip"
 gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
