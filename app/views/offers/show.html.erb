@@ -1,20 +1,23 @@
 <% content_for :body do %>
 <div class="container">
   <div class="row main  offer-content"> <!-- coverup span -->
-      <div class="span4"> <!-- main content span -->
-        <% if @offer.translations.exists? %>
+    <div class="span12">
+      <% if @offer.translations.exists? %>
         <% if !@offer.translations.first.title.nil? %>
-        <div class="title"><%= @offer.translations.first.title.titlecase %></div>
+          <div class="title"><%= @offer.translations.first.title.titlecase %></div>
         <% end %>
-        <% end %>
+      <% end %>
+      <% if !@offer.object_type.nil? %>
+        <%= @offer.object_type.humanize %> 
+      <% end %>
+          &#8209;
+      <% if !@offer.address_addon.nil? %>
+        <%= @offer.address_addon.humanize %></div>
+      <% end %>
+    </div>
+      <div class="span12"> <!-- main content span -->
         <div class="shortinfo">
-          <% if !@offer.object_type.nil? %>
-          <%= @offer.object_type.humanize %> 
-          <% end %>
-          &#8209; 
-          <% if !@offer.address_addon.nil? %>
-          <%= @offer.address_addon.humanize %></div>
-          <% end %>
+          
           <div class="span8 prefix_1">
             <div class="gallery">
             <div id="this-carousel-id" class="carousel slide">
