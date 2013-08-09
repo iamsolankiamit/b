@@ -1,131 +1,139 @@
 <% content_for :body do %>
 <div class="container">
-  <div class="row main  offer-content"> <!-- coverup span -->
-    <div class="span12">
-      <% if @offer.translations.exists? %>
-        <% if !@offer.translations.first.title.nil? %>
-          <div class="title"><%= @offer.translations.first.title.titlecase %></div>
+  <div class="row"> <!-- coverup span -->
+    <!-- main content -->
+    <div class="span8">
+      <div class="title">
+        <% if @offer.translations.exists? %>
+          <% if !@offer.translations.first.title.nil? %>
+            <h2><%= @offer.translations.first.title.titlecase %></h2>
+          <% end %>
         <% end %>
-      <% end %>
-      <% if !@offer.object_type.nil? %>
-        <%= @offer.object_type.humanize %> 
-      <% end %>
+        <% if !@offer.object_type.nil? %>
+          <%= @offer.object_type.humanize %> 
+        <% end %>
           &#8209;
-      <% if !@offer.address_addon.nil? %>
-        <%= @offer.address_addon.humanize %></div>
-      <% end %>
-    </div>
-      <div class="span12"> <!-- main content span -->
-        <div class="shortinfo">
-          
-          <div class="span8 prefix_1">
-            <div class="gallery">
-            <div id="this-carousel-id" class="carousel slide">
-              <div class="carousel-inner">
-                <% photos = @offer.photos%>
-                <% if !photos.nil? %>
-          <%if !photos.first.nil? %>
-            <div class="item active">  <%= image_tag photos.shift.image.url(:slider2), :style => "height:350px;  margin:auto;"%></div>
-            <% end %>
-            <% end %>
+        <% if !@offer.address_addon.nil? %>
+          <%= @offer.address_addon.humanize %>
+        <% end %>
+      </div>
+      <div class="offer-content">
+        <div class="gallery">
+          <div id="this-carousel-id" class="carousel slide">
+            <div class="carousel-inner">
+              <% photos = @offer.photos%>
+              <% if !photos.nil? %>
+              <%if !photos.first.nil? %>
+              <div class="item active">  <%= image_tag photos.shift.image.url(:slider2), :style => "height:350px;  margin:auto;"%></div>
+              <% end %>
+              <% end %>
               <% photos.each do |p| %>
-              <div class="item">
-                <%=image_tag p.image.url(:slider2), :style => "height:350px; margin:auto;" %>
-              </div>
+                <div class="item">
+                  <%=image_tag p.image.url(:slider2), :style => "height:350px; margin:auto;" %>
+                </div>
               <% end %>
             </div>
-            </div>
           </div>
-          <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-          </div> <!-- large image container -->
-          <script>
+        </div>
+        <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+<script>
   $(document).ready(function(){
     $('.carousel').carousel({
       interval: 5000
     });
   });
 </script>
-          <div  class="span3 offer-overview">
-            <h2>Quick Overview</h2>
+        <div class="short-details">
+          <ul>
+            <li>Accomodation: <%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count %></li>
+            <li>Bedrooms: <%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></li>
+            <li>Beds <%= @offer.bed_count.nil? ? "" : @offer.bed_count %></li>
+            <li>Bathrooms <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></li>
+            <li>Size: <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type.humanize %></li>
+            <li>Room type: <%= @offer.object_type.nil? ? "" : @offer.object_type.humanize %></li>
+          </ul>
+        </div>
+        <div class="long-details">
+          <h3>Description</h3>
+          <h4>Property Id: <%= @offer.id %></h4>
+            <% if @offer.translations.exists? %>
+            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
             <hr>
-            <h3>The Place</h3>
-            <ul>
-              <li><%= @offer.object_type.nil? ? "" : @offer.object_type.humanize %></li>
-              <li>Accommodates :<%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count %></li>
-              <li>Bed Type: <%= @offer.bed_type.nil? ? "" : @offer.bed_type.humanize %></li>
-              <li>Bedrooms: <%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></li>
-              <li>Number of Bathrooms: <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></li>
-              <li>Size: <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type %></li>
-              <li>Property Id: <%= @offer.id %></li>
+            <h3>House rules</h3>
+            <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
+            <hr>
+            <% end %>
+            <% if @offer.amenity %>
+            <% @amenity = @offer.amenity %>
+            <h3>Amenities</h3>
+            <ul class="triple">
+              <%= "<li>Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
+              <%= "<li>Baby Cot</li>".html_safe if @amenity.baby_cot %>
+              <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
+              <%= "<li>Cable TV</li>".html_safe if @amenity.cable_tv %>
+              <%= "<li>Doorman</li>".html_safe if @amenity.doorman %>
+              <%= "<li>Dryer</li>".html_safe if @amenity.dryer %>
+              <%= "<li>Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
+              <%= "<li>Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
+              <%= "<li>Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
+              <%= "<li>Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
+              <%= "<li>Gym</li>".html_safe if @amenity.gym %>
+              <%= "<li>Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
+              <%= "<li>Heating</li>".html_safe if @amenity.heating %>
+              <%= "<li>Hot Tub</li>".html_safe if @amenity.hot_tub %>
+              <%= "<li>Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
+              <%= "<li>Intercom</li>".html_safe if @amenity.intercom %>
+              <%= "<li>Internet</li>".html_safe if @amenity.internet %>
+              <%= "<li>Kitchen</li>".html_safe if @amenity.kitchen %>
+              <%= "<li>Lockable Room</li>".html_safe if @amenity.lockable_room %>
+              <%= "<li>Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
+              <%= "<li>Pool</li>".html_safe if @amenity.pool %>
+              <%= "<li>Sauna</li>".html_safe if @amenity.sauna %>
+              <%= "<li>Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
+              <%= "<li>Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
+              <%= "<li>Towels</li>".html_safe if @amenity.towels %>
+              <%= "<li>TV</li>".html_safe if @amenity.tv %>
+              <%= "<li>Washer</li>".html_safe if @amenity.washer %> 
             </ul>
             <hr>
-            <h3>Prices</h3>
-            <ul>
+            <% end %>
+          </div> <!-- full details, description and title -->
+<div class="row">
+</div>
+         <h3>Pricing &amp; Conditions</h3>
+         <div class="row">
+          <div class="span4">
+           <h3>Pricing</h3>
+             <ul>
               <li>Nightly: <%= @offer.nightly_rate_amount %> <%= @offer.currency %></li>
               <li>Weekly: <%= @offer.weekly_rate_amount %> <%= @offer.currency %></li>
               <li>Monthly: <%= @offer.monthly_rate_amount %> <%= @offer.currency %></li>
             </ul>
-            <hr>
-            <h3>Details</h3>
+
+          </div>
+          <div class="span4">
+            <h3>Conditions</h3>
             <ul>
               <li>Maximum Nights: <%= @offer.max_nights %></li>
               <li>Check-in after: <%= @offer.checkin_after %></li>
               <li>Check-out before: <%= @offer.checkout_before %></li>
               <li>Cancellation policy: <%= @offer.cancelation_policy %></li>
             </ul>
-          </div><!-- shorthand details -->
-          <div class="span6 omega offer-detailed">
-            <h2>Description</h2>
-            <% if @offer.translations.exists? %>
-            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
-            <hr>
-            <h2>House rules</h2>
-            <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-            <hr>
-            <% end %>
-            <% if @offer.amenity %>
-            <% @amenity = @offer.amenity %>
-            <h2>Amenities</h2>
-            <%= "<li>Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
-            <%= "<li>Baby Cot</li>".html_safe if @amenity.baby_cot %>
-            <%= "<li>Breakfast</li>".html_safe if @amenity.breakfast %>
-            <%= "<li>Cable TV</li>".html_safe if @amenity.cable_tv %>
-            <%= "<li>Doorman</li>".html_safe if @amenity.doorman %>
-            <%= "<li>Dryer</li>".html_safe if @amenity.dryer %>
-            <%= "<li>Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
-            <%= "<li>Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
-            <%= "<li>Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
-            <%= "<li>Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
-            <%= "<li>Gym</li>".html_safe if @amenity.gym %>
-            <%= "<li>Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
-            <%= "<li>Heating</li>".html_safe if @amenity.heating %>
-            <%= "<li>Hot Tub</li>".html_safe if @amenity.hot_tub %>
-            <%= "<li>Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
-            <%= "<li>Intercom</li>".html_safe if @amenity.intercom %>
-            <%= "<li>Internet</li>".html_safe if @amenity.internet %>
-            <%= "<li>Kitchen</li>".html_safe if @amenity.kitchen %>
-            <%= "<li>Lockable Room</li>".html_safe if @amenity.lockable_room %>
-            <%= "<li>Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
-            <%= "<li>Pool</li>".html_safe if @amenity.pool %>
-            <%= "<li>Sauna</li>".html_safe if @amenity.sauna %>
-            <%= "<li>Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
-            <%= "<li>Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
-            <%= "<li>Towels</li>".html_safe if @amenity.towels %>
-            <%= "<li>TV</li>".html_safe if @amenity.tv %>
-            <%= "<li>Washer</li>".html_safe if @amenity.washer %>
-            <hr>
-            <% end %>
-          </div> <!-- full details, description and title -->
-           </div>
-          <div class="span2 alpha omega sidebar-show">
-            <h2>Your Host</h2>
+          </div>
+         </div>
+        </div>
+    </div>
+    <!-- side bar content -->
+    <div class="span4">
+      <h2>Your Host</h2>
             <div class="span2 prefix_1"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium), class: "img-polaroid" %></div>
             <h3><%= @user.firstname.humanize %> <%= @user.lastname.humanize[0,1] %></h3>
             <hr>
+
             <div class="span2 prefix_1"><a href="#buyModal" class="btn btn-primary large">Book Now</a></div>
-                <p>Currently, the transactions servers are not up. To do the booking You can call/SMS on : +91-9022-543-210 just mention the property ID and we will get back to you.</p>
-          </div> <!-- sidebar span -->
+    </div>
       </div>
+     </div>
   </div>
 <% end %>
