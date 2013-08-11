@@ -19,7 +19,6 @@ gem "aws-sdk"
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
 gem 'kaminari'
-gem "rails_admin" , ' >= 0.4.0'
 gem "thin", :group => :development
 gem 'simple_form'
 group :assets do
@@ -28,7 +27,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem "haml"
   gem "yui-compressor"
-  gem 'bootstrap-sass', '~> 2.3.2.1'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
