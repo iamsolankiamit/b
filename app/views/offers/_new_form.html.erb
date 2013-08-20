@@ -1,8 +1,8 @@
-<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+<%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
     <!-- Hidden from other users until room is brought -->
     <p>These will be hidden from the user until booking is done</p>
-    <%= f.input :country_code_iso, :as => :select, :label => "Country", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
-    <%= f.input :street_no , :as => :string, :label => "House no."%>
+    <%= f.input :country_code_iso, :as => :select, :label => "Country", class: "form-control", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
+    <%= f.input :street_no , class: "form-control", :as => :string, :label => "House no."%>
     <%= f.input :street ,:label => "Address Line 1", :as => :string%>
     <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
     <%= f.input :city , :as => :string%>

@@ -1,56 +1,45 @@
 <% content_for :body do %>
-<div class="container_24 ">
-	<div class="grid_24 edit-offer-container">
-		<div class="grid_5 alpha omega offer-side-menu-content">
-			<ul>
-				<li class="blank"></li>
-				<li><%= link_to "Dashboard", offers_path %></li>
-				<li class="active"><%= link_to "My Listings", offers_path %></li>
-				<li><%= link_to "Profile settings", edit_user_registration_path %></li>
+<div class="row">
+	<div class="container">
+		<div class="col-lg-3">
+			<ul class="list-group">
+				<%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+				<%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+				<%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
 			</ul>
 		</div>
 
-		<div class="grid_19 alpha omega offer-edit-main-content">
-			<div class="offer-overview">
-				<div class="grid_4">
+		<div class="col-lg-9">
+      <div class="main" style="margin-top:0px;">
+      <div class="row">
+				<div class="col-lg-4">
 					<% if @offer.photos.exists?  %>
 					<%if !@offer.photos.first.nil? %>
 					<%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
 					<% end %>
 					<% end %>
 				</div>
-				<div class="grid_9" style="padding-left:10px;">
+        <div class="col-lg-6">
 					<h3>Your new listing (<%= @offer.id %>)</h3>
 				</div>
-				<div class="grid_3 prefix_2 "style="text-align:right;"><%= link_to "View listing", offer_path(@offer) %></div>
+				<div class="col-lg-2 "style="text-align:right;"><%= link_to "View listing", offer_path(@offer) %></div>
 			</div>
 
-			<div class="grid_19">
-				<div class="submenu">
-					<ul>
-						<li><a href="">Overview</a></li>
+					<ul class="nav nav-pills nav-justified">
+            <li ><a href="">Overview</a></li>
 						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
 						<li class="active"><%= link_to "Details", edit_offer_details_path %></li>
-						<li><%= link_to "Address", edit_offer_addresses_path %></li>
-						<li><%= link_to "Photos", offer_photos_path %></li>
-						<li><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+						<li ><%= link_to "Address", edit_offer_addresses_path %></li>
+						<li ><%= link_to "Photos", offer_photos_path %></li>
+            <li ><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
 					</ul>
-				</div>
-				<div class="title"><h2>Details</h2>
-
-				</div>
+				<h2 class="text-center">Details</h2>
 				<hr class=" offer-hr">
-				<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
-  			<%= f.error_messages %>
-				<%= render('form', f: f) %>
-				<%= render('amenity_table', f: f) %>
-				<div class="control-group">
-					<div class="controls">
-						<%= f.button :submit, :value => "Save and Continue", :class => 'btn-primary'%>
-					</div>
-				</div>
-				<% end %>
-			</div>
+        <div class="row">
+        <div class="col-lg-6 col-lg-offset-3">
+				<%= render(:partial => "form") %>
+        </div>
+        </div>
 		</div>
 	</div>
 </div>

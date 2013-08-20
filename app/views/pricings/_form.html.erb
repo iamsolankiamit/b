@@ -1,4 +1,4 @@
-<%= simple_form_for(@offer, :html => { :class => 'form-horizontal'}) do |f| %>
+<%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }, html: {class: "form-horizontal"}) do |f| %>
     <%= f.error_messages %>
     <%= f.input :currency , :as => :select, :collection => {"INR: &#x20B9;".html_safe => "INR","USD: US &#36;".html_safe => "USD","EUR: &#8364;".html_safe => "EUR"}, :include_blank => false %>
     <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>

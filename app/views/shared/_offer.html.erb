@@ -1,4 +1,3 @@
-<% content_for :body do %>
 <div class="row">
 	<div class="container">
 		<div class="col-lg-3">
@@ -26,21 +25,23 @@
 			</div>
 
 					<ul class="nav nav-pills nav-justified">
-            <li ><a href="">Overview</a></li>
-						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
-						<li ><%= link_to "Details", edit_offer_details_path %></li>
-						<li ><%= link_to "Address", edit_offer_addresses_path %></li>
-						<li ><%= link_to "Photos", offer_photos_path %></li>
-            <li ><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+            <li <%= "class='active'" unless link == "overview" %>><a href="">Overview</a></li>
+						<li ><%= link == "title" ? "class='active'".html_safe : ""%><%= link_to "Title & Description", edit_offer_translations_path %></li>
+						<li <%= link == "details" ? "class='active'".html_safe : ""%>><%= link_to "Details", edit_offer_details_path %></li>
+						<li ><%= link == "address" ? "class='active'".html_safe : ""%><%= link_to "Address", edit_offer_addresses_path %></li>
+						<li <%= link == "photos" ? "class='active'".html_safe : ""%>><%= link_to "Photos", offer_photos_path %></li>
+            <li <%= link == "pricing" ? "class='active'".html_safe : ""%>><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
 					</ul>
 				<h2 class="text-center">Pricing &amp; Terms</h2>
 				<hr class=" offer-hr">
         <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
+          <% if link != "photos" %>
 				<%= render(:partial => "form") %>
+        <% end %>
         </div>
         </div>
 		</div>
 	</div>
 </div>
-<% end %>
+

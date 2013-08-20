@@ -3,39 +3,37 @@ $clblue : #3498DB;
 $cdblue : #2980B9;
 $cred : #E74C3C;
 $cblack : #2C3E50;
+.navbar{
+margin-bottom:0px;}
+.form-inline {
+  .form-group {
+  display:inline-block;
+  }
+}
 body{
 	font-family: 'Source Sans Pro','Helvetica-Neue',Helvetica,Arial,sans-serif;
-	font-size: 1em;
-	line-height: 22px;
+	line-height: 1.428;
+  font-size:14px;
  	background: $cwhite;
-
- 	h1{
- 		font-weight: 700;
- 		font-size:2em;
- 	}
- 	h2{
- 		font-weight:600;
- 		font-size:1.5em;
- 	}
- 	h3{
- 		font-weight: 400;
- 		font-size:1.3em;
- 	}
- 	h4{
- 		font-weight:600;
- 		font-size:1em
- 		
- 	}
- 	h5{
- 		font-weight:600;
- 		font-size: 0.7em;
- 		}
- 	h6{
- 		font-weight:600;
- 		font-size:0.5em;
- 	}
 }
-
+.title{
+font-size:3em;
+font-weight:700;
+padding-top:50px;
+height:300px;
+color:white;
+text-shadow:0px 0px 15px black;
+text-align:center;
+}
+.search{
+  background:rgba(44,62,80,0.75) ;
+  border-bottom:4px solid $cblack;
+  border-top:4px solid $cblack;
+  vertical-align:center;
+  .searchbar{
+  padding-top:15px;
+  }
+}
 .seo-travel{
 	margin: 10px 0px;
 	p{
@@ -46,35 +44,27 @@ body{
 }
 
 
-.navbar-inner{
-	background: $cwhite;
-} 
-.navbar,.navbar-main{
-
-	//position: absolute;
-	//top:0;
-	width:100%;
-	//z-index:1000;
-	min-width:1000px;
-
-	position: absolute;
-	top:0;
-	width:100%;
-	z-index:1000;
-
-	.nav {
-		float:right;
-	}
-}
-
 
 .footer{
-	width:100%; 
 	padding: 10px 0px; 
 	background: $cblack;
 	color:$cwhite;
-	height:250;
+  hr{
+  border:none;
+  background:white;
+  }
+  h3{
+  font-size:1.1em;
+  }
+  ul{
+  list-style:none;
+  padding-left:5px;
+  font-size:0.9em;
+  a{
+  color:inherit;
+  text-decoration:none;}
+  }
 }
 .head-logo{
-	height:35px;
+	height:25px;
 }

@@ -1,4 +1,5 @@
 
+<%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }, html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :email, as: :email %>
   <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
 
@@ -62,3 +63,11 @@
 
   <%= f.input :allow_marketing, :label => "Marketing", hint: "Can we do marketing for your listing?" %>
   <%= f.input :visiblity, hint: "Keep it unchecked if you want it to be hidden." %>
+				<%= render('amenity_table', f: f) %>
+				<div class="control-group">
+					<div class="controls">
+						<%= f.button :submit, :value => "Save and Continue", :class => 'btn-primary'%>
+					</div>
+				</div>
+
+<% end %>

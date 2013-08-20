@@ -1,19 +1,18 @@
 <% content_for :body do %>
-<div class="container_24 ">
-  <div class="grid_24 edit-offer-container">
-    <div class="grid_5 alpha omega offer-side-menu-content">
-      <ul>
-        <li class="blank"></li>
-        <li><%= link_to "Dashboard", offers_path %></li>
-        <li class="active"><%= link_to "My Listings", offers_path %></li>
-        <li><%= link_to "Profile settings", edit_user_registration_path %></li>
-      </ul>
-    </div>
+<div class="row">
+	<div class="container">
+		<div class="col-lg-3">
+			<ul class="list-group">
+				<%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+				<%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+				<%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
+			</ul>
+		</div>
 
-    <div class="grid_19 alpha omega offer-edit-main-content">
-      <div class="grid_19">
-        <div class="submenu">
-          <ul>
+		<div class="col-lg-9">
+      <div class="main" style="margin-top:0px;">
+      <div class="row">
+	         <ul class="nav nav-pills nav-justified">
             <li><a href="">Overview</a></li>
             <li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
             <li><%= link_to "Details", edit_offer_details_path %></li>
@@ -22,10 +21,7 @@
             <li><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
           </ul>
         </div>
-        <div class="title"><h2>Photos</h2>
-<p>Snap it so that the guest gets a better idea.
-Don’t put random photos to confuse our guests. </p>
-        </div>
+        <h2 class="text-center">Photos</h2>
         <hr class=" offer-hr">
 
 

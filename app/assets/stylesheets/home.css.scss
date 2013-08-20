@@ -5,108 +5,18 @@ $cred : #E74C3C;
 $cblack : #2C3E50;
 $cdwhite : #d9dbdc;
 $cdred : #d62917;
-
-
-.down-arrow{
-  position: absolute;
-  width: 0px;
-  height: 0px;
-  right: 17px;
-  top: 22px;
-  border-width: 6px 4px 0px 4px;
-  border-style: solid;
-  border-color: #666666 transparent transparent transparent;
-}
-.header{
-  width: 100%;
-  height: 50px;
-  background: #C2C2C2;
-  box-shadow: 0px 0px 50px 10px #fff inset;
-
-  .header-main{
-    width: 1200px;
-    height: 100%;
-    margin: 0px auto;
-    .logo{
-      width: 200px;
-      height: 55px;
-      padding-top: 5px;
-      float: left;
-    }
-    .nav{
-      width: 400px;
-      height: 100%;
-      float: right;
-      .item{
-        position: relative;
-        width: 100px;
-        height: 48px;
-        text-align: center;
-        line-height: 50px;
-        float: left;
-        border-style: solid;
-        border-color: #fff;
-        border:{
-          width: 1px;
-          top-color: transparent;
-          bottom-color: transparent;
-        }
-        &:nth-child(2){
-          width: 130px;
-          border-left-width: 0px;
-          .down-arrow{
-            right: 11px;
-          }
-        }
-        &:nth-child(3){
-          margin-left: 10px;
-        }
-      }
-    }
-  }
-}
 .search-container{
-  width: 100%;
-  height: 550px;
-  background-image: url("http://fantasylandhotel.com/images/flh-roman-luxury-theme.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  .title{
-    width: 1200px;
-    height: 200px;
-    margin: 0px auto;
-    padding-top: 100px;
-    text-align: center;
-    font-size: 3em;
-    color: $cwhite;
-    font-weight: 700;
-    text-shadow: 0px 0px 10px $cblack;
-  }
-  .search{
-    width: 980px;
-    height: 55px;
-    border-radius: 8px;
-    background: rgba(0,0,0,0.5);
-    margin: 100px auto 0px auto;
-    input[type=text]{
-      width: 150px;
-      height: 25px;
-      font-size: 1.2em;
-      line-height: 31px;
-      padding: 8px;
-      margin: 6px 0px 0px 15px;
-    }
-   button {
-      width: 130px;
-      margin: 6px 0px 0px 10px;
-    }
-  }
+  height:400px;
+  background: image-url('home_page.jpg') center center no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 .listing-container{
-  width: 980px;
-  min-height: 600px;
-  margin: 0px auto;
-  padding: 30px 0px;
+  margin: 20px auto;
+  .item{
+  margin-bottom:20px;
+  }
   .list-title{
     text-align: left;
     font-size: 2em;
@@ -114,7 +24,6 @@ $cdred : #d62917;
     color: $cblack;
   }
   .listings{
-    width: 980px;
     min-height: 560px;
     margin-top: 30px;
     .item{
@@ -186,45 +95,4 @@ $cdred : #d62917;
     }
   }
 }
-.footer{
-  width: 100%;
-  min-width:980px;
-  height: 300px;
-  background: #00314A; //#24476B;
-  .footer-inner{
-    width: 980px;
-    height: 300px;
-    margin: 0px auto;
-  }
-  .grid_6{
-    width: 220px;
-    color: $cwhite;
-    margin-left: 20px;
-    margin-top: 20px;
-    padding-bottom: 30px;
-    float: left;
-    &:first-child{
-      margin-left: 0px;
-    }
-    hr{
-      margin:5px 0px;
-      border:none;
-      background:$cwhite;
-    }
-    a{
-      color: $cwhite;
-    }
-    ul{
-      padding-top:5px;
-      list-style:none;
-      font-weight:400;
-      font-size:0.7em;
-      margin-left: 10px !important
-    }
-    h3{
-      font-weight:400;
-      font-size:1em;
-      margin-bottom:5px;
-    }
-  }
-}
+

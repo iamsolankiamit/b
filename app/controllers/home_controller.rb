@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-		@offers = Offer.where(visiblity: true, is_verified:true)
+		@offers = Offer.where(visiblity: true)
   end
 end

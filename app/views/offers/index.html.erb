@@ -1,4 +1,23 @@
 <% content_for :body do %>
+  <div class="row">
+    <div class="container" style="margin-top:10px;">
+      <div class="col-lg-12">
+        <ul class="nav nav-pills nav-justified">
+          <li><%= link_to "Dashboard", offers_path %></li>
+          <li class="active"><a href="#">My Listings</a></li>
+          <li><%= link_to "Profile settings", edit_user_registration_path%></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="list-group">
+          link_to edit_translations(@offer)
+        </div>
+      </div>
+      <div class="col-lg-9">
+        
+      </div>
+    </div>
+  </div>
 <div class="container_24 ">
 	<div class="grid_24 edit-offer-container">
 		<div class="grid_5 alpha omega offer-side-menu-content">
