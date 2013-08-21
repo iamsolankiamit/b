@@ -25,9 +25,9 @@
         <hr class=" offer-hr">
 
 
-<ul class="thumbnails">
+<ul class="row thumbnails list-unstyled">
 <% @photos.each do |photo| %>
-  <li class="span2">
+  <li class="col-lg-2">
     <div class="thumbnail">
 <%= image_tag photo.image.url(:thumb) %>
       <%= link_to "Edit |", edit_offer_photo_path(photo.offer_id,photo), class: "disabled" %>
