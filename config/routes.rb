@@ -4,6 +4,7 @@ Roomnhouse::Application.routes.draw do
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
+  match '/privacy' => 'info#privacy'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
 

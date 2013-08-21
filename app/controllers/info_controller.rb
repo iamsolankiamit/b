@@ -7,4 +7,7 @@ class InfoController < ApplicationController
 
   def cancellation
   end
+
+  def privacy
+  end
 end
