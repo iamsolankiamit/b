@@ -1,55 +1,39 @@
 <% content_for :body do %>
-  <div class="row">
-    <div class="container" style="margin-top:10px;">
-      <div class="col-lg-12">
-        <ul class="nav nav-pills nav-justified">
-          <li><%= link_to "Dashboard", offers_path %></li>
-          <li class="active"><a href="#">My Listings</a></li>
-          <li><%= link_to "Profile settings", edit_user_registration_path%></li>
-        </ul>
-      </div>
-      <div class="col-lg-3">
-        <div class="list-group">
-          link_to edit_translations(@offer)
-        </div>
-      </div>
-      <div class="col-lg-9">
-        
-      </div>
-    </div>
-  </div>
-<div class="container_24 ">
-	<div class="grid_24 edit-offer-container">
-		<div class="grid_5 alpha omega offer-side-menu-content">
-			<ul>
-				<li class="blank"></li>
-				<li><%= link_to "Dashboard", offers_path %></li>
-				<li class="active">My Listings</li>
-				<li><%= link_to "Profile settings", edit_user_registration_path %></li>
+<div class="row">
+	<div class="container">
+		<div class="col-lg-3">
+			<ul class="list-group">
+				<%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+				<%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+				<%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
 			</ul>
 		</div>
 
-		<div class="grid_19 alpha omega offer-edit-main-content">
-				<div class="heading"><h2>My Listing Offers</h2></div>
+		<div class="col-lg-9">
+      <div class="main" style="margin-top:0px;">
+          <h2 class="text-center">My Listing Offers</h2>
+          <hr />
 			<% @offers.each do |offer| %>
-			<div class="grid_17 prefix_1 offer-index-container">
-				<div class="title"><h2>
-					<% if offer.translations.exists? %>
-					<% if !offer.translations.first.title.nil? %>
-					  <%= offer.translations.first.title.titlecase %>
-					  <% end %>
-					<%else%>
-					Your New Offer(<%= offer.id %>)
-					<% end %>
-				</h2></div>
-				<div class="grid_4 index-image-container">
+        <div class="row" style="margin: 10px 0px;">
+        <div class="col-lg-12 ">
+<div class="col-lg-2 thumbnail">
 					<% if offer.photos.exists?  %>
 					<%if !offer.photos.first.nil? %>
 					<%= image_tag offer.photos.first.image.url(:medium), class: "img-polaroid", height:"150" %> <% end %>
 					<% end %>
 				</div>
-				<div class="grid_5 prefix_8 alpha omega offer-links">
-					<ul>
+        <div class="col-lg-7">
+				<h2 class="text-center">
+					<% if offer.translations.exists? %>
+					<% if !offer.translations.first.title.nil? %>
+					  <%= offer.translations.first.title.titlecase %>
+					<%else%>
+					Your New Offer(<%= offer.id %>)
+					  <% end %>
+        <% end %></h2>
+      </div>
+								<div class="col-lg-3 text-right">
+					<ul class="list-unstyled" style="padding-top:20px;">
 						<li>
 					<%= link_to "Modify listing", edit_offer_translations_path(offer)  %></li>
 					<li><%= link_to  "View listing", offer_path(offer) %></li>
@@ -57,6 +41,8 @@
 					</ul>
 				</div>
 			</div>
+		</div>
+      <hr class="col-lg-12" />
 			<% end %>
 			<% if @offers.count <= 0 %>
 				<div style="text-align:center;">
@@ -67,7 +53,9 @@
 				</div>
 			<% end %>
 			</div>
-
+        </div>
 	</div>
+          </div>
 </div>
 <% end %>
+
