@@ -38,7 +38,7 @@ gem 'font-awesome-rails', '~> 3.0'
 gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'puma'
+gem 'unicorn'
 
 group :test do
   gem "rspec-rails", :group => :development
