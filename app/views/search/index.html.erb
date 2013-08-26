@@ -1,18 +1,31 @@
-<% content_for :logo do %> <% end %>
 <% content_for :body do %>
-<div class="container" style="width:100%" id="search">
-  <div class="container">
-    <div>
-      <%= form_tag search_index_path , :method => 'get', id: "search_form" do %>
-      <%= text_field_tag :destination, params[:search], :id => 'search_field', class: "search" , placeholder: "Enter Your Destination" %>
-      <%= text_field_tag :checkin,nil, placeholder: "Check in", id: "check_in", class: "search"  %>
-      <%= text_field_tag :checkout,nil, placeholder: "Check out", id: "check_out", class: "search" %>
-      <%= text_field_tag :guests,nil, placeholder: "Guests", id: "guests", class: "search" %>
-      <%= submit_tag "Search", :name => nil, class: "btn btn-danger btn-medium" %>
-      <% end %>
+  <div class="row search">
+    <div class="container">
+<div class="col-lg-12 ">
+      <%= form_tag "/search", :method => 'get', id: 'search_form', class: "form-inline" do %>
+        <div class="form-group col-lg-5">
+          <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", class: "form-control required" %>
+        </div>
+        <div class="form-group col-lg-2">
+      <%= text_field_tag :checkin, nil,class: "form-control", placeholder: "Check in"%>
+      </div>
+      <div class="form-group col-lg-2">
+      <%= text_field_tag :checkout, nil,class: "form-control", placeholder: "Check out"%>
+      </div>
+      <div class="form-group col-lg-2">
+      <%= text_field_tag :guests, nil,class: "form-control", placeholder: "Guests" %>
+      </div>
+      <div class="form-group col-xs-2 col-sm-2 col-lg-1">
+      <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
+        <i class="icon icon-search"></i> Search
+      </button>
+      </div>
+    <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
+<% content_for :body do %>
 
 <% if @offers.count > 0 %>
 <div class="container bannerhead">
