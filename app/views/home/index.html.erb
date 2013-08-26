@@ -51,7 +51,7 @@
           <% else %>
             <div class="name">Offer (<%= offer.id %>).</div>
           <% end %>
-          <div class="info"><%= offer.object_type.humanize %> &#8208; , <%= offer.country_code_iso %></div>
+          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= offer.country_code_iso %></div>
     </div>
     <% end %>
 
