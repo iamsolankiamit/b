@@ -15,6 +15,7 @@ Roomnhouse::Application.routes.draw do
   resources :floods, only: [:index]
 
   resources :offers do
+    get 'overview', on: :member
     resource :translations, only: [:edit,:update]
     resources :photos
     resource :details, only: [:edit,:update]

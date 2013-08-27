@@ -26,21 +26,37 @@
 			</div>
 
 					<ul class="nav nav-pills nav-justified">
-            <li ><%= link_to "Overview", overview_offer_path(@offer) %></li>
-						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
-						<li ><%= link_to "Details", edit_offer_details_path %></li>
-						<li ><%= link_to "Address", edit_offer_addresses_path %></li>
-						<li ><%= link_to "Photos", offer_photos_path %></li>
-            <li class="active"><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+            <li class="active"><%= link_to "Overview", overview_offer_path %></li>
+						<li ><%= link_to "Title & Description", edit_offer_translations_path(@offer) %></li>
+						<li ><%= link_to "Details", edit_offer_details_path(@offer) %></li>
+						<li ><%= link_to "Address", edit_offer_addresses_path(@offer) %></li>
+						<li ><%= link_to "Photos", offer_photos_path(@offer) %></li>
+            <li ><%= link_to "Pricing & Terms", edit_offer_pricing_path(@offer) %></li>
 					</ul>
 				<h2 class="text-center">Pricing &amp; Terms</h2>
 				<hr class=" offer-hr">
         <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
-				<%= render(:partial => "form") %>
         </div>
         </div>
 		</div>
 	</div>
 </div>
+
+  <div class="row">
+    <div class="container">
+    <% if @offer.translations.exists? %>
+      <% if !@offer.translations.first.title.nil? and !@offer.translations.first.description.nil? %>
+        <p>translations_flag = true</p>
+      <% end %>
+    <% end %>
+    <% if @offer.photos.count >= 3 %>
+      <p>photos_flag = true</p>
+    <% end %>
+    <% if User.find(:all, :conditions => ['id =?', @offer.user_id ]).first.avatar.exists? %>
+      <p>avatar_flag = true</p>
+    <% end %>
+
+    </div>
+  </div>
 <% end %>

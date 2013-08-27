@@ -4,8 +4,8 @@ class Photo < ActiveRecord::Base
   attr_accessible :description, :offer_id, :image
   has_attached_file :image, 
     :styles => { 
-      :slider1 => "630x350#",
-      :slider2 => "630x350>",
+      :slider1 => "720x550#",
+      :slider2 => "720x550>",
       :homeimage => "310x185#",
       :medium => "300x300#", 
       :thumb => "100x100#" 

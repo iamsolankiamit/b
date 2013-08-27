@@ -2,6 +2,9 @@ class OffersController < ApplicationController
   before_filter :authenticate_user!, :except => [:show,:new,:create]
   load_and_authorize_resource
 
+  def overview
+    @offer = current_user.offers.find(params[:id])
+  end
   def index
     @offers = current_user.offers.all
   end

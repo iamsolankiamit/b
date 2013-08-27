@@ -1,6 +1,6 @@
 class Offer < ActiveRecord::Base
   before_save :set_email, :set_cancellation_policy, :set_contact
-  before_update :set_email
+  before_update :set_email, :verified_listing
   attr_accessible :visiblity,
   								:email, 
   								:contact_phone, 
@@ -48,7 +48,7 @@ class Offer < ActiveRecord::Base
 
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
-  belongs_to :users                      
+  belongs_to :users
 
   has_many :calendars, :dependent => :destroy
   accepts_nested_attributes_for :calendars, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
@@ -105,5 +105,22 @@ class Offer < ActiveRecord::Base
     end
     search_string = "%"+ search +"%"
     where(:visiblity => true).find(:all, :conditions => ['lower(city) LIKE ?', search_string.downcase])
+  end
+
+  def verified_listing
+    if self.translations.exists?
+      if !self.translations.first.title.nil? and !self.translations.first.description.nil?
+        translations_flag = true
+      end
+    end
+    if self.photos.count >= 3
+      photos_flag = true
+    end
+    if User.find(:all, :conditions => ['id =?', self.user_id ]).first.avatar.exists?
+      avatar_flag = true
+    end
+    if translations_flag == true and photos_flag == true and avatar_flag == true
+      self.is_verified = true
+    end
   end
 end
