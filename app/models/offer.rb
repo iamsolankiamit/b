@@ -104,7 +104,7 @@ class Offer < ActiveRecord::Base
       search=""
     end
     search_string = "%"+ search +"%"
-    where(:visiblity => true).find(:all, :conditions => ['lower(city) LIKE ?', search_string.downcase])
+    where(:visiblity => true, :is_verified => true).find(:all, :conditions => ['lower(city) LIKE ?', search_string.downcase])
   end
 
   def verified_listing

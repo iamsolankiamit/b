@@ -1,80 +1,84 @@
 <% content_for :body do %>
   <div class="row search">
-    <div class="container">
-<div class="col-lg-12 ">
+  <div class="container">
+    <div class="col-lg-12 ">
       <%= form_tag "/search", :method => 'get', id: 'search_form', class: "form-inline" do %>
         <div class="form-group col-lg-5">
-          <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", class: "form-control required" %>
-        </div>
-        <div class="form-group col-lg-2">
-      <%= text_field_tag :checkin, nil,class: "form-control", placeholder: "Check in"%>
+        <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", class: "form-control required" %>
       </div>
       <div class="form-group col-lg-2">
-      <%= text_field_tag :checkout, nil,class: "form-control", placeholder: "Check out"%>
+        <%= text_field_tag :checkin, nil,class: "form-control", placeholder: "Check in"%>
       </div>
       <div class="form-group col-lg-2">
-      <%= text_field_tag :guests, nil,class: "form-control", placeholder: "Guests" %>
+        <%= text_field_tag :checkout, nil,class: "form-control", placeholder: "Check out"%>
+      </div>
+      <div class="form-group col-lg-2">
+        <%= text_field_tag :guests, nil,class: "form-control", placeholder: "Guests" %>
       </div>
       <div class="form-group col-xs-2 col-sm-2 col-lg-1">
-      <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
-        <i class="icon icon-search"></i> Search
-      </button>
+        <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
+          <i class="icon icon-search"></i> Search
+        </button>
       </div>
     <% end %>
-      </div>
     </div>
   </div>
-<% end %>
-<% content_for :body do %>
+</div>
+<div class="row">
+  <div class="container">
+    <% if @offers.count > 0 %>
+      <div class="col-lg-12" style="padding:10px 0px;">
+      <span class="col-lg-5"><strong>Rooms in: <%= @offers.first.city.titleize %></strong> </span>
+      <span class="col-lg-2 text-right col-lg-offset-5"><strong><%= @offers.count %> results</strong></span>
+    </div>
+    <div class="col-lg-12 main">
+      <% @offers.each do |offer| %>
+        <div class="row">
+        <div class="col-lg-2">
+          <% if offer.photos.exists? %>
+            <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail"%>
+        <% end %>
+        </div>
+        <div class="col-lg-10">
+          <% if offer.translations(locale: "en").exists? %>
+            <% offer.translations.each do |t| %>
+            <% if !t.title.nil? %>
+            <h2><%= t.title.titlecase %></h2>
+        <% end %>
+        <% end %>
+        <% end %>
+          <section>
+            <%= offer.city %>, <%= offer.country_code_iso %>.<br/>
+            <%= offer.object_type.capitalize %> (accomodates <%= offer.max_guest_count %>/<%= offer.bedroom_count %> bedrooms <% if !offer.size.nil? %>,<%= offer.size %> <%= offer.size_type %> <% end %>)
+          </section>
+          <section class="col-lg-4 pull-right text-right">
+            <span class="text">From </span>
+            <span class="price"><%= offer.nightly_rate_amount %> </span>
+            <span class="text"><br>per night.</span>
+          </section>
+          <div class="col-lg-8">
+            <section class="description">
+              <% if offer.translations.exists? %>
+                <% offer.translations.each do |t|  %>
+                <% if !t.description.nil? %>
+                <b>Description: </b> <%= t.description.truncate(450) %>
+          <% end %>
+            <% end %>
+            <% end %>
+            </section>
+          </div>
+          <div class="span1 seeoffer-button">
+            <%= link_to "See Offer", offer_path(offer), class: "btn btn-info btn-small" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+    <% else %>
 
-<% if @offers.count > 0 %>
-<div class="container bannerhead">
-  <span class="span5">Search results for: <%= @offers.first.city %></span>
-  <span class="span2"><%= @offers.count %> results</span>
-</div>
-<% @offers.each do |offer| %>
-<div class="container content">
-  <div class="row ">
-    <% if offer.photos.exists? %>
-    <%= image_tag offer.photos.first.image.url(:medium), class: "span3 img-polaroid", width:"300", height: "300"%>
-    <% end %>
-    <div class="span7">
-      <% if offer.translations(locale: "en").exists? %>
-      <% offer.translations.each do |t| %>
-      <% if !t.title.nil? %>
-      <span class="title"><%= t.title.titlecase %></span>
-      <% end %>
-      <% end %>
-      <% end %>
-      <section class="address">
-        <%= offer.city %>, <%= offer.country_code_iso %>.<br/>
-        <%= offer.object_type.capitalize %> (accomodates <%= offer.max_guest_count %>/<%= offer.bedroom_count %> bedrooms <% if !offer.size.nil? %>,<%= offer.size %> <%= offer.size_type %> <% end %>)
-      </section>
-    </div>
-    <section class="rate span1">
-      <span class="text">From </span>
-      <span class="price"><%= offer.nightly_rate_amount %> </span>
-      <span class="text"><br>per night.</span>
-    </section>
-    <div class="span7">
-      <section class="description">
-        <% if offer.translations.exists? %>
-        <% offer.translations.each do |t|  %>
-        <% if !t.description.nil? %>
-        <b>Description: </b> <%= t.description.truncate(450) %>
-        <% end %>
-        <% end %>
-        <% end %>
-      </section>
-    </div>
-    <div class="span1 seeoffer-button">
-      <%= link_to "See Offer", offer_path(offer), class: "btn btn-info btn-small" %>
-    </div>
+<% end %>
   </div>
 </div>
-<% end %>
-<% else %>
-Sorry no results found for your query
-<div style="height:500px;"></div>
-<% end %>
 <% end %>
