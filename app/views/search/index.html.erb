@@ -34,7 +34,7 @@
     <div class="row">
       <div class="col-lg-12 main">
         <% @offers.each do |offer| %>
-          <div>
+          <div style="padding:5px 0px;">
           <div class="row">
           <div class="col-lg-2">
             <% if offer.photos.exists? %>
@@ -45,12 +45,12 @@
             <% if offer.translations(locale: "en").exists? %>
               <% offer.translations.each do |t| %>
               <% if !t.title.nil? %>
-              <h2><%= t.title.titlecase %></h2>
+              <h2 style="padding:0px; margin: 0px;"><%= t.title.titlecase %></h2>
           <% end %>
           <% end %>
           <% end %>
             <section>
-              <%= offer.city %>, <%= offer.country_code_iso %>.<br/>
+              <%= offer.city.capitalize %>, <%= offer.country_code_iso %>.<br/>
               <%= offer.object_type.capitalize %> (accomodates <%= offer.max_guest_count %>/<%= offer.bedroom_count %> bedrooms <% if !offer.size.nil? %>,<%= offer.size %> <%= offer.size_type %> <% end %>)
             </section>
             <section class="col-lg-4 pull-right text-right">
@@ -69,8 +69,8 @@
               <% end %>
               </section>
             </div>
-            <div class="col-lg-2 pull-right seeoffer-button">
-              <%= link_to "See Offer", offer_path(offer), class: "btn btn-info btn-small" %>
+            <div class="col-lg-2 pull-right ">
+              <%= link_to "See Offer", offer_path(offer), class: "btn btn-info btn-default pull-right" %>
             </div>
           </div>
           </div>
