@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery.ui.all
-//= require jquery_ujs
-//= require jquery-fileupload
 // Loads all Bootstrap javascripts
+//= require s3_direct_upload
 //= require_tree .
 //= require bootstrap
