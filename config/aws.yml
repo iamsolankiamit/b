@@ -1,0 +1,16 @@
+defaults: &defaults
+  access_key_id: "AKIAJ45A74WK4Y7UABNA"
+  secret_access_key: "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"
+
+development:
+  <<: *defaults
+  bucket: "roomnhouse-assets"
+
+test:
+  <<: *defaults
+  bucket: "roomnhouse-assets"
+
+production:
+  access_key_id: <%=ENV["AWS_ACCESS_KEY_ID"]%>
+  secret_access_key: <%=ENV["AWS_SECRET_ACCESS_KEY"]%>
+  bucket: "roomnhouse-assets"

@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
     end
   end
 
-def show
+  def show
     @photo = Photo.find(params[:id])
 
     respond_to do |format|
@@ -20,20 +20,23 @@ def show
       format.json { render json: @photo }
     end
   end
+
   def create
     @photo = Photo.new(params[:photo])
     @photo.offer_id = params[:offer_id]
     respond_to do |format|
-    if @photo.save
-      format.html {
+      if @photo.save
+        format.html {
           render :json => [@photo.to_jq_upload].to_json,
           :content_type => 'text/html',
           :layout => false
         }
         format.json { render json: {files: [@photo.to_jq_upload]}, status: :created, location: offer_photo_url(@photo.offer_id,@photo.id) }
-    else
+        format.js 
+      else
         format.html { render action: "new" }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.js 
       end
     end
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711151900) do
+ActiveRecord::Schema.define(:version => 20130830111630) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(:version => 20130711151900) do
     t.datetime "image_updated_at"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "direct_upload_url"
+    t.boolean  "processed"
   end
 
 # Could not dump table "pri_keys" because of following StandardError

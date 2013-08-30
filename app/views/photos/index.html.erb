@@ -1,18 +1,18 @@
 <% content_for :body do %>
-<div class="row">
-	<div class="container">
-		<div class="col-lg-3">
-			<ul class="list-group">
-				<%= link_to "Dashboard", offers_path, class: "list-group-item" %>
-				<%= link_to "My Listings", offers_path, class: "list-group-item active" %>
-				<%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
-			</ul>
-		</div>
+  <div class="row">
+  <div class="container">
+    <div class="col-lg-3">
+      <ul class="list-group">
+        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+        <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
+      </ul>
+    </div>
 
-		<div class="col-lg-9">
+    <div class="col-lg-9">
       <div class="main" style="margin-top:0px;">
-      <div class="row">
-	         <ul class="nav nav-pills nav-justified">
+        <div class="row">
+          <ul class="nav nav-pills nav-justified">
             <li><a href="">Overview</a></li>
             <li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
             <li><%= link_to "Details", edit_offer_details_path %></li>
@@ -25,163 +25,32 @@
         <hr class=" offer-hr">
 
 
-<ul class="row thumbnails list-unstyled">
-<% @photos.each do |photo| %>
-  <li class="col-lg-2">
-    <div class="thumbnail">
-<%= image_tag photo.image.url(:thumb) %>
-      <%= link_to "Edit |", edit_offer_photo_path(photo.offer_id,photo), class: "disabled" %>
-      <%= link_to " Delete", offer_photo_path(photo.offer_id,photo), :method => "delete"  %>
-    </div>
-  </li>
-<% end %>
-</ul>
+        <ul class="row thumbnails list-unstyled">
+          <% @photos.each do |photo| %>
+            <li class="col-lg-2">
+          <div class="thumbnail">
+            <%= image_tag photo.image.url(:thumb) %>
+            <%= link_to "Edit |", edit_offer_photo_path(photo.offer_id,photo), class: "disabled" %>
+            <%= link_to " Delete", offer_photo_path(photo.offer_id,photo), :method => "delete"  %>
+          </div>
+          </li>
+        <% end %>
+        </ul>
 
- <div class="container photos">
-<%= form_tag offer_photos_path, :method => :post, :multipart => true, :id => "fileupload" do %>
-
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="fileupload-buttonbar">
-        <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
-          <i class="icon-plus icon-white"></i>
-          <span>Add files...</span>
-  
-<%= file_field_tag :image, :name => "photo[image]" , :multiple => true %>
-
-
-        </span>
-
-        <button type="submit" class="btn btn-primary start">
-          <i class="icon-upload icon-white"></i>
-          <span>Start upload</span>
-        </button>
-        <button type="reset" class="btn btn-warning cancel">
-          <i class="icon-ban-circle icon-white"></i>
-          <span>Cancel upload</span>
-        </button>
-        <button type="button" class="btn btn-danger delete">
-          <i class="icon-trash icon-white"></i>
-          <span>Delete</span>
-        </button>
-        <input type="checkbox" class="toggle">
-      </div>
-      <div class="">
-        <!-- The global progress bar -->
-        <div class="progress progress-success progress-striped active fade">
-          <div class="bar" style="width:0%;"></div>
-        </div>
-      </div>
-    <!-- The loading indicator is shown during image processing -->
-    <div class="fileupload-loading"></div>
-    <br>
-    <!-- The table listing the files available for upload/download -->
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-    </table>
-  <% end %>
-
+        <div class="container photos">
+          <%= s3_uploader_form callback_url: offer_photos_url,id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
+            <%= file_field_tag :file, multiple: true %>
+          <% end %>
+            <div id="uploads_container"></div>
+            <script id="template-upload" type="text/x-tmpl">
+<div id="image_{%=o.unique_id%}" class="upload">
+  <h5>{%=o.name%}</h5>
+  <div class="progress progress-striped active"><div class="bar" style="width: 100%"></div></div>
 </div>
+            </script>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<% end %>
-
-<% content_for :js do %>
-
-<script>
-  var fileUploadErrors = {
-  maxFileSize: 'File is too big',
-  minFileSize: 'File is too small',
-  acceptFileTypes: 'Filetype not allowed',
-  maxNumberOfFiles: 'Max number of files exceeded',
-  uploadedBytes: 'Uploaded bytes exceed file size',
-  emptyResult: 'Empty file upload result'
-  };
-</script>
-
-<!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-upload fade">
-    <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    {% if (file.error) { %}
-    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-    {% } else if (o.files.valid && !i) { %}
-    <td>
-      <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
-    </td>
-    <td class="start">{% if (!o.options.autoUpload) { %}
-      <button class="btn btn-primary">
-        <i class="icon-upload icon-white"></i>
-        <span>{%=locale.fileupload.start%}</span>
-      </button>
-      {% } %}</td>
-    {% } else { %}
-    <td colspan="2"></td>
-    {% } %}
-    <td class="cancel">{% if (!i) { %}
-      <button class="btn btn-warning">
-        <i class="icon-ban-circle icon-white"></i>
-        <span>{%=locale.fileupload.cancel%}</span>
-      </button>
-      {% } %}</td>
-  </tr>
-  {% } %}
-</script>
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
-      {% if (file.error) { %}
-        <td></td>
-        <td class="name"><span>{%=file.name%}</span></td>
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-        {% } else { %}
-        <td class="preview">{% if (file.thumbnail_url) { %}
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-          {% } %}</td>
-        <td class="name">
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
-        </td>
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-        <td colspan="2"></td>
-        {% } %}
-      <td class="delete">
-        <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-          <i class="icon-trash icon-white"></i>
-          <span>{%=locale.fileupload.destroy%}</span>
-        </button>
-        <input type="checkbox" name="delete" value="1">
-      </td>
-    </tr>
-    {% } %}
-</script>
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-      // Initialize the jQuery File Upload widget:
-      $('#fileupload').fileupload();
-      // 
-      // Load existing files:
-      $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('blueimpFileupload'), 
-          template;
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#fileupload .files'));
-        // Force reflow:
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
-      });
-
-  });
-</script>
 <% end %>
