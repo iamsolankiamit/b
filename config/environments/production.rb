@@ -10,6 +10,15 @@ Roomnhouse::Application.configure do
 
   config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
 
+  config.action_mailer.default_url_options = { :host => 'roomnhouse.com' }
+  ActionMailer::Base.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => ENV['SENDGRID_DOMAIN']
+  }
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
 
