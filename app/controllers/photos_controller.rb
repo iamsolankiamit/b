@@ -26,11 +26,9 @@ skip_before_filter  :verify_authenticity_token
     @photo.offer_id = params[:offer_id]
     respond_to do |format|
       if @photo.save!
-        format.html
         format.js 
       else
         format.js 
-        format.html
       end
     end
   end
