@@ -22,7 +22,7 @@ class Photo < ActiveRecord::Base
   belongs_to :offers
 
   # Environment-specific direct upload url verifier screens for malicious posted upload locations.
-  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-ap-southeast-1\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
+  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-ap-southeast-1\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? '' : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
   validates :direct_upload_url, presence: true, format: { with: DIRECT_UPLOAD_URL_FORMAT }
 
   before_create :set_upload_attributes
@@ -37,7 +37,7 @@ class Photo < ActiveRecord::Base
 
   # Determines if file requires post-processing (image resizing, etc)
   def post_process_required?
-    %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}.match(upload_content_type).present?
+    %r{^(image|(x-)?application)/(bmp|gif|jpeg|jpg|pjpeg|png|x-png)$}.match(image_content_type).present?
   end
 
   protected
@@ -75,7 +75,7 @@ class Photo < ActiveRecord::Base
     s3 = AWS::S3.new
 
     if post_process_required?
-      self.upload = URI.parse(URI.escape(direct_upload_url))
+      self.image = URI.parse(URI.escape(direct_upload_url))
     else
       paperclip_file_path = "photos/images/#{id_parition}/original/#{direct_upload_url_data[:filename]}"
       s3.buckets[Rails.configuration.aws[:bucket]].objects[paperclip_file_path].copy_from(direct_upload_url_data[:path])

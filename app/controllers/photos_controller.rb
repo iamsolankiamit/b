@@ -26,12 +26,6 @@ skip_before_filter  :verify_authenticity_token
     @photo.offer_id = params[:offer_id]
     respond_to do |format|
       if @photo.save!
-        format.html {
-          render :json => [@photo.to_jq_upload].to_json,
-          :content_type => 'text/html',
-          :layout => false
-        }
-        format.json { render json: {files: [@photo.to_jq_upload]}, status: :created, location: offer_photo_url(@photo.offer_id,@photo.id) }
         format.html
         format.js 
       else

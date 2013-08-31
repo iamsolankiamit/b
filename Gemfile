@@ -17,6 +17,8 @@ end
 gem "paperclip"
 gem "aws-sdk"
 gem "s3_direct_upload"
+gem 'delayed_job_active_record'
+gem 'daemons'
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
 gem 'kaminari'
