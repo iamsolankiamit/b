@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
 
+skip_before_filter  :verify_authenticity_token
   def index
     @photos = Photo.find(:all,:conditions => ["offer_id = ?", params[:offer_id]])
   end
@@ -7,7 +8,6 @@ class PhotosController < ApplicationController
   def new
     @photo = Photo.new
     respond_to do |format|
-      format.html # new.html.erb
       format.json { render json: @photo }
     end
   end
@@ -25,18 +25,18 @@ class PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     @photo.offer_id = params[:offer_id]
     respond_to do |format|
-      if @photo.save
+      if @photo.save!
         format.html {
           render :json => [@photo.to_jq_upload].to_json,
           :content_type => 'text/html',
           :layout => false
         }
         format.json { render json: {files: [@photo.to_jq_upload]}, status: :created, location: offer_photo_url(@photo.offer_id,@photo.id) }
+        format.html
         format.js 
       else
-        format.html { render action: "new" }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
         format.js 
+        format.html
       end
     end
   end

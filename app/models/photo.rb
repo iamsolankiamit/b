@@ -1,5 +1,4 @@
 class Photo < ActiveRecord::Base
-
   include Rails.application.routes.url_helpers
   attr_accessible :description, :offer_id, :image
   has_attached_file :image, 
@@ -23,7 +22,7 @@ class Photo < ActiveRecord::Base
   belongs_to :offers
 
   # Environment-specific direct upload url verifier screens for malicious posted upload locations.
-  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<path>images\/.+\/(?<filename>.+))\z}.freeze
+  DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-ap-southeast-1\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? "\\-#{Rails.env}" : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
   validates :direct_upload_url, presence: true, format: { with: DIRECT_UPLOAD_URL_FORMAT }
 
   before_create :set_upload_attributes
@@ -51,10 +50,10 @@ class Photo < ActiveRecord::Base
     s3 = AWS::S3.new
     direct_upload_head = s3.buckets[Rails.configuration.aws[:bucket]].objects[direct_upload_url_data[:path]].head
 
-    self.upload_file_name     = direct_upload_url_data[:filename]
-    self.upload_file_size     = direct_upload_head.content_length
-    self.upload_content_type  = direct_upload_head.content_type
-    self.upload_updated_at    = direct_upload_head.last_modified
+    self.image_file_name     = direct_upload_url_data[:filename]
+    self.image_file_size     = direct_upload_head.content_length
+    self.image_content_type  = direct_upload_head.content_type
+    self.image_updated_at    = direct_upload_head.last_modified
   rescue AWS::S3::Errors::NoSuchKey => e
     tries -= 1
     if tries > 0
@@ -83,7 +82,7 @@ class Photo < ActiveRecord::Base
     end
 
     self.processed = true
-    save
+    save!
 
     s3.buckets[Rails.configuration.aws[:bucket]].objects[direct_upload_url_data[:path]].delete
   end

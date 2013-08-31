@@ -1,5 +1,5 @@
 <% if @photo.persisted? %>
   $('#image_<%=params[:unique_id]%>').hide();
 <% else %>
-  $('#image_<%=params[:unique_id]%> div.progress').removeClass('active progress-striped').addClass('progress-danger');
+    $('#image_<%=params[:unique_id]%> div.progress').removeClass('active progress-striped').addClass('progress-danger').append("<p>errors:<%= flash[:error] %></p>");
 <% end %>
