@@ -15,6 +15,13 @@ GIT
       hashie (>= 1.1.0)
       uuidtools
 
+GIT
+  remote: https://github.com/onerakeshone/active_merchant_payu_india.git
+  revision: df90e80bb6219e146668c066f76c63ab079bb076
+  specs:
+    active_merchant_payu_in (0.0.1)
+      activemerchant (~> 1.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,6 +38,17 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
+    active_utils (2.0.0)
+      activesupport (>= 2.3.11)
+      i18n
+    activemerchant (1.34.0)
+      active_utils (>= 1.0.2)
+      activesupport (>= 2.3.14)
+      builder (>= 2.0.0)
+      i18n
+      json (>= 1.5.1)
+      money
+      nokogiri
     activemodel (3.2.12)
       activesupport (= 3.2.12)
       builder (~> 3.0.0)
@@ -45,6 +63,7 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.5)
     arel (3.0.2)
     asset_sync (1.0.0)
       activemodel
@@ -124,6 +143,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
+    letter_opener (1.1.2)
+      launchy (~> 2.2)
     libv8 (3.16.14.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -131,6 +154,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.24)
     mini_portile (0.5.1)
+    money (5.1.1)
+      i18n (~> 0.6.0)
     multi_json (1.7.9)
     multipart-post (1.2.0)
     net-scp (1.1.2)
@@ -238,6 +263,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_merchant_payu_in!
+  activemerchant
   asset_sync
   aws-s3
   aws-sdk
@@ -255,6 +282,7 @@ DEPENDENCIES
   jquery-rails (>= 2.1)
   jquery-ui-rails (~> 3.0)
   kaminari
+  letter_opener
   newrelic_rpm
   paperclip
   pg

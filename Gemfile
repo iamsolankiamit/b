@@ -24,6 +24,7 @@ gem 'heroku-deflater', :group => :production
 gem 'kaminari'
 gem "thin", :group => :development
 gem 'simple_form'
+gem "letter_opener", :group => :development
 group :assets do
   gem 'jquery-rails', '>=2.1'
   gem 'jquery-ui-rails', '~> 3.0'
@@ -42,7 +43,9 @@ gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'unicorn'
-
+# payment gateway gems
+gem "activemerchant"
+gem "active_merchant_payu_in", git: "https://github.com/onerakeshone/active_merchant_payu_india.git"
 group :test do
   gem "rspec-rails", :group => :development
 end

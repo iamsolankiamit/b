@@ -14,6 +14,8 @@ Roomnhouse::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = false
 
@@ -35,4 +37,11 @@ Roomnhouse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  config.after_initialize do
+      ActiveMerchant::Billing::Base.mode = :test
+        ::GATEWAY = ActiveMerchant::Billing::Integrations::PayuIn.new(
+            :merchant_id => "C0Dr8m",
+            :secret_key => "3sf0jURk",
+          )
+  end
 end
