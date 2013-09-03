@@ -67,10 +67,12 @@ class Photo < ActiveRecord::Base
   # Queue file processing
   def queue_processing
     self.delay.transfer_and_cleanup
+    system("echo delayed >> logfile.log")
   end
 
   # Final upload processing step
   def transfer_and_cleanup
+    system("echo working >> logfile.log")
     direct_upload_url_data = DIRECT_UPLOAD_URL_FORMAT.match(direct_upload_url)
     s3 = AWS::S3.new
 
