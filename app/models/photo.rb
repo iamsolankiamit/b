@@ -66,7 +66,7 @@ class Photo < ActiveRecord::Base
 
   # Queue file processing
   def queue_processing
-    self.transfer_and_cleanup
+    self.delay.transfer_and_cleanup
     system("echo delayed >> logfile.log")
   end
 
