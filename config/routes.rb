@@ -1,6 +1,10 @@
 Roomnhouse::Application.routes.draw do
  
 
+  get "checkout/booking"
+
+  post "checkout/create"
+
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'

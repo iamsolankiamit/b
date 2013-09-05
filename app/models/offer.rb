@@ -53,6 +53,8 @@ class Offer < ActiveRecord::Base
   has_many :calendars, :dependent => :destroy
   accepts_nested_attributes_for :calendars, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
 
+  belongs_to :trips
+  belongs_to :checkout
   has_one :amenity, :dependent => :destroy
   accepts_nested_attributes_for :amenity
 

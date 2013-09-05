@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130831213722) do
+ActiveRecord::Schema.define(:version => 20130905103803) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -53,6 +53,26 @@ ActiveRecord::Schema.define(:version => 20130831213722) do
     t.boolean  "availablity"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "checkouts", :force => true do |t|
+    t.string   "offer_id",                                  :null => false
+    t.integer  "guest_id",                                  :null => false
+    t.integer  "host_id",                                   :null => false
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "guest_count"
+    t.boolean  "host_accepted",       :default => false,    :null => false
+    t.float    "total",                                     :null => false
+    t.string   "email"
+    t.string   "status"
+    t.datetime "booked_at"
+    t.string   "phone"
+    t.decimal  "service_tax",                               :null => false
+    t.decimal  "processing_fee",      :default => 0.0
+    t.string   "cancellation_policy", :default => "strict"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "countries", :force => true do |t|
@@ -170,6 +190,15 @@ ActiveRecord::Schema.define(:version => 20130831213722) do
     t.string   "offer_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "trips", :force => true do |t|
+    t.string   "card_holder_name"
+    t.string   "transaction_number", :null => false
+    t.decimal  "total",              :null => false
+    t.integer  "checkout_id",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "users", :force => true do |t|

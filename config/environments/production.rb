@@ -69,8 +69,7 @@ Roomnhouse::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
-   config.threadsafe!
-
+config.threadsafe! unless defined?($rails_rake_task) && $rails_rake_task
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
