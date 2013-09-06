@@ -1,6 +1,14 @@
 Roomnhouse::Application.routes.draw do
  
 
+  get "bookings/new"
+
+  get "bookings/create"
+
+  get "trips/index"
+
+  get "trips/show"
+
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
