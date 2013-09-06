@@ -44,8 +44,7 @@ gem "jquery-fileupload-rails"
 # in production environments by default.
 gem 'unicorn'
 # payment gateway gems
-gem "activemerchant"
-gem "active_merchant_payu_in", git: "https://github.com/onerakeshone/active_merchant_payu_india.git"
+gem "activemerchant", path: "lib/active_merchant"
 group :test do
   gem "rspec-rails", :group => :development
 end
