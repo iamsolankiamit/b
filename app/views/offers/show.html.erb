@@ -138,7 +138,7 @@ $(document).ready(function(){
       <div class="row">
         <h2>Your Host</h2>
         <div class="col-lg-6"><% @user =  User.find(@offer.user_id) %>
-        <% if user.avatar.exists? %>
+        <% if @user.avatar.exists? %>
       <%= image_tag @user.avatar.url(:medium), class: "img-thumbnail" %></div>
   <% else %>
     <%= image_tag "no_avatar.jpg", class: "img-thumbnail"  %>
