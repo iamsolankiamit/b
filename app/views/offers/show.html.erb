@@ -142,6 +142,7 @@ $(document).ready(function(){
       <%= image_tag @user.avatar.url(:medium), class: "img-thumbnail" %></div>
   <% else %>
     <%= image_tag "no_avatar.jpg", class: "img-thumbnail"  %>
+  <% end %>
         <h3><%= @user.firstname.humanize %> <%= @user.lastname.humanize[0,1] %></h3>
         <hr>
         <div class="col-lg-6"><a href="/checkout/booking" class="btn btn-primary large">Book Now</a></div>
