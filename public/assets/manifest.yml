@@ -9,10 +9,12 @@ logo.png: logo-3ce829191aba04c537cc7404fc476bdb.png
 logo/index.png: logo-3ce829191aba04c537cc7404fc476bdb.png
 main-header-background.jpg: main-header-background-38e728b65db27979cfbad5b82a4b094d.jpg
 main-header-background/index.jpg: main-header-background-38e728b65db27979cfbad5b82a4b094d.jpg
-application.js: application-fa3dfc7751d5cf41682fe0c224b3ff3a.js
-application/index.js: application-fa3dfc7751d5cf41682fe0c224b3ff3a.js
-application.css: application-f7bb1301bdfbc8a2f5daba8d2fa010f8.css
-application/index.css: application-f7bb1301bdfbc8a2f5daba8d2fa010f8.css
+no_avatar.jpg: no_avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
+no_avatar/index.jpg: no_avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
+application.js: application-3f2d9088f42411385a8cb3e50a58ddd7.js
+application/index.js: application-3f2d9088f42411385a8cb3e50a58ddd7.js
+application.css: application-22320ad0077c9f7242548281922a8757.css
+application/index.css: application-22320ad0077c9f7242548281922a8757.css
 FontAwesome.otf: FontAwesome-d2e1f2cb067bb8a9b129341f5ed85582.otf
 FontAwesome/index.otf: FontAwesome-d2e1f2cb067bb8a9b129341f5ed85582.otf
 fontawesome-webfont.eot: fontawesome-webfont-009f6d1f667cc42c25e712ab3429cbc7.eot

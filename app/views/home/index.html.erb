@@ -49,9 +49,9 @@
               <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
             <% end %>
           <% else %>
-            <div class="name">Offer (<%= offer.id %>).</div>
+            <div class="name"><%= offer.object_type.humanize  %> at <%= offer.city.humanize%>.</div>
           <% end %>
-          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= offer.country_code_iso %></div>
+          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= Country.where(code: offer.country_code_iso).first.name.humanize %></div>
     </div>
     <% end %>
 
