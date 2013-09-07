@@ -192,7 +192,6 @@ ActiveRecord::Schema.define(:version => 20130906043836) do
     t.date     "checkin"
     t.date     "checkout"
     t.integer  "guest_count",        :default => 2,        :null => false
-    t.string   "booking_id",                               :null => false
     t.string   "cancelation_policy", :default => "strict", :null => false
     t.boolean  "host_accepted",      :default => false,    :null => false
     t.boolean  "guest_visited",      :default => false,    :null => false

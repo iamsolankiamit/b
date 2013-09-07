@@ -19,6 +19,8 @@ class Ability
       can :access, :rails_admin #only admin can access rails_admin.
     elsif user.role == "default"
       can :manage, Offer, :user_id => user.id
+      can :manage, Trip, :guest_id => user.id
+      can :manage, Booking
     else
       can :read, [Offer,User] # guest user
       can :create, [Offer]

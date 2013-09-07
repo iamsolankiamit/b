@@ -7,7 +7,6 @@ class CreateTrips < ActiveRecord::Migration
       t.date :checkin
       t.date :checkout
       t.integer :guest_count, null: false, default: 2
-      t.string :booking_id, null: false
       t.string :cancelation_policy, null: false, default: "strict"
       t.boolean :host_accepted, null: false, default: false
       t.boolean :guest_visited, null: false, default: false
