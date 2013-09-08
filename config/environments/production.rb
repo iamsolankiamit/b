@@ -84,7 +84,7 @@ Roomnhouse::Application.configure do
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :production
     $payu_merchant_id = ActiveMerchant::Billing::Integrations::PayuIn.merchant_id = 'C0Dr8m'
-    $payu_secret_key = ActiveMerchant::Billing::Integrations::PayuIn.secret_key = '3sf0jURk'    
+    $payu_secret_key = ActiveMerchant::Billing::Integrations::PayuIn.secret_key = 'urtS6oHm'
   end
 
 end
