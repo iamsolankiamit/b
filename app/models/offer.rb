@@ -103,10 +103,10 @@ class Offer < ActiveRecord::Base
   def self.search(search)
     # Currently only normal search is needed
     if search.nil?
-      search=""
+      return
     end
-    search_string = "%"+ search +"%"
-    where(:visiblity => true, :is_verified => true).find(:all, :conditions => ['lower(city) LIKE ?', search_string.downcase])
+    search_string = "% #{search} %"
+    where(:visiblity => true, :is_verified => true).find(:all, :conditions => ['lower(city) LIKE ? ', search_string.downcase])
   end
 
   def verified_listing

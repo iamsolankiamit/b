@@ -1,10 +1,8 @@
 Roomnhouse::Application.routes.draw do
- 
-
-  get "checkout/booking"
-
-  post "checkout/create"
-
+  resources :bookings do
+    post 'payu_return', on: :collection
+  end
+  resources :trips
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
@@ -15,7 +13,7 @@ Roomnhouse::Application.routes.draw do
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
-  
+
   resources :floods, only: [:index]
 
   resources :offers do
