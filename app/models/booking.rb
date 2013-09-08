@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
   belongs_to :trip
   def validate_booking(number_of_days,offer_id)
       @offer= Offer.find(offer_id)
-    if number_of_days >= @offer.min_nights && number_of_days <= @offer.max_nights
+    if number_of_days >= @offer.min_nights.to_i && number_of_days <= @offer.max_nights.to_i
       return true
     end
     return false
