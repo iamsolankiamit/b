@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       :medium => "300x300>", 
       :thumb => "100x100>" 
     }, 
-    :default_url => "/images/avatar/:style/no-avatar.png",
+    :default_url => "/images/avatar/no-avatar.jpg",
     :storage => :s3,
     :bucket => 'roomnhouse-assets',
     :s3_credentials => {

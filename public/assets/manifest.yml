@@ -1,4 +1,6 @@
 ---
+avatar/no-avatar.jpg: avatar/no-avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
+avatar/no-avatar/index.jpg: avatar/no-avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
 cat.jpg: cat-c26db808f3721b20b69a0f16c633fd09.jpg
 cat/index.jpg: cat-c26db808f3721b20b69a0f16c633fd09.jpg
 floods.jpg: floods-3e4fd69c8f937b2b76783b93cc16ab96.jpg
@@ -11,8 +13,8 @@ main-header-background.jpg: main-header-background-38e728b65db27979cfbad5b82a4b0
 main-header-background/index.jpg: main-header-background-38e728b65db27979cfbad5b82a4b094d.jpg
 no_avatar.jpg: no_avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
 no_avatar/index.jpg: no_avatar-ce301b59f76bd5112e51ad43ffa22b72.jpg
-application.js: application-3f2d9088f42411385a8cb3e50a58ddd7.js
-application/index.js: application-3f2d9088f42411385a8cb3e50a58ddd7.js
+application.js: application-e39ce183f42fdca8b017d29e3d04d270.js
+application/index.js: application-e39ce183f42fdca8b017d29e3d04d270.js
 application.css: application-22320ad0077c9f7242548281922a8757.css
 application/index.css: application-22320ad0077c9f7242548281922a8757.css
 FontAwesome.otf: FontAwesome-d2e1f2cb067bb8a9b129341f5ed85582.otf
