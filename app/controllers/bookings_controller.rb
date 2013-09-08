@@ -13,7 +13,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @offer= Offer.find(params[ 'offer_id' ])
-   @trip = Trip.create( offer_id: params['offer_id'],guest_id: current_user.id, host_id: @offer.user_id, checkin: params[ 'checkin' ],checkout: params[ 'checkout' ],guest_count: params[ 'guests' ])
+    @checkin = DateTime.strptime(params['checkin'], "%m/%d/%Y")
+    @checkout= DateTime.strptime(params['checkout'], "%m/%d/%Y")
+   @trip = Trip.create( offer_id: params['offer_id'],guest_id: current_user.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[ 'guests' ])
     @trip.save!
     @booking.set_values(params['offer_id'],params['checkin'],params['checkout'],params['guests'],current_user.id, @trip.id)
     render:show 
