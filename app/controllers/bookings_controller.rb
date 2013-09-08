@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
    @trip = Trip.create( offer_id: params['offer_id'],guest_id: current_user.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[ 'guests' ])
     @trip.save!
     @booking.set_values(params['offer_id'],params['checkin'],params['checkout'],params['guests'],current_user.id, @trip.id)
-    render:show 
+    redirect_to :show 
   end
 
   def payu_return
