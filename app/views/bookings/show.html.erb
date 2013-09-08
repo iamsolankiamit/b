@@ -65,7 +65,7 @@
   </div>
 
 
-    <% payment_service_for @booking.id*123456, $payu_merchant_id,
+    <% payment_service_for @booking.id, $payu_merchant_id,
       :amount => @booking.total,
       :service => :payu_in,
       :html => { :id => 'payment-form' } do |service| %>
@@ -79,7 +79,7 @@
         :last_name => current_user.lastname,
         :phone => current_user.phone,
         :email => current_user.email %>
-      <% service.return_url 'http://localhost:3000/bookings/payu_return' %>      
+      <% service.return_url 'http://roomnhouse.com/bookings/payu_return' %>      
 
         <input type=submit value=" Pay for your Order ">
       <% end %>

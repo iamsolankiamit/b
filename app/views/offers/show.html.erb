@@ -158,7 +158,7 @@ $(document).ready(function(){
       </div>
       <div class="row" style="padding-top:10px;">
         <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
-          <%= hidden_field_tag :offer_id, required: "required",params[:offer_id], value: @offer.id %>
+          <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
         <div class="form-group col-lg-4">
           <%= text_field_tag :checkin, params[:checkin],required: "required",class: "form-control", placeholder: "Check in"%>
         </div>

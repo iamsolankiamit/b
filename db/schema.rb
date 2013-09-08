@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906043836) do
+ActiveRecord::Schema.define(:version => 20130905103803) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -44,19 +44,6 @@ ActiveRecord::Schema.define(:version => 20130906043836) do
     t.boolean  "baby_cot"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
-  end
-
-  create_table "bookings", :force => true do |t|
-    t.datetime "booked_at"
-    t.string   "trip_id",                                   :null => false
-    t.string   "status",             :default => "bounced", :null => false
-    t.decimal  "total",                                     :null => false
-    t.decimal  "processing_fee",                            :null => false
-    t.decimal  "service_tax",                               :null => false
-    t.string   "transaction_number"
-    t.string   "card_holder_name"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
   end
 
   create_table "calendars", :force => true do |t|
@@ -183,20 +170,6 @@ ActiveRecord::Schema.define(:version => 20130906043836) do
     t.string   "offer_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
-  end
-
-  create_table "trips", :force => true do |t|
-    t.string   "offer_id",                                 :null => false
-    t.integer  "guest_id",                                 :null => false
-    t.integer  "host_id",                                  :null => false
-    t.date     "checkin"
-    t.date     "checkout"
-    t.integer  "guest_count",        :default => 2,        :null => false
-    t.string   "cancelation_policy", :default => "strict", :null => false
-    t.boolean  "host_accepted",      :default => false,    :null => false
-    t.boolean  "guest_visited",      :default => false,    :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
   end
 
   create_table "users", :force => true do |t|
