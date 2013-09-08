@@ -9,10 +9,10 @@ class Booking < ActiveRecord::Base
   end
 
   def set_values(offer_id,checkin,checkout,guests,guest_id,trip_id)
-    if self.validate_booking
-      checkout = Date.strptime(checkout, "%m/%d/%Y")
-      checkin = Date.strptime(checkin, "%m/%d/%Y")
-      @number_of_days = (checkout - checkin).to_i
+    checkout = Date.strptime(checkout, "%m/%d/%Y")
+    checkin = Date.strptime(checkin, "%m/%d/%Y")
+    @number_of_days = (checkout - checkin).to_i
+    if self.validate_booking(@number_of_days)
       @offer= Offer.find(offer_id)
       if @number_of_days >=30 && @offer.monthly_rate_amount
         @host_fee = @number_of_days*(@offer.monthly_rate_amount/30)
