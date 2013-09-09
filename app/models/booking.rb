@@ -1,20 +1,11 @@
 class Booking < ActiveRecord::Base
   attr_accessible :booked_at, :card_holder_name, :processing_fee, :service_tax, :status, :total, :transaction_number, :trip_id, :weekly_rate, :nightly_rate_amount, :monthly_rate_amount, :included_guest_count, :extra_guest_charge_amount, :service_charge_amount, :per_night
   belongs_to :trip
-  def validate_booking(number_of_days,offer_id)
-      @offer= Offer.find(offer_id)
-    if number_of_days >= @offer.min_nights.to_i && number_of_days <= @offer.max_nights.to_i
-      return true
-    end
-    return false
-  end
-
   def set_values(offer_id,checkin,checkout,guests,guest_id,trip_id)
     checkout = Date.strptime(checkout, "%m/%d/%Y")
     checkin = Date.strptime(checkin, "%m/%d/%Y")
     @number_of_days = (checkout - checkin).to_i
       @offer= Offer.find(offer_id)
-    if self.validate_booking(@number_of_days,offer_id)
       if @number_of_days >=30 && @offer.monthly_rate_amount
         @host_fee = @number_of_days*(@offer.monthly_rate_amount/30)
       elsif @number_of_days >=7 && @offer.weekly_rate_amount
@@ -43,7 +34,5 @@ class Booking < ActiveRecord::Base
       self.processing_fee = @processing_fee
       self.trip_id = trip_id
       self.save!
-    end
-    return false
   end
 end

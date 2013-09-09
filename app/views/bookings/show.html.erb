@@ -35,19 +35,26 @@
         <tr>
           <td><strong>Total Price </strong></td>
           <td><%= @trip.checkin.strftime("%B %d, %Y")  %> - <%= @trip.checkout.strftime("%B %d, %Y")  %></td>
-          <td><i class="icon-rupee"></i><strong><%= @booking.total - @booking.processing_fee - @booking.service_tax  %></strong></td>
+          <td><i class="icon-rupee"></i><strong><%= (@booking.total - @booking.processing_fee - @booking.service_tax).round(2)  %></strong></td>
         </tr>
-        <tr>
-          <td><strong>Service charge</strong></td>
+        <% if @offer.service_charge_amount %>
+<tr>
+          <td><strong>Cleaning fee</strong></td>
           <td></td>
-          <td><i class="icon-rupee"></i><strong><%= @booking.processing_fee + @booking.service_tax  %></strong></td>
+          <td><i class="icon-rupee"></i><strong><%= (@booking.service_charge_amount).round(2)  %></strong></td>
+        </tr>
+      <% end %>
+        <tr>
+          <td><strong>Processing fee</strong></td>
+          <td></td>
+          <td><i class="icon-rupee"></i><strong><%= (@booking.processing_fee + @booking.service_tax).round(2)  %></strong></td>
         </tr>
         <tr>
           <td><strong>Total</strong></td>
           <td>Your booking becomes binding once the host has accepted your request (within 24 hours).<br />
             Cancellation policy: <%= @offer.cancelation_policy.titlecase  %>
           </td>
-          <td><i class="icon-rupee"></i><strong><%= @booking.total %></strong></td>
+          <td><i class="icon-rupee"></i><strong><%= @booking.total.round(2) %></strong></td>
         </tr>
       </table>
       <div class="row">
@@ -65,7 +72,7 @@
   </div>
 
 
-    <% payment_service_for @booking.id, $payu_merchant_id,
+    <% payment_service_for @booking.id*5032233, $payu_merchant_id,
       :amount => @booking.total,
       :service => :payu_in,
       :html => { :id => 'payment-form' } do |service| %>
@@ -79,8 +86,8 @@
         :last_name => current_user.lastname,
         :phone => current_user.phone,
         :email => current_user.email %>
-      <% service.return_url 'http://roomnhouse.com/bookings/payu_return' %>      
-
+      <% service.return_url 'http://localhost:3000/bookings/payu_return' %>
+         <p>By paying for the booking you agree with our Terms & condition, Cancellation Policy and host house rules</p>
         <input type=submit value=" Pay for your Order ">
       <% end %>
       </div>

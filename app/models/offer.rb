@@ -2,45 +2,45 @@ class Offer < ActiveRecord::Base
   before_save :set_email, :set_cancellation_policy, :set_contact
   before_update :set_email, :verified_listing
   attr_accessible :visiblity,
-  								:email, 
-  								:contact_phone, 
-  								:contact_phone_backup, 
-  								:object_type, 
-  								:size, 
-  								:size_type, 
-  								:bathroom_count, 
-  								:max_guest_count, 
-  								:bed_count, 
-  								:bedroom_count, 
-  								:bed_type, 
-  								:allow_marketing, 
-  								:street, 
-  								:street_no, 
-  								:address_addon, 
-  								:city, 
-  								:zip, 
-  								:country_code_iso, 
-  								:currency, 
-  								:nightly_rate_amount, 
-  								:weekly_rate_amount, 
-  								:monthly_rate_amount, 
-  								:extra_guest_charge_amount, 
-  								:included_guest_count, 
-  								:service_charge_amount, 
-  								:cancelation_policy, 
-  								:min_nights, 
-  								:max_nights, 
-  								:checkin_after, 
-  								:checkout_before,
-  								:confidential_lng,  # to be used when PostGIS is done
-  								:confidential_lat,  # to be used when PostGIS is done
-  								:geo_precision,
-                  :translations_attributes,
-                  :user_id,
-                  :is_verified,
-                  :photos_attributes,
-                  :calendars_attributes,
-                  :amenity_attributes
+    :email, 
+    :contact_phone, 
+    :contact_phone_backup, 
+    :object_type, 
+    :size, 
+    :size_type, 
+    :bathroom_count, 
+    :max_guest_count, 
+    :bed_count, 
+    :bedroom_count, 
+    :bed_type, 
+    :allow_marketing, 
+    :street, 
+    :street_no, 
+    :address_addon, 
+    :city, 
+    :zip, 
+    :country_code_iso, 
+    :currency, 
+    :nightly_rate_amount, 
+    :weekly_rate_amount, 
+    :monthly_rate_amount, 
+    :extra_guest_charge_amount, 
+    :included_guest_count, 
+    :service_charge_amount, 
+    :cancelation_policy, 
+    :min_nights, 
+    :max_nights, 
+    :checkin_after, 
+    :checkout_before,
+    :confidential_lng,  # to be used when PostGIS is done
+    :confidential_lat,  # to be used when PostGIS is done
+    :geo_precision,
+    :translations_attributes,
+    :user_id,
+    :is_verified,
+    :photos_attributes,
+    :calendars_attributes,
+    :amenity_attributes
 
 
   has_many :translations, :dependent => :destroy
@@ -59,22 +59,22 @@ class Offer < ActiveRecord::Base
   accepts_nested_attributes_for :amenity
 
   validates_presence_of :address_addon, 
-                        :street, 
-                        :street_no, 
-                        :city, 
-                        :country_code_iso, 
-                        :user_id, 
-                        :nightly_rate_amount
+    :street, 
+    :street_no, 
+    :city, 
+    :country_code_iso, 
+    :user_id, 
+    :nightly_rate_amount
 
   validates_numericality_of :contact_phone_backup, 
-                            :contact_phone, 
-                            :max_nights, 
-                            :max_guest_count, 
-                            :zip, 
-                            :size, 
-                            :weekly_rate_amount, 
-                            :monthly_rate_amount,
-                            :allow_nil => true
+    :contact_phone, 
+    :max_nights, 
+    :max_guest_count, 
+    :zip, 
+    :size, 
+    :weekly_rate_amount, 
+    :monthly_rate_amount,
+    :allow_nil => true
 
 
   validates_numericality_of :nightly_rate_amount
@@ -102,11 +102,12 @@ class Offer < ActiveRecord::Base
 
   def self.search(search)
     # Currently only normal search is needed
-    if search.nil?
-      return
+    if !search.nil? 
+      if !search.empty?
+        search_string = "%#{search}%"
+        find(:all, :conditions => ['lower(city) LIKE ? ', search_string.downcase])
+      end
     end
-    search_string = "% #{search} %"
-    where(:visiblity => true, :is_verified => true).find(:all, :conditions => ['lower(city) LIKE ? ', search_string.downcase])
   end
 
   def verified_listing
@@ -118,10 +119,7 @@ class Offer < ActiveRecord::Base
     if self.photos.count >= 3
       photos_flag = true
     end
-    if User.find(:all, :conditions => ['id =?', self.user_id ]).first.avatar.exists?
-      avatar_flag = true
-    end
-    if translations_flag == true and photos_flag == true and avatar_flag == true
+    if translations_flag == true and photos_flag == true 
       self.is_verified = true
     end
   end

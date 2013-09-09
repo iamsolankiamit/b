@@ -8,6 +8,13 @@ class BookingsController < ApplicationController
 
   def show
     @booking = Booking.find(params[:id])
+    @trip = Trip.find(@booking.trip_id)
+    if (@booking.created_at - Time.now) > 15.minutes && @booking.status == "bounced"
+      redirect_to @trip
+    end
+    if @booking.status == "success"
+      redirect_to @trip
+    end
   end
 
   def create

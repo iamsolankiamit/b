@@ -26,7 +26,7 @@
 </div>
 <div class="row">
   <div class="container">
-    <% if @offers.count > 0 %>
+    <% if @offers && @offers.count > 0 %>
       <div class="col-lg-12" style="padding:10px 0px;">
       <span class="col-lg-5"><strong>Rooms in: <%= @offers.first.city.titleize %></strong> </span>
       <span class="col-lg-2 text-right col-lg-offset-5"><strong><%= @offers.count %> results</strong></span>
@@ -80,7 +80,11 @@
       </div>
     </div>
 <% else %>
-
+<div class="main">
+  <h2>Sorry, we can find any Lisings in that city
+  <br />Be the first one to list here</h2>
+  <%= link_to  "list your own space" ,new_offer_path, class: "btn btn-primary btn-xl" %>
+</div>
   <% end %>
 </div>
 </div>
