@@ -1,8 +1,7 @@
-
 class BookingsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
-skip_before_filter :verify_authenticity_token, :except => [:new,:show,:create]
+  skip_before_filter :verify_authenticity_token
   include ActiveMerchant::Billing::Integrations
   def new
   end
