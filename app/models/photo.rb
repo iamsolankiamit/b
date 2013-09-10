@@ -16,8 +16,9 @@ class Photo < ActiveRecord::Base
     :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   },
-  :url => ':s3_domain_url',
-  :path => "/:class/:attachment/:id_partition/:style/:filename"
+  url: ':s3_alias_url',
+  s3_host_alias: 'dm1w09da1rt65.cloudfront.net', 
+   :path => "/:class/:attachment/:id_partition/:style/:filename"
 
   belongs_to :offers
 
