@@ -1,4 +1,4 @@
-Installation Guide:
+# Installation Guide:
 For ubuntu:
 
 Clone the repo:
@@ -28,7 +28,7 @@ next you will be in psql console
 listen_addresses = 'localhost'
 
 /etc/postgresql//main/pg_hba.conf:
-# "local" is for Unix domain socket connections only
+"local" is for Unix domain socket connections only
 local   all         all                               md5
 
 sudo /etc/init.d/postgresql start
