@@ -105,7 +105,7 @@ class Offer < ActiveRecord::Base
     if !search.nil? 
       if !search.empty?
         search_string = "%#{search}%"
-        find(:all, :conditions => ['lower(city) LIKE ? ', search_string.downcase])
+        where(:is_verified => true).find(:all, :conditions => ['lower(city) LIKE ? ', search_string.downcase])
       end
     end
   end
