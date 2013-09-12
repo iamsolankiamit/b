@@ -9,7 +9,7 @@ Roomnhouse::Application.routes.draw do
   match '/privacy' => 'info#privacy'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
-
+  match 'users/:id' => 'users#show'
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
