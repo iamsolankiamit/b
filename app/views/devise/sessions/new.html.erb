@@ -1,27 +1,15 @@
-<% content_for :body do %>
-<div class="container">
-  <div class="row ">
-    <div class="col-lg-4 col-lg-offset-4 main">
-      <legend>Login</legend>
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-group"><%= f.label :email %>
-  <%= f.email_field :email, :autofocus => true, class: "form-control" %></div>
+<h2>Sign in</h2>
 
-  <div class="form-group"><%= f.label :password %>
-  <%= f.password_field :password , class: "form-control"%></div>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="form-group">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, style: "display:inline-block;margin: 2px 0px 0px 5px;" %>
-    </div>
-  <% end -%>
-
-  <div class="form-group"><%= f.submit "Sign in", class: "btn btn-default btn-medium", style: "margin-top: 8px;" %></div>
+  <div class="form-actions">
+    <%= f.button :submit, "Sign in" %>
+  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
-</div>
-    </div>
-</div>
-<% end %>

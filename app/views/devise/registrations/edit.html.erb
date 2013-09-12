@@ -1,52 +1,56 @@
 <% content_for :body do %>
-<div class="container_24 ">
-  <div class="grid_24 edit-offer-container">
-    <div class="grid_5 alpha omega offer-side-menu-content">
-      <ul>
-        <li class="blank"></li>
-        <li><%= link_to "Dashboard", offers_path %></li>
-        <li ><%= link_to "My Listings", offers_path %></li>
-        <li class="active"><%= link_to "Profile settings", edit_user_registration_path, :class =>"disabled" %></li>
+  <div class="row">
+  <div class="container">
+    <div class="col-lg-3">
+      <ul class="list-group">
+        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+        <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
       </ul>
     </div>
 
-    <div class="grid_19 alpha omega offer-edit-main-content">
-            <div class="grid_19">
-        
-        <div class="title"><h2>Profile settings</h2>
-
-        </div>
+    <div class="col-lg-9">
+      <div class="main" style="margin-top:0px;">
+        <h2 class="text-center">Profile Settings</h2>
         <hr class=" offer-hr">
-        
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+        <div class="row">
+ 
+            <%= simple_form_for(resource, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } },:as => resource_name, :url => registration_path(resource_name), :html => { :method => :put ,class: "form-horizontal"}) do |f| %>
+              <%= f.error_notification %>
 
+         <div class="col-lg-5 col-lg-offset-1">
+            <div class="form-inputs">
+              <%= f.input :email, :required => true, :autofocus => true %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <div>
-    <% if !current_user.avatar.nil? %>
-      <%= image_tag current_user.avatar.url("medium"), :class => "img-polaroid" %>
-    <% end %>
-    <%= f.label :avatar %>
-  <%= f.file_field :avatar %></div>
-  <div><%= f.label :phone %>
-  <%= f.phone_field :phone %></div>
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+            <%= f.input :firstname, :required => true  %> 
+            <%= f.input :lastname, :required  => true  %>
+            <%= f.input :phone, :as  => :string, :required  => true  %>
+            <%= f.input :work_phone , :as  => :string %>
+            <%= f.input :location  %>
+            <%= f.input :about , :html => {:rows => '5'} %>
+              <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
+              <%= f.input :password_confirmation, :required => false %>
+              <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+            </div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update", class: "btn btn-primary" %></div>
-<% end %>
-
+         </div>
+         <div class="col-lg-3 col-lg-offset-2">
+             <%= image_tag resource.avatar.url(:medium) , :class  => "img-thumbnail" %>
+         <%= f.input :avatar  %>
+         </div>
+         <div class="row">
+           <div class="col-lg-6 col-lg-offset-1">
+             <div class="form-actions">
+              <%= f.button :submit, "Update" %>
+            </div>
+          <% end %>
+            <%= link_to "Back", :back %>
+        </div>
+        </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<% end %>
+  <% end %>
