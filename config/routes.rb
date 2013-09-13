@@ -10,6 +10,7 @@ Roomnhouse::Application.routes.draw do
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
   match 'users/:id' => 'users#show'
+  match 'users/dashboard' => 'users#dashboard'
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]

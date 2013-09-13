@@ -1,64 +1,50 @@
 <% content_for :header do %>
-<div class="search-container">
+  <div class="search-container">
   <div class="title">Travel Easy. Stay Easier.</div>
   <div class="search row">
-      <div class="container">
-        <div class="col-lg-12 ">
-      <%= form_tag "/search", :method => 'get', id: 'search_form', class: "form-inline" do %>
-        <div class="form-group col-lg-5">
+    <div class="container">
+      <div class="col-lg-12 ">
+        <%= form_tag "/search", :method => 'get', id: 'search_form', class: "form-inline" do %>
+          <div class="form-group col-lg-5">
           <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", required: "required", class: "form-control required" %>
         </div>
         <div class="form-group col-lg-2">
-      <%= text_field_tag :checkin, nil,class: "form-control", required: "required", placeholder: "Check in"%>
+          <%= text_field_tag :checkin, nil,class: "form-control", required: "required", placeholder: "Check in"%>
+        </div>
+        <div class="form-group col-lg-2">
+          <%= text_field_tag :checkout, nil,class: "form-control", required: "required",placeholder: "Check out"%>
+        </div>
+        <div class="form-group col-lg-2">
+          <%= text_field_tag :guests, nil,class: "form-control", required: "required",placeholder: "Guests" %>
+        </div>
+        <div class="form-group col-xs-2 col-sm-2 col-lg-1">
+          <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
+            <i class="icon icon-search"></i> Search
+          </button>
+        </div>
+      <% end %>
       </div>
-      <div class="form-group col-lg-2">
-      <%= text_field_tag :checkout, nil,class: "form-control", required: "required",placeholder: "Check out"%>
-      </div>
-      <div class="form-group col-lg-2">
-      <%= text_field_tag :guests, nil,class: "form-control", required: "required",placeholder: "Guests" %>
-      </div>
-      <div class="form-group col-xs-2 col-sm-2 col-lg-1">
-      <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
-        <i class="icon icon-search"></i> Search
-      </button>
-      </div>
-    <% end %>
     </div>
   </div>
-    </div>
 </div>
 <% end %>
 <% content_for :body do %>
   <div class="row listing-container">
-      <% @offers.each do |offer| %>
+  <% @offers.each do |offer| %>
     <div class="col-lg-3 item">
-            <a href="<%= offer_path(offer) %>" class="thumbnail">
-            <% if offer.photos.exists? %>
-              <% if !offer.photos.first.nil? %>
-                <%= image_tag offer.photos.first.image.url(:homeimage)%>
-              <% else %>
-                <%= image_tag ('cat.jpg') %>
-              <% end %>
-              <% else %>
-                <%= image_tag ('cat.jpg') %>
-            <% end %>
-            </a>
-          <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
-          <% if offer.translations.exists? %>
-            <% if !offer.translations.first.title.nil? %>
-              <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
-            <% end %>
-          <% else %>
-            <div class="name"><%= offer.object_type.humanize  %> at <%= offer.city.humanize%>.</div>
-          <% end %>
-          <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= Country.where(code: offer.country_code_iso).first.name.humanize %></div>
-    </div>
-    <% end %>
-
+    <a href="<%= offer_path(offer) %>" class="thumbnail">
+      <img alt="<%= offer.translations.first.title  %>  room n house <%= offer.city %>" src="<%= offer.photos.first.image.url(:homeimage)%>" />
+    </a>
+    <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
+    <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
+    <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= Country.where(code: offer.country_code_iso).first.name.humanize %></div>
   </div>
 <% end %>
+
+</div>
+<% end %>
 <% content_for :seo do %>
-<div class="row">
+  <div class="row">
   <div class="container">
     <ul class="nav nav-tabs" id="myTab">
       <li><a href="#know" data-toggle="tab">Know about RnH</a></li>
@@ -69,13 +55,13 @@
     <div class="tab-content">
       <div class="tab-pane active" id="know">
         <h4>RoomNHouse simply revolutionizes your travel experience.</h4>
-            <p>Choosing a RoomNHouse holiday apartment over a hotel means that you’ll enjoy more space, more privacy and better value for money, all whilst staying in a unique property in the destination of your choice! RoomNHouse allows you to book your holiday apartment directly with the owner and experience life from a local’s perspective, offering you an authentic way to travel.</p>
-            <p>You feel more connected with the place when you travel with RoomNHouse. It’s like making friends everywhere you travel and sharing your experiences with the locals. We believe that the more people you meet, the better travelling experiences and stories you carry!</p>
-            <p>It’s all easy! You don’t have to search and compare at different places to find a destination or an accommodation that matches your need! Type in your destination, choose from the wide range of available options and interact personally with your host. And if there’s anything else that’s troubling you, our 24x7 customer care helpline is always there for you!</p>
-            <p>RoomNHouse also offers family accommodations. There’s no stress of fitting the entire family in one small hotel room and paying extra for every mattress and blanket that you take! Choose spacious rooms and apartments available on RoomNHouse and live comfortably without any discomfort and off course with your family.</p>
-            <p>So, turn your private empty space into a holiday rental and make some extra money from the extra space that you own!</p>
-            <p>RoomNHouse also makes it easy to rent out your spare room or empty apartment or your basement or your garage or your couch and boost your income! It’s simple and free to list your place, and you’ll earn money whilst meeting new people from all over the world. Fund your next trip away, pay your bills or simply save for a rainy day - it’s an easy way to earn a few extra bucks without stressing out of a boss sitting on top and demanding things from you.</p>
-            <p>Don’t hesitate, meet new people, increase your bank balance, help a few and be a part of our ever increasing community! Join RoomNhouse, today!</p>
+        <p>Choosing a RoomNHouse holiday apartment over a hotel means that you’ll enjoy more space, more privacy and better value for money, all whilst staying in a unique property in the destination of your choice! RoomNHouse allows you to book your holiday apartment directly with the owner and experience life from a local’s perspective, offering you an authentic way to travel.</p>
+        <p>You feel more connected with the place when you travel with RoomNHouse. It’s like making friends everywhere you travel and sharing your experiences with the locals. We believe that the more people you meet, the better travelling experiences and stories you carry!</p>
+        <p>It’s all easy! You don’t have to search and compare at different places to find a destination or an accommodation that matches your need! Type in your destination, choose from the wide range of available options and interact personally with your host. And if there’s anything else that’s troubling you, our 24x7 customer care helpline is always there for you!</p>
+        <p>RoomNHouse also offers family accommodations. There’s no stress of fitting the entire family in one small hotel room and paying extra for every mattress and blanket that you take! Choose spacious rooms and apartments available on RoomNHouse and live comfortably without any discomfort and off course with your family.</p>
+        <p>So, turn your private empty space into a holiday rental and make some extra money from the extra space that you own!</p>
+        <p>RoomNHouse also makes it easy to rent out your spare room or empty apartment or your basement or your garage or your couch and boost your income! It’s simple and free to list your place, and you’ll earn money whilst meeting new people from all over the world. Fund your next trip away, pay your bills or simply save for a rainy day - it’s an easy way to earn a few extra bucks without stressing out of a boss sitting on top and demanding things from you.</p>
+        <p>Don’t hesitate, meet new people, increase your bank balance, help a few and be a part of our ever increasing community! Join RoomNhouse, today!</p>
       </div>
       <div class="tab-pane" id="experience">
         <h4>RoomNhouse Experience</h4>
@@ -108,26 +94,26 @@
 </div>
 <% end %>
 <% content_for :js do %>
-<script>
- $(function() {
-   $( "#checkin" ).datepicker({
-           minDate:"0",
-           defaultDate: "+1w",
-           changeMonth: true,
-           numberOfMonths: 1,
-           onClose: function( selectedDate ) {
-             $( "#checkout" ).datepicker( "option","minDate",selectedDate );
-                 }
-         });
-     $( "#checkout" ).datepicker({
-           minDate:"0",
-           defaultDate: "+1w",
-           changeMonth: true,
-           numberOfMonths: 1,
-           onClose: function( selectedDate ) {
-                   $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
-                 }
-         });
+  <script>
+$(function() {
+  $( "#checkin" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkout" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#checkout" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
 });
 $('#myTab a:first').tab('show'); // Select first tab
 $('#myTab a').click(function (e) {
