@@ -1,16 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
-  
   def update
     @user = User.find(current_user.id)
 
     successfully_updated = if needs_password?(@user, params)
-      @user.update_with_password(params[:user])
-    else
-      # remove the virtual current_password attribute update_without_password
-      # doesn't know how to ignore it
-      params[:user].delete(:current_password)
-      @user.update_without_password(params[:user])
-    end
+                             @user.update_with_password(params[:user])
+                           else
+                             # remove the virtual current_password attribute update_without_password
+                             # doesn't know how to ignore it
+                             params[:user].delete(:current_password)
+                             @user.update_without_password(params[:user])
+                           end
 
     if successfully_updated
       set_flash_message :notice, :updated
@@ -21,20 +20,10 @@ class RegistrationsController < Devise::RegistrationsController
       render "edit"
     end
   end
-
-=begin
-
-  def create
-    @user = guest_user
-      if @user.new(params[:user])
-        sign_in_and_redirect @user.becomes(User)
-      else
-        render :new
-    end
+  def change_password
+    @user = User.find(current_user.id)
+    @user.update_with_password(params[:user])
   end
-=end
-
-
 
   private
 
