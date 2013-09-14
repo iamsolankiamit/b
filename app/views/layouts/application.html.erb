@@ -14,6 +14,7 @@
       <![endif]-->
       <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
       <%= stylesheet_link_tag "application", :media => "all" %>
+      <%= stylesheet_link_tag 'gmaps4rails'  %>
     </head>
     <body >
     <div class="navbar navbar-inverse">
@@ -124,5 +125,6 @@
     </div>
     <%= javascript_include_tag "application" %>
     <%= yield :js %>
+    <%= yield :scripts  %>
   </body>
 </html>

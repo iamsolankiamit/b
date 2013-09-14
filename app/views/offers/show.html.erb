@@ -121,6 +121,23 @@ $(document).ready(function(){
         <% end %>
         </div> <!-- full details, description and title -->
         <div class="row">
+          <div class="container">
+            <h3>Map</h3>
+            <style>
+.map_container{
+width: 720px !important;
+}
+.gmaps4rails_map {
+              width: 705px;
+                }
+              </style>
+            <div class="col-lg-12">
+            <%=  gmaps({
+                   "circles"    => { "data" => @json }
+                 })
+              %> 
+            </div>
+          </div>
         </div>
         <div class="row" style="padding-top:30px;">
           <div class="container">

@@ -37,6 +37,8 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
+gem 'geocoder'
+gem 'gmaps4rails'
 gem 'font-awesome-rails', '~> 3.0'
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "jquery-fileupload-rails"

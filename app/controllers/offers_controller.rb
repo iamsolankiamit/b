@@ -11,6 +11,9 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    @json = "[
+    {'lng': #{@offer.confidential_lng},'lat': #{@offer.confidential_lat}, 'radius': 500}
+    ]"
   end
 
   def new
