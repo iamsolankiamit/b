@@ -16,4 +16,5 @@
 // Loads all Bootstrap javascripts
 //= require_tree .
 //= require bootstrap
+//= require jquery.geocomplete.min.js
 //= require s3_direct_upload
