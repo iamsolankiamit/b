@@ -36,7 +36,7 @@
       <img alt="<%= offer.translations.first.title  %>  room n house <%= offer.city %>" src="<%= offer.photos.first.image.url(:homeimage)%>" />
     </a>
     <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
-    <div class="name"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
+    <div class="name" style="font: 'Fertigo Pro';"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
     <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= Country.where(code: offer.country_code_iso).first.name.humanize %></div>
   </div>
 <% end %>

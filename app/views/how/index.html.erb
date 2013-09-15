@@ -1,41 +1,99 @@
-<%= content_for :body do %>
-<div class="container_24">
-	<div class="grid_24">
-		<div class="how_container">
-			<div class="title">
-				<h2>Travel Easy. Meet People. Pay Less. Rent out your private space. Earn Money.</h2>
-				<p>With RoomnHouse, you can book accommodation all over the world.<br>Or earn money by renting out your own place.</p>
-			</div>
-			<div class="howitworks">
-				<h2>How it Works?</h2>
-				<hr>
-				<div class="step">
-					<h3>Search for a desired Location.</h3>
-					<p>Be it a boat house in Kerela, or a tent in Himalayas. We have it all, search for the location you want to visit.</p>
-				</div>
-				<hr>
-				<div class="step">
-					<h3>Select the location, and book it.</h3>
-					<p>When you find the location you want to visit, book the place.</p>
-				</div>
-				<hr>
-				<div class="step">
-					<h3>Host will confirm the booking</h3>
-					<p>The Host fully authority to accept/cancel any booking request within 24hrs, although he cant do after accepting it. Don't worry we'll call you to remind about the bookings.</p>
-				</div>
-				<hr>
-				<div class="step">
-					<h3>Payments are deducted from the Guest.</h3>
-					<p>When the Host accepts the booking the payment is deducted from the guest credit card, and booking is confirmed.</p>
-				</div>
-				<hr>
-				<div class="step">
-					<h3>Host receives Payment</h3>
-					<p>Host receives payment after 24 hrs the guest checks-in to the place.</p>
-				</div>
-				<hr>
-			</div>
-		</div>
-	</div>
+<% content_for :body do %>
+  <div class="row">
+  <div class="container">
+    <div id="Content">
+      <div class="headtext">
+        <h3>Travel Easy. Meet People. Pay Less. Rent out your private space. Earn Money.</h3>
+
+      </div>
+      <div class="works">
+        <div class="choice" id="ch">
+          <div class="ch1 current" onClick="navigate_tabs('.ch1')"><h3>Be Our Guest</h3></div>
+          <div class="ch2" onClick="navigate_tabs('.ch2')"><h3>Become a Host</h3></div>
+        </div>
+
+        <div class="choice_desc">
+          <div class="ch1_desc">
+            <h1>Be A Guest</h1>
+
+            <p>Whether you want to stay in a small apartment facing the sea in Mumbai, a roof top shack in Goa, a houseboat in the picturesque backwaters of Kerala, or a palace in Jaipur, Room n House has the perfect place for you.</p>
+            <p>Choose from Properties at your desired Destination.</p>
+            <div class="beourguest"> </div>
+          </div>
+          <div class="ch2_desc hidden">
+            <h1>Be a Host</h1>
+            <p>Do you feel that every time you step out of your house, you waste a large amount of the rent by not utilizing it? Don't feel guilty now. Utilize the maximum out of your living space by listing it on Room n House.</p>
+            <p>Thousands of people are already listing their private places on Room n House, why not be a part of the ever increasing community? </p>
+            <p>List your empty apartment, your extra room, or a simple and comfortable couch that's lying in the corner of your living room and earn money while you sleep!</p>
+            <p>Sounds fun? Try Room n House Today.</p>
+            <div class="beahost"> </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="hostnow">
+        <a href="Launch" class="button">List your place now</a>
+        <p>Today's solutions are complicated, difficult to manage.</p>
+        <p>Room n house is simple, beautiful and just for you.</p>
+      </div>
+      <div class="whyus">
+        <h1>Advantages of hosting with Room n House</h1>
+        <div class="desc">
+          <ul>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/profile.png"  %></div>
+            <p>User Profile</p>
+            </li>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/onlinetrans.png" %></div>
+            <p>Online transactions</p>
+            </li>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/support.png" %></div>
+            <p>Customer support</p>
+            </li> 
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/photo.png" %></div>
+            <p>Free Photography</p>
+            </li>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/review.png" %></div>
+            <p>Earn Reviews</p>
+            </li>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/paymentopt.png" %></div>
+            <p>Payment Options</p>
+            </li>
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/confirm.png" %></div>
+            <p>Accept/Decline</p>
+            </li> 
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/email.png" %></div>
+            <p>E-Mail Alerts</p>
+            </li>  
+            <li>
+            <div class="img_holder"><%= image_tag "pics/icons/multiplelist.png" %></div>
+            <p>Multiple listings</p>
+            </li>  
+          </ul>
+        </div>
+      </div>
+    </div><!-- end of id="contente" -->
+
+  </div>
 </div>
+<% end %>
+<% content_for :js do %>
+<script>
+function navigate_tabs(page){
+  $("#ch div").removeClass("current");
+  $(page).addClass("current");
+  $(".ch1_desc").addClass("hidden");
+  $(".ch2_desc").addClass("hidden");
+  $(page+'_desc').removeClass("hidden");
+  $(page+'_desc').addClass("visible");
+}
+</script>
 <% end %>

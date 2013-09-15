@@ -20,6 +20,7 @@ Roomnhouse::Application.routes.draw do
   resources :offers do
     get 'overview', on: :member
     resource :translations, only: [:edit,:update]
+    resource :calendar
     resources :photos
     resource :details, only: [:edit,:update]
     resource :addresses, only: [:edit,:update]
