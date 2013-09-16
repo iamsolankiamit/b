@@ -4,6 +4,7 @@
 Geocoder::Configuration.lookup = :google
 
 # to use an API key:
+Geocoder::Configuration.api_key = "AIzaSyAxlmo559ozbHWNqldHiTmHMVqY2rv0m4E"
 
 # geocoding service request timeout, in seconds (default 3):
 Geocoder::Configuration.timeout = 15

@@ -2,6 +2,7 @@ Roomnhouse::Application.routes.draw do
   resources :bookings do
     post 'payu_return', on: :collection
   end
+  resources :reviews, only: [:new, :create, :update, :edit]
   resources :trips
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
