@@ -9,6 +9,13 @@ class Photo < ActiveRecord::Base
     :medium => "300x300#", 
     :thumb => "100x100#" 
   }, 
+  :convert_options => { 
+    :medium => "-interlace Line -quality 60",
+    :slider1 => "-interlace Line -quality 80",
+    :slider2 => "-interlace Line -quality 80",
+    :homeimage => "-interlace Line -quality 60",
+    :thumb => "-interlace Line -quality 60",
+  },
   :default_url => "/images/photo/:style/no-image.jpg",
   :storage => :s3,
   :bucket => 'roomnhouse-assets',
@@ -18,14 +25,14 @@ class Photo < ActiveRecord::Base
   },
   url: ':s3_alias_url',
   s3_host_alias: 'dm1w09da1rt65.cloudfront.net', 
-   :path => "/:class/:attachment/:id_partition/:style/:filename"
+  :path => "/:class/:attachment/:id_partition/:style/:filename"
 
   belongs_to :offers
 
   # Environment-specific direct upload url verifier screens for malicious posted upload locations.
   DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-ap-southeast-1\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? '' : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
-  validates :direct_upload_url, presence: true, format: { with: DIRECT_UPLOAD_URL_FORMAT }
 
+  validates :direct_upload_url, allow_blank: true, format: { with: DIRECT_UPLOAD_URL_FORMAT } , :if => lambda {|object| object.processed != true }
   before_create :set_upload_attributes
   after_create :queue_processing
 
@@ -46,23 +53,25 @@ class Photo < ActiveRecord::Base
   # Set attachment attributes from the direct upload
   # @note Retry logic handles S3 "eventual consistency" lag.
   def set_upload_attributes
-    tries ||= 5
-    direct_upload_url_data = DIRECT_UPLOAD_URL_FORMAT.match(direct_upload_url)
-    s3 = AWS::S3.new
-    direct_upload_head = s3.buckets[Rails.configuration.aws[:bucket]].objects[direct_upload_url_data[:path]].head
+    if self.processed != true
+      tries ||= 5
+      direct_upload_url_data = DIRECT_UPLOAD_URL_FORMAT.match(direct_upload_url)
+      s3 = AWS::S3.new
+      direct_upload_head = s3.buckets[Rails.configuration.aws[:bucket]].objects[direct_upload_url_data[:path]].head
 
-    self.image_file_name     = direct_upload_url_data[:filename]
-    self.image_file_size     = direct_upload_head.content_length
-    self.image_content_type  = direct_upload_head.content_type
-    self.image_updated_at    = direct_upload_head.last_modified
-  rescue AWS::S3::Errors::NoSuchKey => e
-    tries -= 1
-    if tries > 0
-      sleep(3)
-      retry
-    else
-      false
+      self.image_file_name     = direct_upload_url_data[:filename]
+      self.image_file_size     = direct_upload_head.content_length
+      self.image_content_type  = direct_upload_head.content_type
+      self.image_updated_at    = direct_upload_head.last_modified
     end
+    rescue AWS::S3::Errors::NoSuchKey => e
+      tries -= 1
+      if tries > 0
+        sleep(3)
+        retry
+      else
+        false
+      end
   end
 
   # Queue file processing

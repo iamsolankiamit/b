@@ -14,4 +14,7 @@ class InfoController < ApplicationController
   def howtohost
 
   end
+  def whyhost
+
+  end
 end

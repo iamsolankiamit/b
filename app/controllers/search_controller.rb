@@ -1,14 +1,14 @@
 class SearchController < ApplicationController
   def index
-    if  result = Geocoder.search(params[:destination]).map(&:geometry)
-      north_east_lat = result[0]["viewport"]["northeast"]["lat"]
-      north_east_lng = result[0]["viewport"]["northeast"]["lng"]
-      south_west_lat = result[0]["viewport"]["southwest"]["lat"]
-      south_west_lng = result[0]["viewport"]["southwest"]["lng"]
-      distance = Geocoder::Calculations.distance_between([north_east_lat,north_east_lng], [south_west_lat,south_west_lng])/2
-      @offers =Offer.near(params[:destination], distance, :order => :distance).where(:is_verified => true)
-    else
+      # result = Geocoder.search(params[:destination]).map(&:geometry)
+      # north_east_lat = result[0]["viewport"]["northeast"]["lat"]
+     #  north_east_lng = result[0]["viewport"]["northeast"]["lng"]
+     # south_west_lat = result[0]["viewport"]["southwest"]["lat"]
+     # south_west_lng = result[0]["viewport"]["southwest"]["lng"]
+     # distance = Geocoder::Calculations.distance_between([north_east_lat,north_east_lng], [south_west_lat,south_west_lng])/2
+     # @offers =Offer.near(params[:destination], distance, :order => :distance).where(:is_verified => true)
+   # else
       @offer = Offer.near(params[:destination], 50, :order => :distance).where(:is_verified => true)
-    end
+   # end
   end
 end
