@@ -8,6 +8,7 @@ Roomnhouse::Application.routes.draw do
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
   match '/privacy' => 'info#privacy'
+  match '/howtohost' => 'info#howtohost'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations'}
   match 'users/:id' => 'users#show'

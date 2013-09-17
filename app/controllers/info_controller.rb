@@ -10,4 +10,8 @@ class InfoController < ApplicationController
 
   def privacy
   end
+
+  def howtohost
+
+  end
 end
