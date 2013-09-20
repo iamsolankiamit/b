@@ -23,7 +23,7 @@
           <ul class="list white_bg">
           <% @offers.each do |offer| %>
             <li>
-          <a href='/offers/<%= offer.id %>'>
+            <%= link_to offer_path(offer) do  %>
             <div class="thumb_holder">
               <div class="thumb">
                 <% if offer.photos.exists? %>
@@ -46,7 +46,7 @@
               </div>
               <div class="info_price disp-table-cell"><p><i class="icon-inr icon-large icon-container"></i></p><p class="price"><%= offer.nightly_rate_amount %></p><p class="freq">per day</p></div>
             </div>
-          </a>
+          <% end %>
           </li>
         <% end %>
         </ul><!-- end of class="list"-->
