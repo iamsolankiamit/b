@@ -1,132 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-RoomnHouse" content="IE=Edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) : "Room n House | Accommodation for every budget in India" %></title>
-  <!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
-  <%= csrf_meta_tags %>
-
-  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-RoomnHouse" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= content_for?(:title) ? yield(:title) : "Room n House | Accommodation for every budget in India" %></title>
+<!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
+<%= csrf_meta_tags %>
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+<!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
       <![endif]-->
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfK1h2PFJnbz1QFkZoQr5w-wn3U2s4KFk&sensor=true&libraries=places"></script>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
-      <%= stylesheet_link_tag "application", :media => "all" %>
-    </head>
-    <body >
-    <div class="navbar navbar-inverse">
-              <div class="container">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/"><%= image_tag 'logo.png', class: 'head-logo'%></a>
-                <div class="nav-collapse navbar-responsive-collapse">
-                                    <form class="navbar-form pull-left" action="">
-                    <input type="text" class="form-control col-lg-8" placeholder="Search">
-                  </form>
-                  <ul class="nav navbar-nav pull-right">
-          <p class="navbar-text">Book on: 9022-543210</p>
-          <li><%= link_to "Flood Victims", floods_path %></li>
-           <% if !current_user.present? %>
-          <li><%= link_to "Login", new_user_session_path  %></li>
-          <li><%= link_to "Signup", new_user_registration_path  %></li>
-          <% else %>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.firstname %><b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-              <li><%= link_to "My Listings", offers_path %></li>
-              <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-              <li class="divider"> </li>
-              <li><%= link_to "logout", destroy_user_session_path %></li>
-            </ul>
-          <% end %>
-                    </li>
-                 <li>
-                 <span>
-                    <%= link_to "List Your Place", new_offer_path, :class => "btn btn-primary" , style: "margin-top:10px"%>
-                    </span>
-                </li>
-
-                </ul>
-                </div><!-- /.nav-collapse -->
-              </div><!-- /.container -->
-            </div>
-    <%= yield :header %>
-    <%= render 'layouts/flash_messages' %>
-    <%= yield :body%>
-    <% if content_for?(:seo) %>
-      <%= yield :seo%>
-    <% else %>
-      <div class="row">
-        <div class="container">
-          <div class="seo-travel">
-            <h4>Room n House simply revolutionizes your travel experience.</h4>
-            <p>Whether you want to sunbathe on the beaches of our favorite vacation spot Goa, take a house boat ride along the back waters of Munnar or just check out the Parliamentary house at Delhi, Room n House can help you to experience the best our country has to offer. You can find stunning yet affordable serviced apartments for your next holiday using Room n House. Your host will be able to tell you about the best things to see and do in their city so that you can experience a location from the perspective of a local. Looking for a place that is at a hop skip and jump distance from your place of interest? No matter where you want to go, how long you want to stay and how much you want to spend, Room n House can help you plan your next voyage!</p>
-            <p>Whether you want a garage to park your new car in the messy lanes of Mumbai, a place to spend the night with your loved ones, a penthouse to throw your birthday party, Room n House offers accommodation for every type and every budget. We are sure that you’ll discover your desired location with our listings.</p>
-            <p>Maybe it’s just like a hotel...but it’s definitely a better and memorable experience.</p>
-            <p>Choosing a Room n House holiday apartment over a hotel means that you’ll enjoy more space, more privacy and better value for money, all whilst staying in a unique property in the destination of your choice! Room n House allows you to book your holiday apartment directly with the owner and experience life from a local’s perspective, offering you an authentic way to travel.</p>
-            <p>You feel more connected with the place when you travel with Room n House. It’s like making friends everywhere you travel and sharing your experiences with the locals. We believe that the more people you meet, the better travelling experiences and stories you carry!</p>
-            <p>It’s all easy! You don’t have to search and compare at different places to find a destination or an accommodation that matches your need! Type in your destination, choose from the wide range of available options and interact personally with your host. And if there’s anything else that’s troubling you, our 24x7 customer care helpline is always there for you!</p>
-            <p>Room n House also offers family accommodations. There’s no stress of fitting the entire family in one small hotel room and paying extra for every mattress and blanket that you take! Choose spacious rooms and apartments available on RoomHouse and live comfortably without any discomfort and off course with your family.</p>
-            <p>So, turn your private empty space into a holiday rental and make some extra money from the extra space that you own!</p>
-            <p>Room n House also makes it easy to rent out your spare room or empty apartment or your basement or your garage or your couch and boost your income! It’s simple and free to list your place, and you’ll earn money whilst meeting new people from all over the world. Fund your next trip away, pay your bills or simply save for a rainy day - it’s an easy way to earn a few extra bucks without stressing out of a boss sitting on top and demanding things from you.</p>
-            <p>Don’t hesitate, meet new people, increase your bank balance, help a few and be a part of our ever increasing community! Join Room n house, today!</p>
-          </div>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfK1h2PFJnbz1QFkZoQr5w-wn3U2s4KFk&sensor=true&libraries=places"></script>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
+<%= stylesheet_link_tag "application", :media => "all" %>
+</head>
+<body>
+<% if content_for?(:header) %>
+  <%= yield :header %>
+<% else %>
+  <div id="header">  
+  <div class="header_container">
+    <div class="content_inner">
+      <div class="top_bar">
+        <div class="content_inner">
+          <nav>
+            <a class="logo float-left" href="/"></a>
+            <a href="users/sign_in">Login</a>
+            <a href="users/sign_up">sign up</a>
+            <a href="offers/new" class="button paddall-5">List your place</a>
+          </nav>
         </div>
       </div>
-    <% end %>
-
-    <div class="row footer">
-      <div class="container footer-inner">
-        <div class="col-lg-3">
-          <h3>Customer Service</h3>
-          <hr/>
+    </div><!-- end of class="content_inner" -->
+  </div><!-- end of class="header_container"-->
+</div><!-- end of id="header" -->
+<% end %>
+<%= render 'layouts/flash_messages' %>
+<%= yield :body%>
+<div id="footer">
+  <div class="content_inner">
+    <div class="navagation">
+      <div class="sub2">
+        <div class="group bb br">
+          <h2><i class="icon-phone icon-large icon-container"></i>Helpline</h2>
           <ul>
-            <li><%= link_to "How Room n House works", how_index_path %></li>
-            <li><%= link_to "How to host", howtohost_path %></li>
-            <li><%= link_to "Why Host", whyhost_path %></li>
-            <li><%= link_to "Contact support", support_path%></li>
-            <li><%= link_to "Terms & Conditions", terms_path %></li>
-            <li><%= link_to "Cancellation Policy", cancellation_path %></li>
-            <li><%= link_to "Privacy Policy", privacy_path %></li>
+            <li><a href="">+91 9022-543210</a></li>
+            <li><a href="">support[at]roomnhouse.com</a></li>
           </ul>
         </div>
-        <div class="col-lg-3">
-          <h3>About Room n House</h3>
-          <hr/>
+        <div class="group  br">
+          <h2><i class="icon-building icon-container"></i>Company</h2>
           <ul>
-            <li><%= link_to "About Us", aboutus_path %></li>
+            <li><a href="http://www.roomnhouse.com/aboutus">About Us</a></li>
             <li><a href="http://smartrecruiters.com/roomnhouse">Jobs</a></li>
             <li><a href="http://blog.roomnhouse.com">Blog</a></li>
           </ul>
         </div>
-        <div class="col-lg-3">
-          <h3>Join us on</h3>
-          <hr/>
-          <ul>
-            <li><a href="https://www.facebook.com/roomnhouse">Facebook</a></li>
-            <li><a href="https://twitter.com/RoomNHouse">Twitter</a></li>
-            <li><a href="https://plus.google.com/u/0/108260865872924249293/">Google +</a></li>
-            <li><a href="https://instagram.com/roomnhouse">Instagram</a></li>
-          </ul>
+      </div><!-- class="sub2" -->
+      <div class="sub1">
+        <div class="group bb me">
+          <h2>That is All Folks...!</h2>
+          <p>RoomNHouse simply revolutionizes your travel experience.</p>
         </div>
-        <div class="col-lg-3">
-          <h3>Secure payment</h3>
-          <hr/>
-          <ul>
-            <li>PayU</li>
-            <li>Visa</li>
-          </ul>
+        <div id="sub1a" class="br">
+          <div class="group right">
+            <h2><i class="icon-user"></i> Customer Service</h2>
+            <ul>
+              <li><a href="http://roomnhouse.com/whyhost">Why Host</a></li>
+              <li><a href="http://roomnhouse.com/howtohost">How to Host</a></li>
+              <li><a href="http://roomnhouse.com/howitworks">How it works</a></li>
+              <li><a href="http://roomnhouse.com/support">Contact support</a></li>
+              <li><a href="http://roomnhouse.com/cancellation">Cancellation Policy</a></li>
+              <li></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
-    <%= javascript_include_tag "application" %>
-    <%= yield :js %>
-    <%= yield :scripts  %>
-  </body>
+        <div id="sub1b">
+          <div class="group ">
+            <h2>Find US Elsewhere</h2>
+            <ul class="ft-social">
+              <li class="twitter"><a href="https://twitter.com/RoomNHouse" rel="me"> Twitter</a></li>
+              <li class="facebook"><a href="https://www.facebook.com/roomnhouse" rel="me">facebook</a></li>
+              <li class="googlplus"><a href="https://plus.google.com/u/0/108260865872924249293/" rel="me">Google Plus</a></li>
+              <li class="youtube"><a href="http://youtube.com/roomnhouse">youtube</a></li>
+              <li class="instagram"><a href="https://instagram.com/roomnhouse">instagram</a></li>
+            </ul>
+          </div>
+        </div><!-- class="sub1b" -->
+      </div><!-- class="sub1" -->
+      <div class="sub3">
+        <div class="group bb bl bt960">
+          <h2><i class="icon-credit-card icon-container-small"></i>Secure Payment</h2>
+          <div class="payment"></div>
+        </div>
+        <div class="group bl ">
+          <p class="copyright"><span>&copy; copyright 2013</span> <a href="http://roomnhouse.com/" class="logo"></a></p>
+        </div>
+      </div><!-- class="sub3" -->
+      <div class="clear"></div>
+    </div><!-- class="navagation" -->
+    <div class="ft-links">
+      <a href="http://www.roomnhouse.com/aboutus">About</a>
+      <a href="http://www.roomnhouse.com/privacy">Privacy Policy</a>
+      <a href="http://www.roomnhouse.com/terms">Terms & Conditions</a>
+    </div> <!-- class="ts-links" -->
+  </div><!-- end of class="content_inner" -->
+</div><!-- end of id="footer" -->
+<%= javascript_include_tag "application" %>
+<%= yield :js %>
+<%= yield :scripts  %>
+<script type="text/javascript" charset="utf-8">
+function DropDown(el) {
+  this.dd = el;
+  this.initEvents();
+}
+DropDown.prototype = {
+  initEvents : function() {
+    var obj = this;
+    obj.dd.on('click', function(event){
+      $(this).toggleClass('active');
+      event.stopPropagation();
+    });
+  }
+}
+$(function() {
+  var dd = new DropDown( $('#dd') );
+  $(document).click(function() {
+    // all dropdowns
+    $('.wrapper-dropdown-5').removeClass('active');
+  });
+});
+</script>
+</body>
 </html>

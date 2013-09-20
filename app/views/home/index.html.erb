@@ -1,100 +1,95 @@
 <% content_for :header do %>
-  <div class="search-container">
-  <div class="title">Travel Easy. Stay Easier.</div>
-  <div class="search row">
-    <div class="container">
-      <div class="col-lg-12 ">
-        <%= form_tag "/search", :method => 'get', id: 'search_form', class: "form-inline" do %>
-          <div class="form-group col-lg-5">
-          <%= text_field_tag :destination, params[:search], placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "form-control required" %>
-        </div>
-        <div class="form-group col-lg-2">
-          <%= text_field_tag :checkin, nil,class: "form-control", required: "required", placeholder: "Check in"%>
-        </div>
-        <div class="form-group col-lg-2">
-          <%= text_field_tag :checkout, nil,class: "form-control", required: "required",placeholder: "Check out"%>
-        </div>
-        <div class="form-group col-lg-2">
-          <%= text_field_tag :guests, nil,class: "form-control", required: "required",placeholder: "Guests" %>
-        </div>
-        <div class="form-group col-xs-2 col-sm-2 col-lg-1">
-          <button type="submit" class="btn btn-large btn-danger"  value="search" name="commit"> 
-            <i class="icon icon-search"></i> Search
-          </button>
-        </div>
-      <% end %>
+	<div id="header_home">  
+    	<div class="content_inner home_width">
+            <div class="home_slider_image"></div>
+            <div class="home_slider_cover"></div>
+        	<div class="home_container">
+            	<div class="top_bar">
+                	<div class="content_inner">
+                    	<nav>
+                            <a class="logo float-left" href="#"></a>
+
+            <% if !current_user.present? %>
+              <%= link_to "Login", new_user_session_path  %>
+            <%= link_to "Signup", new_user_registration_path  %>
+          <% else %>
+            <div id="dd" class="wrapper-dropdown-5" tabindex="1"><%= current_user.firstname %>
+                <ul class="dropdown">
+                    <li><%= link_to "My Listings", offers_path %></li>
+                    <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+                    <li><%= link_to "logout", destroy_user_session_path %></li>
+                </ul>
+              </div>
+          <% end %>
+
+                            <a href="" class="button paddall-5">List your place</a>
+                        </nav>
+                    </div>
+                </div>
+               	<h1 class="title">Travel Easy. Stay Easier</h1>
+
+      <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
+        <div class="home_search">
+        <%= text_field_tag :destination, params[:search],style: "width:550px;", placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required" %>
       </div>
-    </div>
-  </div>
-</div>
+      <div class="home_search_add_inputs">
+        <%= text_field_tag :checkin, nil, required: "required", placeholder: "Check in"%>
+        <%= text_field_tag :checkout, nil, required: "required",placeholder: "Check out"%>
+        <%= text_field_tag :guests, nil, required: "required",placeholder: "Guests" %>
+      </div>
+      <div class="home_search_search"><input type="submit" value="Search...!" /></div>
+    <% end %>
+            </div>
+        </div><!-- end of class="content_inner" -->
+    </div><!-- end of id="header" -->
 <% end %>
 <% content_for :body do %>
-  <div class="row listing-container">
-  <% @offers.each do |offer| %>
-    <div class="col-lg-3 item">
-    <a href="<%= offer_path(offer) %>" class="thumbnail">
-      <img alt="<%= offer.translations.first.title  %>  room n house <%= offer.city %>" src="<%= offer.photos.first.image.url(:homeimage)%>" />
-    </a>
-    <div class="price"><span class="rs"><%= offer.nightly_rate_amount %></span><br/><span><%= offer.currency %>/night</span></div>
-    <div class="name" style="font: 'Fertigo Pro';"><%= truncate(offer.translations.first.title.titlecase, length: 30, separator: ' ') %></div>
-    <div class="info"><%= offer.object_type.humanize %> &#8208; <%= offer.city %>, <%= Country.where(code: offer.country_code_iso).first.name.humanize %></div>
-  </div>
-<% end %>
+  <div id="content">
+  <div class="content_inner">
+
+    <div class="content_container">
+      <div class="colm colm2 float-left align-center">
+        <h2>We know what matters most.</h2>
+        <p>Accomodation for every budget, in india.</p>
+        <img src="assets/img_home.png"/>
+      </div>
+      <div class="colm colm2 float-left align-left">
+        <iframe width="560" height="315" src="//www.youtube.com/embed/BVoMf0VA6Fc" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+    <div class="content_container white_bg">
+      <div class="colm colm2 float-left align-right br">
+        <h2>Discover Your Stay</h2>
+        <p>Find a space that meets all your needs.</p>
+        <ul class="naked bold big">
+          <li>Find a place to stay any where in india. <i class="icon-search icon-large icon-container"></i></li>
+          <li>Accomodation for every budget. <i class="icon-usd icon-large icon-container"></i></li>
+          <li>Request a quote for free. <i class="icon-quote-right icon-large icon-container"></i></li>
+          <li>Seamless payments. <i class="icon-credit-card icon-large icon-container"></i></li>
+        </ul>
+        <a href="" class="button"><i class="icon-search icon-large icon-container-small"></i> Find a Venue</a>
+      </div>
+      <div class="colm colm2 float-left align-left">
+        <h2>List Your Space</h2>
+        <p>Start getting better bookings today.</p>
+        <ul class="naked bold big">
+          <li><i class="icon-container icon-large icon-thumbs-up-alt"></i>100% free to list</li>
+          <li><i class="icon-container icon-large icon-smile"></i>Obligation-free</li>
+          <li><i class="icon-container icon-large icon-credit-card"></i>Receive payments seamlessly</li>
+          <li><i class="icon-container icon-large icon-time"></i>Signing up is quick &amp; easy</li>
+        </ul>
+        <a href="" class="button"><i class="icon-list icon-large icon-container-small"></i> List Now</a>
+      </div>
+    </div>
+  </div><!-- end of class="content_inner" -->    
+</div><!-- end of id="content" -->
 
 </div>
 <% end %>
-<% content_for :seo do %>
-  <div class="row">
-  <div class="container">
-    <ul class="nav nav-tabs" id="myTab">
-      <li><a href="#know" data-toggle="tab">Know about RnH</a></li>
-      <li><a href="#experience" data-toggle="tab">RnH Experience</a></li>
-      <li><a href="#whyhost" data-toggle="tab">Why Host</a></li>
-      <li><a href="#whytravel" data-toggle="tab">Why travel with us</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="know">
-        <h4>RoomNHouse simply revolutionizes your travel experience.</h4>
-        <p>Choosing a RoomNHouse holiday apartment over a hotel means that you’ll enjoy more space, more privacy and better value for money, all whilst staying in a unique property in the destination of your choice! RoomNHouse allows you to book your holiday apartment directly with the owner and experience life from a local’s perspective, offering you an authentic way to travel.</p>
-        <p>You feel more connected with the place when you travel with RoomNHouse. It’s like making friends everywhere you travel and sharing your experiences with the locals. We believe that the more people you meet, the better travelling experiences and stories you carry!</p>
-        <p>It’s all easy! You don’t have to search and compare at different places to find a destination or an accommodation that matches your need! Type in your destination, choose from the wide range of available options and interact personally with your host. And if there’s anything else that’s troubling you, our 24x7 customer care helpline is always there for you!</p>
-        <p>RoomNHouse also offers family accommodations. There’s no stress of fitting the entire family in one small hotel room and paying extra for every mattress and blanket that you take! Choose spacious rooms and apartments available on RoomNHouse and live comfortably without any discomfort and off course with your family.</p>
-        <p>So, turn your private empty space into a holiday rental and make some extra money from the extra space that you own!</p>
-        <p>RoomNHouse also makes it easy to rent out your spare room or empty apartment or your basement or your garage or your couch and boost your income! It’s simple and free to list your place, and you’ll earn money whilst meeting new people from all over the world. Fund your next trip away, pay your bills or simply save for a rainy day - it’s an easy way to earn a few extra bucks without stressing out of a boss sitting on top and demanding things from you.</p>
-        <p>Don’t hesitate, meet new people, increase your bank balance, help a few and be a part of our ever increasing community! Join RoomNhouse, today!</p>
-      </div>
-      <div class="tab-pane" id="experience">
-        <h4>RoomNhouse Experience</h4>
-        <p>Apartments and Rentals on Daily basis with RoomNHouse, where we simplify your traveling experience.</p>
-        <p>Are you a traveler and traveling is your passion? No matter where you need to go, and how long you want to stay, RoomNHouse is here to help you find your perfect vacation rental. Be it a sea facing apartment, a house boat in the back waters or palaces in Jaipur, RoomNHouse is here to take the stress out of finding your ideal accommodation. With thousands of accommodation options worldwide, there will always be something to suit all tastes and budgets, from a beautiful cottage in the mountains of Manali to a trendy studio apartment in Bandra. By booking with RoomNhouse, one not only secures their perfect accommodation but also gets to explore and connect with different cities in a new and exciting way, breaking free of the tourism bubble.</p>
-        <p>It’s simple. Rent out your vacation destinations from private owners.</p>
-        <p>It doesn’t depend where your travels and business meetings are taking you. It can be the busiest lanes of Delhi or a clustered place in Mumbai, RoomNHouse helps you find the perfect accommodation at a perfectly cheap price. It’s a cheaper alternative to expensive hotels, quotes the entire team. Our plan is to simplify your traveling experience and make you feel homely without burning a big hole in your pocket. Also Check out our how it works page for useful resource for both traveler and hosts.</p>
-        <p>Whatever are your needs, don’t stress out; RoomNHouse is here to help! So if you are planning your next trip or you’re looking for an accommodation to fit in your un-invited guests, find easy rentals on RoomNHouse TODAY!</p>
-      </div>
-      <div class="tab-pane" id="whyhost">
-        <h4>Everyone wants to be a Host with RoomNHouse</h4>
-        <p>If you get to earn something effortlessly, will you leave this opportunity that’s already waiting on your door? No, right? Then sign up today for Free with RoomNHouse and your listing will be published and made visible by a worldwide audience.</p>
-      </div>
-      <div class="tab-pane" id="whytravel">
-        <h4>Why Travel with RoomNhouse? No, seriously?</h4>
-        <p>The answer is easy. Here are some reasons that will surely set us apart.</p>
-        <p>Varied choice of properties. Cities, Towns, Lanes, Sectors, we cover everything!</p>
-        <p>Choose from city apartments and studios, to lake side cottages and beachside villas, all on RoomNHouse. </p>
-        <p>You can benefit from the experiences of other users by reading reviews they have left about hosts and properties. Compare and make your own decisions.</p>
-        <p>Way too cheaper than hotels. Cheap hotels don’t have a homely and well furnished feeling, but we offer everything that you crave for at an affordable rate.</p>
-        <p>Find breath-taking and desired accommodations in the most awesome-st locations, at affordable prices. Apartments are fully equipped, and are on average 40% cheaper than hotel rooms of a similar standard!</p>
-        <p>Quality-checked. Our photographers will post the actual image of the site. We don’t believe in playing with your expectations.</p>
-        <p>No surprises - all accommodation on RoomNHouse has been checked by our service team before appearing on our website. Properties are also rated by guests after their stay, ensuring that the information on our site is accurate and up to date. You can wear a blind fold and trust us.</p>
-        <p>Free customer service. We are always there for you! You can call on +91-9022-543-210 and our service executive will be there for your service!</p>
-        <p>If any problems occur during the booking process or during your stay, you can contact our customer service team on +91-9022-543-210, or use the contact form on our homepage.</p>
-        <p>It’s simple, right?</p>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
 <% content_for :js do %>
-  <script>
+<script>
 $(function() {
   $( "#checkin" ).datepicker({
     minDate:"0",
@@ -116,10 +111,5 @@ $(function() {
   });
 });
 $("#geolocation").geocomplete();
-$('#myTab a:first').tab('show'); // Select first tab
-$('#myTab a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-});
 </script>
 <% end %>

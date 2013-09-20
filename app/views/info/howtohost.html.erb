@@ -1,139 +1,78 @@
 <% content_for :body do %>
-<div id="Content">
-<div class="headtext whyhosthd">
-        <h1>How to Host</h1>
-        <p>its clean and simple.</p>        
+  <div id="content">
+  <div class="content_inner">
+    <div class="content_container paddall-5">
+      <h1>How We Work</h1>
+      <p>Find out how the system functions for different users.</p>
     </div>
-  		<div class="howtohost" onClick="expand_tabs('list')">
-        	<h2>List</h2>
-      		<p>It's completely free to create a listing on Room n House. Click the yellow 'List your space' button on the top right of any page on the site. This will take you to a form where you can enter initial details. You can always change any of these details later. Your listing won't go live until you're completely ready, so go ahead and click 'Continue' to keep entering information.</p>
-            <a href="javascript:expand_tabs('list')" class="more">More</a>
+    <div class="content_container paddall-10" > 
+      <div class="content_inner">
+        <div class="works">
+          <div class="choice" id="ch">
+            <div class="ch1 current" onClick="navigate_tabs('.ch1')"><h3>Be Our Guest</h3></div>
+            <div class="ch2" onClick="navigate_tabs('.ch2')"><h3>Become a Host</h3></div>
+          </div>
+          <div class="choice_desc white_bg">
+            <div class="ch1_desc">
+              <h1>Be A Guest</h1>
+              <p>Whether you want to stay in a small apartment facing the sea in Mumbai, a roof top shack in Goa, a houseboat in the picturesque backwaters of Kerala, or a palace in Jaipur, Room n House has the perfect place for you.</p>
+              <p>Choose from Properties at your desired Destination.</p>
+              <div class="beourguest"> </div>
+            </div>
+            <div class="ch2_desc hidden">
+              <h1>Be a Host</h1>
+              <p>Do you feel that every time you step out of your house, you waste a large amount of the rent by not utilizing it? Don't feel guilty now. Utilize the maximum out of your living space by listing it on Room n House.</p>
+              <p>Thousands of people are already listing their private places on Room n House, why not be a part of the ever increasing community? </p>
+              <p>List your empty apartment, your extra room, or a simple and comfortable couch that's lying in the corner of your living room and earn money while you sleep!</p>
+              <p>Sounds fun? Try Room n House Today.</p>
+              <div class="beahost"> </div>
+            </div>
+          </div>
         </div>
-        <div class="howtohost howtohostwhite heightzero" id="list">
-        <h3>Pricing</h3>
-        <p>It is up to you to decide how much you charge. To get an idea of what you can charge, we recommend searching for similar listings in your neighborhood to learn more about local pricing. You can set different prices for nightly, weekly, and monthly stays, as well as advanced seasonal pricing. To do this, select 'Your Listings' in the dropdown menu at the top of the site, click on the listing you want to edit, and select 'Pricing & Terms' from the left sidebar.
-		</p>
-        <h3>Titles & Descriptions</h3>
-        <p>A great title and description of your place are essential. They serve as an advertisement for your space! Make sure your title is descriptive and clearly written. Stay concise with your title: people will lose interest after 10 words or so. Misspellings and grammatical errors are also turn-offs. Descriptions, on the other hand, should be very detailed. They should give your prospective guests a great sense of what to expect.</p>
-        <p>Use the House Rules section to lay out expectations for guests. Do they have to arrive by 3pm? Is it lights out after midnight? Do you allow visitors? This is the place to spell out guidelines so that your guests can understand what is expected of them before booking.</p>
-        <h3>Photos</h3>
-        <p>Great photographs are the best way for prospective guests to discover your listing. Room n House lets you upload 24 photographs of your space. The more photographs, the better: photographs are crucial for guests in deciding whether they want to book or not. So make sure your photographs are well lit, in focus, and representative of your space. For a limited time, Room n House is offering free professional photography in most areas. One of our professional photographers will come to your place and take pictures. Find out more on our photography page.</p>
-        <h3>Profile</h3>
-        <p>Your profile is the place where guests get to know you. Upload a picture of yourself (clear, smiling head shots work best) that shows off your personality. It's great to include family members if they are co-hosts, but stay away from photographs that may be confusing or intimidating (scowls, party photos with lots of people, and photos just of pets might be bewildering). Fill out a detailed profile of yourself, including your philosophy towards hosting, so that guests learn more about you.</p>
-        <a href="javascript:collapse_tabs('list')" >Hide</a>
+        <div class="callaction">
+          <a href="Launch" class="button">List your place now</a>
+          <p>Today's solutions are complicated, difficult to manage.</p>
+          <p>Room n house is simple, beautiful and just for you.</p>
         </div>
-        
-        
-        
-        <div class="howtohost" onClick="expand_tabs('Communicate')">
-        	<h2>Communicate</h2>
-            <p>You should feel comfortable with any guest who stays in your listing. That's why Room n House provides you with sophisticated communications and screening tools. You never have to accept a booking unless you're 100% confident.</p>
-            <a href="javascript:expand_tabs('Communicate')" class="more">More</a>
+        <div class="content_container paddall-5 align-center white_bg">
+          <h2>Advantages of hosting with Room n House</h2>
+          <div class="desc">
+            <ul>
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/profile.png"%></div>;
+              <p>User Profile</p>
+              </li>
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/onlinetrans.png"%></div>;
+              <p>Online transactions</p>
+              </li>
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/support.png"%></div>
+              <p>Customer support</p>
+              </li> 
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/photo.png"%></div>
+              <p>Free Photography</p>
+              </li>
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/paymentopt.png"%></div>
+              <p>Payment Options</p>
+              </li>
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/confirm.png"%></div>
+              <p>Accept/Decline</p>
+              </li> 
+              <li>
+              <div class="img_holder"><%= image_tag "pics/icons/email.png"%></div>
+              <p>E-Mail Alerts</p>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="howtohost howtohostwhite heightzero" id="Communicate">
-        	<h3>Reservation Requirements</h3>
-
-<p>You can start pre-screening guests before they ever hit your inbox by setting reservation requirements. If 
-you like, you can require that inquiring guests add a profile picture, provide a trip description, verify their 
-phone number, and more before they can send you an inquiry or booking request. Set requirements by 
-going to 'Your Listings' and clicking 'Reservation Requirements' in the navigation panel.</p>
-
-<h3>Messaging</h3>
-<p>Guests will message you directly through Room n House to ask you questions about you and your 
-place, as well as confirm availability. Use this opportunity to ask questions and get comfortable with 
-your potential guests. No personal information will be exchanged until after a reservation is accepted. 
-Messages will show up in your inbox, and you will be notified via email and, if you like, via SMS and app 
-notifications. You can use our secure Voice Connect system to talk to your guests on the phone.</p>
-
-<h3>What to Ask</h3>
-<p>Good communication and setting expectations are key to being a successful host. You might want to ask 
-questions like: What is the purpose of the trip? Who and how many people are coming with you? You 
-can always request that prospective guests connect with Facebook or get personal references in case 
-you need additional peace of mind.</p>
-
-<h3>What to Look For</h3>
-<p>We provide a lot of tools that potential guests can use to build trust on the site, and you can ask them to 
-take more steps if you need to. Look for real profile pictures, social network and phone verifications, past 
-reviews, and personal references. If you need to chat with a prospective guest, use Voice Connect and 
-talk on the phone without exchanging personal information.</p>
-         <a href="javascript:collapse_tabs('Communicate')" >Hide</a>
-        </div>
-        
-        <div class="howtohost" onClick="expand_tabs('Book')">
-        	<h2>Book</h2>
-            <p>You're always in control of who books your place. When you receive a reservation request, you have 24 hours to accept or decline the request or it will expire. We encourage you to reply to every request, even if just to decline it, as expired requests will negatively affect your search results and response rates</p>
-            <a href="javascript:expand_tabs('Book')" class="more">More</a>
-        </div>
-        <div class="howtohost howtohostwhite heightzero" id="Book">
-        <h3>Reservation Requests</h3>
-        <p>You'll receive reservation requests in your Room n House inbox, and you'll be notified of new requests 
-via email. The request will have all the details for the reservation. Double-check the dates and ask more 
-questions if you need to. You have 24 hours to accept or decline the request.</p>
-		<h3>Preapprovals & Special Offers</h3>
-        <p>Pre-approvals and special offers make it easy for you to allow someone you've already messaged to 
-book your place and bypass having to receive and accept a booking request. Pre-approving someone 
-will give them the option to click 'Book It' and create an immediate reservation. Special offers can be 
-used to give someone a special price, like discounts or additional costs.</p>
-		<h3>Fees</h3>
-        <p>It's completely free to list on Room n House. We don't receive any money until you receive a booking. We take a 3% fee for each reservation from the host, which covers the cost of processing the transaction. Guests pay a fee of 6%-12% on top of the reservation, which lets us provide services like customer support and the Host Guarantee.</p>
-        <h3>Payouts</h3>
-        <p>When a reservation is accepted, we immediately charge the guest for the full cost of the booking, but we 
-hold on to the money until 24 hours after their check-in date. After that time, we will send the money your 
-way. You can get paid by PayPal, bank transfer, check, and more. How fast you receive your money 
-depends on your payout method. Set your payout method by going to your Account under Dashboard, 
-and then selecting Payout Preferences.</p>        
-         <a href="javascript:collapse_tabs('Book')" >Hide</a>
-        </div>
-        
-        <div class="howtohost" onClick="expand_tabs('Host')">
-        	<h2>Host</h2>
-            <p>You're so close to a payday you can almost taste it! Just a few more things to get in order, and then you're ready for the fun part - meeting your guests and getting paid.</p>
-            <a href="javascript:expand_tabs('Host')" class="more" >More</a>
-        </div>
-        <div class="howtohost howtohostwhite heightzero" id="Host">
-        <h3>Coordinate</h3>
-        <p>After you accept a reservation request, we will provide you with the direct contact information for your guest. 
-The guest will receive your contact information, including the address of your listing, as well. It is important that 
-you contact each other and coordinate arrival and departure times, as well as key exchanges.</p>
-		<h3>Prepare Your Space</h3>
-        <p>Think about what you might expect and need if you were renting your place. First, make sure your place is 
-sparkling clean. Good hosts have supplies like towels, coffee, and city/transit maps. It's probably a good idea 
-to compile instructions for common appliances like TVs, internet, and anything else guests have access to. 
-Many hosts even go above and beyond by welcoming guests with a bottle of wine or custom city guides - get 
-creative!</p>
-	<h3>Check-in</h3>
-    <p>You should know what time your guests plan on arriving. Make sure everything is in order and ready to go. 
-When guests arrive, we recommend spending five to 10 minutes with them even if you are not staying at your 
-place. Show them around your space, highlighting key features and things they need to know.</p>
-	<h3>Review</h3>
-    <p>Reviews are the backbone of Room n House. After the reservation is complete, you will receive an email and 
-dashboard alert asking you to review your guests. Take the time to leave them a short review. They'll be happy 
-and so will we.</p>
-
-         <a href="javascript:collapse_tabs('Host')" >Hide</a>
-        </div>
-        
-        
-        <div class="hostnow">
-        		<a href="/offer/new" class="button">List your place now</a>
-                <p>Today's solutions are complicated, difficult to manage.</p>
-                <p>Room n house is simple, beautiful and just for you.</p>
-        </div>
-		</div>
-
-    
-</div><!-- end of id="contente" -->
-<% end %>
-<% content_for :js do %>
-   <script>
-		function expand_tabs(page){
-			$(".howtohostwhite").addClass("heightzero");
-			$("#"+page).removeClass("heightzero");
-
-		}
-	
-		function collapse_tabs(page){
-			$("#"+page).addClass("heightzero");
-		}
-	</script>
-<% end %>
+      </div>
+    </div>				
+  </div>
+</div>
+  </div><!-- end of class="content_inner" -->    
+    </div><!-- end of id="content" -->
+ <% end %>

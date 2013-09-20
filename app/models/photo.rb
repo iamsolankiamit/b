@@ -7,7 +7,9 @@ class Photo < ActiveRecord::Base
     :slider2 => "720x550>",
     :homeimage => "310x185#",
     :medium => "300x300#", 
-    :thumb => "100x100#" 
+    :searchimg => "235x185#", 
+    :thumb => "100x100#", 
+    :sliderthumb => "85x56#"
   }, 
   :convert_options => { 
     :medium => "-interlace Line -quality 60",
@@ -15,6 +17,8 @@ class Photo < ActiveRecord::Base
     :slider2 => "-interlace Line -quality 80",
     :homeimage => "-interlace Line -quality 60",
     :thumb => "-interlace Line -quality 60",
+    :thumb => "-interlace Line -quality 80",
+    :sliderthumb => "-interlace Line -quality 60"
   },
   :default_url => "/images/photo/:style/no-image.jpg",
   :storage => :s3,

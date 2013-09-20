@@ -1,95 +1,150 @@
 <% content_for :body do %>
-  <div class="row">
-  <div class="container main">
   <%
-    @trip = Trip.find(@booking.trip_id)
-    @offer = Offer.find(@trip.offer_id)
-    @guest = User.find(@trip.guest_id)
-    @host = User.find(@trip.host_id)
-  %>
-<div class="row">
-  <div class="container">
-  <h2>Your Room n House Stay at a glance</h2>
-  <div class="col-lg-2 ">
-    <%= image_tag @offer.photos.first.image.url(:medium), class: "thumbnail"  %>
-  </div>
-  <div class="col-lg-7">
-  <h4><%= @offer.translations.first.title.titlecase%></h4>
-  <dl class="dl-horizontal">
-  <dt>Arrival:</dt><dd> <%= @trip.checkin.strftime("%B %d, %Y")  %></dd>
-  <dt>Departure:</dt><dd> <%= @trip.checkout.strftime("%B %d, %Y")  %></dd>
-  <dt>Location:</dt><dd> <%= @offer.city.titlecase  %>, <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %></dd>
-  <dt>Guests:</dt><dd> <%= @trip.guest_count  %></dd>
-  <dt>Room Type:</dt><dd> <%= @offer.object_type.humanize  %></dd>
-  </dl>
-  </div>
-  <div class="col-lg-2 pull-right">
-  <%= image_tag @host.avatar.url(:medium), class: "img-thumbnail"  %>
-  <h4 class="text-center">Host: <%= @host.firstname.titlecase %></h4>
-  </div>
-  </div>
-</div>
-  <div class="row" style="padding:20px 0px;">
-    <div class="container">
-      <table class="table table-bordered">
-        <tr>
-          <td><strong>Total Price </strong></td>
-          <td><%= @trip.checkin.strftime("%B %d, %Y")  %> - <%= @trip.checkout.strftime("%B %d, %Y")  %></td>
-          <td><i class="icon-rupee"></i><strong><%= (@booking.total - @booking.processing_fee - @booking.service_tax).round(2)  %></strong></td>
-        </tr>
-        <% if @offer.service_charge_amount %>
-<tr>
-          <td><strong>Cleaning fee</strong></td>
-          <td></td>
-          <td><i class="icon-rupee"></i><strong><%= (@booking.service_charge_amount).round(2)  %></strong></td>
-        </tr>
-      <% end %>
-        <tr>
-          <td><strong>Processing fee</strong></td>
-          <td></td>
-          <td><i class="icon-rupee"></i><strong><%= (@booking.processing_fee + @booking.service_tax).round(2)  %></strong></td>
-        </tr>
-        <tr>
-          <td><strong>Total</strong></td>
-          <td>Your booking becomes binding once the host has accepted your request (within 24 hours).<br />
-            Cancellation policy: <%= @offer.cancelation_policy.titlecase  %>
-          </td>
-          <td><i class="icon-rupee"></i><strong><%= @booking.total.round(2) %></strong></td>
-        </tr>
-      </table>
-      <div class="row">
-        <div class="container">
-          <h2>Personal Information</h2>
-          <dl class="dl-horizontal">
-            <dt><strong>First Name</strong></dt><dd> <%= @guest.firstname  %></dd>
-          <dt><strong>Last Name</strong></dt><dd> <%= @guest.lastname  %></dd>
-          <dt><strong>Email</strong></dt><dd> <%= @guest.email  %></dd>
-          <dt><strong>Phone</strong></dt><dd> <%= @guest.phone  %></dd>
-          </dl>
+  @trip = Trip.find(@booking.trip_id)
+  @offer = Offer.find(@trip.offer_id)
+  @guest = User.find(@trip.guest_id)
+  @host = User.find(@trip.host_id)
+%>
+<div id="content">
+    <div class="content_inner">
+      <div class="content_container transp ">
+        <div class="info-box">
+          <h1>Booking Confirmation</h1>	
+          <div id="alert" class="success">
+            <h2>How this works</h2>
+            <p>We will charge the prescribed amount now, but <strong>you will only be charged if the host accepts your request</strong>. They have 24 hours to reply.</p>
+            <p>If the booking is <strong>declined by the host, we will refund you the complete amount without any service fee.</strong></p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-
-    <% payment_service_for @booking.id, $payu_merchant_id,
-      :amount => @booking.total,
-      :service => :payu_in,
-      :html => { :id => 'payment-form' } do |service| %>
-          <% service.auto_settle :prod => @offer.id.to_s + 'For ',
-      :price => @offer.nightly_rate_amount,
-      :name => @offer.translations(locale: 'en').first.title,
-      :description => "Booking #{@offer.id.to_s} form #{@trip.checkin} to #{@trip.checkout} at #{@offer.nightly_rate_amount}"%>
-
-    <% service.credential2 @offer.object_type %>  
-      <% service.customer :first_name => current_user.firstname,
-        :last_name => current_user.lastname,
-        :phone => current_user.phone,
-        :email => current_user.email %>
-      <% service.return_url 'http://www.roomnhouse.com/bookings/payu_return' %>
-         <p>By paying for the booking you agree with our Terms & condition, Cancellation Policy and host house rules</p>
-        <input type=submit value=" Pay for your Order ">
-      <% end %>
-      </div>
-    </div>  
-  <% end %>
+      <div class="content_container">
+        <div class="info-box">
+          <div class="dh-box">
+            <div class="dh-header"><h2 class="dh-heading"><i class="icon-home icon-large icon-container"></i>Host info</h2></div>
+            <div class="dh-content  white_bg">
+              <div class="property-img disp-table-cell">
+                <%= image_tag @offer.photos.first.image.url(:medium), class: "thumbnail"  %>
+              </div>
+              <div class="property-desc disp-table-cell paddall-10">
+                <h2><%= @offer.translations.first.title.titlecase%></h2>
+                <ul>
+                  <li><i class="icon-container icon-large icon-map-marker"></i><%= @offer.address_addon.humanize  %></li>
+                  <li><i class="icon-container icon-large icon-flag"></i> <%= @offer.city.titlecase  %>, <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %></li>
+                  <li><i class="icon-container icon-large icon-ban-circle"></i><%= @offer.cancelation_policy  %></li>
+                  <li><i class="icon-container icon-large icon-inr"></i><%= @booking.per_night%> per night</li>
+                </ul>
+              </div>
+              <div class="dh-content">
+                <div class="host-info disp-table-cell">
+                  <div class="host-img align-center">
+                    <h4><i class="icon-home icon-container-small"></i> Your host</h4>
+                    <%= image_tag @host.avatar.url(:medium)%>
+                    <h5> <%= @host.firstname.titlecase %></h5>
+                  </div>
+                </div>
+                <div class="host-message disp-table-cell paddall-10">
+                  <p>Host's like to know the purpose of your trip and the others travelling in your party. They also like to know what you like about their place.
+                  If you have any question, include these too.</p>
+                  <textarea></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dh-box">
+            <div class="dh-header"><h2 class="dh-heading"><i class="icon-money icon-large icon-container"></i>Pricing</h2></div>
+            <div class="dh-content  white_bg">
+              <table class="table table-bordered " width="100%">
+                <tbody>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-calendar icon-container-small"></i>Check in</td>
+                  <td class="txt" colspan=""><strong> <%= @trip.checkin.strftime("%B %d, %Y")  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-calendar icon-container-small"></i>Check Out</td>
+                  <td class="txt" colspan=""><strong><%= @trip.checkout.strftime("%B %d, %Y")  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-moon icon-container-small"></i>No of Night</td>
+                  <td class="txt" colspan=""><strong><%=(@trip.checkout - @trip.checkin).to_i%></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-user icon-container-small"></i>Guest</td>
+                  <td class="txt" colspan=""><strong><%= @trip.guest_count%></strong></td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered " width="100%">
+                <tbody>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-bar-chart icon-container-small"></i>Rate (per night)</td>
+                  <td class="txt" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.per_night  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-bug icon-container-small"></i>Cleaning fee</td>
+                  <td class="txt" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.service_charge_amount  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-th icon-container-small"></i>Subtotal</td>
+                  <td class="txt" colspan=""><i class="icon-inr icon-container-small"></i><strong>
+                      <%= (@booking.total - @booking.processing_fee - @booking.service_tax).round(2)  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-cog icon-container-small"></i>Service fee</td>
+                  <td class="txt" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.processing_fee  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="total" width="50%"><strong><i class="icon-star icon-container-small"></i>Total:</strong></td>
+                  <td class="total" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.total  %></strong></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dh-box">
+            <div class="dh-header"><h2 class="dh-heading"><i class="icon-user icon-large icon-container"></i>Personal Information</h2></div>
+            <div class="dh-content  white_bg align-center">
+              <table class="table table-bordered " width="60%">
+                <tbody>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-user icon-container-small"></i>First Name</td>
+                  <td class="txt" colspan=""><strong><%= @guest.firstname  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-user icon-container-small"></i>Last Name</td>
+                  <td class="txt" colspan=""><strong><%= @guest.lastname  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-envelope icon-container-small"></i>E-mail</td>
+                  <td class="txt" colspan=""><strong><%= @guest.email  %></strong></td>
+                </tr>
+                <tr>
+                  <td class="txt" width="50%"><i class="icon-phone icon-container-small"></i>Phone</td>
+                  <td class="txt" colspan=""><strong><%= @guest.phone  %></strong></td>
+                </tr>
+                </tbody>
+              </table>
+              <% payment_service_for @booking.id, $payu_merchant_id,
+                :amount => @booking.total,
+                :service => :payu_in,
+                :html => { :id => 'payment-form' } do |service| %>
+                <% service.auto_settle :prod => @offer.id.to_s + 'For ',
+                  :price => @offer.nightly_rate_amount,
+                  :name => @offer.translations(locale: 'en').first.title,
+                  :description => "Booking #{@offer.id.to_s} form #{@trip.checkin} to #{@trip.checkout} at #{@offer.nightly_rate_amount}"%>
+                <% service.credential2 @offer.object_type %>  
+                  <% service.customer :first_name => current_user.firstname,
+                    :last_name => current_user.lastname,
+                    :phone => current_user.phone,
+                    :email => current_user.email %>
+                  <% service.return_url 'http://www.roomnhouse.com/bookings/payu_return' %>
+                    <p>By Submitting a booking you accept the Room n House <a href="/terms">TERMS &amp; CONDITIONS </a>, <a href="/cancellation">CANCELLATION POLICY</a>, <a href="/privacy">PRIVACY POLICY</a> &amp; House rules</p>
+                    <input type="submit" class="button-bg" value="Complete Booking"/>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end of class="content_container" -->
+        </div><!-- end of class="content_inner" -->
+      </div><!-- end of id="content" -->
+    <% end %>
