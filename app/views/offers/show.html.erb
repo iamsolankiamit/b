@@ -10,7 +10,6 @@
 <% content_for :body do %>
   <div id="content">
   <div class="content_inner">
-
     <div class="content_container transp">
       <% if @offer.translations.exists? %>
         <% if !@offer.translations.first.title.nil? %>
@@ -39,153 +38,149 @@
                   <div class="img-holder current" id="<%= photo.id  %>">
                   <%= image_tag photo.image.url(:thumb), onclick: "slider_slide('#{photo.image.url(:slider2)}','#{photo.id}')"  %>
                 </div>
-                <% end %>
+              <% end %>
               </div>
-          <% end %>
-          <% end %>
-
+            <% end %>
+            <% end %>
             </div>
             <!--            <div class="slide-right-arrow" onclick="move_slider('2')"><i class="icon-long-arrow-right icon-3x"></i></div> -->
+          </div>
+        </div>
+        <div class="post_desc">
+          <h2>Description</h2>
+          <% if @offer.translations.exists? %>
+            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
+          <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
+        <% end %>
+          <% if @offer.amenity %>
+            <% @amenity = @offer.amenity %>
+          <div class="no-shadow dh-box">
+            <div class="dh-header"><h5 class="dh-heading"><i class="icon-archive icon-container"></i>Amenities</h5></div>
+            <div class="dh-content">
+              <ul class="columns-3">
+                <%= "<li><i class='icon-asterisk'></i> Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
+                <%= "<li><i class='icon-smile'></i> Baby Cot</li>".html_safe if @amenity.baby_cot %>
+                <%= "<li><i class='icon-food'></i> Breakfast</li>".html_safe if @amenity.breakfast %>
+                <%= "<li><i class='icon-laptop'></i> Cable TV</li>".html_safe if @amenity.cable_tv %>
+                <%= "<li><i class='icon-male'></i> Doorman</li>".html_safe if @amenity.doorman %>
+                <%= "<li><i class='icon-fire-extinguisher'></i> Dryer</li>".html_safe if @amenity.dryer %>
+                <%= "<li><i class='icon-building'></i> Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
+                <%= "<li><i class='icon-smile'></i> Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
+                <%= "<li><i class='icon-signal'></i> Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
+                <%= "<li><i class='icon-money'></i> Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
+                <%= "<li><i class='icon-legal'></i> Gym</li>".html_safe if @amenity.gym %>
+                <%= "<li><i class='icon-h-sign'></i> Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
+                <%= "<li><i class='icon-fire'></i> Heating</li>".html_safe if @amenity.heating %>
+                <%= "<li><i class='icon-ok'></i> Hot Tub</li>".html_safe if @amenity.hot_tub %>
+                <%= "<li><i class='icon-fire'></i> Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
+                <%= "<li><i class='icon-phone'></i> Intercom</li>".html_safe if @amenity.intercom %>
+                <%= "<li><i class='icon-signal'></i> Internet</li>".html_safe if @amenity.internet %>
+                <%= "<li><i class='icon-food'></i> Kitchen</li>".html_safe if @amenity.kitchen %>
+                <%= "<li><i class='icon-lock'></i> Lockable Room</li>".html_safe if @amenity.lockable_room %>
+                <%= "<li><i class='icon-ok'></i> Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
+                <%= "<li><i class='icon-ok'></i> Pool</li>".html_safe if @amenity.pool %>
+                <%= "<li><i class='icon-ok'></i> Sauna</li>".html_safe if @amenity.sauna %>
+                <%= "<li><i class='icon-ok'></i> Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
+                <%= "<li><i class='icon-group'></i> Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
+                <%= "<li><i class='icon-ok'></i> Towels</li>".html_safe if @amenity.towels %>
+                <%= "<li><i class='icon-desktop'></i> TV</li>".html_safe if @amenity.tv %>
+                <%= "<li><i class='icon-ok'></i> Washer</li>".html_safe if @amenity.washer %> 
+              </ul>
             </div>
           </div>
-          <div class="post_desc">
-            <h2>Description</h2>
-            <% if @offer.translations.exists? %>
-              <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
-            <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-          <% end %>
-            <% if @offer.amenity %>
-              <% @amenity = @offer.amenity %>
-            <div class="no-shadow dh-box">
-              <div class="dh-header"><h5 class="dh-heading"><i class="icon-archive icon-container"></i>Amenities</h5></div>
-              <div class="dh-content">
-                <ul class="columns-3">
-                  <%= "<li><i class='icon-asterisk'></i> Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
-                  <%= "<li><i class='icon-smile'></i> Baby Cot</li>".html_safe if @amenity.baby_cot %>
-                  <%= "<li><i class='icon-food'></i> Breakfast</li>".html_safe if @amenity.breakfast %>
-                  <%= "<li><i class='icon-laptop'></i> Cable TV</li>".html_safe if @amenity.cable_tv %>
-                  <%= "<li><i class='icon-male'></i> Doorman</li>".html_safe if @amenity.doorman %>
-                  <%= "<li><i class='icon-fire-extinguisher'></i> Dryer</li>".html_safe if @amenity.dryer %>
-                  <%= "<li><i class='icon-building'></i> Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
-                  <%= "<li><i class='icon-smile'></i> Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
-                  <%= "<li><i class='icon-signal'></i> Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
-                  <%= "<li><i class='icon-money'></i> Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
-                  <%= "<li><i class='icon-legal'></i> Gym</li>".html_safe if @amenity.gym %>
-                  <%= "<li><i class='icon-h-sign'></i> Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
-                  <%= "<li><i class='icon-fire'></i> Heating</li>".html_safe if @amenity.heating %>
-                  <%= "<li><i class='icon-ok'></i> Hot Tub</li>".html_safe if @amenity.hot_tub %>
-                  <%= "<li><i class='icon-fire'></i> Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
-                  <%= "<li><i class='icon-phone'></i> Intercom</li>".html_safe if @amenity.intercom %>
-                  <%= "<li><i class='icon-signal'></i> Internet</li>".html_safe if @amenity.internet %>
-                  <%= "<li><i class='icon-food'></i> Kitchen</li>".html_safe if @amenity.kitchen %>
-                  <%= "<li><i class='icon-lock'></i> Lockable Room</li>".html_safe if @amenity.lockable_room %>
-                  <%= "<li><i class='icon-ok'></i> Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
-                  <%= "<li><i class='icon-ok'></i> Pool</li>".html_safe if @amenity.pool %>
-                  <%= "<li><i class='icon-ok'></i> Sauna</li>".html_safe if @amenity.sauna %>
-                  <%= "<li><i class='icon-ok'></i> Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
-                  <%= "<li><i class='icon-group'></i> Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
-                  <%= "<li><i class='icon-ok'></i> Towels</li>".html_safe if @amenity.towels %>
-                  <%= "<li><i class='icon-desktop'></i> TV</li>".html_safe if @amenity.tv %>
-                  <%= "<li><i class='icon-ok'></i> Washer</li>".html_safe if @amenity.washer %> 
-                </ul>
-              </div>
+        <% end %>
+          <table class="table  table-bordered " width="95%">
+            <thead>
+              <tr role="row">
+                <th rowspan="1" colspan="1" style="width: 50%;"><i class="icon-credit-card  icon-container"></i>Pricing</th>
+                <th rowspan="1" colspan="1" style="width: 50%;"> Conditions</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="txt" width="50%"><strong>Nightly:</strong> <i class="icon-inr icon-container-small"></i><%= @offer.nightly_rate_amount%></td>
+              <td class="txt" colspan=""><strong>Minimum Nights</strong>:<%= @offer.min_nights  %> </td>
+            </tr>
+            <tr>
+              <td class="txt" width="50%"><strong>Weekly:</strong> <%= @offer.weekly_rate_amount %> <%= @offer.currency %></td>
+              <td class="txt" colspan=""><strong>Maximum Nights:</strong> <%= @offer.max_nights %></td>
+            </tr>
+            <tr>
+              <td class="txt" width="50%"><strong>Monthly:</strong> <%= @offer.monthly_rate_amount %> <%= @offer.currency %></td>
+              <td class="txt" colspan=""><strong>Check-in after:</strong> <%= @offer.checkin_after %></td>
+            </tr>
+            <tr>
+              <td class="txt" width="50%"><strong>Cleaning fee:</strong> <%= @offer.service_charge_amount  %></td>
+              <td class="txt" colspan=""><strong>Check-out before:</strong> <%= @offer.checkout_before %></td>
+            </tr>
+            <tr>
+              <td class="txt" width="50%"><strong>Fee for extra guests: </strong><%= @offer.extra_guest_charge_amount  %> after <%= @offer.included_guest_count  %> guests</td>
+              <td class="txt" colspan=""><strong>Cancellation policy:</strong> <%= @offer.cancelation_policy.titlecase %></td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="dh-box">
+            <div class="dh-header"><h5 class="dh-heading"><i class="icon-check icon-container"></i>House Rules</h5></div>
+            <div class="dh-content">
+              <% if @offer.translations.exists? %>
+                <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
+            <% end %>
             </div>
-          <% end %>
-            <table class="table  table-bordered " width="95%">
-              <thead>
-                <tr role="row">
-                  <th rowspan="1" colspan="1" style="width: 50%;"><i class="icon-credit-card  icon-container"></i>Pricing</th>
-                  <th rowspan="1" colspan="1" style="width: 50%;"> Conditions</th>
-                </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="txt" width="50%"><strong>Nightly:</strong> <i class="icon-inr icon-container-small"></i><%= @offer.nightly_rate_amount%></td>
-                <td class="txt" colspan=""><strong>Minimum Nights</strong>:<%= @offer.min_nights  %> </td>
-              </tr>
-              <tr>
-                <td class="txt" width="50%"><strong>Weekly:</strong> <%= @offer.weekly_rate_amount %> <%= @offer.currency %></td>
-                <td class="txt" colspan=""><strong>Maximum Nights:</strong> <%= @offer.max_nights %></td>
-              </tr>
-              <tr>
-                <td class="txt" width="50%"><strong>Monthly:</strong> <%= @offer.monthly_rate_amount %> <%= @offer.currency %></td>
-                <td class="txt" colspan=""><strong>Check-in after:</strong> <%= @offer.checkin_after %></td>
-              </tr>
-              <tr>
-                <td class="txt" width="50%"><strong>Cleaning fee:</strong> <%= @offer.service_charge_amount  %></td>
-                <td class="txt" colspan=""><strong>Check-out before:</strong> <%= @offer.checkout_before %></td>
-              </tr>
-              <tr>
-                <td class="txt" width="50%"><strong>Fee for extra guests: </strong><%= @offer.extra_guest_charge_amount  %> after <%= @offer.included_guest_count  %> guests</td>
-                <td class="txt" colspan=""><strong>Cancellation policy:</strong> <%= @offer.cancelation_policy.titlecase %></td>
-              </tr>
-              </tbody>
-            </table>
-
-                   <div class="dh-box">
-              <div class="dh-header"><h5 class="dh-heading"><i class="icon-check icon-container"></i>House Rules</h5></div>
-              <div class="dh-content">
-                <% if @offer.translations.exists? %>
-                  <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-              <% end %>
-
-              </div>
-            </div>
-
-          </div><!-- end of class="post_desc" -->
-        </div><!-- end of class="content_area" -->
-        <div class="sidebar">
-          <div class="sidebar_container">
-            <p class="low">
-            <i class="icon-key"></i> Rental Price :<i class="icon-inr icon-large icon-container"></i>
-            <span class="price"><%= @offer.nightly_rate_amount  %></span> <span class="freq">per day</span>
-            </p>
-            <div class="booknow">
-              <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
-                <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
-              <label for="checkin"><i class="icon-calendar"></i> check in</label>
-              <%= text_field_tag :checkin, params[:checkin],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
-              <label for="checkout"><i class="icon-calendar"></i> check out</label>
-              <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
-              <label for="guest"><i class="icon-user"></i> Guest </label>
-              <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),class: "form-control",required: "required", placeholder: "Guests" %> 
+          </div>
+        </div><!-- end of class="post_desc" -->
+      </div><!-- end of class="content_area" -->
+      <div class="sidebar">
+        <div class="sidebar_container">
+          <p class="low">
+          <i class="icon-key"></i> Rental Price :<i class="icon-inr icon-large icon-container"></i>
+          <span class="price"><%= @offer.nightly_rate_amount  %></span> <span class="freq">per day</span>
+          </p>
+          <div class="booknow">
+            <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
+              <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+            <label for="checkin"><i class="icon-calendar"></i> check in</label>
+            <%= text_field_tag :checkin, params[:checkin],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
+            <label for="checkout"><i class="icon-calendar"></i> check out</label>
+            <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
+            <label for="guest"><i class="icon-user"></i> Guest </label>
+            <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),class: "form-control",required: "required", placeholder: "Guests" %> 
             <input type="submit" value="Book Now" />
           </div>
           <p><i class="icon-certificate icon-container"></i>Property id</p>
           <p><i class="icon-building icon-container"></i>Property Type</p>
           <p><i class="icon-map-marker icon-container"></i>Place XYS</p>
-        <div class="dh-box">
-          <div class="dh-header"><h5><i class="icon-list icon-container"></i>Details</h5></div>
-          <div class="dh-content">
-            <table class="table  table-bordered " width="100%">
-              <thead>
-              </thead>
-              <tbody>
-              <tr><td class="txt" width="	">Accommodation</td><td  width="" class="txt"><%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count  %></td></tr>
-              <tr><td class="txt" width="50%">Bedrooms</td><td class="txt" colspan=""><%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></td></tr>
-              <tr><td class="txt" width="50%">Beds</td><td class="txt" colspan=""> <%= @offer.bed_count.nil? ? "" : @offer.bed_count %></td></tr>
-              <tr><td class="txt" width="50%">Bathroom</td><td class="txt" colspan=""> <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></td></tr>
-              <tr><td class="txt" width="50%">size</td><td class="txt" colspan=""> <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type.humanize %></td></tr>
-              </tbody>
-            </table>
+          <div class="dh-box">
+            <div class="dh-header"><h5><i class="icon-list icon-container"></i>Details</h5></div>
+            <div class="dh-content">
+              <table class="table  table-bordered " width="100%">
+                <thead>
+                </thead>
+                <tbody>
+                <tr><td class="txt" width="	">Accommodation</td><td  width="" class="txt"><%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count  %></td></tr>
+                <tr><td class="txt" width="50%">Bedrooms</td><td class="txt" colspan=""><%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></td></tr>
+                <tr><td class="txt" width="50%">Beds</td><td class="txt" colspan=""> <%= @offer.bed_count.nil? ? "" : @offer.bed_count %></td></tr>
+                <tr><td class="txt" width="50%">Bathroom</td><td class="txt" colspan=""> <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></td></tr>
+                <tr><td class="txt" width="50%">size</td><td class="txt" colspan=""> <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type.humanize %></td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-        <div class="host align-center">
-          <div class="host-img ">
-            <h5><i class="icon-home icon-container-small"></i>Host</h5>
-            <% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium)%>
+          <div class="host align-center">
+            <div class="host-img ">
+              <h5><i class="icon-home icon-container-small"></i>Host</h5>
+              <% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium)%>
+            </div>
+            <p><strong><%= @user.firstname.humanize %></strong></p>
           </div>
-          <p><strong><%= @user.firstname.humanize %></strong></p>
-        </div>
-        <div class="dh-box promise">
-          <div class="dh-header"><h5 class="align-center"><i class="icon-bullhorn icon-container-small"></i>OUR PROMISE</h5></div>
-          <div class="dh-content">
-            <p><i class="icon-phone icon-large icon-container-small"></i>Every host is verified on phone</p>
-            <p><i class="icon-shield icon-large icon-container-small"></i>Quality assured accommodation</p>
-            <p><i class="icon-lock icon-large icon-container-small"></i>Secured payment through SSL</p>
+          <div class="dh-box promise">
+            <div class="dh-header"><h5 class="align-center"><i class="icon-bullhorn icon-container-small"></i>OUR PROMISE</h5></div>
+            <div class="dh-content">
+              <p><i class="icon-phone icon-large icon-container-small"></i>Every host is verified on phone</p>
+              <p><i class="icon-shield icon-large icon-container-small"></i>Quality assured accommodation</p>
+              <p><i class="icon-lock icon-large icon-container-small"></i>Secured payment through SSL</p>
+            </div>
           </div>
-        </div>
-        <div>
+          <div>
             <style>
 .map_container{
   width: 280px;
@@ -196,20 +191,19 @@
   height: 260px;
 }
             </style>
- 
-      <%=  gmaps({
-                "circles"    => { "data" => @json }
-              })
-            %> 
-      </div>
-    <% end %>
 
+            <%=  gmaps({
+              "circles"    => { "data" => @json }
+            })
+          %> 
+        </div>
+        <% end %>
         </div><!-- end of class="sidebar_container" -->
-
-
-  </div><!-- end of class="content_inner" -->    
+      </div><!-- end of class="content_inner" -->    
+    </div><!-- end of id="content" -->
+  </div><!-- end of id="content" -->
 </div><!-- end of id="content" -->
-<% end %>
+  <% end %>
 <% content_for :js do %>
   <script>
 $(function() {
@@ -233,4 +227,4 @@ $(function() {
   });
 });
 </script>
-<% end %>
+  <% end %>
