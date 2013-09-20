@@ -23,7 +23,7 @@
           <ul class="list white_bg">
           <% @offers.each do |offer| %>
             <li>
-          <a href='<%= offers_path(offer)  %>'>
+          <a href='/offers/<%= offer.id %>'>
             <div class="thumb_holder">
               <div class="thumb">
                 <% if offer.photos.exists? %>
