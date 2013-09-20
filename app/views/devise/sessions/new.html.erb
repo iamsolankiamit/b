@@ -5,7 +5,6 @@
       <div class="holder">
         <div class="login_form_holder white_bg">
           <div id="alert">Please login with your Username and Password.</div>
-          <form class="form-horizontal" action="login.php" method="post">
  <%= simple_form_for(resource,:as => resource_name, :url => session_path(resource_name)) do |f| %>
         <%= f.input :email, :required => false, :autofocus => true ,  placeholder: "Email"%>
         <%= f.input :password, :required => false ,placeholder: "password"%>

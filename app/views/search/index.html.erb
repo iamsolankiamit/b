@@ -40,9 +40,9 @@
               <% end %>
               <% end %>
               <% end %>
-                <p><i class="icon-map-marker icon-large icon-container"></i><%= offer.city.capitalize %>, <%= offer.country_code_iso %>.</p>
-                <p><i class="icon-user icon-large icon-container"></i> <%= offer.max_guest_count %></p>
-                <p><i class="icon-building icon-large icon-container"></i> <%= offer.object_type.capitalize %></p>
+                <p> <i class="icon-map-marker icon-large icon-container"></i> City : <%= offer.city.capitalize %>, <%= offer.country_code_iso %>.</p>
+                <p><i class="icon-user icon-large icon-container"></i> Accommodation : <%= offer.max_guest_count %></p>
+                <p><i class="icon-building icon-large icon-container"></i> Property type :<%= offer.object_type.capitalize %></p>
               </div>
               <div class="info_price disp-table-cell"><p><i class="icon-inr icon-large icon-container"></i></p><p class="price"><%= offer.nightly_rate_amount %></p><p class="freq">per day</p></div>
             </div>

@@ -17,7 +17,7 @@ html, body {
 	red:#e74c3c
 */
 body {
-	font-size: 15px;
+	font-size: 14px;
 	word-spacing: 1px;
 	line-height: 20px;
 	background: #f3f1f1;
@@ -87,6 +87,9 @@ ul.clearfix {
 a{
 	text-decoration:none;
 	font-size:0.9em;
+}
+a:hover{
+  text-decoration:underline;
 }
 p{
 	line-height: 1.8em;
@@ -206,10 +209,12 @@ input[type="submit"], input[type="reset"], .button {
 	border:none;
 	text-transform:capitalize;
 	display: inline-block;
+  text-decoration:none;
 }
 /* -------------------------------------------- submit / reset buttons on hover -----------------------------------------------  */
 input[type="submit"]:hover, input[type="reset"]:hover  , .button:hover{
 	background:#357ebd;
+  text-decoration:none;
 }
 /* -------------------------------------------- submit / reset buttons on active -----------------------------------------------  */
 input[type="submit"]:active, input[type="reset"]:active, .button:active{
@@ -408,6 +413,14 @@ select {
 	padding:0 0 0 20px;
 	margin:5px 0 0 20px;
 }
+#content .list h3{
+  color:#3498db;
+}
+.info_desc p{
+  margin:2px 0;
+  font-size:0.8em;
+  padding:0;
+}
 .colm{
 	padding:30px;
 }
@@ -595,7 +608,7 @@ select {
 	width:60%;
 }
 .booknow select{
-	width: 150px;
+	width: 160px;
 	border-radius: 0;
 	padding:5px;
 	box-shadow:none;
@@ -625,7 +638,7 @@ select {
 	margin:0 0 0 -5px;
 }
 .booknow label {
-	width:81px;
+	width:85px;
 	text-align:center;
 }
 .booknow input[type="submit"]{
@@ -653,7 +666,9 @@ select {
 	list-style:square; 
 	padding: 0 0 5px 40px;
 }
-
+.list a:hover{
+  text-decoration:none;
+}
 .content_area ol{
 	padding: 0 0 5px 40px;
 	list-style:lower-roman;
@@ -760,7 +775,6 @@ ul.list li{
 	width:130px;
 	height:130px;
 	margin:5px;
-	float:right;
 }
 .host-img img{
 	background:#fff;

@@ -1,36 +1,33 @@
 <% content_for :header do %>
-	<div id="header_home">  
-    	<div class="content_inner home_width">
-            <div class="home_slider_image"></div>
-            <div class="home_slider_cover"></div>
-        	<div class="home_container">
-            	<div class="top_bar">
-                	<div class="content_inner">
-                    	<nav>
-                            <a class="logo float-left" href="#"></a>
-
+  <div id="header_home">  
+  <div class="content_inner home_width">
+    <div class="home_slider_image"></div>
+    <div class="home_slider_cover"></div>
+    <div class="home_container">
+      <div class="top_bar">
+        <div class="content_inner">
+          <nav>
+            <a class="logo float-left" href="#"></a>
             <% if !current_user.present? %>
               <%= link_to "Login", new_user_session_path  %>
             <%= link_to "Signup", new_user_registration_path  %>
           <% else %>
-            <div id="dd" class="wrapper-dropdown-5" tabindex="1"><%= current_user.firstname %>
-                <ul class="dropdown">
-                    <li><%= link_to "My Listings", offers_path %></li>
-                    <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-                    <li><%= link_to "logout", destroy_user_session_path %></li>
-                </ul>
-              </div>
+              <div id="dd" class="wrapper-dropdown-5" tabindex="1"><%= current_user.firstname %>
+            <ul class="dropdown">
+                <li><%= link_to "My Listings", offers_path %></li>
+                <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+                <li><%= link_to "logout", destroy_user_session_path %></li>
+              </ul>
+            </div>
           <% end %>
-
-                            <a href="" class="button paddall-5">List your place</a>
-                        </nav>
-                    </div>
-                </div>
-               	<h1 class="title">Travel Easy. Stay Easier</h1>
-
+            <a href="" class="button paddall-5">List your place</a>
+          </nav>
+        </div>
+      </div>
+      <h1 class="title">Travel Easy. Stay Easier</h1>
       <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
         <div class="home_search">
-        <%= text_field_tag :destination, params[:search],style: "width:550px;", placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required" %>
+        <%= search_field_tag :destination, params[:search],style: "width:550px;", placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required", onClick: "show_inputs()" %>
       </div>
       <div class="home_search_add_inputs">
         <%= text_field_tag :checkin, nil, required: "required", placeholder: "Check in"%>
@@ -39,14 +36,13 @@
       </div>
       <div class="home_search_search"><input type="submit" value="Search...!" /></div>
     <% end %>
-            </div>
-        </div><!-- end of class="content_inner" -->
-    </div><!-- end of id="header" -->
+    </div>
+  </div><!-- end of class="content_inner" -->
+</div><!-- end of id="header" -->
 <% end %>
 <% content_for :body do %>
   <div id="content">
   <div class="content_inner">
-
     <div class="content_container">
       <div class="colm colm2 float-left align-center">
         <h2>We know what matters most.</h2>
@@ -54,11 +50,9 @@
         <img src="assets/img_home.png"/>
       </div>
       <div class="colm colm2 float-left align-left">
-        <iframe width="560" height="315" src="//www.youtube.com/embed/BVoMf0VA6Fc" frameborder="0" allowfullscreen></iframe>
+        <iframe width="500" height="350" src="//www.youtube.com/embed/BVoMf0VA6Fc?rel=0" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
-
-
     <div class="content_container white_bg">
       <div class="colm colm2 float-left align-right br">
         <h2>Discover Your Stay</h2>
