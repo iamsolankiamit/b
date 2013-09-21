@@ -17,5 +17,6 @@
 //= require_tree .
 //= require bootstrap
 //= require jquery.geocomplete.min.js
+//= require jquery.cleditor.js
 //= require script.js
 //= require s3_direct_upload

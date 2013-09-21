@@ -1,11 +1,11 @@
 <% content_for :title do %>
   <% if @offer.translations.exists? %>
-  <% if !@offer.translations.first.title.nil? %>
-  <%= @offer.translations.first.title.titlecase %>
-          <% end %>
-          <% else %>
+    <% if !@offer.translations.first.title.nil? %>
+      <%= @offer.translations.first.title.titlecase %>
+    <% end %>
+  <% else %>
   Bed and Breakfast, India
-        <% end %>
+    <% end %>
 <% end %>
 <% content_for :body do %>
   <div id="content">
@@ -14,8 +14,8 @@
       <% if @offer.translations.exists? %>
         <% if !@offer.translations.first.title.nil? %>
         <h1><%= @offer.translations.first.title.titlecase %></h1>
-    <% end %>
-    <% end %>
+        <% end %>
+      <% end %>
       <h6><% if !@offer.address_addon.nil? %>
         <%= @offer.address_addon.titlecase %>
       <% end %>, 
@@ -29,18 +29,21 @@
           <% photos = @offer.photos%>
           <% if !photos.nil? %>
             <%if !photos.first.nil? %>
-            <%= image_tag photos.shift.image.url(:slider2) ,id: "main" %>
+            <%= image_tag photos.first.image.url(:slider2) ,id: "main" %>
           <div class="slider_container">
             <!-- <div class="slide-left-arrow" onclick="move_slider('1')"><i class="icon-long-arrow-left icon-3x"></i></div> -->
             <div class="slider-view">
               <div class="slide-slider" id="slide-slider">
+                  <div class="img-holder current" id="<%= photos.first.id  %>">
+                  <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
+                </div>
                 <% photos.each do |photo|%>
-                  <div class="img-holder current" id="<%= photo.id  %>">
+                  <div class="img-holder" id="<%= photo.id  %>">
                   <%= image_tag photo.image.url(:thumb), onclick: "slider_slide('#{photo.image.url(:slider2)}','#{photo.id}')"  %>
                 </div>
-              <% end %>
+                <% end %>
               </div>
-            <% end %>
+              <% end %>
             <% end %>
             </div>
             <!--            <div class="slide-right-arrow" onclick="move_slider('2')"><i class="icon-long-arrow-right icon-3x"></i></div> -->
@@ -49,9 +52,9 @@
         <div class="post_desc">
           <h2>Description</h2>
           <% if @offer.translations.exists? %>
-            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
+          <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
           <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-        <% end %>
+          <% end %>
           <% if @offer.amenity %>
             <% @amenity = @offer.amenity %>
           <div class="no-shadow dh-box">
@@ -88,7 +91,7 @@
               </ul>
             </div>
           </div>
-        <% end %>
+          <% end %>
           <table class="table  table-bordered " width="95%">
             <thead>
               <tr role="row">
@@ -124,7 +127,7 @@
             <div class="dh-content">
               <% if @offer.translations.exists? %>
                 <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-            <% end %>
+              <% end %>
             </div>
           </div>
         </div><!-- end of class="post_desc" -->
@@ -137,7 +140,7 @@
           </p>
           <div class="booknow">
             <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
-              <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+            <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
             <label for="checkin"><i class="icon-calendar"></i> check in</label>
             <%= text_field_tag :checkin, params[:checkin],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
             <label for="checkout"><i class="icon-calendar"></i> check out</label>
@@ -146,9 +149,9 @@
             <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),class: "form-control",required: "required", placeholder: "Guests" %> 
             <input type="submit" value="Book Now" />
           </div>
-          <p><i class="icon-certificate icon-container"></i>Property id</p>
-          <p><i class="icon-building icon-container"></i>Property Type</p>
-          <p><i class="icon-map-marker icon-container"></i>Place XYS</p>
+          <p><i class="icon-certificate icon-container"></i><strong>Property id:</strong> <%= @offer.id  %></p>
+          <p><i class="icon-building icon-container"></i><strong>Property Type:</strong> <%= @offer.object_type.humanize  %></p>
+          <p><i class="icon-map-marker icon-container"></i><strong>Place:</strong> <%= @offer.city  %></p>
           <div class="dh-box">
             <div class="dh-header"><h5><i class="icon-list icon-container"></i>Details</h5></div>
             <div class="dh-content">
@@ -189,23 +192,18 @@
 .gmaps4rails_map {
   width: 250px;
   height: 260px;
-}
-            </style>
-
-            <%=  gmaps({
-              "circles"    => { "data" => @json }
-            })
-          %> 
+} </style>
+            <%= gmaps({ "circles" => { "data" => @json } }) %>
         </div>
         <% end %>
         </div><!-- end of class="sidebar_container" -->
-      </div><!-- end of class="content_inner" -->    
+      </div><!-- end of class="content_inner" -->
     </div><!-- end of id="content" -->
   </div><!-- end of id="content" -->
 </div><!-- end of id="content" -->
-  <% end %>
+<% end %>
 <% content_for :js do %>
-  <script>
+<script>
 $(function() {
   $( "#checkin" ).datepicker({
     minDate:"0",
@@ -227,4 +225,4 @@ $(function() {
   });
 });
 </script>
-  <% end %>
+<% end %>

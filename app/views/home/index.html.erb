@@ -7,20 +7,21 @@
       <div class="top_bar">
         <div class="content_inner">
           <nav>
-            <a class="logo float-left" href="#"></a>
+            <%= link_to "Room n House", root_path, class: "logo float-left" %>
+           <%= link_to "List Your Place", new_offer_path, class: "button paddall-5"  %>
             <% if !current_user.present? %>
               <%= link_to "Login", new_user_session_path  %>
             <%= link_to "Signup", new_user_registration_path  %>
           <% else %>
-              <div id="dd" class="wrapper-dropdown-5" tabindex="1"><%= current_user.firstname %>
-            <ul class="dropdown">
-                <li><%= link_to "My Listings", offers_path %></li>
-                <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-                <li><%= link_to "logout", destroy_user_session_path %></li>
+ <div id="dd" class="usermenu"> 
+              <i class="icon-user icon-container"></i><%= current_user.firstname %>
+              <ul class="dropdown">
+<li><%= link_to "<i class='icon-container-small icon-list'></i>My Listings".html_safe, offers_path %></li>
+                <li><%= link_to "<i class='icon-container-small icon-cog'></i>Account Settings".html_safe, edit_user_registration_path %></li>
+                <li><%= link_to "<i class='icon-container-small icon-off'></i>logout".html_safe, destroy_user_session_path %></li>
               </ul>
             </div>
           <% end %>
-            <a href="" class="button paddall-5">List your place</a>
           </nav>
         </div>
       </div>
@@ -60,10 +61,10 @@
         <ul class="naked bold big">
           <li>Find a place to stay any where in india. <i class="icon-search icon-large icon-container"></i></li>
           <li>Accomodation for every budget. <i class="icon-usd icon-large icon-container"></i></li>
-          <li>Verified Hosts <i class="icon-tick icon-large icon-container"></i></li>
+          <li>Verified Hosts <i class="icon-ok icon-large icon-container"></i></li>
           <li>Seamless payments. <i class="icon-credit-card icon-large icon-container"></i></li>
         </ul>
-        <a href="#header" class="button"><i class="icon-search icon-large icon-container-small"></i> Find a Venue</a>;
+        <a href="#header" class="button"><i class="icon-search icon-large icon-container-small"></i> Find Now</a>
       </div>
       <div class="colm colm2 float-left align-left">
         <h2>List Your Space</h2>
