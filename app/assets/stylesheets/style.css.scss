@@ -27,7 +27,7 @@ red:#e74c3c
     background-image: linear-gradient(#f5f2eb 60px, #f3f1f1 400px);
     font-family:OpenSans,Arial,Helvetica,Verdana,sans-serif;
     color:#666;
-    min-width:1080px;
+    min-width:1100px;
     padding: 0;
   }
   /*misc*/
@@ -855,12 +855,10 @@ red:#e74c3c
     float:left;
     padding:15px 4.5px;
     color:#000;
+    border-left: 1px solid #fff;
     background:rgba(199,217,234,1);
     text-align:center;
     cursor:pointer;
-  }
-  .choice .ch2{
-    border-left: 1px solid #fff;
   }
   .choice .ch2{
     border-right:none;

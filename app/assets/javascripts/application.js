@@ -15,7 +15,7 @@
 //= require jquery_ujs
 // Loads all Bootstrap javascripts
 //= require_tree .
-//= require bootstrap
+//= require bootstrap.min.js
 //= require jquery.geocomplete.min.js
 //= require jquery.cleditor.js
 //= require script.js
