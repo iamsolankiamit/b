@@ -8,6 +8,7 @@
         <div class="content_inner">
           <nav>
             <%= link_to "Room n House", root_path, class: "logo float-left" %>
+          <p style="float:right;color:white;">Help line: 9022-543210</p>
            <%= link_to "List Your Place", new_offer_path, class: "button paddall-5"  %>
             <% if !current_user.present? %>
               <%= link_to "Login", new_user_session_path  %>
@@ -64,7 +65,7 @@
           <li>Verified Hosts <i class="icon-ok icon-large icon-container"></i></li>
           <li>Seamless payments. <i class="icon-credit-card icon-large icon-container"></i></li>
         </ul>
-        <a href="#header" class="button"><i class="icon-search icon-large icon-container-small"></i> Find Now</a>
+        <a href="#home_search" class="button"><i class="icon-search icon-large icon-container-small"></i> Find Now</a>
       </div>
       <div class="colm colm2 float-left align-left">
         <h2>List Your Space</h2>
@@ -75,10 +76,10 @@
           <li><i class="icon-container icon-large icon-credit-card"></i>Receive payments seamlessly</li>
           <li><i class="icon-container icon-large icon-time"></i>Signing up is quick &amp; easy</li>
         </ul>
-        <a href="#header" class="button"><i class="icon-list icon-large icon-container-small"></i> List Now</a>
+        <a href="#header_home" class="button"><i class="icon-list icon-large icon-container-small"></i> List Now</a>
       </div>
     </div>
-  </div><!-- end of class="content_inner" -->    
+</div><!-- end of class="content_inner" -->
 </div><!-- end of id="content" -->
 
 </div>

@@ -432,7 +432,7 @@ red:#e74c3c
     padding:30px;
   }
   .colm2{
-    width:43%;
+    width:50%;
   }
   .white_bg{
     background: #FFF;
@@ -507,7 +507,6 @@ red:#e74c3c
     position:relative;
   }
   .slide-slider{
-    width:auto;
     overflow-x:visible;
     position:relative;
     text-align:center;
@@ -535,7 +534,7 @@ red:#e74c3c
     border-radius:3px;
   }
   .current img{
-    border-color:#3498db;box-shadow:0px 0px 8px #8f6dd9
+    border-color:#3498db;box-shadow:0px 0px 8px #8f6dd9;
   }
   /*End of slider*/
   .sidebar{
@@ -782,12 +781,12 @@ red:#e74c3c
     overflow:hidden;
   }
   .host-img{
-    width:130px;
-    height:130px;
-    margin:5px;
+   margin:5px;
   }
   .host-img img{
     background:#fff;
+     width:130px;
+    height:130px;
     width:100%;
     box-shadow:1px 1px 5px rgba(0,0,0,0.4);
     background-color: #eeeeee;
@@ -1449,4 +1448,9 @@ red:#e74c3c
 
   pointer-events: auto;
 
+}
+*, *:before, *:after {
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
 }

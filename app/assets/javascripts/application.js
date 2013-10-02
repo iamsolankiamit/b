@@ -13,10 +13,5 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-// Loads all Bootstrap javascripts
-//= require_tree .
-//= require bootstrap.min.js
-//= require jquery.geocomplete.min.js
-//= require jquery.cleditor.js
-//= require script.js
 //= require s3_direct_upload
+//= require_tree .

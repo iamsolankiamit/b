@@ -26,7 +26,7 @@ class Booking < ActiveRecord::Base
       if @offer.included_guest_count && guests.to_i > @offer.included_guest_count
         @host_fee += (guests.to_i - @offer.included_guest_count)*@offer.extra_guest_charge_amount
       end
-      @processing_fee = @host_fee*0.11
+      @processing_fee = @host_fee*0.05
       @service_tax = @processing_fee*0.12
       @total = @processing_fee + @host_fee + @service_tax
       self.total = @total

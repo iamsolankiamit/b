@@ -31,24 +31,23 @@
             <%if !photos.first.nil? %>
             <%= image_tag photos.first.image.url(:slider2) ,id: "main" %>
           <div class="slider_container">
-            <!-- <div class="slide-left-arrow" onclick="move_slider('1')"><i class="icon-long-arrow-left icon-3x"></i></div> -->
+            <div class="slide-left-arrow" onclick="move_slider(2)"><i class="icon-arrow-left icon-2x"></i></div>
             <div class="slider-view">
-              <div class="slide-slider" id="slide-slider">
-                  <div class="img-holder current" id="<%= photos.first.id  %>">
-                  <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
+              <div class="slide-slider" id="slide-slider" style="width:<%= 100*photos.count  %>px">
+                  <div class="img-holder current" id="<%= photos.first.id  %>"> <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
                 </div>
                 <% photos.each do |photo|%>
                   <div class="img-holder" id="<%= photo.id  %>">
                   <%= image_tag photo.image.url(:thumb), onclick: "slider_slide('#{photo.image.url(:slider2)}','#{photo.id}')"  %>
                 </div>
-                <% end %>
-              </div>
+               <% end %>
+                </div>
+                </div>
+             <div class="slide-right-arrow" onclick="move_slider(1)"><i class="icon-arrow-right icon-2x"></i></div> 
+                </div>
               <% end %>
             <% end %>
-            </div>
-            <!--            <div class="slide-right-arrow" onclick="move_slider('2')"><i class="icon-long-arrow-right icon-3x"></i></div> -->
           </div>
-        </div>
         <div class="post_desc">
           <h2>Description</h2>
           <% if @offer.translations.exists? %>
@@ -142,11 +141,11 @@
             <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
             <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
             <label for="checkin"><i class="icon-calendar"></i> check in</label>
-            <%= text_field_tag :checkin, params[:checkin],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
+            <%= text_field_tag :checkin, params[:checkin],required: "required", placeholder: "MM/DD/YYYY"%>
             <label for="checkout"><i class="icon-calendar"></i> check out</label>
-            <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "MM/DD/YYYY"%>
+            <%= text_field_tag :checkout, params[:checkout],required: "required", placeholder: "MM/DD/YYYY"%>
             <label for="guest"><i class="icon-user"></i> Guest </label>
-            <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),class: "form-control",required: "required", placeholder: "Guests" %> 
+            <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),required: "required", placeholder: "Guests" %> 
             <input type="submit" value="Book Now" />
           </div>
           <p><i class="icon-certificate icon-container"></i><strong>Property id:</strong> <%= @offer.id  %></p>
