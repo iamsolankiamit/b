@@ -29,6 +29,7 @@
       <h1 class="title">Travel Easy. Stay Easier</h1>
       <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
         <div class="home_search">
+          <h4>Mumbai, Pune</h4>
         <%= search_field_tag :destination, params[:search],style: "width:550px;", placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required", onClick: "show_inputs()" %>
       </div>
       <div class="home_search_add_inputs">
