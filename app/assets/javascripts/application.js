@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.ui.all
+//= require jquery.ui.datepicker
 //= require bootstrap.min.js
 //= require jquery_ujs
 //= require s3_direct_upload
