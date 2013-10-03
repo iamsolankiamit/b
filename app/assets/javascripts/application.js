@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery.ui.all
+//= require bootstrap.min.js
 //= require jquery_ujs
 //= require s3_direct_upload
-//= require jquery.geocomplete.min.js
-//= require photos.js
 //= require jquery-migrate-1.2.1.min.js
-//= require bootstrap.min.js
 //= require script.js
+//= require photos.js
+//= require jquery.geocomplete.min.js
 //= require analytics.js
