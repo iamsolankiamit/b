@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery-migrate-1.2.1.min.js
-//= require script.js
 //= require s3_direct_upload
 //= require jquery.geocomplete.min.js
 //= require photos.js
+//= require jquery-migrate-1.2.1.min.js
 //= require bootstrap.min.js
+//= require script.js
 //= require analytics.js
