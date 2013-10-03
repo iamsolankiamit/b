@@ -8,16 +8,16 @@
         <div class="content_inner">
           <nav>
             <%= link_to "Room n House", root_path, class: "logo float-left" %>
-          <a style="pointer-events:none;color:white;">Help line: 9022-543210</a>
-           <%= link_to "List Your Place", new_offer_path, class: "button paddall-5"  %>
+            <a style="pointer-events:none;color:white;">Help line: 9022-543210</a>
+            <%= link_to "List Your Place", new_offer_path, class: "button paddall-5"  %>
             <% if !current_user.present? %>
               <%= link_to "Login", new_user_session_path  %>
             <%= link_to "Signup", new_user_registration_path  %>
           <% else %>
- <div id="dd" class="usermenu"> 
+              <div id="dd" class="wrapper-dropdown " tabindex="1">
               <i class="icon-user icon-container"></i><%= current_user.firstname %>
-              <ul class="dropdown">
-<li><%= link_to "<i class='icon-container-small icon-list'></i>My Listings".html_safe, offers_path %></li>
+            <ul class="dropdown">
+                <li><%= link_to "<i class='icon-container-small icon-list'></i>My Listings".html_safe, offers_path %></li>
                 <li><%= link_to "<i class='icon-container-small icon-cog'></i>Account Settings".html_safe, edit_user_registration_path %></li>
                 <li><%= link_to "<i class='icon-container-small icon-off'></i>logout".html_safe, destroy_user_session_path %></li>
               </ul>
@@ -29,7 +29,7 @@
       <h1 class="title">Travel Easy. Stay Easier</h1>
       <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
         <div class="home_search">
-          <h4>Mumbai, Pune</h4>
+        <h4>Mumbai, Pune</h4>
         <%= search_field_tag :destination, params[:search],style: "width:550px;", placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required", onClick: "show_inputs()" %>
       </div>
       <div class="home_search_add_inputs">
@@ -80,7 +80,7 @@
         <a href="http://www.roomnhouse.com/offers/new" class="button"><i class="icon-list icon-large icon-container-small"></i> List Now</a>
       </div>
     </div>
-</div><!-- end of class="content_inner" -->
+  </div><!-- end of class="content_inner" -->
 </div><!-- end of id="content" -->
 
 </div>

@@ -9,9 +9,20 @@ DropDown.prototype = {
     obj.dd.on('click', function(event){
       $(this).toggleClass('active');
       event.stopPropagation();
-    });	
+    });
   }
 }
+
+$(function() {
+
+  var dd = new DropDown( $('#dd') );
+
+  $(document).click(function() {
+    // all dropdowns
+    $('.wrapper-dropdown-1').removeClass('active');
+  });
+
+});
 
 $(function() {
 
@@ -45,15 +56,15 @@ function move_slider(x){
         }
   }else{
     if(!$('#slide-slider').position().left==420-$('#slide-slider').width())
-    {
-      t=$('#slide-slider').offset().left;
-      t=t-480;
-      $('#slide-slider').animate({left:t+'px'},100,'swing');
-    }
-    else
       {
-        $('#slide-slider').animate({left:'0px'},100,'swing');
+        t=$('#slide-slider').offset().left;
+        t=t-480;
+        $('#slide-slider').animate({left:t+'px'},100,'swing');
       }
+      else
+        {
+          $('#slide-slider').animate({left:'0px'},100,'swing');
+        }
   }
 }
 function show_inputs(){

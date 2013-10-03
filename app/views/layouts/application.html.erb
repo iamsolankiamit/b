@@ -31,7 +31,7 @@
             <%= link_to "Login", new_user_session_path  %>
           <%= link_to "Signup", new_user_registration_path  %>
         <% else %>
-            <div id="dd" class="usermenu"> 
+            <div id="dd" class="wrapper-dropdown " tabindex="1">
             <i class="icon-user icon-container"></i><%= current_user.firstname %>
           <ul class="dropdown">
               <li><%= link_to "<i class='icon-container-small icon-list'></i>My Listings".html_safe, offers_path %></li>

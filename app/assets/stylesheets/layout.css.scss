@@ -3,58 +3,99 @@ $clblue : #3498DB;
 $cdblue : #2980B9;
 $cred : #E74C3C;
 $cblack : #2C3E50;
-.navbar{
-margin-bottom:0px;}
-.form-inline {
-  .form-group {
-  display:inline-block;
-  }
-}
-body{
-	font-family: 'Source Sans Pro','Helvetica-Neue',Helvetica,Arial,sans-serif;
-	line-height: 1.428;
-  font-size:14px;
- 	background: $cwhite;
-}
-
-.search{
-  background:rgba(44,62,80,0.75) ;
-  border-bottom:4px solid $cblack;
-  border-top:4px solid $cblack;
-  vertical-align:center;
-  padding:10px 0px;
-}
-.seo-travel{
-	margin: 10px 0px;
-	p{
-	font-size:0.7em;
-	}
-	border-top: 1px dashed #2C3E50;
-	border-bottom: 1px dashed #2C3E50;
+.wrapper-dropdown {
+  /* Size & position */
+  min-width: 100px;
+  margin: 0 auto;
+  padding: 12px  35px 12px 15px;
+  position: relative;
+  float: right;
+  /* Styles */
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s ease-out;
+  color: black;
 }
 
-
-
-.footer{
-	padding: 10px 0px; 
-	background: $cblack;
-	color:$cwhite;
-  hr{
-  border:none;
-  background:white;
-  }
-  h3{
-  font-size:1.1em;
-  }
-  ul{
-  list-style:none;
-  padding-left:5px;
-  font-size:0.9em;
-  a{
-  color:inherit;
-  text-decoration:none;}
-  }
+.wrapper-dropdown:after { /* Little arrow */
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -3px;
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: #4cbeff transparent;
 }
-.head-logo{
-	height:25px;
+.wrapper-dropdown .dropdown {
+  /* Size & position */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  /* Styles */
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-top: none;
+  border-bottom: none;
+  list-style: none;
+  transition: all 0.3s ease-out;
+
+  /* Hiding */
+  max-height: 0;
+  overflow: hidden;
+}
+.wrapper-dropdown .dropdown li {
+  padding: 0 10px ;
+}
+
+.wrapper-dropdown .dropdown li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 0;
+  transition: all 0.3s ease-out;
+  border-bottom: 1px solid #e6e8ea;
+}
+
+.wrapper-dropdown .dropdown li:last-of-type a {
+  border: none;
+}
+
+.wrapper-dropdown .dropdown li i {
+  margin-right: 5px;
+  color: inherit;
+  vertical-align: middle;
+}
+
+/* Hover state */
+
+.wrapper-dropdown .dropdown li:hover a {
+  color: #57a9d9;
+}
+/* Active state */
+
+.wrapper-dropdown.active {
+  border-radius: 5px 5px 0 0;
+  background: #4cbeff;
+  box-shadow: none;
+  border-bottom: none;
+  color: white;
+}
+
+.wrapper-dropdown.active:after {
+  border-color: #82d1ff transparent;
+}
+
+.wrapper-dropdown.active .dropdown {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  max-height: 400px;
 }
