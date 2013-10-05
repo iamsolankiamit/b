@@ -349,11 +349,22 @@ red:#e74c3c
     width:100%;
     text-align:center;
   }
+.home_search a{
+  color:white;
+  font-weight:500 !important;
+  font-size : 1em;
+  text-shadow: 0 0 3px black;
+  }
+  .home_search a:visited{
+  color:white;
+  font-weight:300;
+  font-size : 1em;
+  }
   .home_search input,.home_search select{
 
   }
   .home_search_add_inputs{
-    opacity:0;
+    opacity:1;
     webkit-animation: slideOut 1.4s ease-in-out 0.3s backwards;
     -moz-animation: slideOut 1.4s ease-in-out 0.3s backwards;
     -o-animation: slideOut 1.4s ease-in-out 0.3s backwards;
