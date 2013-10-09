@@ -5,8 +5,9 @@ gem 'rails', '3.2.12'
 
 gem 'safe_yaml'
 gem "pg"
-gem 'wicked'
 gem "devise"
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
@@ -21,7 +22,6 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
-gem 'kaminari'
 gem "thin", :group => :development
 gem 'simple_form'
 gem "letter_opener", :group => :development
