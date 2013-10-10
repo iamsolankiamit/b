@@ -29,9 +29,9 @@
       <h1 class="title">Travel Easy. Stay Easier</h1>
       <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
         <div class="home_search">
-          <h4><a href="http://roomnhouse.com/search?destination=pune">Pune</a> 
-          . <a href="http://roomnhouse.com/search?destination=mumbai">Mumbai</a>
-          . <a href="http://roomnhouse.com/search?destination=delhi">Delhi</a></h4>
+          <h4><a href="http://roomnhouse.com/search?utf8=✓&destination=Pune%2C+Maharashtra%2C+India&checkin=&checkout=&guests=1">Pune</a> 
+          . <a href="http://roomnhouse.com/search?utf8=✓&destination=Mumbai%2C+Maharashtra%2C+India&checkin=&checkout=&guests=1">Mumbai</a>
+          . <a href="http://roomnhouse.com/search?utf8=%E2%9C%93&destination=Delhi%2C+India&checkin=&checkout=&guests=1">Delhi</a></h4>
         <%= search_field_tag :destination, params[:search],style: "width:550px;",autofocus: true, placeholder: "Where do you want to go?", autocomplete: false, required: "required", id: "geolocation", class: "required", onClick: "show_inputs()" %>
       </div>
       <div class="home_search_add_inputs">

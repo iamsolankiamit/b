@@ -128,7 +128,6 @@ GEM
     heroku-deflater (0.5.1)
       rack (>= 1.4.5)
     hike (1.2.3)
-    httpauth (0.2.0)
     i18n (0.6.5)
     journey (1.0.4)
     jquery-fileupload-rails (0.4.1)
@@ -141,8 +140,9 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
-    jwt (0.1.8)
-      multi_json (>= 1.5)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
@@ -163,20 +163,6 @@ GEM
     net-ssh (2.6.8)
     newrelic_rpm (3.6.6.147)
     nokogiri (1.5.10)
-    oauth2 (0.8.1)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-facebook (1.4.1)
-      omniauth-oauth2 (~> 1.1.0)
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
     orm_adapter (0.4.0)
     paperclip (3.5.1)
       activemodel (>= 3.0.0)
@@ -269,6 +255,8 @@ GEM
     uuidtools (2.1.4)
     warden (1.2.3)
       rack (>= 1.0)
+    wicked (1.0.0)
+      rails (>= 3.0.7)
     xml-simple (1.1.2)
     yui-compressor (0.11.0)
 
@@ -295,10 +283,9 @@ DEPENDENCIES
   jquery-fileupload-rails
   jquery-rails (>= 2.1)
   jquery-ui-rails (~> 3.0)
+  kaminari
   letter_opener
   newrelic_rpm
-  omniauth
-  omniauth-facebook
   paperclip
   pg
   pg_random_id (= 1.0.0)
@@ -313,4 +300,5 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   unicorn
+  wicked
   yui-compressor
