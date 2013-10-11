@@ -7,6 +7,8 @@ gem 'safe_yaml'
 gem "pg"
 gem 'wicked'
 gem "devise"
+gem "omniauth"
+gem "omniauth-facebook"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
