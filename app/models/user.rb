@@ -40,7 +40,6 @@ class User < ActiveRecord::Base
     unless user
       user = User.create(firstname:auth.extra.raw_info.first_name,
                          lastname:auth.extra.raw_info.last_name,
-                         location:auth.info.location.name,
                          provider:auth.provider,
                          phone:auth.phone,
                          uid:auth.uid,
