@@ -37,25 +37,25 @@ class User < ActiveRecord::Base
   validates_presence_of :firstname
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:email => auth.info.email).first
-    if(user&&!auth.provider)
+    if(user.exists?&&!user.provider)
       user.update_attributes(provider:auth.provider,
-                 uid:auth.id
-                 )
+                             uid:auth.id
+                            )
       user.save!
     else
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    unless user
-      user = User.create(firstname:auth.extra.raw_info.first_name,
-                         lastname:auth.extra.raw_info.last_name,
-                         provider:auth.provider,
-                         phone:auth.phone,
-                         uid:auth.uid,
-                         email:auth.info.email,
-                         password:Devise.friendly_token[0,20]
-                        )
-      user.avatar_remote_url=(auth.info.image)
-      user.save!
-    end
+      user = User.where(:provider => auth.provider, :uid => auth.uid).first
+      unless user
+        user = User.create(firstname:auth.extra.raw_info.first_name,
+                           lastname:auth.extra.raw_info.last_name,
+                           provider:auth.provider,
+                           phone:auth.phone,
+                           uid:auth.uid,
+                           email:auth.info.email,
+                           password:Devise.friendly_token[0,20]
+                          )
+        user.avatar_remote_url=(auth.info.image)
+        user.save
+      end
     end
     user
   end
