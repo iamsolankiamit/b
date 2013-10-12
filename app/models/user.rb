@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates_presence_of :firstname
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:email => auth.info.email).first
-    if(user&&!provider)
+    if(user&&!auth.provider)
       user.update_attributes(provider:auth.provider,
                  uid:auth.id
                  )
