@@ -13,7 +13,7 @@ Roomnhouse::Application.routes.draw do
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   match 'users/:id' => 'users#show'
-  match 'users/dashboard' => 'users#dashboard'
+  match 'users/:id/dashboard' => 'users#dashboard'
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]

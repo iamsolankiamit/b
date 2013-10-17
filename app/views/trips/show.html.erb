@@ -1,2 +1,53 @@
-<h1>Trips#show</h1>
-<p>Find me in app/views/trips/show.html.erb</p>
+<% content_for :body do %>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <ul class="list-group">
+        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+        <%= link_to "My Listings", offers_path, class: "list-group-item " %>
+        <%= link_to "My Trips", trips_path, class: "list-group-item active" %>
+        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
+      </ul>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="main" style="margin-top:0px;">
+        <h2 class="text-center">My Trips</h2>
+        <hr />
+          <div class="row" style="margin: 10px 0px;">
+          <div class="col-lg-12 ">
+            <div class="col-lg-2 thumbnail">
+              <% offer = Offer.find(@trip.offer_id) %>
+              <% if offer.photos.exists?  %>
+                <%if !offer.photos.first.nil? %>
+                <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail", height:"150" %>
+            <% end %>
+            <% end %>
+            </div>
+            <div class="col-lg-7">
+              <h2 class="text-center">
+                <% if offer.translations.exists? %>
+                  <% if !offer.translations.first.title.nil? %>
+                  <%= offer.translations.first.title.titlecase %>
+              <%else%>
+                  Your New Offer(<%= offer.id %>)
+              <% end %>
+              <% end %></h2>
+              <dl class="dl-horizontal">
+                <dt>Arrival:</dt><dd> <%= trip.checkin.strftime("%B %d, %Y") if trip.checkin %></dd>
+                <dt>Departure:</dt><dd> <%= trip.checkout.strftime("%B %d, %Y") if trip.checkout  %></dd>
+              </dl> 
+            </div>
+            <div class="col-lg-3 text-right">
+              <ul class="list-unstyled" style="padding-top:20px;">
+                <li>
+                <li><%= link_to  "View trip", trip_path(trip) %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

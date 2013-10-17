@@ -1,6 +1,6 @@
 <% content_for :body do %>
-  <div class="row">
   <div class="container">
+  <div class="row">
     <div class="col-lg-3">
       <ul class="list-group">
         <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
@@ -21,8 +21,9 @@
               <% offer = Offer.find(trip.offer_id) %>
               <% if offer.photos.exists?  %>
                 <%if !offer.photos.first.nil? %>
-                <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail", height:"150" %> <% end %>
-          <% end %>
+                <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail", height:"150" %>
+            <% end %>
+            <% end %>
             </div>
             <div class="col-lg-7">
               <h2 class="text-center">
@@ -84,4 +85,3 @@
     </div>
   </div>
 <% end %>
-

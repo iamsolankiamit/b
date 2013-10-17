@@ -157,6 +157,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
+    mixpanel-ruby (1.0.2)
     money (5.1.1)
       i18n (~> 0.6.0)
     multi_json (1.7.9)
@@ -302,6 +303,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 3.0)
   kaminari
   letter_opener
+  mixpanel-ruby
   newrelic_rpm
   omniauth
   omniauth-facebook

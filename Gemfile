@@ -52,3 +52,5 @@ gem "activemerchant", path: "lib/active_merchant"
 group :test do
   gem "rspec-rails", :group => :development
 end
+# analytics
+gem 'mixpanel-ruby'
