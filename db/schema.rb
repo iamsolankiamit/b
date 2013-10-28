@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131011121128) do
+ActiveRecord::Schema.define(:version => 20131026064506) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20131011121128) do
     t.string   "card_holder_name"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
+    t.float    "discount_amount"
   end
 
   create_table "calendars", :force => true do |t|
@@ -97,6 +98,19 @@ ActiveRecord::Schema.define(:version => 20131011121128) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "discounts", :force => true do |t|
+    t.float    "amount"
+    t.string   "code"
+    t.integer  "min_nights"
+    t.integer  "min_guests"
+    t.float    "min_amount"
+    t.string   "city"
+    t.date     "from"
+    t.date     "to"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "floods", :force => true do |t|
     t.string   "firstname"
@@ -235,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20131011121128) do
     t.boolean  "guest_visited",      :default => false,    :null => false
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+    t.integer  "discount_id"
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,18 @@
+<% payment_service_for @booking.id*98384387, $payu_merchant_id,
+                :amount => (@booking.total - @booking.discount_amount),
+                :service => :payu_in,
+                :html => { :id => 'payment-form' } do |service| %>
+                <% service.auto_settle :prod => @offer.id.to_s + 'For ',
+                  :price => @offer.nightly_rate_amount,
+                  :name => @offer.translations(locale: 'en').first.title,
+                  :description => "Booking #{@offer.id.to_s} form #{@trip.checkin} to #{@trip.checkout} at #{@offer.nightly_rate_amount}"%>
+                <% service.credential2 @offer.object_type %>  
+                  <% service.customer :first_name => current_user.firstname,
+                    :last_name => current_user.lastname,
+                    :phone => current_user.phone,
+                    :email => current_user.email %>
+                  <% service.return_url 'http://www.roomnhouse.com/bookings/payu_return' %>
+                    <p>By Submitting a booking you accept the Room n House <a href="/terms">TERMS &amp; CONDITIONS </a>, <a href="/cancellation">CANCELLATION POLICY</a>, <a href="/privacy">PRIVACY POLICY</a> &amp; House rules</p>
+                    <input type="submit" class="button-bg" value="Complete Booking"/>
+                  <% end %>
+               

@@ -1,0 +1,10 @@
+<% if @discount %>
+    $("#discount").html("<%= @discount.code %> has been applied. For <%= @booking.discount_amount %> Rs. discount.");
+  $("#total").html("<%= @booking.total %>");
+  $("#payment").html("<div><%= @content.html_safe%></div>");
+<% else %>
+    if ($("p#error").length < 1)
+      {
+        $("#discount").append("<p id='error'>Sorry this is Invalid code</p>");
+      }
+    <% end %>

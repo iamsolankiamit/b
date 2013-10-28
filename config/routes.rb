@@ -12,12 +12,13 @@ Roomnhouse::Application.routes.draw do
   match '/whyhost' => 'info#whyhost'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
-  match 'users/:id' => 'users#show'
-  match 'users/:id/dashboard' => 'users#dashboard'
+  resources :users do
+    get 'dashboard', on: :member
+  end
   resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
-
+  resources :discounts
   resources :floods, only: [:index]
 
   resources :offers do

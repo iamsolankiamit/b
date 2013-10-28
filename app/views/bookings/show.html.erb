@@ -93,8 +93,12 @@
                   <td class="txt" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.processing_fee  %></strong></td>
                 </tr>
                 <tr>
+                  <td class="txt" width="50%"><i class="icon-cog icon-container-small"></i>Discount Coupon</td>
+                  <td class="txt" colspan=""><strong id="discount"><%= form_tag '/discounts' ,method: :get, remote: true do  %><%= text_field_tag :code  %><%= hidden_field_tag :trip,params[:trip], value: @trip.id %><%= submit_tag "Apply Coupon" %><% end %></strong></td>;
+                </tr>
+                <tr>
                   <td class="total" width="50%"><strong><i class="icon-star icon-container-small"></i>Total:</strong></td>
-                  <td class="total" colspan=""><i class="icon-inr icon-container-small"></i><strong><%= @booking.total  %></strong></td>
+                  <td class="total" colspan=""><i class="icon-inr icon-container-small"></i><strong id="total"><%= @booking.total  %></strong></td>
                 </tr>
                 </tbody>
               </table>
@@ -103,7 +107,7 @@
           <div class="dh-box">
             <div class="dh-header"><h2 class="dh-heading"><i class="icon-user icon-large icon-container"></i>Personal Information</h2></div>
             <div class="dh-content  white_bg align-center">
-              <table class="table table-bordered " width="60%">
+              <table class="table table-bordered " id="maintable" width="60%">
                 <tbody>
                 <tr>
                   <td class="txt" width="50%"><i class="icon-user icon-container-small"></i>First Name</td>
@@ -123,7 +127,8 @@
                 </tr>
                 </tbody>
               </table>
-              <% payment_service_for @booking.id, $payu_merchant_id,
+              <div id="payment">
+              <% payment_service_for @booking.id*98384387, $payu_merchant_id,
                 :amount => @booking.total,
                 :service => :payu_in,
                 :html => { :id => 'payment-form' } do |service| %>
@@ -140,6 +145,7 @@
                     <p>By Submitting a booking you accept the Room n House <a href="/terms">TERMS &amp; CONDITIONS </a>, <a href="/cancellation">CANCELLATION POLICY</a>, <a href="/privacy">PRIVACY POLICY</a> &amp; House rules</p>
                     <input type="submit" class="button-bg" value="Complete Booking"/>
                   <% end %>
+                  </div>
                   </div>
                 </div>
               </div>

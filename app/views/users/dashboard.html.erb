@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-3">
       <ul class="list-group">
-        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+        <%= link_to "Dashboard",dashboard_user_path , class: "list-group-item" %>
         <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
         <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
       </ul>
@@ -15,6 +15,8 @@
         <hr class=" offer-hr">
         <div class="row">
           <div class="col-lg-6 col-lg-offset-3">
+            <%= link_to "Update your Phone No. to stay updated with your bookings and Guests", edit_user_registration_path if current_user.phone.nil? %>
+            <%= link_to "Update your Profile Picture to be an authentic user", edit_user_registration_path if current_user.avatar.nil? %>
           </div>
         </div>
       </div>

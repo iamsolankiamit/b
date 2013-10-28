@@ -3,4 +3,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @offers = Offer.where(:user_id => params[:id],:visiblity => true).all
   end
+
+  def dashboard
+    @user = User.find(params[:id])
+  end
 end
