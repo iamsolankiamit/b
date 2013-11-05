@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/shin1ohno/event_cal.git
+  revision: 2aa4fb5429b719ac2b75c02e0342805735a15bfd
+  specs:
+    event_cal (2.0.2)
+      bourbon
+      haml-rails
+      rails (~> 3.2)
+
+GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
   revision: 1344c58711e9ba30cbbd028908ea3fe6df73969d
   branch: 3
@@ -75,6 +84,9 @@ GEM
       nokogiri (< 1.6.0)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.1.2)
+    bourbon (3.1.8)
+      sass (>= 3.2.0)
+      thor
     builder (3.0.4)
     cancan (1.6.10)
     climate_control (0.0.3)
@@ -124,6 +136,11 @@ GEM
     gmaps4rails (1.5.6)
     haml (4.0.3)
       tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     hashie (2.0.5)
     heroku-deflater (0.5.1)
       rack (>= 1.4.5)
@@ -292,6 +309,7 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   devise
+  event_cal!
   fog
   font-awesome-rails (~> 3.0)
   geocoder

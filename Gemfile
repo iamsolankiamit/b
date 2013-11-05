@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 gem 'rails', '3.2.12'
-
+gem 'event_cal', github: 'shin1ohno/event_cal'
 gem 'safe_yaml'
 gem "pg"
 gem 'wicked'
