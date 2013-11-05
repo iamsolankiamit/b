@@ -1,6 +1,6 @@
 <% if @discount %>
     $("#discount").html("<%= @discount.code %> has been applied. For <%= @booking.discount_amount %> Rs. discount.");
-  $("#total").html("<%= @booking.total %>");
+  $("#total").html("<%= @booking.total - @booking.discount_amount %>");
   $("#payment").html("<div><%= @content.html_safe%></div>");
 <% else %>
     if ($("p#error").length < 1)
