@@ -1,4 +1,4 @@
-<% payment_service_for @booking.id*98384387, $payu_merchant_id,
+<% payment_service_for @booking.id, $payu_merchant_id,
                 :amount => (@booking.total - @booking.discount_amount),
                 :service => :payu_in,
                 :html => { :id => 'payment-form' } do |service| %>
