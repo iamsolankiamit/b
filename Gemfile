@@ -49,8 +49,9 @@ gem "jquery-fileupload-rails"
 gem 'unicorn'
 # payment gateway gems
 gem "activemerchant", path: "lib/active_merchant"
-group :test do
-  gem "rspec-rails", :group => :development
+group :test, :development do
+  gem "rspec-rails"
+  gem "capybara"
 end
 # analytics
 gem 'mixpanel-ruby'

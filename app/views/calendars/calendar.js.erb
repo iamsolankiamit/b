@@ -1,0 +1,41 @@
+var updateEvent;
+
+$(document).ready(function() {
+  return $('#calendar').fullCalendar({
+    editable: true,
+    header: {
+      left: 'prev',
+      center: 'title',
+      right: 'next'
+    },
+    defaultView: 'month',
+    height: 500,
+    slotMinutes: 30,
+    selectable : true,
+    eventSources: [
+      {
+      url: '/offers/<%= offer.id  %>/calendar/'
+    }
+    ],
+    timeFormat: 'h:mm t{ - h:mm t} ',
+    dragOpacity: "0.5",
+    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+      return updateEvent(event);
+    },
+    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+      return updateEvent(event);
+    }
+  });
+});
+
+updateEvent = function(the_event) {
+  return $.update("/offers/<%= offer.id  %>/calendar" + the_event.id, {
+    event: {
+      title: the_event.title,
+      starts_at: "" + the_event.start,
+      ends_at: "" + the_event.end,
+      description: the_event.description
+    }
+  });
+};
+
