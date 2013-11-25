@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_or_guest_user
-  before_action :set_locale
+  before_filter :set_locale
 
   def set_locale
     I18n.locale = extract_locale_from_tld || I18n.default_locale
