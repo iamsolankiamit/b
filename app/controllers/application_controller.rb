@@ -1,7 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_or_guest_user
+  before_action :set_locale
 
+  def set_locale
+    I18n.locale = extract_locale_from_tld || I18n.default_locale
+  end
+
+  # Get locale from top-level domain or return nil if such locale is not available
+  # You have to put something like:
+  #   127.0.0.1 application.com
+  #   127.0.0.1 application.it
+  #   127.0.0.1 application.pl
+  # in your /etc/hosts file to try this out locally
+  def extract_locale_from_tld
+    parsed_locale = request.host.split('.').last
+    I18n.available_locales.include?(parsed_locale.to_sym) ? parsed_locale  : nil
+  end
 
   before_filter :store_location
 
@@ -42,16 +57,16 @@ class ApplicationController < ActionController::Base
   # called (once) when the user logs in, insert any code your application needs
   # to hand off from guest_user to current_user.
   def logging_in
-      # What should be done here is take all that belongs to user with lazy_id matching current_user's uuid cookie... then associate them with current_user
-      guest_user_account = User.find_by_lazy_id(cookies[:uuid])
-      if guest_user_account.offers.exists?
-        guest_offers = guest_user_account.offers.all
-        guest_offers.each do |offer|
-          offer.user_id = current_user.id
-          offer.email = current_user.email
-          offer.save!
-        end
+    # What should be done here is take all that belongs to user with lazy_id matching current_user's uuid cookie... then associate them with current_user
+    guest_user_account = User.find_by_lazy_id(cookies[:uuid])
+    if guest_user_account.offers.exists?
+      guest_offers = guest_user_account.offers.all
+      guest_offers.each do |offer|
+        offer.user_id = current_user.id
+        offer.email = current_user.email
+        offer.save!
       end
+    end
   end
 
   private

@@ -1,4 +1,5 @@
 Roomnhouse::Application.routes.draw do
+mount TranslationCenter::Engine => "/translation_center"
   resources :bookings do
     post 'payu_return', on: :collection
   end

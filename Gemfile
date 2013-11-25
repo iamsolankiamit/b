@@ -55,3 +55,4 @@ group :test, :development do
 end
 # analytics
 gem 'mixpanel-ruby'
+gem 'translation_center'
