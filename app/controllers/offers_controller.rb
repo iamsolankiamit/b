@@ -27,22 +27,15 @@ class OffersController < ApplicationController
     @offer.translations.build(params[:id])
     @offer.build_amenity(params[:id])
     if @offer.save
-      if !current_user
-        redirect_to new_user_registration_path(:passthru => edit_offer_details_path(@offer)), :notice => "done"
-      elsif current_user
+      if current_user
         redirect_to edit_offer_details_path(@offer), :notice => "successfully created offer"
-      end 
+      else
+        redirect_to new_user_registration_path(:passthru => edit_offer_details_path(@offer)), :notice => "To complete please fill in the details below"
+      end
     else
       render :new
     end
   end
-
-=begin
- def edit
-    @offer = current_user.offers.find(params[:id])
-    @offer.photos.build
-  end
-=end
 
   def update
     @offer = current_user.offers.find(params[:id])

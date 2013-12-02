@@ -26,6 +26,12 @@ class Calendar < ActiveRecord::Base
   end
 
   def self.format_date(date_time)
-    Time.at(date_time.to_i).to_formatted_s(:db)
+    Rails.logger = Logger.new(STDOUT)
+    Rails.logger.debug date_time
+    Rails.logger.debug date_time.class
+    converted_date_time = Time.at(date_time.to_i).to_formatted_s(:db)
+    Rails.logger.debug converted_date_time
+    Rails.logger.debug converted_date_time.class
+    converted_date_time
   end
 end

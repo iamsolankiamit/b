@@ -21,7 +21,7 @@ common_atts: &common_atts
   # translator_type: 'User' # Uncomment and change if you want to change the translator type
 
 development:
-  enabled: true # default false
+  enabled: false # default false
 
   # Keys inspector allowed values:
   # "missing" to inspect only untranslated keys
