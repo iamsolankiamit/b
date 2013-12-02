@@ -1,7 +1,7 @@
 <% content_for :title do %>
   <% if @offer.translations.exists? %>
-    <% if !@offer.translations.first.title.nil? %>
-      <%= @offer.translations.first.title.titlecase %>
+  <% if !@offer.translations.first.title.nil? %>
+  <%= @offer.translations.first.title.titlecase %>
     <% end %>
   <% else %>
   Bed and Breakfast, India
@@ -14,8 +14,8 @@
       <% if @offer.translations.exists? %>
         <% if !@offer.translations.first.title.nil? %>
         <h1><%= @offer.translations.first.title.titlecase %></h1>
-        <% end %>
-      <% end %>
+    <% end %>
+    <% end %>
       <h6><% if !@offer.address_addon.nil? %>
         <%= @offer.address_addon.titlecase %>
       <% end %>, 
@@ -34,26 +34,26 @@
             <div class="slide-left-arrow" onclick="move_slider(2)"><i class="icon-arrow-left icon-2x"></i></div>
             <div class="slider-view">
               <div class="slide-slider" id="slide-slider" style="width:<%= 100*photos.count  %>px">
-                  <div class="img-holder current" id="<%= photos.first.id  %>"> <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
-                </div>
+                <div class="img-holder current" id="<%= photos.first.id  %>"> <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
+              </div>
                 <% photos.each do |photo|%>
                   <div class="img-holder" id="<%= photo.id  %>">
                   <%= image_tag photo.image.url(:thumb), onclick: "slider_slide('#{photo.image.url(:slider2)}','#{photo.id}')"  %>
                 </div>
-               <% end %>
-                </div>
-                </div>
-             <div class="slide-right-arrow" onclick="move_slider(1)"><i class="icon-arrow-right icon-2x"></i></div> 
-                </div>
               <% end %>
-            <% end %>
+              </div>
+            </div>
+            <div class="slide-right-arrow" onclick="move_slider(1)"><i class="icon-arrow-right icon-2x"></i></div> 
           </div>
+        <% end %>
+        <% end %>
+        </div>
         <div class="post_desc">
           <h2>Description</h2>
           <% if @offer.translations.exists? %>
-          <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
+            <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
           <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-          <% end %>
+        <% end %>
           <% if @offer.amenity %>
             <% @amenity = @offer.amenity %>
           <div class="no-shadow dh-box">
@@ -90,7 +90,7 @@
               </ul>
             </div>
           </div>
-          <% end %>
+        <% end %>
           <table class="table  table-bordered " width="95%">
             <thead>
               <tr role="row">
@@ -126,7 +126,13 @@
             <div class="dh-content">
               <% if @offer.translations.exists? %>
                 <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-              <% end %>
+            <% end %>
+            </div>
+          </div>
+          <div class="dh-box">
+            <div class="dh-header"><h5 class="dh-heading"><i class="icon-calendar icon-container"></i>Calendar</h5></div>
+            <div class="dh-content">
+              <div id="calendar"></div>
             </div>
           </div>
         </div><!-- end of class="post_desc" -->
@@ -139,7 +145,7 @@
           </p>
           <div class="booknow">
             <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
-            <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+              <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
             <label for="checkin"><i class="icon-calendar"></i> check in</label>
             <%= text_field_tag :checkin, params[:checkin],required: "required", placeholder: "MM/DD/YYYY"%>
             <label for="checkout"><i class="icon-calendar"></i> check out</label>
@@ -193,7 +199,7 @@
   height: 260px;
 } </style>
             <%= gmaps({ "circles" => { "data" => @json } }) %>
-        </div>
+          </div>
         <% end %>
         </div><!-- end of class="sidebar_container" -->
       </div><!-- end of class="content_inner" -->
@@ -202,7 +208,7 @@
 </div><!-- end of id="content" -->
 <% end %>
 <% content_for :js do %>
-<script>
+  <script>
 $(function() {
   $( "#checkin" ).datepicker({
     minDate:"0",
@@ -222,6 +228,44 @@ $(function() {
       $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
     }
   });
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev',
+      center: 'title',
+      right: 'next'
+    },
+    defaultView: 'month',
+    height: 500,
+    viewDisplay   : function(view) {
+      var now = new Date(); 
+      var end = new Date();
+      end.setMonth(now.getMonth() + 11); //Adjust as needed
+
+      var cal_date_string = view.start.getMonth()+'/'+view.start.getFullYear();
+      var cur_date_string = now.getMonth()+'/'+now.getFullYear();
+      var end_date_string = end.getMonth()+'/'+end.getFullYear();
+
+      if(cal_date_string == cur_date_string) { jQuery('.fc-button-prev').addClass("fc-state-disabled"); }
+      else { jQuery('.fc-button-prev').removeClass("fc-state-disabled"); }
+
+      if(end_date_string == cal_date_string) { jQuery('.fc-button-next').addClass("fc-state-disabled"); }
+      else { jQuery('.fc-button-next').removeClass("fc-state-disabled"); }
+    },
+    eventSources: [
+      {
+      url: '/offers/<%= @offer.id  %>/calendar'
+    }
+    ],
+    timeFormat: 'h:mm t{ - h:mm t} ',
+    dragOpacity: "0.5",
+    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+      return updateEvent(event);
+    },
+    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+      return updateEvent(event);
+    }
+  });
 });
 </script>
 <% end %>
+
