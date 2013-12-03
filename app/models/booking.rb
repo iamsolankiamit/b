@@ -25,6 +25,7 @@ class Booking < ActiveRecord::Base
     if @calendar
       @calendar.each do |date|
         @host_fee -= self.per_night
+        @host_fee = 0 if @host_fee < 0
         @host_fee += date.pricing
       end
     end
