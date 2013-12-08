@@ -52,7 +52,7 @@ gem "activemerchant", path: "lib/active_merchant"
 group :test, :development do
   gem "rspec-rails"
   gem "capybara"
+  gem 'flay'
 end
 # analytics
 gem 'mixpanel-ruby'
-gem 'translation_center'
