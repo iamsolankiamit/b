@@ -24,7 +24,7 @@ gem 'daemons'
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
 gem 'kaminari'
-# gem "thin", :group => :development
+gem "thin", :group => :development
 gem "passenger"
 gem 'simple_form'
 gem "letter_opener", :group => :development

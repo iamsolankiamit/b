@@ -1,1 +1,38 @@
+Hello <%= @user.complete_name %>,
 
+Your booking details are as follows:
+
+<table>
+  <tr>
+    <td>Checkin Date</td>
+    <td><%= @trip.checkin %></td>
+  </tr>
+  <tr>
+    <td>Checkout Date</td>
+    <td><%= @trip.checkout  %></td>
+  </tr>
+  <tr>
+    <td>Host Name</td>
+    <td><%= @host.complete_name %></td>
+  </tr>
+  <tr>
+    <td>Host Phone</td>
+    <td><%= @host.phone %>, <%= @offer.contact_phone %></td>
+  </tr>
+  <tr>
+    <td>Address</td>
+    <td><%= @offer.complete_address %></td>
+  </tr>
+   <tr>
+    <td>Booking Total</td>
+    <td><%= @booking.total %></td>
+  </tr>
+  <tr>
+    <td>Service charge</td>
+    <td><%= @booking.processing_fee %></td>
+  </tr>
+ <tr>
+    <td>Cancellation Policy</td>
+    <td><%= @offer.cancellation_policy %></td>
+  </tr>
+</table>
