@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_translator
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -61,8 +60,8 @@ class User < ActiveRecord::Base
     user
   end
 
-  def can_admin_translations?
-      self.email == 'amit.fash@gmail.com'
+  def complete_name
+    "#{firstname} #{lastname}"
   end
 
   private

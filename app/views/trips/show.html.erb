@@ -17,31 +17,34 @@
           <div class="row" style="margin: 10px 0px;">
           <div class="col-lg-12 ">
             <div class="col-lg-2 thumbnail">
-              <% offer = Offer.find(@trip.offer_id) %>
-              <% if offer.photos.exists?  %>
-                <%if !offer.photos.first.nil? %>
-                <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail", height:"150" %>
+              <% if @offer.photos.exists?  %>
+                <%if !@offer.photos.first.nil? %>
+                <%= image_tag @offer.photos.first.image.url(:medium), class: "img-thumbnail", height:"150" %>
             <% end %>
             <% end %>
             </div>
             <div class="col-lg-7">
               <h2 class="text-center">
-                <% if offer.translations.exists? %>
-                  <% if !offer.translations.first.title.nil? %>
-                  <%= offer.translations.first.title.titlecase %>
+                <% if @offer.translations.exists? %>
+                  <% if !@offer.translations.first.title.nil? %>
+                  <%= @offer.translations.first.title.titlecase %>
               <%else%>
-                  Your New Offer(<%= offer.id %>)
+                  Your New Offer(<%= @offer.id %>)
               <% end %>
               <% end %></h2>
               <dl class="dl-horizontal">
-                <dt>Arrival:</dt><dd> <%= trip.checkin.strftime("%B %d, %Y") if trip.checkin %></dd>
-                <dt>Departure:</dt><dd> <%= trip.checkout.strftime("%B %d, %Y") if trip.checkout  %></dd>
+                <dt>Arrival:</dt><dd> <%= @trip.checkin.strftime("%B %d, %Y") if @trip.checkin %></dd>
+                <dt>Departure:</dt><dd> <%= @trip.checkout.strftime("%B %d, %Y") if @trip.checkout  %></dd>
+                <dt>Address:</dt><dd> <%= @offer.complete_address %></dd>
+                <dt>Host Name:</dt><dd> <%= @host.complete_name %></dd>
+                <dt>Host contact:</dt><dd> <%= @host.phone %></dd>
+                <dt>Host E-mail:</dt><dd> <%= @host.email %></dd>
               </dl> 
             </div>
             <div class="col-lg-3 text-right">
               <ul class="list-unstyled" style="padding-top:20px;">
                 <li>
-                <li><%= link_to  "View trip", trip_path(trip) %></li>
+                <li><%= link_to  "View trip", trip_path(@trip) %></li>
               </ul>
             </div>
           </div>

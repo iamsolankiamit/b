@@ -83,6 +83,9 @@ class Offer < ActiveRecord::Base
   after_validation :geocode
   acts_as_gmappable :process_geocoding => false, :lat => "confidential_lat", :lng => "confidential_lng"
 
+  def complete_address
+    "#{street_no}, #{street}, #{address_addon}, #{city}"
+  end
   def gmaps4rails_address
     [street_no, street,address_addon, city, Country.where(:code => self.country_code_iso).first.name].compact.join(', ')
   end

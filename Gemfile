@@ -24,7 +24,8 @@ gem 'daemons'
 gem 'pg_random_id', '1.0.0'
 gem 'heroku-deflater', :group => :production
 gem 'kaminari'
-gem "thin", :group => :development
+# gem "thin", :group => :development
+gem "passenger"
 gem 'simple_form'
 gem "letter_opener", :group => :development
 group :assets do
@@ -46,13 +47,12 @@ gem 'font-awesome-rails', '~> 3.0'
 gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'unicorn'
+# gem 'unicorn'
 # payment gateway gems
 gem "activemerchant", path: "lib/active_merchant"
 group :test, :development do
   gem "rspec-rails"
   gem "capybara"
-  gem 'flay'
 end
 # analytics
 gem 'mixpanel-ruby'

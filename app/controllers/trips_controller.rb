@@ -10,6 +10,8 @@ class TripsController < ApplicationController
   end
 
   def show
-    @trip = Trip.where(guest_id: current_user.id, trip_id: params[:id])
+    @trip = Trip.where(guest_id: current_user.id, id: params[:id]).first
+    @offer = Offer.find(@trip.offer_id)
+    @host = User.find(@trip.host_id)
   end
 end
