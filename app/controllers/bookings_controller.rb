@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
   def payu_return
     notification = PayuIn.notification(request.query_string, options = {:credential1 => $payu_merchant_id, :credential2 => $payu_secret_key, :params => params})
 
-    @booking = Booking.find(notification.invoice.to_i*9869) # notification.invoice is order id/cart id which you have submited from payment direction page.
+    @booking = Booking.find(notification.invoice.to_i) # notification.invoice is order id/cart id which you have submited from payment direction page.
 
     if notification.acknowledge
       begin

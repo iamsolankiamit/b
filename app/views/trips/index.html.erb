@@ -15,6 +15,9 @@
         <h2 class="text-center">My Trips</h2>
         <hr />
         <% @trips.each do |trip| %>
+          <% booking = Booking.where(trip_id: trip.id).first  %>
+          <% if !booking.nil? %>
+          <% if booking.status == "success"  %>
           <div class="row" style="margin: 10px 0px;">
           <div class="col-lg-12 ">
             <div class="col-lg-2 thumbnail">
@@ -47,8 +50,10 @@
             </div>
           </div>
         </div>
-        <hr class="col-lg-12" />
       <% end %>
+      <% end %>
+      <% end %>
+        <hr class="col-lg-12" />
         <% if @trips.count <= 0 %>
           <div style="text-align:center;">
           <hr>
