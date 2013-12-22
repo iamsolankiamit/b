@@ -119,16 +119,6 @@ application.js: application-b9a19824d10453259bcff4b6bec8ee3b.js
 application/index.js: application-b9a19824d10453259bcff4b6bec8ee3b.js
 application.css: application-3c50c7caa894f1f81b10f79f4c510c27.css
 application/index.css: application-3c50c7caa894f1f81b10f79f4c510c27.css
-translation_center/badr_it.png: translation_center/badr_it-9396faea381d1cc9c34ccc52a5548ccf.png
-translation_center/badr_it/index.png: translation_center/badr_it-9396faea381d1cc9c34ccc52a5548ccf.png
-translation_center/loading.gif: translation_center/loading-ceacdf87c718da586ba00b5bf1d9ac87.gif
-translation_center/loading/index.gif: translation_center/loading-ceacdf87c718da586ba00b5bf1d9ac87.gif
-translation_center/translation_center_logo.png: translation_center/translation_center_logo-2c89fe34ef1e59bcc303a3665012a77f.png
-translation_center/translation_center_logo/index.png: translation_center/translation_center_logo-2c89fe34ef1e59bcc303a3665012a77f.png
-translation_center/application.js: translation_center/application-2e810c87fbd11e7e26bc10f762af0c64.js
-translation_center/application/index.js: translation_center/application-2e810c87fbd11e7e26bc10f762af0c64.js
-translation_center/application.css: translation_center/application-b99da64724dab3730fe29a44d6220ff0.css
-translation_center/application/index.css: translation_center/application-b99da64724dab3730fe29a44d6220ff0.css
 bootstrap/glyphicons-halflings-regular.eot: bootstrap/glyphicons-halflings-regular-a976b4f46980969d9792e0ff9f3afc17.eot
 bootstrap/glyphicons-halflings-regular/index.eot: bootstrap/glyphicons-halflings-regular-a976b4f46980969d9792e0ff9f3afc17.eot
 bootstrap/glyphicons-halflings-regular.svg: bootstrap/glyphicons-halflings-regular-595b0dff8f518e7a10f758209838ab0b.svg
