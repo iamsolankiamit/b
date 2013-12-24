@@ -41,7 +41,6 @@ class BookingsController < ApplicationController
           @booking.booked_at = Time.now
           @booking.card_holder_name = params['name_on_card']
           @booking.transaction_number = notification.invoice
-          reset_session
           @trip = Trip.find(@booking.trip_id)
           UserMailer.trip_registered(current_user,@trip,@booking).deliver
           redirect_to @trip
