@@ -141,6 +141,13 @@
                     :last_name => current_user.lastname,
                     :phone => current_user.phone,
                     :email => current_user.email %>
+                  <% service.user_defined :var1 => current_user.id,
+                    :var2 => @offer.id,
+                    :var3 => @offer.user_id,
+                    :var4 => @trip.checkin,
+                    :var5 => @trip.checkout,
+                    :var6 => @trip.guest_count
+                  %>
                   <% service.return_url Rails.application.config.payu_return_url %>
                     <p>By Submitting a booking you accept the Room n House <a href="/terms">TERMS &amp; CONDITIONS </a>, <a href="/cancellation">CANCELLATION POLICY</a>, <a href="/privacy">PRIVACY POLICY</a> &amp; House rules</p>
                     <input type="submit" class="button-bg" value="Complete Booking"/>

@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :payu_return
   load_and_authorize_resource
   skip_before_filter :verify_authenticity_token
   include ActiveMerchant::Billing::Integrations
