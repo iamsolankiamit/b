@@ -53,6 +53,9 @@ gem "activemerchant", path: "lib/active_merchant"
 group :test, :development do
   gem "rspec-rails"
   gem "capybara"
+  gem "factory_girl_rails"
+
+  gem "guard-rails"
 end
 # analytics
 gem 'mixpanel-ruby'
