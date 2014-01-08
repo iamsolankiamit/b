@@ -2,7 +2,7 @@
   <%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
 <% end %>
 <% content_for :meta_description do %>
- "A spacious vacation rental <%= @offer.object_type  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count  %> people"
+ "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
 <% end %>
 <% content_for :body do %>
   <div id="content">
