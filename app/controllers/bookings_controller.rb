@@ -48,10 +48,7 @@ class BookingsController < ApplicationController
         end
       ensure
         @booking.save
-        @trip = Trip.find(@booking.trip_id)
-        redirect_to @trip
       end
     end
-      render :text => notification.message
   end
 end
