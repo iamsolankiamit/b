@@ -52,8 +52,5 @@ class BookingsController < ApplicationController
         redirect_to @trip
       end
     end
-    @trip = Trip.find(@booking.trip_id)
-        redirect_to @trip
-
   end
 end
