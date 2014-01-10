@@ -141,7 +141,7 @@
                     :last_name => current_user.lastname,
                     :phone => current_user.phone,
                     :email => current_user.email %>
-                  <% service.user_defined :var1 => current_user.id,
+                  <%# service.user_defined :var1 => current_user.id,
                     :var2 => @offer.id,
                     :var3 => @offer.user_id,
                     :var4 => @trip.checkin,
