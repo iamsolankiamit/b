@@ -3,6 +3,10 @@ Roomnhouse::Application.routes.draw do
     post 'payu_return', on: :collection
   end
   resources :reviews, only: [:new, :create, :update, :edit]
+  resources :messages do
+    get 'inbox', on: :collection
+    get 'sent', on: :collection
+  end
   resources :trips
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'

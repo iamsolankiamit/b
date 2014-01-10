@@ -4,7 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-RoomnHouse" content="IE=Edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content=<%= content_for?(:meta_description) ? yield(:meta_description) : "Find vacation rentals in India, including Mumbai vacation rentals, Goa  vacation rentals and villa rentals in India. Rent direct from owners and save with Roomnhouse." %>/>
+<% if content_for?(:meta_description) %>
+<meta name="description" content=<%= yield(:meta_description) %>/>
+<% else %>
+<meta name="description" content="Find vacation rentals in India, including Mumbai vacation rentals, Goa  vacation rentals and villa rentals in India. Rent direct from owners and save with Roomnhouse."/>
+<% end %>
 <title><%= content_for?(:title) ? yield(:title) : "Vacation Rentals: Villas, Beach Houses, Cottages, Apartments & Rooms for Rent - Roomnhouse" %></title>
 
 <!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->

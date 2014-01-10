@@ -10,7 +10,7 @@ Roomnhouse::Application.configure do
 
   config.action_controller.asset_host = "http://dm1w09da1rt65.cloudfront.net"
 
-  config.payu_return_url = "http://www.roomnhouse.com/bookings/payu_return"
+  config.payu_return_url = "http://roomnhouse.com/bookings/payu_return"
   config.action_mailer.default_url_options = { :host => 'roomnhouse.com' }
   ActionMailer::Base.smtp_settings = {
     :address        => "smtp.sendgrid.net",

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131124133228557926) do
+ActiveRecord::Schema.define(:version => 20140110084756) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -46,27 +46,6 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
     t.datetime "updated_at",                           :null => false
   end
 
-  create_table "audits", :force => true do |t|
-    t.integer  "auditable_id"
-    t.string   "auditable_type"
-    t.integer  "associated_id"
-    t.string   "associated_type"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "username"
-    t.string   "action"
-    t.text     "audited_changes"
-    t.integer  "version",         :default => 0
-    t.string   "comment"
-    t.string   "remote_address"
-    t.datetime "created_at"
-  end
-
-  add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
-  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
-  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
-  add_index "audits", ["user_id", "user_type"], :name => "user_index"
-
   create_table "bookings", :force => true do |t|
     t.datetime "booked_at"
     t.string   "trip_id",                                          :null => false
@@ -85,7 +64,7 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
     t.string   "card_holder_name"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
-    t.float    "discount_amount"
+    t.float    "discount_amount",           :default => 0.0
   end
 
   create_table "calendars", :force => true do |t|
@@ -95,6 +74,26 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
     t.boolean  "availablity"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "checkouts", :force => true do |t|
+    t.string   "offer_id",                                  :null => false
+    t.integer  "guest_id",                                  :null => false
+    t.integer  "host_id",                                   :null => false
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "guest_count"
+    t.boolean  "host_accepted",       :default => false,    :null => false
+    t.float    "total",                                     :null => false
+    t.string   "email"
+    t.string   "status"
+    t.datetime "booked_at"
+    t.string   "phone"
+    t.decimal  "service_tax",                               :null => false
+    t.decimal  "processing_fee",      :default => 0.0
+    t.string   "cancellation_policy", :default => "strict"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "countries", :force => true do |t|
@@ -121,16 +120,16 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "discounts", :force => true do |t|
-    t.float    "amount"
-    t.string   "code"
+    t.string   "code",                        :null => false
+    t.float    "amount",     :default => 0.0
     t.integer  "min_nights"
     t.integer  "min_guests"
     t.float    "min_amount"
     t.string   "city"
     t.date     "from"
     t.date     "to"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "floods", :force => true do |t|
@@ -214,19 +213,6 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
 # Could not dump table "pri_keys" because of following StandardError
 #   Unknown type 'regclass' for column 'sequence'
 
-  create_table "rails_admin_histories", :force => true do |t|
-    t.text     "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
-
   create_table "reviews", :force => true do |t|
     t.integer  "reviewer_id"
     t.integer  "reviewee_id"
@@ -245,63 +231,6 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "tolk_locales", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tolk_locales", ["name"], :name => "index_tolk_locales_on_name", :unique => true
-
-  create_table "tolk_phrases", :force => true do |t|
-    t.text     "key"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tolk_translations", :force => true do |t|
-    t.integer  "phrase_id"
-    t.integer  "locale_id"
-    t.text     "text"
-    t.text     "previous_text"
-    t.boolean  "primary_updated", :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tolk_translations", ["phrase_id", "locale_id"], :name => "index_tolk_translations_on_phrase_id_and_locale_id", :unique => true
-
-  create_table "translation_center_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "translation_center_translation_keys", :force => true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.datetime "last_accessed"
-    t.string   "en_status",     :default => "untranslated"
-    t.string   "ru_status",     :default => "untranslated"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-  end
-
-  add_index "translation_center_translation_keys", ["name"], :name => "index_translation_center_translation_keys_on_name"
-
-  create_table "translation_center_translations", :force => true do |t|
-    t.integer  "translation_key_id"
-    t.text     "value"
-    t.string   "lang"
-    t.integer  "translator_id"
-    t.string   "translator_type"
-    t.string   "status",             :default => "pending"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-  end
-
-  add_index "translation_center_translations", ["translation_key_id"], :name => "index_translation_center_translations_on_translation_key_id"
 
   create_table "translations", :force => true do |t|
     t.string   "title"
@@ -327,7 +256,7 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
     t.boolean  "guest_visited",      :default => false,    :null => false
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.integer  "discount_id"
+    t.integer  "discount_id",        :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -371,22 +300,5 @@ ActiveRecord::Schema.define(:version => 20131124133228557926) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "votes", :force => true do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], :name => "index_votes_on_votable_id_and_votable_type_and_vote_scope"
-  add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], :name => "index_votes_on_voter_id_and_voter_type_and_vote_scope"
-  add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
 
 end
