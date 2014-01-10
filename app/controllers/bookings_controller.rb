@@ -52,5 +52,6 @@ class BookingsController < ApplicationController
         redirect_to @trip
       end
     end
+      render :text => notification.message
   end
 end
