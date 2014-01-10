@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_filter :authenticate_user!, except: :payu_return
+  before_filter :authenticate_user!
   load_and_authorize_resource
   skip_before_filter :verify_authenticity_token
   include ActiveMerchant::Billing::Integrations
@@ -52,5 +52,8 @@ class BookingsController < ApplicationController
         redirect_to @trip
       end
     end
+    @trip = Trip.find(@booking.trip_id)
+        redirect_to @trip
+
   end
 end
