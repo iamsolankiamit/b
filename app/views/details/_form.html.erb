@@ -1,11 +1,11 @@
 
 <%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }, html: {class: "form-horizontal"}) do |f| %>
   <%= f.input :email, as: :email %>
-  <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
+<%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
 
-  <%= f.input :contact_phone_backup, as: :string, label: "Alternate Phone no." %>
+<%= f.input :contact_phone_backup, as: :string, label: "Alternate Phone no." %>
 
-  <%= f.input :object_type, 
+<%= f.input :object_type, 
   as: :select, 
   collection: {
     "Service Apartment" => "service_apartment",
@@ -20,54 +20,54 @@
     "Treehouse" => "treehouse", 
     "Boat" => "boat", 
     "Car" => "automobile"}, 
-  :label => "Property Type", 
-  :include_blank => false %>
+    :label => "Property Type", 
+    :include_blank => false %>
 
-    <%= f.input :size ,:as => :string%>
+  <%= f.input :size ,:as => :string%>
 
-  <%= f.input :size_type , 
-  :as => :select, 
-  :collection => {
-    "Square meter" => "square_meter", 
-    "Square feet" => "square_feet"}, 
-  :include_blank => false %>
+    <%= f.input :size_type , 
+      :as => :select, 
+      :collection => {
+        "Square meter" => "square_meter", 
+        "Square feet" => "square_feet"}, 
+        :include_blank => false %>
 
-  <%= f.input :bathroom_count , :as => :select, label: "Bathrooms", :collection =>(1..10), :include_blank =>false %>
+      <%= f.input :bathroom_count , :as => :select, label: "Bathrooms", :collection =>(1..10), :include_blank =>false %>
 
-  <%= f.input :max_guest_count , 
-  :as => :select, 
-  :collection =>(1..30), 
-  :label => "Accommodates", 
-  :include_blank => false %>
+        <%= f.input :max_guest_count , 
+          :as => :select, 
+          :collection =>(1..30), 
+          :label => "Accommodates", 
+          :include_blank => false %>
 
-  <%= f.input :bed_count , 
-  :as => :select, 
-  :collection =>(1..30), 
-  :label => "Beds"%>
+        <%= f.input :bed_count , 
+          :as => :select, 
+          :collection =>(1..30), 
+          :label => "Beds"%>
 
-  <%= f.input :bedroom_count , 
-  :as => :select, 
-  :collection =>(1..10), 
-  :label => "Bedrooms", 
-  :include_blank => false%>
+        <%= f.input :bedroom_count , 
+          :as => :select, 
+          :collection =>(1..10), 
+          :label => "Bedrooms", 
+          :include_blank => false%>
 
-  <%= f.input :bed_type , 
-  :as => :select, 
-  :collection => {
-    "Real Bed" => "real_bed", 
-    "Airbed" => "airbed", 
-    "Futon" => "futon", 
-    "Pull-Out" => "pull_out", 
-    "Couch" => "couch"}, 
-  :include_blank => false %>
+        <%= f.input :bed_type , 
+          :as => :select, 
+          :collection => {
+            "Real Bed" => "real_bed", 
+            "Airbed" => "airbed", 
+            "Futon" => "futon", 
+            "Pull-Out" => "pull_out", 
+            "Couch" => "couch"}, 
+            :include_blank => false %>
 
-  <%= f.input :allow_marketing, :label => "Marketing", hint: "Can we do marketing for your listing?" %>
-  <%= f.input :visiblity, hint: "Keep it unchecked if you want it to be hidden." %>
-				<%= render('amenity_table', f: f) %>
-				<div class="control-group">
-					<div class="controls">
-						<%= f.button :submit, :value => "Save and Continue", :class => 'btn-primary'%>
-					</div>
-				</div>
+          <%= f.input :allow_marketing, :label => "Marketing", hint: "Can we do marketing for your listing?" %>
+            <%= f.input :visiblity, hint: "Keep it unchecked if you want it to be hidden." %>
+            <%= render('amenity_table', f: f) %>
+            <div class="control-group">
+              <div class="controls">
+                <%= f.button :submit, :value => "Save", :class => 'btn-primary'%>
+              </div>
+            </div>
 
-<% end %>
+          <% end %>

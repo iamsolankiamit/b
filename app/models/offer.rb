@@ -55,6 +55,8 @@ class Offer < ActiveRecord::Base
 
   belongs_to :trips
   belongs_to :checkout
+  has_many :inquiries
+
   has_one :amenity, :dependent => :destroy
   accepts_nested_attributes_for :amenity
 
