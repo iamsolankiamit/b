@@ -5,6 +5,55 @@ $cred : #E74C3C;
 $cblack : #2C3E50;
 $cdwhite : #d9dbdc;
 $cdred : #d62917;
+a:hover {
+  text-decoration:none !important;
+}
+.thumbnail{
+  margin-top:10px;
+  .price-box{
+    color:#fff;
+    text-align:right;
+    position:absolute;
+    top:15px;
+    right:20px;
+    padding:5px;
+    background-color:#212121;
+    opacity:0.8;
+    .price{
+      font-size:16px;
+      font-weight:100;
+      margin-bottom:5px
+    }
+    .price-info{
+      line-height:1;
+      font-size:10px;
+    }
+  }
+  .caption{
+    padding-bottom:0px;
+    .title{
+      color:#212121;
+      font-size:16px;
+      height:44px;
+      overflow:hidden;
+      font-weight:bold;
+    }
+    .location{
+      color:$clblue;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 18px;
+      margin: .25em 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .offer-image{
+    width:300px !important;
+    height:135px !important;
+  }
+}
 .search-container{
   height:400px;
   background: image-url('home_page.jpg') center center no-repeat;
@@ -15,7 +64,7 @@ $cdred : #d62917;
 .listing-container{
   margin: 20px auto;
   .item{
-  margin-bottom:20px;
+    margin-bottom:20px;
   }
   .list-title{
     text-align: left;
@@ -81,10 +130,10 @@ $cdred : #d62917;
       }
       .name{
         padding-top:10px;
-         font-size: 1.3em;
-         color: $cblack;
-         text-indent: 14px;
-         font-weight: 400;
+        font-size: 1.3em;
+        color: $cblack;
+        text-indent: 14px;
+        font-weight: 400;
       }
       .info{
         font-size: 1em;

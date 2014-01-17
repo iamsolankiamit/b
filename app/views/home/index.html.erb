@@ -1,5 +1,5 @@
 <% content_for :header do %>
-  <div id="header_home">  
+  <div id="container header_home">  
   <div class="content_inner home_width">
     <div class="home_slider_image"></div>
     <div class="home_slider_cover"></div>
@@ -29,7 +29,7 @@
       <h1 class="title">Travel Easy. Stay Easier</h1>
       <%= form_tag "/search", :method => 'get', class: "home_inputs", id: 'search_form' do %>
         <div class="home_search">
-          <h4><a href="http://roomnhouse.com/search?utf8=✓&destination=Pune%2C+Maharashtra%2C+India&checkin=&checkout=&guests=1">Pune</a> 
+        <h4><a href="http://roomnhouse.com/search?utf8=✓&destination=Pune%2C+Maharashtra%2C+India&checkin=&checkout=&guests=1">Pune</a> 
           . <a href="http://roomnhouse.com/search?utf8=✓&destination=Mumbai%2C+Maharashtra%2C+India&checkin=&checkout=&guests=1">Mumbai</a>
           . <a href="http://roomnhouse.com/search?utf8=%E2%9C%93&destination=Delhi%2C+India&checkin=&checkout=&guests=1">Delhi</a>
           . <a href="http://roomnhouse.com/search?utf8=%E2%9C%93&destination=Goa%2C+India&checkin=&checkout=&guests=1">Goa</a></h4>
@@ -57,57 +57,59 @@
               ["14 Guests",14],
               ["15 Guests",15],
               ["16+ Guests",16]]) %>
-      </div>
-      <div class="home_search_search"><input type="submit" value="Search" /></div>
+          </div>
+            <div class="home_search_search"><input type="submit" value="Search" /></div>
+          <% end %>
+          </div>
+        </div><!-- end of class="content_inner" -->
+      </div><!-- end of id="header" -->
     <% end %>
+      <% content_for :body do %>
+        <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 hidden-sm hidden-xs">
+            <div class="list-group">
+              <h3 class="list-group-item">Popular Destinations</h3>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=mumbai">Mumbai</a>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=delhi">Delhi</a>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=goa">Goa</a>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=pune">Pune</a>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=banglore">Banglore</a>
+              <a class="list-group-item" href="http://roomnhouse.com/search?destination=lonavala">Lonavala</a>
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-8">
+            <h3>Popular Apartments</h3>
+            <div class="row">
+              <% @offers.each do |offer| %>
+                <div class="col-lg-3 col-md-4 col-sm-3 col-xs-3">
+                <%= link_to offer, class: "thumbnail" do %>
+                  <div>
+                  <div class="price-box">
+                    <div class="price">
+                      <sup><i class="icon-inr"></i></sup>
+                      <%= offer.nightly_rate_amount  %>
+                      <sup>INR</sup>
+                    </div>
+                    <div class="price-info">per night</div>
+                  </div>
+                </div>
+                <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image" %>
+                <div class="caption">
+                  <div class="title"><%= offer.translations.first.title.titlecase %></div>
+                  <div class="location"><%= offer.city.titlecase %></div>
+                </div>
+              <% end %>
+              </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div><!-- end of class="content_inner" -->
-</div><!-- end of id="header" -->
-<% end %>
-<% content_for :body do %>
-  <div id="content">
-  <div class="content_inner">
-    <div class="content_container">
-      <div class="colm colm2 float-left align-center">
-        <h2>We know what matters most.</h2>
-        <p>Accomodation for every budget, in india.</p>
-        <img src="assets/img_home.png"/>
-      </div>
-      <div class="colm colm2 float-left align-left">
-        <iframe width="500" height="350" src="http://www.youtube.com/embed/BVoMf0VA6Fc?wmode=transparent" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    <div class="content_container white_bg">
-      <div class="colm colm2 float-left align-right br">
-        <h2>Discover Your Stay</h2>
-        <p>Find a space that meets all your needs.</p>
-        <ul class="naked bold big">
-          <li>Find a place to stay any where in india. <i class="icon-search icon-large icon-container"></i></li>
-          <li>Accomodation for every budget. <i class="icon-usd icon-large icon-container"></i></li>
-          <li>Verified Hosts <i class="icon-ok icon-large icon-container"></i></li>
-          <li>Seamless payments. <i class="icon-credit-card icon-large icon-container"></i></li>
-        </ul>
-        <a href="#header_home" class="button"><i class="icon-search icon-large icon-container-small"></i> Find Now</a>
-      </div>
-      <div class="colm colm2 float-left align-left">
-        <h2>List Your Space</h2>
-        <p>Start getting better bookings today.</p>
-        <ul class="naked bold big">
-          <li><i class="icon-container icon-large icon-thumbs-up-alt"></i>100% free to list</li>
-          <li><i class="icon-container icon-large icon-smile"></i>Obligation-free</li>
-          <li><i class="icon-container icon-large icon-credit-card"></i>Receive payments seamlessly</li>
-          <li><i class="icon-container icon-large icon-time"></i>Signing up is quick &amp; easy</li>
-        </ul>
-        <a href="http://www.roomnhouse.com/offers/new" class="button"><i class="icon-list icon-large icon-container-small"></i> List Now</a>
-      </div>
-    </div>
-  </div><!-- end of class="content_inner" -->
-</div><!-- end of id="content" -->
-
-</div>
-<% end %>
-<% content_for :js do %>
-<script>
+  <% end %>
+    <% content_for :js do %>
+      <script>
 $(function() {
   $( "#checkin" ).datepicker({
     minDate:"0",
@@ -129,5 +131,5 @@ $(function() {
   });
 });
 $("#geolocation").geocomplete();
-</script>
-<% end %>
+    </script>
+  <% end %>
