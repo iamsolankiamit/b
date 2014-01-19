@@ -5,20 +5,20 @@ class Photo < ActiveRecord::Base
     :styles => { 
     :slider1 => "720x550#",
     :slider2 => "720x550>",
-    :homeimage => "310x185#",
     :medium => "300x300#", 
     :searchimg => "235x185#", 
     :thumb => "100x100#", 
-    :sliderthumb => "85x56#"
+    :sliderthumb => "85x56#",
+    :home_image => "300x135#"
   }, 
   :convert_options => { 
     :medium => "-interlace Line -quality 60",
     :slider1 => "-interlace Line -quality 80",
     :slider2 => "-interlace Line -quality 80",
-    :homeimage => "-interlace Line -quality 60",
     :thumb => "-interlace Line -quality 60",
     :thumb => "-interlace Line -quality 80",
-    :sliderthumb => "-interlace Line -quality 60"
+    :sliderthumb => "-interlace Line -quality 60",
+    :home_image => "-interlace Line -quality 60"
   },
   :default_url => "/images/photo/:style/no-image.jpg",
   :storage => :s3,
