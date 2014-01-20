@@ -27,7 +27,6 @@ red:#e74c3c
     background-image: linear-gradient(#f5f2eb 60px, #f3f1f1 400px);
     font-family:OpenSans,Arial,Helvetica,Verdana,sans-serif;
     color:#666;
-    min-width:1100px;
     padding: 0;
   }
   /*misc*/
@@ -143,86 +142,6 @@ red:#e74c3c
     font-size:1.2em;	/*Default size:1em*/
   }
   /*Form elements*/
-  input, select, textarea {
-    margin:0; 
-    padding:0; 	
-    font-family:OpenSans,Arial,Helvetica,Verdana,sans-serif;
-    -moz-box-sizing:border-box; /* Firefox */
-    -webkit-box-sizing:border-box; /* Safari */
-    box-sizing:border-box;
-    outline:none;
-  }
-  /* -------------------------------------------------  input, textarea  ---------------------------------------------------  */
-  input[type="text"], textarea,input[type="search"],input[type="password"],input[type="tel"],input[type="email"]{ 
-    border-radius:5px; 
-    border: solid 1px #fff; 
-    padding:0.5em; 
-    box-shadow: inset 0 2px 3px rgba(0,0,0,0.2); 
-  }
-  /* ---------------------------------------------------- textarea ---------------------------------------------------------  */
-  textarea {
-    width:100%; 
-    min-height:10em;
-    border:1px solid whitesmoke;
-  }
-
-  /* ---------------------------------------------- input, textarea on focous ----------------------------------------------  */
-
-  input:active, textarea:active {
-    box-shadow: inset 0 1px 4px rgba(129,111,210,0.4);
-    border-color: #d6d6d6;
-  }
-  input[type="text"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="number"]:focus, textarea:focus, select:focus, button.ui-multiselect:focus, .input:focus {
-    outline: none;
-    box-shadow: inset 0 1px 4px rgba(129,111,210,0.4);
-    border-color: #d6d6d6;
-  }
-  /* ----------------------------------------------- submit / reset buttons  -------------------------------------------------  */
-  input[type="submit"], input[type="reset"], .button { 
-    padding:0.4em 0.7em; 
-    color:white;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-transition: all 200ms linear;	 /*Safari and Chrome*/
-    -moz-transition: all 200ms linear; 	     /*Firefox*/
-    -o-transition: all 200ms linear;		 /*opera*/
-    -ms-transition: all 200ms linear;
-    transition: all 200ms linear;
-    background-color: #16a6b6;
-    cursor: pointer;
-    text-align: center;
-    border:none;
-    text-transform:capitalize;
-    display: inline-block;
-    text-decoration:none;
-  }
-  /* -------------------------------------------- submit / reset buttons on hover -----------------------------------------------  */
-  input[type="submit"]:hover, input[type="reset"]:hover  , .button:hover{
-    background:#357ebd;
-    text-decoration:none;
-  }
-  /* -------------------------------------------- submit / reset buttons on active -----------------------------------------------  */
-  input[type="submit"]:active, input[type="reset"]:active, .button:active{
-    background:#e74c3c;
-  }
-  /*---------------------------------------- Select ----------------------------------------*/
-  select { 
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAtCAYAAADV2ImkAAAESklEQVRYw9VZz2sTQRTepJvUNDStUOmhYhHpQVCKFw89eal46NWLgh6KikiptgXrQRFB2ot6klqoWLA99lIvXgT1LxAPXrxI8WQa8oM2qUma+H1hX1jW/ZX9kaUDj93MvNn55r1v3ryZxCqVyk9FUcYUDyUWiynNZrP1pBweHirxeLz15G++q6raeq/Vau16PtlPfg8MDLgeU0XHhOKxcLBuF7XRaChHCrCXQenOqIoa5eBdAxwFFaTElSNW4p1yN2oKxY/SgusIsGwEbvQgxzQJHrC42UncWF7b+Uawq72FzIbhDdWtYk9PT2srdYgcJ8vl8ko2m50C2GvDw8PK4ODgC7zXu0oJUsHJWtA5tbe3t5rP56eEOnhfLhQKT/Ca7FocZjsTGAfens7lcquw7iTBptPpljcODg6U3d3dx/gGqtIPoVcPnRIuwJ6BZddKpdKl3t5ehUL6EDhpUq/XlWKxOMdFiDLrlx6qGzrYtI0hPV2H6ydoVeqKCK8JnpYG6LtItNJ9fX130PQ3FA5zMBvLnodVNwk2kUi0rcrCDFCyQN0EYvDETch79M2EwmGrOIr6C7DsO1htnEBTqdR/uvrfpAnHoaWxCK/iHV1S02j6E4iFZaGZAUbdxf39/Q1YdpyWJRXEG3pKyCmE79STJwWemYKlN1A3Cp2kbw7LYCYWuwKwbxANRjmhZDLZPiZJjDbzGMGSIpwUFp4C7ygAPImmLXznC57zvgDzwybWPY4Vfxku/Y32H/39/TGC4FmNwPm0yjv4PdkJCZ766NuEpUfQfHZoaMgfhzm4frVrFs5D5mQi4gW92CVLZnpecg3LRcf4aaQE6zTrtBaQ0IFidzaUNrGw0MfCk97iMK1sBEFgXDTVarUFWAYUj1hFGQEoXtMDdpMBut44zGZv5WI7Sxlp5Ce/NqWERUp5DvIRkgswWzwB+QWZ8GVhiaOGsgOKfEb9dbqUdOGkJJMzct7MivJdiSgMjaBFzDcl9G7XlRIGuJ3JZAqovyfXTMJjN64VPW0rr+Jbi/jm11ASeG0iZQw2j6S8ikX3gJYiYAIQC8sk9bQy1mGrLqLPfYBd7zhKWFmG9RbJDzOteQzI5wKooTJqGHX1i5L0ERoB7A5C4wzqt2UzCSxbs4mtTQB8hIGfg5dVuY102t7R5zvkBmTb63nPNlsTK1tFErQ9paXx/gygVX3iIzoyaeh9Qv0C6r75OZw6npqdVj9ALMHNi0ZrSk5MwSS2INMEG/qZju62S+S1cPUSWVgF4F5TXyiipZRrmMxiUPHb1b5oZ2Udp1cA7hbnSH2NMksAPRPkZqMGeDtDV60BYAOL8RWey6RL0Jcpqsv4287UXGwOm4ivH9CnGPn9sEtdxuds5BfaXO1i5ShvMDu6vRTQUZaOKCG5A4/1dheDoQLu9G8vyRucrrBCA8xjd4cZW7SUYGroKeh6yLQCAQz31rwCjqL8A3EpugOWCx0mAAAAAElFTkSuQmCC');
-    background-size:25%;
-    background-repeat:no-repeat;
-    background-position:right;
-    -webkit-appearance: none /* this is required for Webkit browsers */; 
-    -moz-appearance:    none /* this is not supported currently */;
-    appearance:         none;
-    background-color: #f8f8f8;
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.4);
-    min-width:40px; 
-    border: solid 1px #ccc; 
-    border-radius:5px; 
-  }
   .content_inner{
     min-height: 19px;
     width:80% !important;
@@ -325,12 +244,6 @@ padding-top: 56px;
     width: 485px;
     padding:12px;
   }
-  .home_inputs input, .home_inputs select{
-    -webkit-animation: slideOut 1.4s ease-in-out 0.3s backwards;
-    -moz-animation: slideOut 1.4s ease-in-out 0.3s backwards;
-    -o-animation: slideOut 1.4s ease-in-out 0.3s backwards;
-    -ms-animation: slideOut 1.4s ease-in-out 0.3s backwards;	
-  }
   .home_search{
     width:100%;
     text-align:center;
@@ -385,6 +298,7 @@ padding-top: 56px;
     background-image: -webkit-linear-gradient(rgba(0,0,0,0.7) 0%, transparent 60%);
     background-image: linear-gradient(rgba(0,0,0,0.7) 0%, transparent 60%);
   }
+
   .home_slider_image{
     background-image:image-url('slider1.jpg');
     background-repeat:no-repeat;
@@ -933,9 +847,16 @@ padding-top: 56px;
     padding:0;
   }
   /*Footer*/
-
-  #footer{
-    background:#000;
+body{
+min-height:100%;
+}
+  .footer{
+    background:#fff;
+    border-top: 1px solid #ddd;
+    padding-top:30px;
+    padding-bottom:50px;
+    margin-top:50px;
+    bottom:0;
   }
   #footer  p{
     color:#FFF;

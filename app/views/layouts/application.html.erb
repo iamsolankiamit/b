@@ -32,11 +32,11 @@
       <span class="icon-bar"></span>
     </button>
     <%= link_to "RoomnHouse", root_path, class: "logo navbar-brand" %>
-    <p class="navbar-text">Help line: 9022-543210</p>
   </div>
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="menubar">
     <ul class="nav navbar-nav navbar-right">
+    <li><a  class="disabled">Help line: 9022-543210</a></li>
       <% unless current_user.present? %>
         <li><%= link_to "Login", new_user_session_path  %></li>
       <li><%= link_to "Signup", new_user_registration_path  %></li>
@@ -66,9 +66,9 @@
       <div class="col-md-3 col-sm-6">
         <ul>
           <li><a href="http://www.roomnhouse.com/aboutus">About Us</a></li>
-          <li><a href="http://roomnhouse.com/floods">Floods</a></li>
-          <li><a href="http://smartrecruiters.com/roomnhouse">Jobs</a></li>
-          <li><a href="http://blog.roomnhouse.com">Blog</a></li>
+          <li><a href="http://smartrecruiters.com/roomnhouse">Careers</a></li>
+          <li><a href="http://roomnhouse.com/cancellation">Cancellation Policy</a></li>
+          <li><a href="http://roomnhouse.com/support">Contact support</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
@@ -76,17 +76,17 @@
           <li><a href="http://roomnhouse.com/whyhost">Why Host</a></li>
           <li><a href="http://roomnhouse.com/howtohost">How to Host</a></li>
           <li><a href="http://roomnhouse.com/how">How it works</a></li>
-          <li><a href="http://roomnhouse.com/support">Contact support</a></li>
-          <li><a href="http://roomnhouse.com/cancellation">Cancellation Policy</a></li>
+          <li><a href="http://roomnhouse.com/floods">For a Cause</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
         <ul>
-          <li class="twitter"><a href="https://twitter.com/RoomNHouse" rel="me"> Twitter</a></li>
-          <li class="facebook"><a href="https://www.facebook.com/roomnhouse" rel="me">facebook</a></li>
-          <li class="googlplus"><a href="https://plus.google.com/u/0/108260865872924249293/" rel="me">Google Plus</a></li>
-          <li class="youtube"><a href="http://youtube.com/roomnhouse">youtube</a></li>
-          <li class="instagram"><a href="https://instagram.com/roomnhouse">instagram</a></li>
+          <li><a href="http://blog.roomnhouse.com">Blog</a></li>
+          <li><a href="https://www.facebook.com/roomnhouse" rel="me">Facebook</a></li>
+          <li><a href="https://twitter.com/RoomNHouse" rel="me"> Twitter</a></li>
+          <li><a href="https://plus.google.com/u/0/108260865872924249293/" rel="me">Google Plus</a></li>
+          <li><a href="http://youtube.com/roomnhouse">Youtube</a></li>
+          <li><a href="https://instagram.com/roomnhouse">Instagram</a></li>
         </ul>
       </div>
       <div class="col-md-3 col-sm-6">
