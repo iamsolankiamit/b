@@ -9,7 +9,7 @@
         <div class="row">
           <% @offers.each do |offer|  %>
             <div class="col-sm-6">
-            <%= link_to offers_path(offer), class: "thumbnail" do  %>
+            <%= link_to offer_path(offer), class: "thumbnail" do  %>
               <div class="price-box">
               <div class="price">
                 <sup>1000<i class="icon-inr"></i></sup>
