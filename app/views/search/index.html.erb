@@ -1,68 +1,47 @@
 <% content_for :body do %>
-  <div id="content">
-  <div class="content_inner">
-    <div class="content_container">
-      <div class="sidebar">
-        <div class="search_map">
-          <style>
-.map_container{
-  width: 240px;
-  height: 240px;
-}
-.gmaps4rails_map {
-  width: 240px;
-  height: 240px;
-}
-          </style>
-          <%= gmaps4rails(@json) %>
-        </div><!-- end of class="search_map"-->
-      </div><!-- end of class="sidebar" -->
-      <div class="content_area">
-        <% if @offers && @offers.count > 0 %>
-          <ul class="list white_bg">
-          <% @offers.each do |offer| %>
-            <li>
-            <%= link_to offer_path(offer) do  %>
-            <div class="thumb_holder">
-              <div class="thumb">
-                <% if offer.photos.exists? %>
-                  <%= image_tag offer.photos.first.image.url(:medium), class: "img-thumbnail"%>
-              <% end %>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-5 hidden-xs" style="">
+      <div class="panel panel-default"><div id="map" style="height:400px;"></div></div>
+    </div>
+    <div class="col-sm-7">
+      <div class="">
+        <div class="row">
+          <% @offers.each do |offer|  %>
+            <div class="col-sm-6">
+            <%= link_to offers_path(offer), class: "thumbnail" do  %>
+              <div class="price-box">
+              <div class="price">
+                <sup>1000<i class="icon-inr"></i></sup>
+                <sup>INR</sup>
               </div>
+              <div class="price-info">Per night</div>
             </div>
-            <div class="info_holder disp-table-cell">
-              <div class="info_desc disp-table-cell">
-                <% if offer.translations(locale: "en").exists? %>
-                  <% offer.translations.each do |t| %>
-                  <% if !t.title.nil? %>
-                  <h2><%= t.title.titlecase %></h2>
-              <% end %>
-              <% end %>
-              <% end %>
-                <p> <i class="icon-map-marker icon-large icon-container"></i> City : <%= offer.city.capitalize %>, <%= offer.country_code_iso %>.</p>
-                <p><i class="icon-user icon-large icon-container"></i> Accommodation : <%= offer.max_guest_count %></p>
-                <p><i class="icon-building icon-large icon-container"></i> Property type :<%= offer.object_type.capitalize %></p>
-              </div>
-              <div class="info_price disp-table-cell"><p><i class="icon-inr icon-large icon-container"></i></p><p class="price"><%= offer.nightly_rate_amount %></p><p class="freq">per day</p></div>
+            <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive" %>
+            <div class="caption">
+              <div class="title"><%= offer.translations.first.title.humanize  %> </div>
+              <div class="location">Property type: <%= offer.object_type.titlecase %></div>
+              <div class="location"><%= offer.city.titlecase %></div>
             </div>
           <% end %>
-          </li>
+          </div>
         <% end %>
-        </ul><!-- end of class="list"-->
-      <% else %>
-          <div class="content_area paddall-10 white_bg">
-          <h2>No venues are listed in that location</h2>
-          <p>We are sorry, we currently don't have any listing in the location you searched for. It can be either because there are no host's in that area or all the apartments are not available right now.</p>
-          <h3>You may be interested in...</h3>
-          <p>It seems like no one has listed any apartments  in this location, if you are from here then why don't you turn your private empty space into a holiday rental and make some extra money from the extra space that you own! </p>
-          <p>It's completely free to create a listing on Room n House. Click the blue 'List your space' button on the top right of any page on the site. This will take you to a form where you can enter initial details. You can always change any of these details later. Your listing won't go live until you're completely ready, so go ahead and click 'Continue' to keep entering information.</p>
-          <p>What are you waiting for <%= link_to  "<i class='icon-list icon-large icon-container-small'></i>List Now".html_safe ,new_offer_path, class: "button"%></p>
-        </div><!-- end of class="content_area" -->
-      </div><!-- end of class="content_container" -->
-    <% end %>
-    </ul>
-  </div><!-- end of class="content_area" -->
-</div><!-- end of class="content_container" -->
-  </div><!-- end of class="content_inner" -->
-</div><!-- end of id="content" -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<% content_for :js do %>
+  <script>
+$(function() {
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+});
+</script>
 <% end %>

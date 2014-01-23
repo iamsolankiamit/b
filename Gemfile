@@ -5,6 +5,7 @@ gem 'rails', '3.2.12'
 gem 'event_cal', github: 'shin1ohno/event_cal'
 gem 'safe_yaml'
 gem "pg"
+gem "unf"
 gem 'wicked'
 gem "devise"
 gem "omniauth"
@@ -42,7 +43,7 @@ group :assets do
 end
 gem 'geocoder'
 gem 'gmaps4rails'
-gem 'font-awesome-rails', '~> 3.0'
+gem 'font-awesome-sass-rails'
 # gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "jquery-fileupload-rails"
 # Gems used only for assets and not required
@@ -52,10 +53,7 @@ gem "jquery-fileupload-rails"
 gem "activemerchant", path: "lib/active_merchant"
 group :test, :development do
   gem "rspec-rails"
-  gem "capybara"
   gem "factory_girl_rails"
-
-  gem "guard-rails"
 end
 # analytics
 gem 'mixpanel-ruby'

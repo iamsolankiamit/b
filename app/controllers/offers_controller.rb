@@ -11,9 +11,10 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
-    @json = "[
-    {'lng': #{@offer.confidential_lng},'lat': #{@offer.confidential_lat}, 'radius': 500}
-    ]"
+@hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
+  marker.lat offer.confidential_lat
+  marker.lng offer.confidential_lng
+end
   end
 
   def new
