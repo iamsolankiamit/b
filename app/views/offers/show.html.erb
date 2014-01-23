@@ -67,7 +67,8 @@
         <div class="row">
           <div class="col-sm-3"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium_center) , class: "thumbnail no-pad-border"%></div>
           <div class="col-sm-9" style="padding-top:25px;"><p><strong>Host: <%= @user.firstname.humanize %></strong></p></div>
-     </div></div>
+      </div>
+    </div>
         </div>
 
     </div>
@@ -118,14 +119,21 @@
           <div class="carousel slide" id="CarouselThumb">
             <div class="carousel-inner">
               <div class="item active car-thumb">
-                <% photos.each_with_index do |photo, index| %>
                   <div class="col-xs-2">
-                  <a data-target="#carousel-main" data-slide-to="<%= index  %>" href="#">
+                  <a data-target="#carousel-main" data-slide-to="1" href="#">
+                    <%= image_tag photos.first.image.url(:thumb), class: "img-responsive thumbnail" %>
+                  </a>
+                </div>
+              </div>
+              <% photos[1..-1].each_with_index do |photo, index| %>
+              <div class="item car-thumb">
+                  <div class="col-xs-2">
+                  <a data-target="#carousel-main" data-slide-to="<%= index %>" href="#">
                     <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail" %>
                   </a>
                 </div>
-              <% end %>
               </div>
+              <% end %>
             </div>
             <a class="left carousel-control" href="#CarouselThumb" data-slide="prev"><i class="icon-chevron-left"></i></a>
             <a class="right carousel-control" href="#CarouselThumb" data-slide="next"><i class="icon-chevron-right"></i></a>
@@ -271,7 +279,6 @@ circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%
       }
   });
   $('#CarouselThumb').carousel({
-    interval: 4000
   })
   $('.carousel .car-thumb').each(function(){
     var next = $(this).next();
