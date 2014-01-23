@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
     :styles => { 
     :medium_center => "300x300#",
     :medium => "300x300>", 
-    :thumb => "100x100>" 
+    :thumb => "100x100>",
+    :thumb2 => "100x100#"
   }, 
   :default_url => "/assets/avatar/no-avatar.jpg",
   :storage => :s3,

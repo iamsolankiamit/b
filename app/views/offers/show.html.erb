@@ -2,211 +2,291 @@
   <%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
 <% end %>
 <% content_for :meta_description do %>
- "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
+  "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
 <% end %>
 <% content_for :body do %>
-  <div id="content">
-  <div class="content_inner">
-    <div class="content_container transp">
-      <% if @offer.translations.exists? %>
-        <% if !@offer.translations.first.title.nil? %>
-          <h1 title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
-    <% end %>
-    <% end %>
-      <h6><% if !@offer.address_addon.nil? %>
-        <%= @offer.address_addon.titlecase %>
-      <% end %>, 
-        <%= @offer.city.titlecase  %>,
-        <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %>
-      </h6>
-    </div>
-    <div class="content_container white_bg">
-      <div class="content_area paddleft">
-        <div class="post_image" >
-          <% photos = @offer.photos%>
-          <% if !photos.nil? %>
-            <%if !photos.first.nil? %>
-            <%= image_tag photos.first.image.url(:slider2) ,id: "main" %>
-          <div class="slider_container">
-            <div class="slide-left-arrow" onclick="move_slider(2)"><i class="icon-arrow-left icon-2x"></i></div>
-            <div class="slider-view">
-              <div class="slide-slider" id="slide-slider" style="width:<%= 100*photos.count  %>px">
-                <div class="img-holder current" id="<%= photos.first.id  %>"> <%= image_tag photos.first.image.url(:thumb), onclick: "slider_slide('#{photos.first.image.url(:slider2)}','#{photos.shift.id}')"  %>
+  <style>
+.icon-ok {color:#47a447;}
+.icon-remove {color:#d2322d;}
+.prop-details{font-size:12px;}
+.overview-cover{border-top: 1px solid #ddd; border-bottom:1px solid #ddd;margin:10px -15px; background:#f3f1f1;}
+.overview{padding:20px 0px;border-right:1px solid #ddd;}
+.overview:last-child{border-right:none;}
+.overview-heading , .overview-details { text-align:center;}
+.overview-details { color:#3a87ad; font-weight:600;font-size:16px;}
+#CarouselThumb .carousel-inner .active.left { left: -16.666666666666664%; }
+#CarouselThumb .carousel-inner .next        { left:  16.666666666666664%; }
+#CarouselThumb .carousel-inner .active.right { left: 16.666666666666664%; }
+#CarouselThumb .carousel-inner .prev        { left: -16.666666666666664%; }
+.carousel-control.left,.carousel-control.right {background-image:none; top:50%;}
+.no-margin{margin:0px;}
+.price-display{font-size:20px;color:#47a447; vertical-align:bottom;line-height:initial;}
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-push-8">
+      <div class="panel panel-default">
+        <div class="container">
+          <div class="row" style="padding-top:15px;">
+            <div class="col-sm-7">
+              <span class="price-display"><%= @offer.currency %> <span id="price1"><%= @offer.nightly_rate_amount %></span> <i class="icon-inr"></i></span>
+            </div>
+            <div class="col-sm-5">
+              <div class="form-group"><select id="Price_view_selector" class="form-control" name="">
+                  <option value="1" selected="true">Per night</option>
+                  <option value="2">Per week</option>
+                  <option value="3">Per month</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <%= form_tag "/bookings", :method => 'post',class: "",role: "form", id: 'search_form' do %>
+                <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+              <div class="form-group">
+                <label for="checkin">Check-in</label>
+                <%= text_field_tag :checkin, params[:checkin],required: "required", class: "form-control", placeholder: "Select Date"%>
               </div>
-                <% photos.each do |photo|%>
-                  <div class="img-holder" id="<%= photo.id  %>">
-                  <%= image_tag photo.image.url(:thumb), onclick: "slider_slide('#{photo.image.url(:slider2)}','#{photo.id}')"  %>
+              <div class="form-group">
+                <label for="checkout">Check-out</label>
+                <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "Select Date"%>
+              </div>
+              <div class="form-group">
+                <label for="guests">Guests</label>
+                <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),class: "form-control",required: "required", placeholder: "Guests" %> 
+              </div>
+              <div class="form-group"><input type="submit" class=" btn btn-danger btn-lg btn-block" value="Book Now" /></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <style> .no-pad-border{padding:0px; border:none;}</style>
+      <div class="panel panel-default">
+        <div class="container">
+        <div class="row">
+          <div class="col-sm-3"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium_center) , class: "thumbnail no-pad-border"%></div>
+          <div class="col-sm-9" style="padding-top:25px;"><p><strong>Host: <%= @user.firstname.humanize %></strong></p></div>
+     </div></div>
+        </div>
+
+    </div>
+    <div class="col-sm-8 col-sm-pull-4">
+      <div class="panel panel-default">
+        <div class="alert alert-info no-margin"><strong><i class="icon-phone"></i> Need help in booking? Talk to us! +91-9022-543210</strong></div>
+        <div class="panel-body">
+          <% if @offer.translations.exists? %>
+            <% if !@offer.translations.first.title.nil? %>
+            <h1 title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
+        <% end %>
+        <% end %>
+          <h6><% if !@offer.address_addon.nil? %>
+            <%= @offer.address_addon.titlecase %>
+          <% end %>, 
+            <%= @offer.city.titlecase  %>,
+            <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %>
+          </h6>
+          <div id="carousel-main" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <% photos = @offer.photos%>
+              <% if !photos.nil? %>
+                <%if !photos.first.nil? %>
+                <div class="item active">
+                <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", style: "width:100%" %>
+                <div class="carousel-caption">
+                </div>
+              </div>
+            <% end %>
+              <% photos[1..-1].each do |photo| %>
+                <div class="item">
+                <%= image_tag photo.image.url(:slider2) ,class: "img-responsive" , style: "width:100%"%>
+                <div class="carousel-caption">
+                </div>
+              </div>
+            <% end %>
+            <% end %>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-main" data-slide="prev">
+              <span class="icon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-main" data-slide="next">
+              <span class="icon-chevron-right"></span>
+            </a>
+          </div>
+          <div class="carousel slide" id="CarouselThumb">
+            <div class="carousel-inner">
+              <div class="item active car-thumb">
+                <% photos.each_with_index do |photo, index| %>
+                  <div class="col-xs-2">
+                  <a data-target="#carousel-main" data-slide-to="<%= index  %>" href="#">
+                    <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail" %>
+                  </a>
                 </div>
               <% end %>
               </div>
             </div>
-            <div class="slide-right-arrow" onclick="move_slider(1)"><i class="icon-arrow-right icon-2x"></i></div> 
+            <a class="left carousel-control" href="#CarouselThumb" data-slide="prev"><i class="icon-chevron-left"></i></a>
+            <a class="right carousel-control" href="#CarouselThumb" data-slide="next"><i class="icon-chevron-right"></i></a>
+          </div> <!--End photo slider-->
+          <div class="overview-cover">
+          <div class="container">
+            <div class="row">
+              <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Accommodates</div> <div class="overview-details"><%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count  %></div></div>
+              <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bedrooms </div><div class="overview-details"><%= @offer.bedroom_count.nil? ? 1 : @offer.bedroom_count %></div></div>
+              <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bathrooms </div><div class="overview-details"><%= @offer.bed_count.nil? ? 1 : @offer.bed_count %></div></div>
+              <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Size </div><div class="overview-details"><%= @offer.size.nil? ? "Nil" : @offer.size %> <%= @offer.size_type.nil? ? "Sq. ft." : @offer.size_type.humanize %></div></div>
+            </div>
+            </div>
           </div>
-        <% end %>
-        <% end %>
-        </div>
-        <div class="post_desc">
-          <h2>Description</h2>
+          <div class="property-overview">
+<span class=""><strong>Property Type:</strong> <%= @offer.object_type.humanize  %></span>
+
+          <span class="pull-right text-right"><strong>Property id:</strong> <%= @offer.id  %></span>
+</div>
+<div class="row">
+<div class="col-sm-8">
+           <div class="headings-offer">Description:</div>
           <% if @offer.translations.exists? %>
             <article><p><%= simple_format(@offer.translations.first.description) %></p></article>
-          <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
         <% end %>
+         <div class="headings-offer">House Rules:</div>
+          <% if @offer.translations.exists? %>
+            <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
+        <% end %>
+</div>
+<div class="col-sm-4">
+  <div class="headings-offer">Property Details:</div>
+  <ul class="prop-details">
+    <li>Min Stay: <%= @offer.min_nights %> nights</li>
+    <li>Max Stay: <%= @offer.max_nights %>nights</li>
+    <li>Rates based on: <%= @offer.max_guest_count %> Guests</li>
+    <li>Extra Guest pays <%= @offer.extra_guest_charge_amount %> INR/ per night</li>
+    <li>Check In/Check Out: <%= @offer.checkin_after %>/<%= @offer.checkout_before %></li>
+    <li>Cleaning Fees: <%= @offer.service_charge_amount %></li>
+    <li>Cancellation Policy: <%= @offer.cancelation_policy %></li>
+  </ul>
+  <div class="headings-offer">Amenities:</div>
           <% if @offer.amenity %>
             <% @amenity = @offer.amenity %>
-          <div class="no-shadow dh-box">
-            <div class="dh-header"><h5 class="dh-heading"><i class="icon-archive icon-container"></i>Amenities</h5></div>
-            <div class="dh-content">
-              <ul class="columns-3">
-                <%= "<li><i class='icon-asterisk'></i> Air Conditioning</li>".html_safe if @amenity.air_conditioning %>
-                <%= "<li><i class='icon-smile'></i> Baby Cot</li>".html_safe if @amenity.baby_cot %>
-                <%= "<li><i class='icon-food'></i> Breakfast</li>".html_safe if @amenity.breakfast %>
-                <%= "<li><i class='icon-laptop'></i> Cable TV</li>".html_safe if @amenity.cable_tv %>
-                <%= "<li><i class='icon-male'></i> Doorman</li>".html_safe if @amenity.doorman %>
-                <%= "<li><i class='icon-fire-extinguisher'></i> Dryer</li>".html_safe if @amenity.dryer %>
-                <%= "<li><i class='icon-building'></i> Elevator in Building</li>".html_safe if @amenity.elevator_in_building %>
-                <%= "<li><i class='icon-smile'></i> Kids Friendly</li>".html_safe if @amenity.kids_friendly %>
-                <%= "<li><i class='icon-signal'></i> Wireless Internet</li>".html_safe if @amenity.wireless_internet %>
-                <%= "<li><i class='icon-money'></i> Free Parking on Premise</li>".html_safe if @amenity.free_parking_on_premise %>
-                <%= "<li><i class='icon-legal'></i> Gym</li>".html_safe if @amenity.gym %>
-                <%= "<li><i class='icon-h-sign'></i> Handicap Accessible</li>".html_safe if @amenity.handicap_accessible %>
-                <%= "<li><i class='icon-fire'></i> Heating</li>".html_safe if @amenity.heating %>
-                <%= "<li><i class='icon-ok'></i> Hot Tub</li>".html_safe if @amenity.hot_tub %>
-                <%= "<li><i class='icon-fire'></i> Indoor Fireplace</li>".html_safe if @amenity.indoor_fireplace %>
-                <%= "<li><i class='icon-phone'></i> Intercom</li>".html_safe if @amenity.intercom %>
-                <%= "<li><i class='icon-signal'></i> Internet</li>".html_safe if @amenity.internet %>
-                <%= "<li><i class='icon-food'></i> Kitchen</li>".html_safe if @amenity.kitchen %>
-                <%= "<li><i class='icon-lock'></i> Lockable Room</li>".html_safe if @amenity.lockable_room %>
-                <%= "<li><i class='icon-ok'></i> Pets Allowed</li>".html_safe if @amenity.pets_allowed %>
-                <%= "<li><i class='icon-ok'></i> Pool</li>".html_safe if @amenity.pool %>
-                <%= "<li><i class='icon-ok'></i> Sauna</li>".html_safe if @amenity.sauna %>
-                <%= "<li><i class='icon-ok'></i> Smoking Allowed</li>".html_safe if @amenity.smoking_allowed %>
-                <%= "<li><i class='icon-group'></i> Suitable for Events</li>".html_safe if @amenity.suitable_for_events %>
-                <%= "<li><i class='icon-ok'></i> Towels</li>".html_safe if @amenity.towels %>
-                <%= "<li><i class='icon-desktop'></i> TV</li>".html_safe if @amenity.tv %>
-                <%= "<li><i class='icon-ok'></i> Washer</li>".html_safe if @amenity.washer %> 
-              </ul>
-            </div>
-          </div>
-        <% end %>
-          <table class="table  table-bordered " width="95%">
-            <thead>
-              <tr role="row">
-                <th rowspan="1" colspan="1" style="width: 50%;"><i class="icon-credit-card  icon-container"></i>Pricing</th>
-                <th rowspan="1" colspan="1" style="width: 50%;"> Conditions</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td class="txt" width="50%"><strong>Nightly:</strong> <i class="icon-inr icon-container-small"></i><%= @offer.nightly_rate_amount%></td>
-              <td class="txt" colspan=""><strong>Minimum Nights</strong>:<%= @offer.min_nights  %> </td>
-            </tr>
-            <tr>
-              <td class="txt" width="50%"><strong>Weekly:</strong> <%= @offer.weekly_rate_amount %> <%= @offer.currency %></td>
-              <td class="txt" colspan=""><strong>Maximum Nights:</strong> <%= @offer.max_nights %></td>
-            </tr>
-            <tr>
-              <td class="txt" width="50%"><strong>Monthly:</strong> <%= @offer.monthly_rate_amount %> <%= @offer.currency %></td>
-              <td class="txt" colspan=""><strong>Check-in after:</strong> <%= @offer.checkin_after %></td>
-            </tr>
-            <tr>
-              <td class="txt" width="50%"><strong>Cleaning fee:</strong> <%= @offer.service_charge_amount  %></td>
-              <td class="txt" colspan=""><strong>Check-out before:</strong> <%= @offer.checkout_before %></td>
-            </tr>
-            <tr>
-              <td class="txt" width="50%"><strong>Fee for extra guests: </strong><%= @offer.extra_guest_charge_amount  %> after <%= @offer.included_guest_count  %> guests</td>
-              <td class="txt" colspan=""><strong>Cancellation policy:</strong> <%= @offer.cancelation_policy.titlecase %></td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="dh-box">
-            <div class="dh-header"><h5 class="dh-heading"><i class="icon-check icon-container"></i>House Rules</h5></div>
-            <div class="dh-content">
-              <% if @offer.translations.exists? %>
-                <article><p><%= simple_format(@offer.translations.first.rules) %></p></article>
-            <% end %>
-            </div>
-          </div>
-          <div class="dh-box">
-            <div class="dh-header"><h5 class="dh-heading"><i class="icon-calendar icon-container"></i>Calendar</h5></div>
-            <div class="dh-content">
-              <div id="calendar"></div>
-            </div>
-          </div>
-        </div><!-- end of class="post_desc" -->
-      </div><!-- end of class="content_area" -->
-      <div class="sidebar">
-        <div class="sidebar_container">
-          <p class="low">
-          <i class="icon-key"></i> Rental Price :<i class="icon-inr icon-large icon-container"></i>
-          <span class="price"><%= @offer.nightly_rate_amount  %></span> <span class="freq">per day</span>
-          </p>
-          <div class="booknow">
-            <%= form_tag "/bookings", :method => 'post', id: 'search_form' do %>
-              <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
-            <label for="checkin"><i class="icon-calendar"></i> check in</label>
-            <%= text_field_tag :checkin, params[:checkin],required: "required", placeholder: "MM/DD/YYYY"%>
-            <label for="checkout"><i class="icon-calendar"></i> check out</label>
-            <%= text_field_tag :checkout, params[:checkout],required: "required", placeholder: "MM/DD/YYYY"%>
-            <label for="guest"><i class="icon-user"></i> Guest </label>
-            <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],2),required: "required", placeholder: "Guests" %> 
-            <input type="submit" value="Book Now" />
-          </div>
-          <p><i class="icon-certificate icon-container"></i><strong>Property id:</strong> <%= @offer.id  %></p>
-          <p><i class="icon-building icon-container"></i><strong>Property Type:</strong> <%= @offer.object_type.humanize  %></p>
-          <p><i class="icon-map-marker icon-container"></i><strong>Place:</strong> <%= @offer.city  %></p>
-          <div class="dh-box">
-            <div class="dh-header"><h5><i class="icon-list icon-container"></i>Details</h5></div>
-            <div class="dh-content">
-              <table class="table  table-bordered " width="100%">
-                <thead>
-                </thead>
-                <tbody>
-                <tr><td class="txt" width="	">Accommodation</td><td  width="" class="txt"><%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count  %></td></tr>
-                <tr><td class="txt" width="50%">Bedrooms</td><td class="txt" colspan=""><%= @offer.bedroom_count.nil? ? "" : @offer.bedroom_count %></td></tr>
-                <tr><td class="txt" width="50%">Beds</td><td class="txt" colspan=""> <%= @offer.bed_count.nil? ? "" : @offer.bed_count %></td></tr>
-                <tr><td class="txt" width="50%">Bathroom</td><td class="txt" colspan=""> <%= @offer.bathroom_count.nil? ? "" : @offer.bathroom_count %></td></tr>
-                <tr><td class="txt" width="50%">size</td><td class="txt" colspan=""> <%= @offer.size.nil? ? "" : @offer.size %> <%= @offer.size_type.nil? ? "" : @offer.size_type.humanize %></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="host align-center">
-            <div class="host-img ">
-              <h5><i class="icon-home icon-container-small"></i>Host</h5>
-              <% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium)%>
-            </div>
-            <p><strong><%= @user.firstname.humanize %></strong></p>
-          </div>
-          <div class="dh-box promise">
-            <div class="dh-header"><h5 class="align-center"><i class="icon-bullhorn icon-container-small"></i>OUR PROMISE</h5></div>
-            <div class="dh-content">
-              <p><i class="icon-phone icon-large icon-container-small"></i>Every host is verified on phone</p>
-              <p><i class="icon-shield icon-large icon-container-small"></i>Quality assured accommodation</p>
-              <p><i class="icon-lock icon-large icon-container-small"></i>Secured payment through SSL</p>
-            </div>
-          </div>
-          <div>
-            <style>
-.map_container{
-  width: 280px;
-  height: 260px;
+            <ul class="prop-details">
+                <li><i class="<%= @amenity.air_conditioning ? 'icon-ok' : 'icon-remove' %>"></i>Air Conditioning </li>
+                <li><i class="<%= @amenity.baby_cot ? 'icon-ok' : 'icon-remove' %>"></i>Baby Cot</li>
+                <li><i class="<%= @amenity.breakfast ? 'icon-ok' : 'icon-remove' %>"></i>Breakfast</li>
+                <li><i class="<%= @amenity.cable_tv ? 'icon-ok' : 'icon-remove' %>"></i>Cable TV</li>
+                <li><i class="<%= @amenity.doorman ? 'icon-ok' : 'icon-remove' %>"></i>Doorman</li>
+                <li><i class="<%= @amenity.dryer ? 'icon-ok' : 'icon-remove' %>"></i>Dryer</li>
+                <li><i class="<%= @amenity.elevator_in_building ? 'icon-ok' : 'icon-remove' %>"></i>Elevator in Building</li>
+                <li><i class="<%= @amenity.kids_friendly ? 'icon-ok' : 'icon-remove' %>"></i>Kids Friendly</li>
+                <li><i class="<%= @amenity.wireless_internet ? 'icon-ok' : 'icon-remove' %>"></i>Wireless Internet</li>
+                <li><i class="<%= @amenity.free_parking_on_premise ? 'icon-ok' : 'icon-remove' %>"></i>Free Parking on Premise</li>
+                <li><i class="<%= @amenity.gym ? 'icon-ok' : 'icon-remove' %>"></i>Gym</li>
+                <li><i class="<%= @amenity.handicap_accessible ? 'icon-ok' : 'icon-remove' %>"></i>Handicap Accessible</li>
+                <li><i class="<%= @amenity.heating ? 'icon-ok' : 'icon-remove' %>"></i>Heating</li>
+                <li><i class="<%= @amenity.hot_tub ? 'icon-ok' : 'icon-remove' %>"></i>Hot Tub</li>
+                <li><i class="<%= @amenity.indoor_fireplace ? 'icon-ok' : 'icon-remove' %>"></i>Indoor Fireplace</li>
+                <li><i class="<%= @amenity.intercom ? 'icon-ok' : 'icon-remove' %>"></i>Intercom</li>
+                <li><i class="<%= @amenity.internet ? 'icon-ok' : 'icon-remove' %>"></i>Internet</li>
+                <li><i class="<%= @amenity.kitchen ? 'icon-ok' : 'icon-remove' %>"></i>Kitchen</li>
+                <li><i class="<%= @amenity.lockable_room ? 'icon-ok' : 'icon-remove' %>"></i>Lockable Room</li>
+                <li><i class="<%= @amenity.pets_allowed ? 'icon-ok' : 'icon-remove' %>"></i>Pets Allowed</li>
+                <li><i class="<%= @amenity.pool ? 'icon-ok' : 'icon-remove' %>"></i>Pool</li>
+                <li><i class="<%= @amenity.sauna ? 'icon-ok' : 'icon-remove' %>"></i>Sauna</li>
+                <li><i class="<%= @amenity.smoking_allowed ? 'icon-ok' : 'icon-remove' %>"></i>Smoking Allowed</li>
+                <li><i class="<%= @amenity.suitable_for_events ? 'icon-ok' : 'icon-remove' %>"></i>Suitable for Events</li>
+                <li><i class="<%= @amenity.towels ? 'icon-ok' : 'icon-remove' %>"></i>Towels</li>
+                <li><i class="<%= @amenity.tv ? 'icon-ok' : 'icon-remove' %>"></i>TV</li>
+                <li><i class="<%= @amenity.washer ? 'icon-ok' : 'icon-remove' %>"></i>Washer</li> 
+</ul>
+              <% end %>
+ 
+</div>
+</div>
+          <style>
+.headings-offer{
+  font-weight:600;
+  font-size:16px;
+  color:#444;
+  padding-top:5px;
+  padding-bottom:15px;
 }
-.gmaps4rails_map {
-  width: 250px;
-  height: 260px;
-} </style>
-            <%= gmaps({ "circles" => { "data" => @json } }) %>
-          </div>
-        <% end %>
-        </div><!-- end of class="sidebar_container" -->
-      </div><!-- end of class="content_inner" -->
-    </div><!-- end of id="content" -->
-  </div><!-- end of id="content" -->
-</div><!-- end of id="content" -->
+article p {
+  line-height: 22px;
+  font-size: 14px;
+  font-weight:normal;
+  text-align:justify;
+}
+.property-overview {
+  padding: 15px 15px;
+  border-bottom: 1px solid #ddd;
+  margin: -10px -15px;
+  margin-bottom:10px;
+}
+ </style>
+
+<div class="col-sm-12">
+  <div class="headings-offer">Map</div>
+  <div id="map" style='height: 400px;'></div>
+</div>
+<div class="col-sm-12">
+  <div class="headings-offer">Calendar</div>
+              <div id="calendar"></div>
+</div>
+        </div> <!-- end div.panel-body-->
+      </div><!-- end div.panel-->
+    </div><!-- end div.col-sm-9-->
+  </div><!-- end div.row-->
+</div><!--end div.container -->
+<!-- end of id="content" -->
+<% end %>
 <% end %>
 <% content_for :js do %>
   <script>
+
 $(function() {
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%= @offer.confidential_lng  %>, radius: 500}]);
+    handler.bounds.extendWith(circles);
+  handler.fitMapToBounds();
+});
+    var nightly = <%= @offer.nightly_rate_amount.to_s  %>;
+    var weekly = <%= @offer.weekly_rate_amount.nil? ? @offer.nightly_rate_amount*7 : @offer.weekly_rate_amount.to_s  %>;
+    var monthly = <%= @offer.monthly_rate_amount.nil? ? @offer.nightly_rate_amount*30 : @offer.monthly_rate_amount.to_s %>;
+ 
+  $('#Price_view_selector').on('change', function() {
+   if(this.value == 1)
+      {
+      $('#price1').text(nightly);
+      }
+    else if(this.value == 2)
+      {
+      $('#price1').text(weekly);
+      }
+    else if(this.value == 3)
+      {
+      $('#price1').text(monthly);
+      }
+  });
+  $('#CarouselThumb').carousel({
+    interval: 4000
+  })
+  $('.carousel .car-thumb').each(function(){
+    var next = $(this).next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+    for (var i=0;i<4;i++) {
+      next=next.next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
+      next.children(':first-child').clone().appendTo($(this));
+    }
+  });
   $( "#checkin" ).datepicker({
     minDate:"0",
     defaultDate: "+1w",

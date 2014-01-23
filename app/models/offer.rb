@@ -80,15 +80,14 @@ class Offer < ActiveRecord::Base
 
 
   validates_numericality_of :nightly_rate_amount
-  geocoded_by :gmaps4rails_address , :latitude => :confidential_lat, :longitude => :confidential_lng
+  geocoded_by :full_street_address , :latitude => :confidential_lat, :longitude => :confidential_lng
 
   after_validation :geocode
-  acts_as_gmappable :process_geocoding => false, :lat => "confidential_lat", :lng => "confidential_lng"
 
   def complete_address
     "#{street_no}, #{street}, #{address_addon}, #{city}"
   end
-  def gmaps4rails_address
+  def full_street_address
     [street_no, street,address_addon, city, Country.where(:code => self.country_code_iso).first.name].compact.join(', ')
   end
   def set_contact
