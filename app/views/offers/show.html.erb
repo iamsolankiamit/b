@@ -14,10 +14,10 @@
 .overview:last-child{border-right:none;}
 .overview-heading , .overview-details { text-align:center;}
 .overview-details { color:#3a87ad; font-weight:600;font-size:16px;}
-#CarouselThumb .carousel-inner .active.left { left: -16.666666666666664%; }
-#CarouselThumb .carousel-inner .next        { left:  16.666666666666664%; }
-#CarouselThumb .carousel-inner .active.right { left: 16.666666666666664%; }
-#CarouselThumb .carousel-inner .prev        { left: -16.666666666666664%; }
+#CarouselThumb .carousel-inner .active.left { left: -11.1111110982%; }
+#CarouselThumb .carousel-inner .next        { left:  11.1111110982%; }
+#CarouselThumb .carousel-inner .active.right { left: 11.1111110982%; }
+#CarouselThumb .carousel-inner .prev        { left: -11.1111110982%; }
 .carousel-control.left,.carousel-control.right {background-image:none; top:50%;}
 .no-margin{margin:0px;}
 .price-display{font-size:20px;color:#47a447; vertical-align:bottom;line-height:initial;}
@@ -278,22 +278,26 @@ circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%
       $('#price1').text(monthly);
       }
   });
-  $('#CarouselThumb').carousel({
-  })
-  $('.carousel .car-thumb').each(function(){
-    var next = $(this).next();
+$('#CarouselThumb').carousel({
+  interval: 9999
+})
+
+$('.carousel .car-thumb').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  for (var i=0;i<4;i++) {
+    next=next.next();
     if (!next.length) {
       next = $(this).siblings(':first');
     }
+    
     next.children(':first-child').clone().appendTo($(this));
-    for (var i=0;i<4;i++) {
-      next=next.next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-      next.children(':first-child').clone().appendTo($(this));
-    }
-  });
+  }
+});
   $( "#checkin" ).datepicker({
     minDate:"0",
     defaultDate: "+1w",

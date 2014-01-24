@@ -12,7 +12,7 @@
             <%= link_to offer_path(offer), class: "thumbnail" do  %>
               <div class="price-box">
               <div class="price">
-                <sup>1000<i class="icon-inr"></i></sup>
+                <sup><%= offer.nightly_rate_amount  %><i class="icon-inr"></i></sup>
                 <sup>INR</sup>
               </div>
               <div class="price-info">Per night</div>
