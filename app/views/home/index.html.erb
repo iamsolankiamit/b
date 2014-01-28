@@ -72,30 +72,6 @@
     </div>
 
     <div class="col-lg-9 col-md-8">
-      <h3>Popular Apartments</h3>
-      <div class="row">
-        <% @offers.each do |offer| %>
-          <div class="col-lg-3 col-sm-4 col-xs-6">
-          <%= link_to offer, class: "thumbnail" do %>
-            <div>
-            <div class="price-box">
-              <div class="price">
-                <sup><i class="icon-inr"></i></sup>
-                <%= offer.nightly_rate_amount  %>
-                <sup>INR</sup>
-              </div>
-              <div class="price-info">per night</div>
-            </div>
-          </div>
-          <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-          <div class="caption">
-            <div class="title"><%= offer.translations.first.title.titlecase %></div>
-            <div class="location"><%= offer.city.titlecase %></div>
-          </div>
-        <% end %>
-        </div>
-      <% end %>
-      </div>
       <% if session[:recently_viewed_offers] %>
         <h3>My Viewed Rooms</h3>
       <div class="row">
@@ -122,6 +98,31 @@
       <% end %>
       </div>
     <% end %>
+
+      <h3>Popular Apartments</h3>
+      <div class="row">
+        <% @offers.each do |offer| %>
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to offer, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= offer.nightly_rate_amount  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per night</div>
+            </div>
+          </div>
+          <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title"><%= offer.translations.first.title.titlecase %></div>
+            <div class="location"><%= offer.city.titlecase %></div>
+          </div>
+        <% end %>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>
