@@ -35,7 +35,7 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="menubar">
     <ul class="nav navbar-nav navbar-right">
-    <li><a  class="disabled">Help line: 9022-543210</a></li>
+      <li><a  class="disabled">Help line: 9022-543210</a></li>
       <% unless current_user.present? %>
         <li><%= link_to "Login", new_user_session_path  %></li>
       <li><%= link_to "Signup", new_user_registration_path  %></li>
@@ -48,8 +48,8 @@
         <li class="divider"></li>
         <li><%= link_to "<i class='icon-container-small icon-off'></i>logout".html_safe, destroy_user_session_path %></li>
       </ul>
-    <% end %>
       </li>
+    <% end %>
       <li><%= link_to "List Your Place", new_offer_path, class: "btn"  %></li>
     </ul>
   </div><!-- /.navbar-collapse -->
