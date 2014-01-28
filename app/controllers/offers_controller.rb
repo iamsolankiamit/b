@@ -12,6 +12,9 @@ class OffersController < ApplicationController
   def show
     @offer = Offer.find(params[:id])
     session[:passthru] = offer_path(@offer)
+    session[:recently_viewed_offers] ||= []
+    session[:recently_viewed_offers] << @offer.id
+    session[:recently_viewed_offers].delete_at(0) if session[:recently_viewed_offers].size >= 4
 @hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
   marker.lat offer.confidential_lat
   marker.lng offer.confidential_lng
