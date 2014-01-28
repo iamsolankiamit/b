@@ -11,6 +11,7 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    session[:passthru] = offer_path(@offer)
 @hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
   marker.lat offer.confidential_lat
   marker.lng offer.confidential_lng
