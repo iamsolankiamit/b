@@ -11,7 +11,7 @@
           <div class="form-group">
           <div class="col-sm-12"><label for="geolocation">Destination</label></div>
           <div class="col-sm-12"><%= search_field_tag :destination, params[:search],autofocus: true,
-            placeholder: "Where do you want to go?", autocomplete: false, required: "required", 
+            placeholder: "Where do you want to go?", autocomplete: "off", required: "required", 
             id: "geolocation", class: "required form-control" %></div>
         </div>
         <div class="form-group">
