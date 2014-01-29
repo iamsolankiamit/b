@@ -41,7 +41,6 @@ class BookingsController < ApplicationController
           @booking.transaction_number = notification.invoice
           @trip = Trip.find(@booking.trip_id)
           UserMailer.trip_registered(current_user,@trip,@booking).deliver
-          @booking.to_xml(current_user.id,@trip.host_id)
           redirect_to @trip
         else
           @booking.status = "failed"
