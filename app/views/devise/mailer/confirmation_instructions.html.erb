@@ -1,29 +1,35 @@
 <div style="background-color: #f2f2f2; width:750px; display: block; font-family: 'Open Sans',Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif">
   <div class="header" style="width:100%;position:relative;">
-    <%= image_tag "logo.png", width: "271" , style: "display:block;padding:15px;"  %>
-    <div style="font-size:19px; line-height:16px; background:url(<%= asset_path("phoneicon.png")%>) no-repeat 8px 8px; color:white; padding:8px 8px 8px 29px; position: absolute; width: 125px; height: 16px; top: 0px; right: 15px; background-color: #29abe2;">
-      9022-543210
-    </div>
+    <table>
+      <tr>
+        <td width="595"><img src="images/logo.png" width="271" style="display:block;padding:15px;" /></td>
+        <td width="155" style="vertical-align: top; text-align: right;">
+          <div style="font-size:19px; line-height:16px; background:url(<%= asset_path("phoneicon.png")%>) no-repeat 8px 8px; color:white; padding:8px 8px 8px 29px; position: absolute;  height: 16px; top: 0px; right: 15px; background-color: #29abe2;">
+            +91-9022-543210
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div style="width:100%;">
-    <div class="welcome_greetings" style="padding:8px;font-family:'Open Sans Light'; text-align:center; font-size:30px;">
-      <span style="color:#888888;"> WELCOME </span>
-      <span style="color: #29abe2;"><%= @email  %>  </span>
+    <div class="welcome_greetings" style="padding:8px;font-family:'Open Sans Light', Arial,Verdana, Geneva, 'DejaVu Sans', sans-serif; text-align:center; font-size:30px;">
+      <span style="color:#888888;">WELCOME </span>
+      <span style="color: #29abe2;"><%= User.where(email: @email).first.complete_name  %></span>
     </div>
-    <div class="thanks_message" style="padding:8px;font-family:'Open Sans Light'; text-align:center; font-size:18px;">
+    <div class="thanks_message" style="padding: 8px; font-family: 'Open Sans Light', Arial,Verdana, Geneva, 'DejaVu Sans', sans-serif; text-align: center; font-size: 18px;">
       <span style="color:#888888;"> Thank you for choosing  </span>
       <span style="color: #60a3d9;">Room</span><span style="color: #94c33d;">n</span><span style="color: #e66586;">House</span>
     </div>
     <div class="confirm_buttonlink" style="text-align:center; width:100%; margin:15px 0px;">
-      <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token), style:"text-decoration:none; font-family: 'Open Sans', Arial,Helvetica; " %>
-      <div  style="border-radius:5px; width: 200px; margin:0 auto; height: 45px; line-height: 45px; font-size: 18px; color: white; background-color: #60a3d9;">Confirm your Email</div>
-    </a>
+      <a style="text-decoration:none; font-family: 'Open Sans', Arial,Helvetica; " href="#">
+        <div style="border-radius:5px; width: 200px; margin:0 auto; height: 45px; line-height: 45px; font-size: 18px; color: white; background-color: #60a3d9;">
+          <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %>
+        </div>
+      </a>
+    </div>
   </div>
-</div>
-<div class="footer" style="background-color:#cccccc; width:100%;height:auto; text-align:center;">
-  <%= image_tag "roomnhouse-grey.png", width: "121", style: "padding: 7px 0px;"  %>
-  <div class="address" style="color: #888888; font-size: 12px; line-height: 15px; height: 15px; padding-bottom:5px;"> 201, J. B. Nagar, Off. Andheri Kurla Road, Andheri East, Mumbai-400059</div>
-  <div style="color: #888888; font-size: 11px; line-height: 15px; height: 15px; padding-bottom:5px;">
+  <div class="footer" style="background-color:#cccccc; width:100%;height:auto; text-align:center;">
+    <img style="padding:7px 0px;" src="images/roomnhouse-grey.png" width="121" />
+    <div class="address" style="color: #888888; font-size: 12px; line-height: 15px; height: 15px; padding-bottom:5px;"> 201, J. B. Nagar, Off. Andheri Kurla Road, Andheri East, Mumbai-400059</div>
   </div>
-</div>
 </div>
