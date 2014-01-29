@@ -65,11 +65,11 @@ article p {
                 <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
               <div class="form-group">
                 <label for="checkin">Check-in</label>
-                <%= text_field_tag :checkin, params[:checkin],required: "required", class: "form-control", placeholder: "Select Date"%>
+                <%= text_field_tag :checkin, params[:checkin],required: "required", class: "form-control", placeholder: "Select Date", value: cookies[:checkin]%>
               </div>
               <div class="form-group">
                 <label for="checkout">Check-out</label>
-                <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "Select Date"%>
+                <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "Select Date", value:cookies[:checkout]%>
               </div>
               <div class="form-group">
                 <label for="guests">Guests</label>
