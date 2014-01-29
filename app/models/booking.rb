@@ -56,4 +56,32 @@ class Booking < ActiveRecord::Base
     self.save!
 
   end
+
+  def to_xml(guest_id,host_id)
+    @guest = User.find(guest_id)
+    @host = User.find(host_id)
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.smslist{
+      xml.sms{
+        xml.userid("rnhcom")
+        xml.password("aruhat123")
+        xml.message("this is a test message")
+        xml.mobiles("")
+        xml.cdmasenderid()
+        xml.clientsmsid()
+        xml.accountusagetypeid()
+      }
+      xml.sms{
+        xml.userid()
+        xml.password()
+        xml.message()
+        xml.mobiles()
+        xml.cdmasenderid()
+        xml.clientsmsid()
+        xml.accountusagetypeid()
+      }
+    }
+    xml
+  end
 end
