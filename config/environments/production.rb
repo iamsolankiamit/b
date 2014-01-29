@@ -9,6 +9,7 @@ Roomnhouse::Application.configure do
   config.action_controller.perform_caching = true
 
   config.action_controller.asset_host = "http://dm1w09da1rt65.cloudfront.net"
+  config.action_mailer.asset_host = "http://dm1w09da1rt65.cloudfront.net"
 
   config.payu_return_url = "http://roomnhouse.com/bookings/payu_return"
   config.action_mailer.default_url_options = { :host => 'roomnhouse.com' }
