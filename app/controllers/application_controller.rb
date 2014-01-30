@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back_or_default(default)
-    session[:passthru] || default_path
+    session[:passthru] || root_path
   end
 
   def after_sign_in_path_for(resource_or_scope)
