@@ -11,14 +11,17 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    session.delete(:passthru)
+    unless current_user
     session[:passthru] = offer_path(@offer)
+    end
     session[:recently_viewed_offers] ||= []
     session[:recently_viewed_offers] << @offer.id
     session[:recently_viewed_offers].delete_at(0) if session[:recently_viewed_offers].size > 4
-@hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
-  marker.lat offer.confidential_lat
-  marker.lng offer.confidential_lng
-end
+    @hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
+      marker.lat offer.confidential_lat
+      marker.lng offer.confidential_lng
+    end
   end
 
   def new
@@ -35,7 +38,8 @@ end
       if current_user
         redirect_to edit_offer_details_path(@offer), :notice => "successfully created offer"
       else
-        redirect_to new_user_registration_path(:passthru => edit_offer_details_path(@offer)), :notice => "To complete please fill in the details below"
+        session[:passthru] = edit_offer_details_path(@offer)
+        redirect_to new_user_registration_path, :notice => "To complete please fill in the details below"
       end
     else
       render :new
