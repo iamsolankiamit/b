@@ -1,48 +1,60 @@
 <% content_for :title do %>
-  <%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
+  <% if @offer.translations.first.title.nil? %>
+    <%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
+  <% else %>
+    <%= @offer.translations.first.title.titlecase  %> in <%= @offer.city %>
+  <% end %>
 <% end %>
 <% content_for :meta_description do %>
-  "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
+  <% if @offer.translations.first.description.nil? %>
+    "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
+  <% else %>
+    "Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>"
+  <% end %>
+<% end %>
+<% content_for :social do %>
+  <% if @offer.translations.first.title.nil? %>
+    <meta property="og:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
+  <% else %>
+    <meta property="og:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
+  <% end %>
+  <meta property="og:type" content="roomnhouse:listing">
+  <meta property="og:url" content="<%= url_for(only_path: false)%>">
+  <% if @offer.translations.first.description.nil? %>
+    <meta property="og:description" content="A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people">
+  <% else %>
+    <meta property="og:description" content="Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>">
+  <% end %>
+  <% if @offer.photos.first.image.nil? %>
+    <meta property="og:image" content="<%= asset_path("logo.png") %>">
+  <% else %>
+    <meta property="og:image" content="<%= @offer.photos.first.image.url(:original) %>">
+  <% end %>
+
+
+  <meta property="twitter:card" content="photo">
+  <meta property="twitter:url" content="<%= url_for(only_path: false)%>">
+   <% if @offer.photos.first.image.nil? %>
+    <meta property="twitter:image" content="<%= asset_path("logo.png") %>">
+  <% else %>
+    <meta property="twitter:image" content="<%= @offer.photos.first.image.url(:original) %>">
+  <% end %>
+
+ <% if @offer.translations.first.title.nil? %>
+    <meta property="twitter:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
+  <% else %>
+    <meta property="twitter:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
+  <% end %>
+  <meta property="og:site" content="@roomnhouse">
+   <% if @offer.photos.first.image.nil? %>
+    <link rel="image_src" href="<%= asset_path("logo.png") %>">
+  <% else %>
+    <link rel="image_src" href="<%= @offer.photos.first.image.url(:original) %>">
+  <% end %>
+
 <% end %>
 <% content_for :body do %>
-  <style>
-.no-pad-border{padding:0px; border:none;}
-.headings-offer{
-  font-weight:600;
-  font-size:16px;
-  color:#444;
-  padding-top:5px;
-  padding-bottom:15px;
-}
-article p {
-  line-height: 22px;
-  font-size: 14px;
-  font-weight:normal;
-  text-align:justify;
-}
-.property-overview {
-  padding: 15px 15px;
-  border-bottom: 1px solid #ddd;
-  margin: -10px -15px;
-  margin-bottom:10px;
-}
-.icon-ok {color:#47a447;}
-.icon-remove {color:#d2322d;}
-.prop-details{font-size:12px;}
-.overview-cover{border-top: 1px solid #ddd; border-bottom:1px solid #ddd;margin:10px -15px; background:#f3f1f1;}
-.overview{padding:20px 0px;border-right:1px solid #ddd;}
-.overview:last-child{border-right:none;}
-.overview-heading , .overview-details { text-align:center;}
-.overview-details { color:#3a87ad; font-weight:600;font-size:16px;}
-#CarouselThumb .carousel-inner .active.left { left: -11.1111110982%; }
-#CarouselThumb .carousel-inner .next        { left:  11.1111110982%; }
-#CarouselThumb .carousel-inner .active.right { left: 11.1111110982%; }
-#CarouselThumb .carousel-inner .prev        { left: -11.1111110982%; }
-.carousel-control.left,.carousel-control.right {background-image:none; top:50%;}
-.no-margin{margin:0px;}
-.price-display{font-size:20px;color:#47a447; vertical-align:bottom;line-height:initial;}
-</style>
-<div class="container">
+  <div class="container">
   <div class="row">
     <div class="col-sm-4 col-sm-push-8">
       <div class="panel panel-default">

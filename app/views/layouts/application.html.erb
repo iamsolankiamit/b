@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
 <head>
+<title><%= content_for?(:title) ? yield(:title) : "Vacation Rentals: Apartments, Rooms, Villas, Cottages & Beach Houses for Rent - Roomnhouse" %></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%= yield(:canonical) %>
 <% if content_for?(:meta_description) %>
   <meta name="description" content=<%= yield(:meta_description) %>/>
 <% else %>
   <meta name="description" content="Find vacation rentals apartments in India, Mumbai service aparments, Goa private rooms and villa rentals. Rent direct from owners and save with Roomnhouse."/>
 <% end %>
-<title><%= content_for?(:title) ? yield(:title) : "Vacation Rentals: Apartments, Rooms, Villas, Cottages & Beach Houses for Rent - Roomnhouse" %></title>
+<meta property="fb:app_id" content="414645321969009">
+<meta property="og:site_name" content="RoomnHouse">
+<%= yield :social %>
 
 <!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
 <%= csrf_meta_tags %>
