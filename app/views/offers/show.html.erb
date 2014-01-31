@@ -45,7 +45,7 @@
   <% else %>
     <meta property="twitter:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
   <% end %>
-  <meta property="og:site" content="@roomnhouse">
+  <meta property="twitter:site" content="@roomnhouse">
    <% if @offer.photos.first.image.nil? %>
     <link rel="image_src" href="<%= asset_path("logo.png") %>">
   <% else %>
