@@ -59,9 +59,11 @@
     <div class="col-sm-4 col-sm-push-8">
       <div class="panel panel-default">
         <div class="container">
-          <div class="row" style="padding-top:15px;">
+          <div class="row" itemprop="offers" itemscope itemtype="http://schema.org/Offer" style="padding-top:15px;">
             <div class="col-sm-7">
-              <span class="price-display"><%= @offer.currency %> <span id="price1"><%= @offer.nightly_rate_amount %></span> <i class="icon-inr"></i></span>
+              <span class="price-display"><%= @offer.currency %> <span id="price1" itemprop="price"><%= @offer.nightly_rate_amount %></span> 
+                <meta content="INR" itemprop="priceCurrency">
+                <i class="icon-inr"></i></span>
             </div>
             <div class="col-sm-5">
               <div class="form-group"><select id="Price_view_selector" class="form-control" name="">
@@ -106,10 +108,15 @@
     <div class="col-sm-8 col-sm-pull-4">
       <div class="panel panel-default">
         <div class="alert alert-info no-margin"><strong><i class="icon-phone"></i> Need help in booking? Talk to us! +91-9022-543210</strong></div>
-        <div class="panel-body">
+        <div class="panel-body" itemscope itemtype="http://schema.org/Product">
+  <% if @offer.photos.first.image.nil? %>
+    <meta itemprop="image" content="<%= asset_path("logo.png") %>">
+  <% else %>
+    <meta itemprop="image" content="<%= @offer.photos.first.image.url(:original) %>">
+  <% end %>
           <% if @offer.translations.exists? %>
             <% if !@offer.translations.first.title.nil? %>
-            <h1 title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
+            <h1 itemprop="name" title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
         <% end %>
         <% end %>
           <h6><% if !@offer.address_addon.nil? %>
@@ -125,14 +132,14 @@
               <% if !photos.nil? %>
                 <%if !photos.first.nil? %>
                 <div class="item active">
-                <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", style: "width:100%" %>
+                  <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", style: "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
               <% photos[1..-1].each do |photo| %>
                 <div class="item">
-                <%= image_tag photo.image.url(:slider2) ,class: "img-responsive" , style: "width:100%"%>
+                  <%= image_tag photo.image.url(:slider2) ,class: "img-responsive" , style: "width:100%", alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>
@@ -152,7 +159,7 @@
               <div class="item active car-thumb">
                 <div class="col-xs-2">
                   <a data-target="#carousel-main" data-slide-to="1" href="#">
-                    <%= image_tag photos.first.image.url(:thumb), class: "img-responsive thumbnail" %>
+                    <%= image_tag photos.first.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
                   </a>
                 </div>
               </div>
@@ -160,7 +167,7 @@
                 <div class="item car-thumb">
                 <div class="col-xs-2">
                   <a data-target="#carousel-main" data-slide-to="<%= index %>" href="#">
-                    <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail" %>
+                    <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
                   </a>
                 </div>
               </div>
