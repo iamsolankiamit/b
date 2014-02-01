@@ -1,6 +1,7 @@
 class InquiriesController < ApplicationController
   def new
     @inquiry = Inquiry.new
+    @inquiry.messages.build
   end
 
   def create
