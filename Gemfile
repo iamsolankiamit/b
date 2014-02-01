@@ -53,6 +53,8 @@ gem "jquery-fileupload-rails"
 gem "activemerchant", path: "lib/active_merchant"
 group :test, :development do
   gem "rspec-rails"
+  gem "capybara"
+  gem "database_cleaner"
   gem "factory_girl_rails"
 end
 # analytics
