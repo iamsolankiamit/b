@@ -6,7 +6,6 @@ gem 'event_cal', github: 'shin1ohno/event_cal'
 gem 'safe_yaml'
 gem "pg"
 gem "unf"
-gem 'wicked'
 gem "devise"
 gem "omniauth"
 gem "omniauth-facebook"
@@ -44,18 +43,12 @@ end
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'font-awesome-sass-rails'
-# gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "jquery-fileupload-rails"
-# Gems used only for assets and not required
-# in production environments by default.
-# gem 'unicorn'
-# payment gateway gems
 gem "activemerchant", path: "lib/active_merchant"
-group :test, :development do
+group :test do
   gem "rspec-rails"
   gem "capybara"
   gem "database_cleaner"
   gem "factory_girl_rails"
 end
-# analytics
 gem 'mixpanel-ruby'
