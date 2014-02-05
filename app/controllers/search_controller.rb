@@ -9,4 +9,9 @@ class SearchController < ApplicationController
       marker.lng offers.confidential_lng
     end
   end
+
+  def search
+    destination = params[:destination].gsub(/, /,'-')
+    redirect_to search_path(destination,guests: params[:guests],checkin: params[:checkin], checkout: params[:checkout], bedrooms: params[:bedrooms])
+  end
 end

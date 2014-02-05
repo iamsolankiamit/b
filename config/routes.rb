@@ -22,7 +22,6 @@ Roomnhouse::Application.routes.draw do
   resources :users do
     get 'dashboard', on: :member
   end
-  resources :search , only:  [:index]
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
   resources :discounts
@@ -37,5 +36,8 @@ Roomnhouse::Application.routes.draw do
     resource :addresses, only: [:edit,:update]
     resource :pricing, only: [:edit,:update]
   end
+  get '/search' => "search#index"
+  post '/search' => "search#search"
+  match '/search/:destination' => "search#index", :as => :search, :via => [:get]
   root :to => "home#index"
 end

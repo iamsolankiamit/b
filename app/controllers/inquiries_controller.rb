@@ -5,7 +5,10 @@ class InquiriesController < ApplicationController
   end
 
   def create
-    @inquiry = Inquiry.new(params[:inquiries])
+    @inquiry = Inquiry.new(params[:inquiry])
+    if @inquiry.save!
+    else
+    end
   end
 
   def index

@@ -11,6 +11,8 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    @inquiry = Inquiry.new()
+    @inquiry.messages.build()
     session.delete(:passthru)
     unless current_user
     session[:passthru] = offer_path(@offer)
