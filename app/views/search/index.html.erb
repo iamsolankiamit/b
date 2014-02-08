@@ -1,10 +1,35 @@
 <% content_for :body do %>
-  <div class="container">
+  <style>
+.footer{
+  display:none;
+}
+.map-container{
+  position: fixed;
+  width:40%;
+  left:0;
+  bottom:0;
+  top:55px;
+}
+.listing-container{
+  position: fixed;
+  right:0;
+  top:55px;
+  bottom:0;
+  width:60%;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+#search_page{
+  height:100%;
+  border-right: 1px solid #ddd;
+}
+</style>
+<div class="container">
   <div class="row">
-    <div class="col-sm-5 hidden-xs" style="">
-      <div class="panel panel-default"><div id="map" style="height:400px;"></div></div>
+    <div class="map-container hidden-xs" style="">
+      <div id="search_page" ></div>
     </div>
-    <div class="col-sm-7">
+    <div class=" listing-container">
       <div class="">
         <div class="row">
           <% @offers.each do |offer|  %>
@@ -34,11 +59,188 @@
 <% end %>
 <% content_for :js do %>
   <script>
+var mapStyle = [
+  {
+  "featureType": "water",
+  "elementType": "all",
+  "stylers": [
+    {
+    "hue": "#e9ebed"
+  },
+  {
+    "saturation": -78
+  },
+  {
+    "lightness": 67
+  },
+  {
+    "visibility": "simplified"
+  }
+  ]
+},
+{
+  "featureType": "landscape",
+  "elementType": "all",
+  "stylers": [
+    {
+    "hue": "#ffffff"
+  },
+  {
+    "saturation": -100
+  },
+  {
+    "lightness": 100
+  },
+  {
+    "visibility": "simplified"
+  }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "geometry",
+  "stylers": [
+    {
+    "hue": "#bbc0c4"
+  },
+  {
+    "saturation": -93
+  },
+  {
+    "lightness": 31
+  },
+  {
+    "visibility": "simplified"
+  }
+  ]
+},
+{
+  "featureType": "poi",
+  "elementType": "all",
+  "stylers": [
+    {
+    "hue": "#ffffff"
+  },
+  {
+    "saturation": -100
+  },
+  {
+    "lightness": 100
+  },
+  {
+    "visibility": "off"
+  }
+  ]
+},
+{
+  "featureType": "road.local",
+  "elementType": "geometry",
+  "stylers": [
+    {
+    "hue": "#e9ebed"
+  },
+  {
+    "saturation": -90
+  },
+  {
+    "lightness": -8
+  },
+  {
+    "visibility": "simplified"
+  }
+  ]
+},
+{
+  "featureType": "transit",
+  "elementType": "all",
+  "stylers": [
+    {
+    "hue": "#e9ebed"
+  },
+  {
+    "saturation": 10
+  },
+  {
+    "lightness": 69
+  },
+  {
+    "visibility": "on"
+  }
+  ]
+},
+{
+  "featureType": "administrative.locality",
+  "elementType": "all",
+  "stylers": [
+    {
+    "hue": "#2c2e33"
+  },
+  {
+    "saturation": 7
+  },
+  {
+    "lightness": 19
+  },
+  {
+    "visibility": "on"
+  }
+  ]
+},
+{
+  "featureType": "road",
+  "elementType": "labels",
+  "stylers": [
+    {
+    "hue": "#bbc0c4"
+  },
+  {
+    "saturation": -93
+  },
+  {
+    "lightness": 31
+  },
+  {
+    "visibility": "on"
+  }
+  ]
+},
+{
+  "featureType": "road.arterial",
+  "elementType": "labels",
+  "stylers": [
+    {
+    "hue": "#bbc0c4"
+  },
+  {
+    "saturation": -93
+  },
+  {
+    "lightness": -2
+  },
+  {
+    "visibility": "simplified"
+  }
+  ]
+}
+]
 $(function() {
   handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-
-    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.buildMap({ provider: {
+    zoom:      15,
+    styles:    mapStyle
+  }, internal: {id: 'search_page'}}, function(){
+    markers = handler.addMarkers([
+      <% @offers.each do |*offers, last_offer| %>
+        <% offers.each do |offer| %>
+          {"lat":<%= offer.confidential_lat  %> , "lng": <%= offer.confidential_lng  %>, "name": <%= offer.translations.first.title.titlecase  %>, 
+            "infowindow": "<ul><li>this is list</li></ul>"
+          },
+        <% end %>
+        {"lat": <%= last_offer.confidential_lat  %> , "lng": <%= last_offer.confidential_lng  %>, name: "<%= last_offer.translations.first.title.titlecase  %>", 
+          "infowindow": "<div><img src='<%= last_offer.photos.first.image.url(:medium) %>' width='230' height='150' /><div><div><%= last_offer.translations.first.title.titlecase  %> </div><div><%= last_offer.nightly_rate_amount  %></div></div></div>"
+        }
+      <% end %>
+    ]);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
   });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140111133250) do
+ActiveRecord::Schema.define(:version => 20140206103246) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -157,12 +157,14 @@ ActiveRecord::Schema.define(:version => 20140111133250) do
   end
 
   create_table "messages", :force => true do |t|
-    t.boolean  "delete_s",   :default => false
-    t.boolean  "delete_r",   :default => false
+    t.boolean  "delete_s",    :default => false
+    t.boolean  "delete_r",    :default => false
     t.text     "content"
     t.integer  "inquiry_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
   end
 
   create_table "offers", :force => true do |t|

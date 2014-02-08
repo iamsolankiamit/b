@@ -1,11 +1,25 @@
-<%= simple_form_for(@inquiry, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }, remote: true) do |f| %>
-  <%= f.input :check_in, as: :string, label: "Check in", class: "form-control" %>
-<%= f.input :check_out, as: :string, label: "Check out", class: "form-control" %>
-<%= f.input :guest_count, collection: 1..15 , prompt: "Select no. of guests", label: "Guests", class: "form-control" %>
+<%= simple_form_for(@inquiry, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
+  <div class="form-group">
+  <div class="col-sm-4">
+    <div class="input-group">
+      <%= f.input_field :check_in, as: :string, label: "Check in",placeholder: "Check in", class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="input-group">
+      <%= f.input_field :check_out, as: :string, label: "Check out",placeholder: "Check out", class: "form-control" %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="input-group">
+      <%= f.input_field :guest_count, collection: 1..15 , prompt: "Select no. of guests", label: "Guests", class: "form-control" %>
+    </div>
+  </div>
+</div>
 <%= f.input :offer_id,as: :hidden %>
 <%= f.input :receiver_id,as: :hidden %>
 <%= f.simple_fields_for :messages do |t| %>
-  <%= t.input :content, as: :text %>
+  <%= t.input_field :content, as: :text %>
   <% end %>
 <%= f.button :submit, :label => "Send Message", :class => 'btn-primary'%>
   <% end %>

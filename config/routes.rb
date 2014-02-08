@@ -2,14 +2,15 @@ Roomnhouse::Application.routes.draw do
   resources :inquiries do
     resources :messages
   end
+    resources :messages do
+      get 'inbox', on: :collection
+      get 'sent', on: :collection
+    end
+
   resources :bookings do
     post 'payu_return', on: :collection
   end
   resources :reviews, only: [:new, :create, :update, :edit]
-  resources :messages do
-    get 'inbox', on: :collection
-    get 'sent', on: :collection
-  end
   resources :trips
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'

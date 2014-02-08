@@ -55,34 +55,59 @@
 <% end %>
 <% content_for :body do %>
 
-  <div class="container">
+  <% @user = User.find(@offer.user_id) %>
+<div class="container">
   <div class="row">
     <% unless current_user %>
-    <%= render "devise/sessions/new"  %>
+      <%= render "devise/sessions/new"  %>
     <%= render "devise/registrations/new"  %>
   <% else %>
-    <div id="inquiryForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inquiryFormLabel" aria-hidden="true">
+      <div id="inquiryForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inquiryFormLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 id="inquiryFormLabel" class="modal-title">Inquiry Form</h4>
+            <h4 id="inquiryFormLabel" class="modal-title">Send Message to <%= @user.firstname.titlecase  %></h4>
           </div>
           <%= simple_form_for(@inquiry, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
             <div class="modal-body">
-            <%= f.input :check_in, as: :string, label: "Check in",id: "checkin", class: "form-control hasDatepicker" %>
-            <%= f.input :check_out, as: :string, label: "Check out", id: "checkout",class: "form-control hasDatepicker" %>
-            <%= f.input :guest_count, collection: 1..15 , prompt: "Select no. of guests", label: "Guests", class: "form-control" %>
-            <%= f.hidden_field :offer_id, value: @offer.id %>
-            <%= f.hidden_field :receiver_id , value: @offer.user_id%>
-            <%= f.hidden_field :sender_id , value: current_user.id%>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="checkin">Check in</label>
+                  <%= f.input_field :check_in, as: :string, id: "checkin",placeholder: "mm/dd/yy", class: "form-control hasDatepicker" %>
+                </div>
+                <div class="col-sm-4">
+                  <label for="checkout">Check out</label>
+                  <%= f.input_field :check_out, as: :string, id: "checkout",placeholder: "mm/dd/yy", class: "form-control hasDatepicker" %>
+                </div>
+                <div class="col-sm-4">
+                  <label for="guest_count">Guests</label>
+                  <%= f.input_field :guest_count, collection: 1..15 , default: 2, class: "form-control" %>
+                </div>
+
+                  <%= f.hidden_field :offer_id, value: @offer.id %>
+              </div>
+            </div>
             <%= f.simple_fields_for :messages do |t| %>
-              <%= t.input :content, as: :text %>
+              <div class="row">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <p style="padding:15px 0px;">
+                  Tell <%= @user.firstname.titlecase  %> what you like about their place, what matters most about your accommodation, or ask them a question.
+                  </p>
+                  <%= t.hidden_field :receiver_id , value: @offer.user_id%>
+                  <%= t.hidden_field :sender_id , value: current_user.id%>
+                  <%= t.input_field :content, as: :text,placeholder: "Type Message Here.....", class: "form-control", rows: 3 %>
+                </div>
+              </div>
+            </div>
           <% end %>
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
-            <%= f.button :submit, :label => "Send Message", :class => 'btn btn-primary'%>
+            <%= f.button :submit, :value => "Send Message", :class => 'btn btn-primary'%>
           </div>
         <% end %>
         </div>
@@ -134,9 +159,7 @@
             <div class="col-sm-3"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium_center) , class: "thumbnail no-pad-border"%></div>
             <div class="col-sm-9" style="padding-top:25px;"><p><strong>Host: <%= @user.firstname.humanize %></strong></p></div>
           </div>
-          <div class="row">
-          </div>
-        </div>
+                  </div>
       </div>
 
     </div>
