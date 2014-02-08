@@ -230,7 +230,7 @@ $(function() {
     styles:    mapStyle
   }, internal: {id: 'search_page'}}, function(){
     markers = handler.addMarkers([
-      <% @offers.each do |*offers, last_offer| %>
+      <% @offers.tap do |*offers, last_offer| %>
         <% offers.each do |offer| %>
           {"lat":<%= offer.confidential_lat  %> , "lng": <%= offer.confidential_lng  %>, "name": <%= offer.translations.first.title.titlecase  %>, 
           "infowindow": "<div><img src='<%= last_offer.photos.first.image.url(:medium) %>' width='230' height='150' /><div><div><%= last_offer.translations.first.title.titlecase  %> </div><div><%= last_offer.nightly_rate_amount  %></div></div></div>"
