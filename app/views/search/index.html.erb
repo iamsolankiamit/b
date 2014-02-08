@@ -226,7 +226,6 @@ var mapStyle = [
 $(function() {
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {
-    zoom:      15,
     styles:    mapStyle
   }, internal: {id: 'search_page'}}, function(){
     markers = handler.addMarkers([
