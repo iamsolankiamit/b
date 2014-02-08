@@ -23,21 +23,37 @@
   height:100%;
   border-right: 1px solid #ddd;
 }
+.thumbnail{
+  padding: 0px;
+  border-radius:0px;
+}
+.thumbnail .price-box{
+  top: 11px;
+  right:16px;
+}
+.thumbnail img{
+  width:100%;
+}
+.thumbnail .caption .title {
+  font-size: 14px;
+  height: 23px;
+}
 </style>
 <div class="container">
   <div class="row">
     <div class="map-container hidden-xs" style="">
       <div id="search_page" ></div>
     </div>
-    <div class=" listing-container">
-      <div class="">
+    <div class="listing-container">
+      <div class="container">
         <div class="row">
           <% @offers.each do |offer|  %>
-            <div class="col-sm-6">
+            <div class="col-md-6">
             <%= link_to offer_path(offer), class: "thumbnail" do  %>
               <div class="price-box">
               <div class="price">
-                <sup><%= offer.nightly_rate_amount  %><i class="icon-inr"></i></sup>
+                <sup><i class="icon-inr"></i></sup>
+                <%= offer.nightly_rate_amount  %>
                 <sup>INR</sup>
               </div>
               <div class="price-info">Per night</div>
@@ -45,7 +61,7 @@
             <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive" %>
             <div class="caption">
               <div class="title"><%= offer.translations.first.title.humanize  %> </div>
-              <div class="location">Property type: <%= offer.object_type.titlecase %></div>
+              <div class="location"><%= offer.object_type.titlecase %></div>
               <div class="location"><%= offer.city.titlecase %></div>
             </div>
           <% end %>
@@ -232,7 +248,7 @@ $(function() {
       <% @offers.tap do |*offers, last_offer| %>
         <% offers.each do |offer| %>
           {"lat":<%= offer.confidential_lat  %> , "lng": <%= offer.confidential_lng  %>, "name": "<%= offer.translations.first.title.titlecase  %>", 
-          "infowindow": "<div><img src='<%= offer.photos.first.image.url(:medium) %>' width='230' height='150' /><div><div><%= offer.translations.first.title.titlecase  %> </div><div><%= offer.nightly_rate_amount  %></div></div></div>"
+            "infowindow": "<div><img src='<%= offer.photos.first.image.url(:medium) %>' width='230' height='150' /><div><div><%= offer.translations.first.title.titlecase  %> </div><div><%= offer.nightly_rate_amount  %></div></div></div>"
           },
         <% end %>
         {"lat": <%= last_offer.confidential_lat  %> , "lng": <%= last_offer.confidential_lng  %>, name: "<%= last_offer.translations.first.title.titlecase  %>", 
