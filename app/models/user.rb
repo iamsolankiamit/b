@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   has_many :trips
   has_many :messages
   before_create :setup_default_role_for_new_users
-  has_attached_file :avatar, 
-    :styles => { 
+  has_attached_file :avatar,
+    :styles => {
     :medium_center => "300x300#",
-    :medium => "300x300>", 
+    :medium => "300x300>",
     :thumb => "100x100>",
     :thumb2 => "100x100#"
   }, 
@@ -27,8 +27,12 @@ class User < ActiveRecord::Base
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   },
   url: ':s3_alias_url',
-  s3_host_alias: 'dm1w09da1rt65.cloudfront.net', 
+  s3_host_alias: 'dm1w09da1rt65.cloudfront.net',
   :path => "/:class/:attachment/:id_partition/:style/:filename"
+
+  validates_attachment_content_type :avatar, :content_type => /\Aimage/
+
+  validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
 
   ROLES = %w[admin default banned guest]
   def avatar_remote_url=(url_value)

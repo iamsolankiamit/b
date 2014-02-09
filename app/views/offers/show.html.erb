@@ -28,7 +28,7 @@
 <% if @offer.photos.first.image.nil? %>
   <meta property="og:image" content="<%= asset_path("logo.png") %>">
   <% else %>
-  <meta property="og:image" content="<%= @offer.photos.first.image.url(:original) %>">
+  <meta property="og:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
   <% end %>
 
 
@@ -37,7 +37,7 @@
 <% if @offer.photos.first.image.nil? %>
   <meta property="twitter:image" content="<%= asset_path("logo.png") %>">
   <% else %>
-  <meta property="twitter:image" content="<%= @offer.photos.first.image.url(:original) %>">
+  <meta property="twitter:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
   <% end %>
 
 <% if @offer.translations.first.title.nil? %>
@@ -49,7 +49,7 @@
 <% if @offer.photos.first.image.nil? %>
   <link rel="image_src" href="<%= asset_path("logo.png") %>">
   <% else %>
-  <link rel="image_src" href="<%= @offer.photos.first.image.url(:original) %>">
+  <link rel="image_src" href="<%= @offer.photos.first.image.url(:slider2) %>">
   <% end %>
 
 <% end %>
@@ -119,7 +119,7 @@
         <div class="container">
           <div class="row" itemprop="offers" itemscope itemtype="http://schema.org/Offer" style="padding-top:15px;">
             <div class="col-sm-7">
-              <span class="price-display"><%= @offer.currency %> <span id="price1" itemprop="price"><%= @offer.nightly_rate_amount %></span> 
+              <span class="price-display"><%= @offer.currency %> <span id="price1" itemprop="price"><%= @offer.nightly_rate_amount %></span>
                 <meta content="INR" itemprop="priceCurrency">
                 <i class="icon-inr"></i></span>
             </div>
@@ -170,7 +170,7 @@
           <% if @offer.photos.first.image.nil? %>
             <meta itemprop="image" content="<%= asset_path("logo.png") %>">
         <% else %>
-            <meta itemprop="image" content="<%= @offer.photos.first.image.url(:original) %>">
+            <meta itemprop="image" content="<%= @offer.photos.first.image.url(:slider2) %>">
         <% end %>
           <% if @offer.translations.exists? %>
             <% if !@offer.translations.first.title.nil? %>
@@ -191,14 +191,14 @@
               <% if !photos.nil? %>
                 <%if !photos.first.nil? %>
                 <div class="item active">
-                <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", style: "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
+                  <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
               <% photos[1..-1].each do |photo| %>
                 <div class="item">
-                <%= image_tag photo.image.url(:slider2) ,class: "img-responsive" , style: "width:100%", alt: "#{@offer.translations.first.title.titlecase}"%>
+                  <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>

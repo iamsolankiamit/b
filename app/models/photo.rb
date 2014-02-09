@@ -1,24 +1,22 @@
 class Photo < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   attr_accessible :description, :offer_id, :image
-  has_attached_file :image, 
-    :styles => { 
-    :slider1 => "720x550#",
-    :slider2 => "720x550>",
-    :medium => "300x300#", 
-    :searchimg => "235x185#", 
-    :thumb => "100x100#", 
+  has_attached_file :image,
+    :styles => {
+    :slider => "640x420",
+    :medium => "300x300#",
+    :searchimg => "235x185#",
+    :thumb => "100x100#",
     :sliderthumb => "85x56#",
     :home_image => "300x135#"
   }, 
-  :convert_options => { 
-    :medium => "-interlace Line -quality 60",
-    :slider1 => "-interlace Line -quality 80",
-    :slider2 => "-interlace Line -quality 80",
-    :thumb => "-interlace Line -quality 60",
-    :thumb => "-interlace Line -quality 80",
-    :sliderthumb => "-interlace Line -quality 60",
-    :home_image => "-interlace Line -quality 60"
+  :convert_options => {
+    :medium => "-interlace line -interpolate bicubic -quality 60",
+    :slider => "-interlace line -background grey -compose Copy -gravity center -extent 640x420 -interpolate bicubic -quality 85",
+    :thumb => "-interlace line -interpolate bicubic -quality 80",
+    :searchimg => "-interlace line -interpolate bicubic -quality 80",
+    :sliderthumb => "-interlace line -interpolate bicubic -quality 60",
+    :home_image => "-interlace line -interpolate bicubic -quality 60"
   },
   :default_url => "/images/photo/:style/no-image.jpg",
   :storage => :s3,
@@ -28,8 +26,12 @@ class Photo < ActiveRecord::Base
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   },
   url: ':s3_alias_url',
-  s3_host_alias: 'dm1w09da1rt65.cloudfront.net', 
+  s3_host_alias: 'dm1w09da1rt65.cloudfront.net',
   :path => "/:class/:attachment/:id_partition/:style/:filename"
+
+  validates_attachment_content_type :image, :content_type => /\Aimage/
+
+  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
 
   belongs_to :offers
 

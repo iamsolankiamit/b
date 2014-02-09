@@ -1,4 +1,21 @@
 <% content_for :header do %>
+  <style>
+.thumbnail{
+  padding: 0px;
+  border-radius:0px;
+}
+.thumbnail .price-box{
+  top: 11px;
+  right:16px;
+}
+.thumbnail img{
+  width:100%;
+}
+.thumbnail .caption .title {
+  font-size: 14px;
+  height: 44px;
+}
+  </style>
   <div class="home-search-bar-holder">
   <div class="container">
     <div class="row ">
@@ -66,8 +83,9 @@
         <a class="list-group-item" href="http://roomnhouse.com/search/delhi">Delhi</a>
         <a class="list-group-item" href="http://roomnhouse.com/search/goa">Goa</a>
         <a class="list-group-item" href="http://roomnhouse.com/search/pune">Pune</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/banglore">Banglore</a>
+        <a class="list-group-item" href="http://roomnhouse.com/search/bangalore">Bangalore</a>
         <a class="list-group-item" href="http://roomnhouse.com/search/lonavala">Lonavala</a>
+        <a class="list-group-item" href="http://roomnhouse.com/search/srinagar">Srinagar</a>
       </div>
     </div>
 
@@ -91,6 +109,7 @@
           <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
           <div class="caption">
             <div class="title"><%= offer.translations.first.title.titlecase %></div>
+            <div class="location"><%= offer.object_type.titlecase %></div>
             <div class="location"><%= offer.city.titlecase %></div>
           </div>
         <% end %>
@@ -117,7 +136,10 @@
           <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
           <div class="caption">
             <div class="title"><%= offer.translations.first.title.titlecase %></div>
-            <div class="location"><%= offer.city.titlecase %></div>
+            <div>
+            <span class="location"><%= offer.object_type.titlecase %></span>
+            <span class="location pull-right"><%= offer.city.titlecase %></span>
+            </div>
           </div>
         <% end %>
         </div>

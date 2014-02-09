@@ -58,9 +58,9 @@
               </div>
               <div class="price-info">Per night</div>
             </div>
-            <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive" %>
+            <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive", alt: offer.translations.first.title.titlecase %>
             <div class="caption">
-              <div class="title"><%= offer.translations.first.title.humanize  %> </div>
+              <div class="title"><%= offer.translations.first.title.titlecase  %> </div>
               <div class="location"><%= offer.object_type.titlecase %></div>
               <div class="location"><%= offer.city.titlecase %></div>
             </div>
@@ -252,7 +252,7 @@ $(function() {
           },
         <% end %>
         {"lat": <%= last_offer.confidential_lat  %> , "lng": <%= last_offer.confidential_lng  %>, name: "<%= last_offer.translations.first.title.titlecase  %>", 
-          "infowindow": "<div><img src='<%= last_offer.photos.first.image.url(:medium) %>' width='230' height='150' /><div><div><%= last_offer.translations.first.title.titlecase  %> </div><div><%= last_offer.nightly_rate_amount  %></div></div></div>"
+         "infowindow": "<a href='<%= offer_path(last_offer) %>' class='thumbnail'><div class='price-box'><div class='price'><sup><i class='icon-inr'></i></sup><%= last_offer.nightly_rate_amount  %><sup>INR</sup></div><div class='price-info'>Per night</div></div><img src='<%= last_offer.photos.first.image.url(:searchimg) %>' class='img-responsive'/><div class='caption'><div class='title'><%= last_offer.translations.first.title.humanize  %> </div><div class='location'><%= last_offer.object_type.titlecase %></div><div class='location'><%= last_offer.city.titlecase %></div></div></a>"
         }
       <% end %>
     ]);
