@@ -4,7 +4,7 @@ class Photo < ActiveRecord::Base
   has_attached_file :image,
     :processors => [:thumbnail, :watermark],
     :styles => {
-      :slider => { geometry: "640x420", watermark_path: "#{Rails.root}/app/assets/images/roomnhouse-grey.png" },
+      :slider => "640x420",
       :medium => "300x300#",
       :searchimg => "235x185#",
       :thumb => "100x100#",
