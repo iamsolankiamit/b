@@ -6,7 +6,6 @@ Roomnhouse::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
 
   config.action_controller.asset_host = "http://dm1w09da1rt65.cloudfront.net"
   config.action_mailer.asset_host = "http://dm1w09da1rt65.cloudfront.net"
@@ -23,6 +22,9 @@ Roomnhouse::Application.configure do
   }
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true
+
+  config.static_cache_control = "public, max-age=2592000"
+  config.action_controller.perform_caching = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
