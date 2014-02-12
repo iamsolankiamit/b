@@ -76,11 +76,11 @@
               <div class="form-group">
                 <div class="col-sm-4">
                   <label for="checkin">Check in</label>
-                  <%= f.input_field :check_in, as: :string, id: "checkin",placeholder: "mm/dd/yy", class: "form-control hasDatepicker" %>
+                  <%= f.input_field :check_in, as: :string, id: "inquiycheckin",placeholder: "mm/dd/yy", class: "checkin hasDatepicker form-control" %>
                 </div>
                 <div class="col-sm-4">
                   <label for="checkout">Check out</label>
-                  <%= f.input_field :check_out, as: :string, id: "checkout",placeholder: "mm/dd/yy", class: "form-control hasDatepicker" %>
+                  <%= f.input_field :check_out, as: :string, id: "inquirycheckout",placeholder: "mm/dd/yy", class: "checkout hasDatepicker form-control " %>
                 </div>
                 <div class="col-sm-4">
                   <label for="guest_count">Guests</label>
@@ -191,14 +191,14 @@
               <% if !photos.nil? %>
                 <%if !photos.first.nil? %>
                 <div class="item active">
-                  <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
+                  <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
               <% photos[1..-1].each do |photo| %>
                 <div class="item">
-                  <%= image_tag photo.image.url(:slider2) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
+                  <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>
@@ -329,6 +329,45 @@
   <script>
 
 $(function() {
+  $( "#inquirycheckin" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#inquirycheckout" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#inquirycheckout" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#inquirycheckin" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+
+  $( "#checkin" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkout" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#checkout" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+  });
+$(function() {
   handler = Gmaps.build('Google');
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
@@ -372,24 +411,6 @@ $(function() {
       }
 
       next.children(':first-child').clone().appendTo($(this));
-    }
-  });
-  $( "#checkin" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkout" ).datepicker( "option","minDate",selectedDate );
-    }
-  });
-  $( "#checkout" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
     }
   });
   $('#calendar').fullCalendar({

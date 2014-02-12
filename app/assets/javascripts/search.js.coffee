@@ -27,6 +27,7 @@ class RichMarkerBuilder extends Gmaps.Google.Builders.Marker #inherit from built
     pixelOffset: new google.maps.Size(-140,-350)
     boxStyle:
       width: "280px"
+    closeBoxURL:"somestuffs"
 
 json_array = []
 $(".listing").each ->

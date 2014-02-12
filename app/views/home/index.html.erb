@@ -136,10 +136,8 @@
           <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
           <div class="caption">
             <div class="title"><%= offer.translations.first.title.titlecase %></div>
-            <div>
-            <span class="location"><%= offer.object_type.titlecase %></span>
-            <span class="location pull-right"><%= offer.city.titlecase %></span>
-            </div>
+            <div class="location"><%= offer.object_type.titlecase %></div>
+            <div class="location"><%= offer.city.titlecase %></div>
           </div>
         <% end %>
         </div>

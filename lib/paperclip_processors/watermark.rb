@@ -24,7 +24,7 @@ module Paperclip
       dst.binmode
 
       command = "composite"
-      params = "-gravity #{@position} -geometry +1+30 #{watermark_path} #{fromfile} #{tofile(dst)}"
+      params = "-dissolve 50% -gravity #{@position} -geometry +1+30 #{watermark_path} #{fromfile} #{tofile(dst)}"
 
       begin
         success = Paperclip.run(command, params)

@@ -39,6 +39,7 @@
   height: 23px;
 }
 </style>
+
 <div class="container">
   <div class="row">
     <div class="map-container hidden-xs" style="">
@@ -47,16 +48,17 @@
     <div class="listing-container">
       <div class="container">
         <div class="row">
-          <% @offers.each do |offer|  %>
+          <% unless @offers.nil? %>
+            <% @offers.each do |offer|  %>
             <div data-offer-id="<%= offer.id  %>"
-              data-lat="<%= offer.confidential_lat  %>"
-              data-lng="<%= offer.confidential_lng %>"
-              data-url="<%= offer_url(offer) %>"
-              data-price="<%= offer.nightly_rate_amount %>"
-              data-title="<%= offer.translations.first.title.titlecase %>"
-              data-location="<%= offer.city.titlecase  %>"
-              data-property-type="<%= offer.object_type.humanize.titlecase  %>"
-              data-image="<%= offer.photos.first.image.url(:searchimg)  %>"
+            data-lat="<%= offer.confidential_lat  %>"
+            data-lng="<%= offer.confidential_lng %>"
+            data-url="<%= offer_url(offer) %>"
+            data-price="<%= offer.nightly_rate_amount %>"
+            data-title="<%= offer.translations.first.title.titlecase %>"
+            data-location="<%= offer.city.titlecase  %>"
+            data-property-type="<%= offer.object_type.humanize.titlecase  %>"
+            data-image="<%= offer.photos.first.image.url(:searchimg)  %>"
             class="listing col-md-6">
             <%= link_to offer_path(offer), class: "thumbnail" do  %>
               <div class="price-box">
@@ -75,6 +77,9 @@
             </div>
           <% end %>
           </div>
+        <% end %>
+        <% else %>
+            <p>There isn't any place available for your search criteria. </p>
         <% end %>
         </div>
       </div>

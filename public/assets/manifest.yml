@@ -103,6 +103,8 @@ pics/tree_big8.jpg: pics/tree_big8-134d2a6908ea6b216dcc80056a9cd1b0.jpg
 pics/tree_big8/index.jpg: pics/tree_big8-134d2a6908ea6b216dcc80056a9cd1b0.jpg
 roomnhouse-grey.png: roomnhouse-grey-076f826e73648fb7c465ca692dccdcec.png
 roomnhouse-grey/index.png: roomnhouse-grey-076f826e73648fb7c465ca692dccdcec.png
+roomnhouse-watermark.png: roomnhouse-watermark-b20b866537492f7906983ee32d6ac576.png
+roomnhouse-watermark/index.png: roomnhouse-watermark-b20b866537492f7906983ee32d6ac576.png
 search.png: search-7947a4e583101e9a702596331091cd02.png
 search/index.png: search-7947a4e583101e9a702596331091cd02.png
 slider1.jpg: slider1-daf81f70e4b02c30def162ea7de79e46.jpg
@@ -111,8 +113,8 @@ translation_center_logo.png: translation_center_logo-2c89fe34ef1e59bcc303a366501
 translation_center_logo/index.png: translation_center_logo-2c89fe34ef1e59bcc303a3665012a77f.png
 tree_big8.jpg: tree_big8-134d2a6908ea6b216dcc80056a9cd1b0.jpg
 tree_big8/index.jpg: tree_big8-134d2a6908ea6b216dcc80056a9cd1b0.jpg
-application.js: application-998ea70e8f22cf047dbd7801e054a11a.js
-application/index.js: application-998ea70e8f22cf047dbd7801e054a11a.js
+application.js: application-8e2de5faf16abe254667e674bceab97d.js
+application/index.js: application-8e2de5faf16abe254667e674bceab97d.js
 application.css: application-97f6fa903eef5c148d51da6911fe552d.css
 application/index.css: application-97f6fa903eef5c148d51da6911fe552d.css
 bootstrap/glyphicons-halflings-regular.eot: bootstrap/glyphicons-halflings-regular-a976b4f46980969d9792e0ff9f3afc17.eot
