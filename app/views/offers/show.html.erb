@@ -180,7 +180,7 @@
           <h6>
             <% if !@offer.address_addon.nil? %>
               <%= @offer.address_addon.titlecase %>
-          <% end %>, 
+          <% end %>,
             <%= @offer.city.titlecase  %>,
             <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %>
           </h6>
@@ -191,14 +191,14 @@
               <% if !photos.nil? %>
                 <%if !photos.first.nil? %>
                 <div class="item active">
-                  <%= image_tag photos.first.image.url(:slider2) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
+                  <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
               <% photos[1..-1].each do |photo| %>
                 <div class="item">
-                  <%= image_tag photo.image.url(:slider2) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
+                  <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>

@@ -6,6 +6,7 @@ class Photo < ActiveRecord::Base
     :styles => {
       :slider => { geometry: "640x420", watermark_path: "#{Rails.root}/app/assets/images/roomnhouse-watermark.png" },
       :medium => "300x300#",
+      :slider2 => "640x420",
       :searchimg => "235x185#",
       :thumb => "100x100#",
       :sliderthumb => "85x56#",
@@ -14,6 +15,7 @@ class Photo < ActiveRecord::Base
     :convert_options => {
       :medium => "-interlace line -interpolate bicubic -quality 60",
       :slider => "-interlace line -background grey -compose Copy -gravity center -extent 640x420 -interpolate bicubic -quality 85",
+      :slider2 => "-interlace line -background grey -compose Copy -gravity center -extent 640x420 -interpolate bicubic -quality 85",
       :thumb => "-interlace line -interpolate bicubic -quality 80",
       :searchimg => "-interlace line -interpolate bicubic -quality 80",
       :sliderthumb => "-interlace line -interpolate bicubic -quality 60",
