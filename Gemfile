@@ -35,7 +35,7 @@ group :assets do
   gem "haml"
   gem "yui-compressor"
   gem 'sass-rails', '~> 3.2.3'
-  gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+  gem 'bootstrap-sass'
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
