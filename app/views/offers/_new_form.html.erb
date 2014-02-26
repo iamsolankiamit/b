@@ -1,15 +1,12 @@
 <%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
-    <!-- Hidden from other users until room is brought -->
-    <p>These will be hidden from the user until booking is done</p>
-    <%= f.input :country_code_iso, :as => :select, :label => "Country", class: "form-control", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
-    <%= f.input :street_no , class: "form-control", :as => :string, :label => "House no."%>
-    <%= f.input :street ,:label => "Address Line 1", :as => :string%>
-    <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
-    <%= f.input :city , :as => :string%>
-    <%= f.input :zip , :as => :string%>
-    <!-- Show to interested users -->
-    <p>These will be shown to users</p>
-    <%= f.input :object_type, 
+  <%= f.input :email %>
+<%= f.input :contact_phone, :as => :string %>
+<%= f.input :country_code_iso, :as => :select, :label => "Country", class: "form-control", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
+<%= f.input :street_no , class: "form-control", :as => :string, :label => "House no."%>
+<%= f.input :street ,:label => "Address Line 1", :as => :string%>
+<%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
+<%= f.input :city , :as => :string %>
+<%= f.input :object_type, 
   :as => :select, 
   :collection => {
     "Shared Room"=>"shared_room", 
@@ -24,11 +21,8 @@
     "Treehouse" => "treehouse", 
     "Boat" => "boat", 
     "Car" => "automobile"}, 
-  :label => "Property Type", 
-  :include_blank => false %>
-    <%= f.input :max_guest_count , :as => :select, :collection =>(1..30), :label => "Accommodates", :include_blank => false %>
-    <%= f.input :bedroom_count , :as => :select, :collection =>(1..10), :label => "Bedrooms", :include_blank => false%>
-    <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
-    <%= f.input :currency , :as => :select, :collection => {"INR: &#x20B9;".html_safe => "INR","USD: US &#36;".html_safe => "USD","EUR: &#8364;".html_safe => "EUR"}, :include_blank => false %>
+    :label => "Property Type", 
+    :include_blank => false %>
+  <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
     <%= f.button :submit, :label => "Save & Continue", :class => 'btn-primary'%>
-<% end %>
+  <% end %>
