@@ -7,6 +7,7 @@ class DiscountsController < ApplicationController
     @booking.discount_amount = @discount.amount if @discount.amount <= @booking.total
     @booking.save
 
+    @new_total = @booking.total - @booking.discount_amount
     @offer = Offer.find(@trip.offer_id)
     respond_to do |format|
       format.js {

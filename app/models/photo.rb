@@ -1,6 +1,11 @@
 class Photo < ActiveRecord::Base
   include Rails.application.routes.url_helpers
-  attr_accessible :description, :offer_id, :image
+    before_create :set_upload_attributes
+    after_create :queue_processing
+
+    belongs_to :offers
+
+  attr_accessible :description, :offer_id, :image, :direct_upload_url
   has_attached_file :image,
     :processors => [:thumbnail, :watermark],
     :styles => {
@@ -36,16 +41,11 @@ class Photo < ActiveRecord::Base
 
     validates_attachment_file_name :image, :matches => [/png\Z/i, /jpe?g\Z/i]
 
-    belongs_to :offers
-
     # Environment-specific direct upload url verifier screens for malicious posted upload locations.
     DIRECT_UPLOAD_URL_FORMAT = %r{\Ahttps:\/\/s3-ap-southeast-1\.amazonaws\.com\/roomnhouse-assets#{!Rails.env.production? ? '' : ''}\/(?<path>uploads\/.+\/(?<filename>.+))\z}.freeze
 
+    # Validates only if the object is not processed
     validates :direct_upload_url, allow_blank: true, format: { with: DIRECT_UPLOAD_URL_FORMAT } , :if => lambda {|object| object.processed != true }
-    before_create :set_upload_attributes
-    after_create :queue_processing
-
-    attr_accessible :direct_upload_url
 
     # Store an unescaped version of the escaped URL that Amazon returns from direct upload.
     def direct_upload_url=(escaped_url)
