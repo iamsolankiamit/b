@@ -11,6 +11,10 @@ end
 
 module Roomnhouse
   class Application < Rails::Application
+
+    require Rails.root + 'lib/custom_exceptions'
+    config.exceptions_app = CustomExceptions.new Rails.public_path
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

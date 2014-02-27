@@ -30,6 +30,6 @@ class CalendarsController < ApplicationController
         c.pricing = params['pricing']
       end
     end
-    render :json => @calendar 
+    render :json => @calendar
   end
 end

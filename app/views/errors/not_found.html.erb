@@ -1,0 +1,158 @@
+<% content_for :header do %>
+  <style>
+h2 {
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 20px;
+
+}
+.not-found-search-bar-holder{
+  height: 278px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.not-found-search-bar{
+  background: rgba(0,0,0,0.7);
+}
+.not-found-sub-title{
+  font-weight: 100;
+  font-size: 18px;
+  border-bottom: 1px solid #212121;
+  line-height: 36px;
+  color: #fff;
+}
+label {
+  color: #fff;
+  font-weight: 100;
+  padding-top: 10px;
+}
+.thumbnail{
+  padding: 0px;
+  border-radius:0px;
+}
+.thumbnail .price-box{
+  top: 11px;
+  right:16px;
+}
+.thumbnail img{
+  width:100%;
+}
+.thumbnail .caption .title {
+  font-size: 14px;
+  height: 44px;
+}
+.not-found-title{
+  font-family: OpenSans, Arial, Helvetica, Verdana, Sans-serif;
+  padding-top: 50px;
+  font-weight: 100;
+  font-size:36px;
+  line-height: 40px;
+}
+small{
+  font-size: 20px;
+}
+.not-found-social-bar{
+  padding-top: 30px;
+}
+
+.not-found-social-links {
+  list-style:none;
+}
+.not-found-social-links li {
+  display: block;
+}
+</style>
+<div class="not-found-search-bar-holder">
+  <div class="container">
+    <div class="row ">
+      <div class="col-sm-6 hidden-sm hidden-xs">
+        <h1 class="not-found-title">Sorry, the page you were looking doesn't exist.
+          <small>But you can search using the form.</small>
+        </h1>
+
+        <div class="not-found-social-bar">
+          Show some love here <i class="icon icon-heart"></i>
+          <ul class="not-found-social-links">
+            <li><img src="" ></li>
+            <li><img src="" ></li>
+            <li><img src="" ></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4 col-sm-offset-6 col-md-6 col-md-offset-0 col-lg-offset-1 not-found-search-bar">
+        <h2 class="not-found-sub-title"><i class="icon-search"></i> Search for private properties in India.</h2>
+        <%= form_tag '/search', :method => 'Post', class: "form-horizontal", id: 'search_form' do %>
+          <div class="form-group">
+          <div class="col-sm-12"><label for="geolocation">Destination</label></div>
+          <div class="col-sm-12">
+            <%= search_field_tag :destination, params[:search],autofocus: true, placeholder: "Where do you want to go?", autocomplete: "off", required: "required", id: "geolocation", class: "required form-control" %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <%= text_field_tag :checkin, nil,class: "form-control", placeholder: "Check in"%>
+              <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+            <div class="input-group">
+              <%= text_field_tag :checkout, nil,class: "form-control", placeholder: "Check out"%>
+              <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <%= select_tag :guests, options_for_select([["1 Guest",1], ["2 Guests",2], ["3 Guests",3], ["4 Guests",4], ["5 Guests",5],["6 Guests",6], ["7 Guests",7], ["8 Guests",8], ["9 Guests",9],["10 Guests",10], ["11 Guests",11], ["12 Guests",12],["13 Guests",13],["14 Guests",14],["15 Guests",15],["16+ Guests",16]]), class: "form-control" %>
+              <span class="input-group-addon"><i class="icon icon-group"></i></span>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="input-group">
+              <%= select_tag :bedrooms, options_for_select([["1 Bedroom",1], ["2 Bedrooms",2], ["3 Bedrooms",3], ["4 Bedrooms",4], ["5 Bedrooms",5],["6 Bedrooms",6]]), class: "form-control" %>
+              <span class="input-group-addon"><i class="icon icon-room"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <input type="submit" class="form-control btn btn-primary" value="Search" />
+          </div>
+        </div>
+
+      <% end %>
+      </div><!-- end of class="row" -->
+    </div><!-- end of class="row" -->
+  </div><!-- end of class="row" -->
+</div><!-- end of class="container" -->
+<% end %>
+
+<% content_for :body do %>
+  <div class="container">
+  <div class="row">
+    <h2 class="text-center" style="padding:30px;">Checkout accommodations in ...</h2>
+    <div class="col-md-3 col-sm-6">
+      <img src="" class="thumbnail img-responsive">
+      <h2>Mumbai</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <img src="" class="thumbnail img-responsive">
+      <h2>Delhi</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <img src="" class="thumbnail img-responsive">
+      <h2>Goa</h2>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <img src="" class="thumbnail img-responsive">
+      <h2>Banglore</h2>
+    </div>
+  </div>
+</div>
+<% end  %>

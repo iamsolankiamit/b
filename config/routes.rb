@@ -1,4 +1,5 @@
 Roomnhouse::Application.routes.draw do
+  match '/404', :to  =>  "errors#not_found"
   resources :inquiries do
     resources :messages
   end
