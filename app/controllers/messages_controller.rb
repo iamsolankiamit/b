@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+  def index
+  end
+
   def inbox
     @messages=Message.where(reciever_id: current_user.id)
   end
