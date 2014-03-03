@@ -22,7 +22,7 @@ class InquiriesController < ApplicationController
   end
 
   def index
-    @inquiries = Inquiry.where('guest_id = ? OR host_id = ?', current_user.id , current_user.id)
+    @inquiries = Inquiry.where('guest_id = ? OR host_id = ?', current_user.id , current_user.id).includes(:messages,:host,:guest)
   end
 
   def delete
