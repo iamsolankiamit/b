@@ -7,9 +7,9 @@ class InquiriesController < ApplicationController
   def show
     @inquiry = Inquiry.find(params[:id])
     @offer = Offer.find(@inquiry.offer_id)
-    @messages = @inquiry.messages.all
-    @guest = User.find(@messages.first.sender_id)
-    @host = User.find(@messages.first.receiver_id)
+    @messages = @inquiry.messages.all.sort_by(&:created_at).reverse
+    @guest = User.find(@inquiry.guest_id)
+    @host = User.find(@inquiry.host_id)
   end
 
   def create
@@ -22,7 +22,7 @@ class InquiriesController < ApplicationController
   end
 
   def index
-    @inquiries = Inquiry.find_by_receiver_id(current_user.id)
+    @inquiries = Inquiry.where('guest_id = ? OR host_id = ?', current_user.id , current_user.id)
   end
 
   def delete

@@ -28,15 +28,21 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(params[:message])
+    @inquiry = Inquiry.find(@message.inquiry_id)
+    @host = User.find(@inquiry.host_id)
+    @guest = User.find(@inquiry.guest_id)
     phone_regex = /[789]\d{9}/
-    email_regex = /[a-z\d\.\_\%\+\-]+(\[at\]|@)+[a-z\d\.\-]+(\[\.\]|\.)+[a-z]{2,4}/ #email[at]gmail[.]com
+    email_regex = /[a-z\d\.\_\%\+\-]+(\[at\]|@)+[a-z\d\.\-]+(\[\.\]|\.)+[a-z]{2,4}/i #email[at]gmail[.]com
     @u = User.find(@message.sender_id)
     if !phone_regex.match(@message.content) && !email_regex.match(@message.content) && @message.receiver_id.to_i != 0
 
       respond_to do |format|
-        if @message.save
+        if @message.save!
           flash[:notice] = "Message has been sent"
           format.json {render json: flash }
+          format.js {
+            @content = render_to_string(:partial => 'message')
+          }
         else
           render :action => :new
         end

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-8">
+    <% if @guest == current_user %>
+      <div class="col-sm-2">
+      <%= image_tag @guest.avatar.url(:medium_center), class: "thumbnail img-responsive"  %>
+    </div>
+  <% elsif @host == current_user %>
+      <div class="col-sm-2">
+      <%= image_tag @host.avatar.url(:medium_center), class: "thumbnail img-responsive"  %>
+    </div>
+  <% end %>
+    <div class="col-sm-10">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= simple_format @message.content  %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
