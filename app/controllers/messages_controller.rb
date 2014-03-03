@@ -32,10 +32,9 @@ class MessagesController < ApplicationController
     @host = User.find(@inquiry.host_id)
     @guest = User.find(@inquiry.guest_id)
     phone_regex = /[789]\d{9}/
-    email_regex = /[a-z\d\.\_\%\+\-]+(\[at\]|@)+[a-z\d\.\-]+(\[\.\]|\.)+[a-z]{2,4}/i #email[at]gmail[.]com
-    @u = User.find(@message.sender_id)
-    if !phone_regex.match(@message.content) && !email_regex.match(@message.content) && @message.receiver_id.to_i != 0
-
+    email_regex = /[a-z\d\.\_\%\+\-]+(\[at\]|@|\[at\ the\ rate\])+[a-z\d\.\-]+(\[\.\]|\.|\[dot\])+[a-z]{2,4}/i #email[at]gmail[.]com
+    website_regex = /(?i)\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>]))/
+    if !phone_regex.match(@message.content) && !email_regex.match(@message.content) && !website_regex.match(@message.content)
       respond_to do |format|
         if @message.save!
           flash[:notice] = "Message has been sent"
@@ -48,9 +47,22 @@ class MessagesController < ApplicationController
         end
       end
     else
-      flash[:notice] = "Email Id's, Phone Number and Address are not allowed"
-      render :action => :new
+      @message.content.gsub!(email_regex, " { Email Hidden} ")
+      @message.content.gsub!(phone_regex, " { Phone Hidden} ")
+      @message.content.gsub!(website_regex, " { website Hidden} ")
+      respond_to do |format|
+        if @message.save!
+          flash[:notice] = "Message has been sent"
+          format.json {render json: flash }
+          format.js {
+            @content = render_to_string(:partial => 'message')
+          }
+        else
+          render :action => :new
+        end
+        flash[:notice] = "#{@message.content}Email Id's, Phone Number and Address are not allowed"
+      end
     end
   end
-
 end
+
