@@ -71,7 +71,6 @@
           </div>
           <%= simple_form_for(@inquiry, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
             <div class="modal-body">
-
             <div class="row">
               <div class="form-group">
                 <div class="col-sm-4">
@@ -87,7 +86,7 @@
                   <%= f.input_field :guest_count, collection: 1..15 , default: 2, class: "form-control" %>
                 </div>
 
-                  <%= f.hidden_field :offer_id, value: @offer.id %>
+                <%= f.hidden_field :offer_id, value: @offer.id %>
               </div>
             </div>
             <%= f.simple_fields_for :messages do |t| %>
@@ -159,7 +158,14 @@
             <div class="col-sm-3"><% @user =  User.find(@offer.user_id) %> <%= image_tag @user.avatar.url(:medium_center) , class: "thumbnail no-pad-border"%></div>
             <div class="col-sm-9" style="padding-top:25px;"><p><strong>Host: <%= @user.firstname.humanize %></strong></p></div>
           </div>
-                  </div>
+          <div class="row">
+            <% if current_user %>
+              <button class="btn btn-lg btn-block" data-toggle="modal" data-target="#inquiryForm">Contact Host</button>
+            <% else %>
+            <button class="btn btn-lg btn-block" data-toggle="modal" data-target="#loginForm">Contact Host</button>
+            <% end %>
+            </div>
+        </div>
       </div>
 
     </div>
@@ -191,14 +197,14 @@
               <% if !photos.nil? %>
                 <%if !photos.first.nil? %>
                 <div class="item active">
-                  <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
+                <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
             <% end %>
               <% photos[1..-1].each do |photo| %>
                 <div class="item">
-                  <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
+                <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>
@@ -329,127 +335,127 @@
   <script>
 
 $(function() {
-  $( "#inquirycheckin" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#inquirycheckout" ).datepicker( "option","minDate",selectedDate );
-    }
-  });
-  $( "#inquirycheckout" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#inquirycheckin" ).datepicker( "option", "maxDate", selectedDate );
-    }
-  });
+    $( "#inquirycheckin" ).datepicker({
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#inquirycheckout" ).datepicker( "option","minDate",selectedDate );
+}
+});
+    $( "#inquirycheckout" ).datepicker({
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#inquirycheckin" ).datepicker( "option", "maxDate", selectedDate );
+}
+});
 
-  $( "#checkin" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkout" ).datepicker( "option","minDate",selectedDate );
-    }
-  });
-  $( "#checkout" ).datepicker({
-    minDate:"0",
-    defaultDate: "+1w",
-    changeMonth: true,
-    numberOfMonths: 1,
-    onClose: function( selectedDate ) {
-      $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
-    }
-  });
-  });
+    $( "#checkin" ).datepicker({
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#checkout" ).datepicker( "option","minDate",selectedDate );
+}
+});
+$( "#checkout" ).datepicker({
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
+}
+});
+});
 $(function() {
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
-    circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%= @offer.confidential_lng  %>, radius: 500}]);
-    handler.bounds.extendWith(circles);
-    handler.fitMapToBounds();
-  });
-  var nightly = <%= @offer.nightly_rate_amount.to_s  %>;
-  var weekly = <%= @offer.weekly_rate_amount.nil? ? @offer.nightly_rate_amount*7 : @offer.weekly_rate_amount.to_s  %>;
-  var monthly = <%= @offer.monthly_rate_amount.nil? ? @offer.nightly_rate_amount*30 : @offer.monthly_rate_amount.to_s %>;
+      circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%= @offer.confidential_lng  %>, radius: 500}]);
+      handler.bounds.extendWith(circles);
+      handler.fitMapToBounds();
+      });
+    var nightly = <%= @offer.nightly_rate_amount.to_s  %>;
+    var weekly = <%= @offer.weekly_rate_amount.nil? ? @offer.nightly_rate_amount*7 : @offer.weekly_rate_amount.to_s  %>;
+    var monthly = <%= @offer.monthly_rate_amount.nil? ? @offer.nightly_rate_amount*30 : @offer.monthly_rate_amount.to_s %>;
 
-  $('#Price_view_selector').on('change', function() {
-    if(this.value == 1)
+    $('#Price_view_selector').on('change', function() {
+      if(this.value == 1)
       {
-        $('#price1').text(nightly);
+      $('#price1').text(nightly);
       }
       else if(this.value == 2)
-        {
-          $('#price1').text(weekly);
-        }
-        else if(this.value == 3)
-          {
-            $('#price1').text(monthly);
-          }
-  });
-  $('#CarouselThumb').carousel({
-    interval: 9999
-  })
+      {
+      $('#price1').text(weekly);
+      }
+      else if(this.value == 3)
+      {
+      $('#price1').text(monthly);
+      }
+      });
+    $('#CarouselThumb').carousel({
+interval: 9999
+})
 
-  $('.carousel .car-thumb').each(function(){
+$('.carousel .car-thumb').each(function(){
     var next = $(this).next();
     if (!next.length) {
-      next = $(this).siblings(':first');
+    next = $(this).siblings(':first');
     }
     next.children(':first-child').clone().appendTo($(this));
 
     for (var i=0;i<4;i++) {
-      next=next.next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-
-      next.children(':first-child').clone().appendTo($(this));
+    next=next.next();
+    if (!next.length) {
+    next = $(this).siblings(':first');
     }
-  });
-  $('#calendar').fullCalendar({
-    header: {
-      left: 'prev',
-      center: 'title',
-      right: 'next'
-    },
-    defaultView: 'month',
-    height: 500,
-    viewDisplay   : function(view) {
-      var now = new Date(); 
-      var end = new Date();
-      end.setMonth(now.getMonth() + 11); //Adjust as needed
 
-      var cal_date_string = view.start.getMonth()+'/'+view.start.getFullYear();
-      var cur_date_string = now.getMonth()+'/'+now.getFullYear();
-      var end_date_string = end.getMonth()+'/'+end.getFullYear();
-
-      if(cal_date_string == cur_date_string) { jQuery('.fc-button-prev').addClass("fc-state-disabled"); }
-      else { jQuery('.fc-button-prev').removeClass("fc-state-disabled"); }
-
-      if(end_date_string == cal_date_string) { jQuery('.fc-button-next').addClass("fc-state-disabled"); }
-      else { jQuery('.fc-button-next').removeClass("fc-state-disabled"); }
-    },
-    eventSources: [
-      {
-      url: '/offers/<%= @offer.id  %>/calendar'
+    next.children(':first-child').clone().appendTo($(this));
     }
-    ],
-    timeFormat: 'h:mm t{ - h:mm t} ',
-    dragOpacity: "0.5",
-    eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-      return updateEvent(event);
-    },
-    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-      return updateEvent(event);
-    }
-  });
+    });
+$('#calendar').fullCalendar({
+header: {
+left: 'prev',
+center: 'title',
+right: 'next'
+},
+defaultView: 'month',
+height: 500,
+viewDisplay   : function(view) {
+var now = new Date(); 
+var end = new Date();
+end.setMonth(now.getMonth() + 11); //Adjust as needed
+
+var cal_date_string = view.start.getMonth()+'/'+view.start.getFullYear();
+var cur_date_string = now.getMonth()+'/'+now.getFullYear();
+var end_date_string = end.getMonth()+'/'+end.getFullYear();
+
+if(cal_date_string == cur_date_string) { jQuery('.fc-button-prev').addClass("fc-state-disabled"); }
+else { jQuery('.fc-button-prev').removeClass("fc-state-disabled"); }
+
+if(end_date_string == cal_date_string) { jQuery('.fc-button-next').addClass("fc-state-disabled"); }
+else { jQuery('.fc-button-next').removeClass("fc-state-disabled"); }
+},
+eventSources: [
+{
+url: '/offers/<%= @offer.id  %>/calendar'
+}
+],
+  timeFormat: 'h:mm t{ - h:mm t} ',
+  dragOpacity: "0.5",
+  eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+    return updateEvent(event);
+  },
+eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+               return updateEvent(event);
+             }
+});
 });
 </script>
 <% end %>
