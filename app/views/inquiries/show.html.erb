@@ -2,8 +2,8 @@
   <div class="container">
   <div class="row">
 
+    <div class="col-sm-8">
     <div class="row">
-      <div class="col-sm-8">
         <% if @host == current_user %>
           <div class="col-sm-2">
           <%= image_tag @host.avatar.url(:medium_center), class: "thumbnail img-responsive"  %>
@@ -35,13 +35,11 @@
           </div>
         </div>
       <% end %>
-      </div>
     </div>
     <div class="message-pane">
       <% @messages.tap do |*rest_messages, last_message| %>
         <% rest_messages.each do |message|  %>
         <div class="row">
-        <div class="col-sm-8">
           <% if @guest == current_user %>
             <div class="col-sm-2">
             <%= image_tag @guest.avatar.url(:medium_center), class: "thumbnail img-responsive"  %>
@@ -59,10 +57,8 @@
             </div>
           </div>
         </div>
-      </div>
     <% end %>
 
-      <div class="col-sm-8">
         <div class="col-sm-2">
           <%= image_tag @guest.avatar.url(:medium_center), class: "thumbnail img-responsive"  %>
         </div>
@@ -78,8 +74,40 @@
           </div>
         </div>
       </div>
-    </div>
   <% end %>
+  </div>
+  <div class="col-sm-3">
+    <div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+          <% if current_user == @guest %>
+          <%= image_tag @host.avatar.url(:medium_center), style: "max-width: 100px;" %>
+          <span style="font-weight: 800; font-size: 18px; padding-left:10px;"><%= @guest.firstname %></span>
+        <% elsif current_user == @host %>
+          <%= image_tag @guest.avatar.url(:medium_center), style: "max-width: 100px;" %>
+          <%= @host.firstname  %>
+        <% end %>
+          </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>Help</h3>
+          </div>
+          <div class="panel-body">
+            <h3>How do I pay?</h3>
+            <p>Payments are transacted online through the Airbnb payment system. Simply press the 'book it' button on the listing page, and enter your credit card or PayPal information.</p>
+            <hr />
+            <h3>Email Addresses</h3>
+            <p>All contact info - email, phone number, and address - will be automatically exchanged between guest and host after the room is booked.</p>
+            <hr />
+            <h3>Support</h3>
+            <p>For more Info Contact the support team.</p>
+            </div>
+        </div>
+    </div>
+    </div>
   </div>
 </div>
 </div>
