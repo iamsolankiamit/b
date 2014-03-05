@@ -14,7 +14,6 @@
 <meta property="fb:app_id" content="414645321969009">
 <meta property="og:site_name" content="RoomnHouse">
 <%= yield :social %>
-
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfK1h2PFJnbz1QFkZoQr5w-wn3U2s4KFk&sensor=true&libraries=places"></script>
 <!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
 <%= csrf_meta_tags %>
@@ -55,7 +54,17 @@
       </ul>
       </li>
     <% end %>
-      <li><%= link_to "List Your Place", new_offer_path, class: "btn"  %></li>
+<style>
+  .offer-button{
+    border: 2px solid #5cb85c;
+    color: #5cb85c !important;
+    font-weight: 600;
+    padding: 10px !important;
+    margin: 5px;
+  }
+</style>
+
+      <li><%= link_to "List Your Space", new_offer_path, class: "btn offer-button " %></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
