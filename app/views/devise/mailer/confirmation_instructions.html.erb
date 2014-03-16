@@ -2,7 +2,9 @@
   <div class="header" style="width:100%;position:relative;">
     <table>
       <tr>
-        <td width="595"><img src="images/logo.png" width="271" style="display:block;padding:15px;" /></td>
+        <td width="595">
+          <%= image_tag "logo.png", width: "271", style: "display:block;padding:15px;"  %>
+      </td>
         <td width="155" style="vertical-align: top; text-align: right;">
           <div style="font-size:19px; line-height:16px; background:url(<%= asset_path("phoneicon.png")%>) no-repeat 8px 8px; color:white; padding:8px 8px 8px 29px; position: absolute;  height: 16px; top: 0px; right: 15px; background-color: #29abe2;">
             +91-9022-543210
@@ -29,7 +31,7 @@
     </div>
   </div>
   <div class="footer" style="background-color:#cccccc; width:100%;height:auto; text-align:center;">
-    <img style="padding:7px 0px;" src="images/roomnhouse-grey.png" width="121" />
-    <div class="address" style="color: #888888; font-size: 12px; line-height: 15px; height: 15px; padding-bottom:5px;"> 201, J. B. Nagar, Off. Andheri Kurla Road, Andheri East, Mumbai-400059</div>
+    <%= image_tag "roomnhouse-grey.png", style: "padding:7px 0px;", width: "121"  %>
+    <div class="address" style="color: #888888; font-size: 12px; line-height: 15px; height: 15px; padding-bottom:5px;"> A 2/3, Anoli Complex, Sunrise Park Road, Vastrapur, Ahmedabad.</div>
   </div>
 </div>
