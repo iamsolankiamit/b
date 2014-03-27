@@ -26,7 +26,7 @@
             </div>
             <div class="row">
             </div>
-            <%= s3_uploader_form callback_url: offer_photos_url,id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
+            <%= s3_uploader_form callback_url: offer_photos_url(params[:offer_id]),id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
               <h3 class="text-center" style="margin-top: 150px;">Drag and Drop Images here</h3>
             <%= file_field_tag :file,value: "Choose multiple images from desktop" , class: "btn btn-primary", style: "opacity:0;",  multiple: true %>
           <% end %>
