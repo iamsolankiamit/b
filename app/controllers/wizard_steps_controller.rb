@@ -17,6 +17,7 @@ class WizardStepsController < ApplicationController
   end
 
   def update
+    @offer = Offer.find(params[:offer_id])
     if wizard_step_offer.update_attributes(params[:offer])
       if next_step && params[:commit].downcase.include?('continue')
         redirect_to edit_offer_wizard_step_path(wizard_step_offer, next_step)
