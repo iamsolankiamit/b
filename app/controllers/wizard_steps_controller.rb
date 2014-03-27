@@ -1,6 +1,6 @@
 class WizardStepsController < ApplicationController
 
-  STEPS = ['address', 'photos', 'user']
+  STEPS = ['address', 'image', 'user']
 
   def edit
     @offer= Offer.find(params[:offer_id])
