@@ -1,30 +1,20 @@
-<div id="registrationForm" class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-labelledby="registerFormLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 id="registerFormLabel" class="modal-title">Sign Up</h4>
-      </div>
-      <div class="modal-body">
-          <%= simple_form_for(resource, :defaults => { :wrapper_html => {:class => 'form-group'} },:as => resource_name, :url => registration_path(resource_name)) do |f| %>
-            <%= f.error_notification %>
-          <div class="form-inputs">
-            <%= f.input :firstname, :required => false, label: false, placeholder: 'First Name' ,:autofocus => true , :input_html => { :class => 'form-control' }%>
-            <%= f.input :lastname, :required => false , label: false,:autofocus => true ,placeholder: 'Last Name', :input_html => { :class => 'form-control' }%>
-            <%= f.input :email, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' }%>
-            <%= f.input :password, :required => false , label: false, placeholder: 'Password', :input_html => { :class => 'form-control' }%>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Create An Account", class: 'btn btn-success btn-block' %>
-          </div>
-        <% end %>
-        <div class="text-center">Or..</div>
-        <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook),class: "btn btn-primary btn-block" %>
-      </div>
-      <div class="modal-footer">
-        <p>Already have an account? <a href="login" data-dismiss="modal" data-toggle="modal" data-target="#loginForm">Log in</a></p>
-      </div>
-    </div>
-  </div>
+
+<%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook),class: "btn btn-primary col-sm-offset-5 " %>
+<hr />
+<%= simple_form_for(resource, wrapper: :bootstrap3_horizontal , html: { class: "form-horizontal"},:as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+<div class="form-inputs">
+  <%= f.input :firstname,   placeholder: 'First Name' ,:autofocus => true %>
+  <%= f.input :lastname, placeholder: 'Last Name'%>
+  <%= f.input :email, required: true, placeholder:'Email'%>
+  <%= f.input :password, required: true,  placeholder: 'Password'%>
 </div>
+<div class="form-actions">
+  <%= f.button :submit,'Create account and complete', class: 'btn btn-success col-sm-offset-5' %>
+<% end %>
+</div>
+</div>
+<div class="panel-footer">
+<p>Already have an account? <a href="login" data-dismiss="modal" data-toggle="modal" data-target="#loginForm">Log in</a></p>
+
 

@@ -1,0 +1,68 @@
+<% content_for :body do %>
+  <style type="text/css" media="all">
+.photos{
+  min-height: 400px;
+}
+.inner-uploader{
+  margin:20px;
+  height: 360px;
+  border-radius: 15px;
+  border: 2px dashed #eee;
+}
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="text-center">Add Photos of your Property</h3>
+          <h4 class="text-center">Photos are soul of your property they describe it. Rooms with good Photos are booked more.</h4>
+        </div>
+        <div class="photos">
+          <div class="inner-uploader">
+            <div class="row">
+              <ul class="row thumbnails list-unstyled" id="something">
+              </ul>
+            </div>
+            <div class="row">
+            </div>
+            <%= s3_uploader_form callback_url: offer_photos_url,id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
+              <h3 class="text-center" style="margin-top: 150px;">Drag and Drop Images here</h3>
+            <%= file_field_tag :file,value: "Choose multiple images from desktop" , class: "btn btn-primary", style: "opacity:0;",  multiple: true %>
+          <% end %>
+            <div id="uploads_container"></div>
+            <script id="template-upload" type="text/x-tmpl">
+<div id="image_{%=o.unique_id%}" class="upload">
+  <h5>{%=o.name%}</h5>
+  <div class="progress progress-striped active"><div class="progress-bar" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
+</div>
+            </script>
+          </div>
+          <div class="panel-footer">
+            <div class="row">
+              <div class="col-sm-2">
+                <button class="btn btn-primary btn-md" id="photo-uploader"  style="position:relative; z-index:0;"><i class="icon icon-upload"></i> Add Images</button>
+              </div>
+              <div class="col-sm-offset-8 col-sm-2">
+                <%= link_to 'continue', edit_offer_wizard_step_url(@offer, 'user') , class: "btn btn-primary btn-block" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <%= render "help/why_list_sidebar"  %>
+    </div>
+  </div>
+</div>
+
+<% end %>
+<% content_for :js do %>
+  <script type="text/javascript" charset="utf-8">
+$('#photo-uploader').click(function(){
+    $('#file').click();
+    });
+
+</script>
+<% end %>

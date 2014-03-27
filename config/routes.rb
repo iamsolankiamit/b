@@ -30,6 +30,7 @@ Roomnhouse::Application.routes.draw do
   resources :floods, only: [:index]
 
   resources :offers do
+    resources :wizard_steps, only: [:edit, :update]
     get 'overview', on: :member
     resource :translations, only: [:edit,:update]
     resource :calendar

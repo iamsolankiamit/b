@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+
   before_filter :authenticate_user!, :except => [:show,:new,:create]
   load_and_authorize_resource
 
@@ -15,7 +16,7 @@ class OffersController < ApplicationController
     @inquiry.messages.build()
     session.delete(:passthru)
     unless current_user
-    session[:passthru] = offer_path(@offer)
+      session[:passthru] = offer_path(@offer)
     end
     session[:recently_viewed_offers] ||= []
     session[:recently_viewed_offers] << @offer.id
@@ -37,12 +38,8 @@ class OffersController < ApplicationController
     @offer.translations.build(params[:id])
     @offer.build_amenity(params[:id])
     if @offer.save
-      if current_user
-        redirect_to edit_offer_details_path(@offer), :notice => "successfully created offer"
-      else
-        session[:passthru] = edit_offer_details_path(@offer)
-        redirect_to new_user_registration_path, :notice => "To complete please fill in the details below"
-      end
+      redirect_to edit_offer_wizard_step_path(@offer, 'address')
+      session[:passthru] = edit_offer_details_path(@offer)
     else
       render :new
     end

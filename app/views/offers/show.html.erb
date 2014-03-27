@@ -59,8 +59,8 @@
 <div class="container">
   <div class="row">
     <% unless current_user %>
-      <%= render "devise/sessions/new"  %>
-    <%= render "devise/registrations/new"  %>
+      <%= render "devise/sessions/new_modal"  %>
+    <%= render "devise/registrations/new_modal"  %>
   <% else %>
       <div id="inquiryForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inquiryFormLabel" aria-hidden="true">
       <div class="modal-dialog">

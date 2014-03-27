@@ -1,28 +1,38 @@
-<%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
-  <%= f.input :email %>
-<%= f.input :contact_phone, :as => :string %>
-<%= f.input :country_code_iso, :as => :select, :label => "Country", class: "form-control", :priority => ["India"], :collection => Hash[Country.all.map{|c| [c.name,c.code]}],   :include_blank => false %>
-<%= f.input :street_no , class: "form-control", :as => :string, :label => "House no."%>
-<%= f.input :street ,:label => "Address Line 1", :as => :string%>
-<%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
-<%= f.input :city , :as => :string %>
-<%= f.input :object_type, 
-  :as => :select, 
-  :collection => {
-    "Shared Room"=>"shared_room", 
-    "Apartment" => "apartment", 
-    "Holiday home" => "house", 
-    "Private room" => "private_room", 
-    "Service Apartment" => "service_apartment",
-    "Chalet or cabin" => "cabin", 
-    "Villa" => "villa",
-    "Castle" => "castle", 
-    "Farmhouse" => "farmhouse", 
-    "Treehouse" => "treehouse", 
-    "Boat" => "boat", 
-    "Car" => "automobile"}, 
-    :label => "Property Type", 
-    :include_blank => false %>
-  <%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
-    <%= f.button :submit, :label => "Save & Continue", :class => 'btn-primary'%>
-  <% end %>
+<%= simple_form_for(@offer, :wrapper => :bootstrap3_horizontal , :html => { :class => 'form-horizontal' } ) do |f| %>
+  <style>
+[data-toggle="buttons"] li .btn input[type="radio"]{
+  display : none;
+}
+</style>
+<div class="form-group">
+  <div class="col-sm-4 control-label"><label class="select required optional control-label" for="offer_object_type">Property Type</label></div>
+  <div class="col-sm-8">
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default"><input type="radio" name="offer[object_type]" value="service_apartment">Service Apartment</input></label>
+      <label class="btn btn-default"><input type="radio" name="offer[object_type]" value="apartment">Apartment</input></label>
+      <label class="btn btn-default"><input type="radio" name="offer[object_type]" value="villa">Villa</input></label>
+      <label class="btn btn-default"><input type="radio" name="offer[object_type]" value="holiday_home">Holiday Home</input></label>
+      <div class="btn-group">
+        <button  class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+          More options
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="shared_room">Shared Room</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="private_room">Private Room</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="cabin">Chalet or cabin</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="castle">Castle</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="farmhouse">Farmhouse</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="boat">Boat</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="treehouse">Treehouse</input></label></li>
+          <li><label class="btn btn-block btn-default"><input type="radio" name="offer[object_type]" value="automobile">Car</input></label></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<%= f.input :max_guest_count ,required: true, :as => :string, :label => "Accommodates"%>
+<%= f.input :nightly_rate_amount , :as => :string, :label => "Nightly Rate"%>
+<%= f.input :city , required: true, :as => :string %>
+<div class="form-group"><div class="col-sm-offset-4 col-sm-8"><%= f.button :submit, :value => "Continue", :class => 'btn-primary'%></div></div>
+    <% end %>

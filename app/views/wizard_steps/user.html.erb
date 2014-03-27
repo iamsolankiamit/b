@@ -4,17 +4,20 @@
     <div class="col-sm-9">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="text-center">List your space</h3>
-          <h4 class="text-center">Earn extra money by renting out a spare room, apartment, cottage or holiday home.</h4>
+          <h3 class="text-center">Sign up</h3>
+          <h4 class="text-center">We need your details so your guest can contact you.</h4>
         </div>
         <div class="panel-body">
-          <%= render :partial => 'new_form' %>
+          <% unless current_user %>
+            <%= render "devise/sessions/new"  %>
+          <%= render "devise/registrations/new"  %>
+        <% end %>
         </div>
       </div>
     </div>
     <div class="col-sm-3">
       <%= render "help/why_list_sidebar"  %>
-    </div>
+      </div>
   </div>
 </div>
 <% end %>
