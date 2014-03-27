@@ -8,7 +8,7 @@
           <h4 class="text-center">Proper address help us locate you property efficiently, so there is less hassle</h4>
         </div>
         <div class="panel-body">
-  <%= simple_form_for(@offer, :wrapper => :bootstrap3_horizontal, as: :offer,:html => { :class => 'form-horizontal'}, :url => offer_wizard_step_path(@offer.id, params[:id])) do |f| %>
+  <%= simple_form_for(@offer, :wrapper => :bootstrap3_horizontal, :html => { :class => 'form-horizontal'}, :url => offer_wizard_step_path(@offer.id, params[:id])) do |f| %>
   <%= f.error_messages %>
     <%= f.input :street_no ,required: true, :as => :string, :label => "Room Name/ no./ Floor no.", placeholder: "ex Gayatri Niwas, or 3/10"%>
     <%= f.input :street , :as => :string, required: true,:label => "Address Line 1", placeholder: "ex: building name, street name,etc."%>

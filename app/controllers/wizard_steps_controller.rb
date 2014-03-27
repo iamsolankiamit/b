@@ -4,6 +4,7 @@ class WizardStepsController < ApplicationController
 
   def edit
     @offer= Offer.find(params[:offer_id])
+    @photos = Photo.where(:offer_id =>@offer.id).all
     if @offer.user_id == current_or_guest_user.id
       if step.present?
         render step
