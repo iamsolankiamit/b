@@ -1,6 +1,7 @@
 class Offer < ActiveRecord::Base
   before_save :set_email, :set_cancellation_policy, :set_contact
-  before_update :set_email, :verified_listing
+  before_update :set_email
+  after_update :verified_listing
   attr_accessible :visiblity, :email, :contact_phone, :contact_phone_backup, :object_type, :size, :size_type, :bathroom_count, :max_guest_count, :bed_count, :bedroom_count, :bed_type, :allow_marketing, :street, :street_no, :address_addon, :city, :zip, :country_code_iso, :currency, :nightly_rate_amount, :weekly_rate_amount, :monthly_rate_amount, :extra_guest_charge_amount, :included_guest_count, :service_charge_amount, :cancelation_policy, :min_nights, :max_nights, :checkin_after, :checkout_before, :confidential_lng, :confidential_lat, :geo_precision, :translations_attributes, :user_id, :is_verified, :photos_attributes, :calendars_attributes, :amenity_attributes
 
   has_many :translations, :dependent => :destroy
@@ -42,7 +43,7 @@ class Offer < ActiveRecord::Base
   end
 
   def full_street_address
-    [street_no, street,address_addon, city, country].compact.join(', ')
+    [street_no, street, address_addon, city, country].compact.join(', ')
   end
 
   def set_contact
@@ -52,7 +53,6 @@ class Offer < ActiveRecord::Base
       end
     end
   end
-
 
   def set_email
     if self.email.nil?
@@ -85,7 +85,7 @@ class Offer < ActiveRecord::Base
     if self.photos.count >= 3
       photos_flag = true
     end
-    if translations_flag == true and photos_flag == true 
+    if translations_flag == true and photos_flag == true
       self.is_verified = true
     end
   end

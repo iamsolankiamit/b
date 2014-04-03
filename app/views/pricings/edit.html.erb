@@ -1,47 +1,47 @@
 <% content_for :body do %>
-	<div class="container">
-<div class="row">
-		<div class="col-lg-3">
-			<ul class="list-group">
-				<%= link_to "Dashboard", offers_path, class: "list-group-item" %>
-				<%= link_to "My Listings", offers_path, class: "list-group-item active" %>
-				<%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
-			</ul>
-		</div>
+  <div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <ul class="list-group">
+        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
+        <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
+        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
+      </ul>
+    </div>
 
-		<div class="col-lg-9">
+    <div class="col-lg-9">
       <div class="main" style="margin-top:0px;">
-      <div class="row">
-				<div class="col-lg-4">
-					<% if @offer.photos.exists?  %>
-					<%if !@offer.photos.first.nil? %>
-					<%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
-					<% end %>
-					<% end %>
-				</div>
-        <div class="col-lg-6">
-					<h3>Your new listing (<%= @offer.id %>)</h3>
-				</div>
-				<div class="col-lg-2 "style="text-align:right;"><%= link_to "View listing", offer_path(@offer) %></div>
-			</div>
-
-					<ul class="nav nav-pills nav-justified">
-            <li ><%= link_to "Overview", overview_offer_path(@offer) %></li>
-						<li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
-						<li ><%= link_to "Details", edit_offer_details_path %></li>
-						<li ><%= link_to "Address", edit_offer_addresses_path %></li>
-						<li ><%= link_to "Photos", offer_photos_path %></li>
-						<li ><%= link_to "Calendars", edit_offer_calendar_path %></li>
-            <li class="active"><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
-					</ul>
-				<h2 class="text-center">Pricing &amp; Terms</h2>
-				<hr class=" offer-hr">
         <div class="row">
-        <div class="col-lg-6 col-lg-offset-3">
-				<%= render(:partial => "form") %>
+          <div class="col-lg-4">
+            <% if @offer.photos.exists?  %>
+              <%if !@offer.photos.first.nil? %>
+              <%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
+          <% end %>
+          <% end %>
+          </div>
+          <div class="col-lg-6">
+            <h3>Your new listing (<%= @offer.id %>)</h3>
+          </div>
+          <div class="col-lg-2 "style="text-align:right;"><%= link_to "View listing", offer_path(@offer) %></div>
         </div>
+
+        <ul class="nav nav-pills nav-justified">
+          <li ><%= link_to "Overview", overview_offer_path(@offer) %></li>
+          <li ><%= link_to "Title & Description", edit_offer_translations_path %></li>
+          <li ><%= link_to "Details", edit_offer_details_path %></li>
+          <li ><%= link_to "Address", edit_offer_addresses_path %></li>
+          <li ><%= link_to "Photos", offer_photos_path %></li>
+          <li ><%= link_to "Calendars", edit_offer_calendar_path %></li>
+          <li class="active"><%= link_to "Pricing & Terms", edit_offer_pricing_path %></li>
+        </ul>
+        <h2 class="text-center">Pricing &amp; Terms</h2>
+        <hr class=" offer-hr">
+        <div class="row">
+          <div class="col-lg-6 col-lg-offset-3">
+            <%= render(:partial => "form") %>
+          </div>
         </div>
-		</div>
-	</div>
-</div>
+      </div>
+    </div>
+  </div>
 <% end %>

@@ -11,17 +11,41 @@
     <hr class="offer-hr">
     <h3>Additional Charges</h3>
     <%= f.input :extra_guest_charge_amount , :as => :string, :label => "Fee for extra guests"%>
-    <%= f.input :included_guest_count , :as => :select, :collection =>(1..30), :label => "for each guest after"%>
+    <%= f.input :included_guest_count , :as => :select, :collection =>{"1 Guest" => 1, "2 Guests" => 2,"3 Guests" => 3, "4 Guests" => 4,
+                                                                       "5 Guests" => 5, "6 Guests" => 6, "7 Guests" => 7, "8 Guests" => 8,
+                                                                       "9 Guests" => 9, "10 Guests" => 10, "11 Guests" => 11, "12 Guests" => 12,
+                                                                       "13 Guests" => 13, "14 Guests" => 14, "15 Guests" => 15, "16 Guests" => 16,
+                                                                       "17 Guests" => 17, "18 Guests" => 18, "19 Guests" => 19, "20 Guests" => 20,
+                                                                       "30 Guests" => 30}, include_blank: false, :label => "for each guest after"%>
     <%= f.input :service_charge_amount , :as => :string, :label => "Cleaning fee"%>
     (Only if you provide a maid/cleaner)
 
     <hr class="offer-hr">
     <h3>Terms &amp; Conditions</h3>
     <%= f.input :cancelation_policy , :as => :select, :collection => {"Flexible" => "flexible", "Moderate" => "moderate", "Strict" => "strict"}, :include_blank => false, :label => "Cancellation Policy"%>
-    <%= f.input :min_nights , :as => :select, :collection => (1..30), :label => "Minimum Stay"%>
-    <%= f.input :max_nights , :as => :select, :collection => (1..30), :label => "Maximum nights"%>
-    <%= f.input :checkin_after , :as => :select, :collection => (1..24),:label => "Check-in after"%>
-    <%= f.input :checkout_before , :as => :select, :collection => (1..24), :label => "Check-out before"%>
+    <%= f.input :min_nights , :as => :select, include_blank: false, :collection => {"Flexible" => 0, "1 Day" => 1, "2 Days" => 2, "3 Days" => 3,
+                                                              "4 Days" => 4, "5 Days" => 5, "6 Days" => 6, "1 Week" => 7,
+                                                              "10 Days" => 10, "2 Weeks" => 14, "15 Days" => 15,
+                                                              "20 Days" => 20, "3 Weeks" => 21, "1 Month" => 30, "2 Months" => 60,
+                                                              "3 Months" => 90}, :label => "Minimum Stay"%>
+    <%= f.input :max_nights , :as => :select, include_blank: false, :collection => {"Flexible" => 0, "1 Day" => 1, "2 Days" => 2, "3 Days" => 3,
+                                                              "4 Days" => 4, "5 Days" => 5, "6 Days" => 6, "1 Week" => 7,
+                                                              "10 Days" => 10, "2 Weeks" => 14, "15 Days" => 15,
+                                                              "20 Days" => 20, "3 Weeks" => 21, "1 Month" => 30, "2 Months" => 60,
+                                                              "3 Months" => 90}, :label => "Maximum nights"%>
+    <%= f.input :checkin_after , :as => :select, include_blank: false, :collection => {"Flexible" => 0, "1 AM" => 1, "2 AM" => 2, "3 AM" => 3,
+                                                              "4 AM" => 4, "5 AM" => 5, "6 AM" => 6, "7 AM" => 7,
+                                                              "8 AM" => 8, "9 AM" => 9, "10 AM" => 10, "11 AM" => 11,
+                                                              "12 Noon" => 12, "1 PM" => 13, "2 PM" => 14, "3 PM" => 15,
+                                                              "4 PM" => 16, "5 PM" => 17, "6 PM" => 18, "7 PM" => 19,
+                                                              "8 PM" => 20, "9 PM" => 21, "10 PM" => 22, "11 PM" => 23,
+                                                              "12 O' Clock" => 24},:label => "Check-in after"%>
+    <%= f.input :checkout_before , :as => :select, include_blank: false, :collection => {"Flexible" => 0, "1 AM" => 1, "2 AM" => 2, "3 AM" => 3,
+                                                              "4 AM" => 4, "5 AM" => 5, "6 AM" => 6, "7 AM" => 7,
+                                                              "8 AM" => 8, "9 AM" => 9, "10 AM" => 10, "11 AM" => 11,
+                                                              "12 Noon" => 12, "1 PM" => 13, "2 PM" => 14, "3 PM" => 15,
+                                                              "4 PM" => 16, "5 PM" => 17, "6 PM" => 18, "7 PM" => 19,
+                                                              "8 PM" => 20, "9 PM" => 21, "10 PM" => 22, "11 PM" => 23,
+                                                              "12 O' Clock" => 24}, :label => "Check-out before"%>
     <%= f.button :submit, :class => 'btn-primary', :label => "Save & Continue"%>
-    
 <% end %>
