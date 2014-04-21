@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228102602) do
+ActiveRecord::Schema.define(:version => 20140421030816) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -171,8 +171,8 @@ ActiveRecord::Schema.define(:version => 20140228102602) do
     t.integer  "user_id"
     t.boolean  "visiblity"
     t.string   "email"
-    t.integer  "contact_phone",             :limit => 8
-    t.integer  "contact_phone_backup",      :limit => 8
+    t.string   "contact_phone"
+    t.string   "contact_phone_backup"
     t.string   "object_type"
     t.integer  "size"
     t.string   "size_type"
@@ -203,9 +203,9 @@ ActiveRecord::Schema.define(:version => 20140228102602) do
     t.float    "confidential_lng"
     t.float    "confidential_lat"
     t.float    "geo_precision"
-    t.boolean  "is_verified",                            :default => false
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
+    t.boolean  "is_verified",               :default => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -271,18 +271,18 @@ ActiveRecord::Schema.define(:version => 20140228102602) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",                  :default => "", :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "location"
@@ -294,8 +294,8 @@ ActiveRecord::Schema.define(:version => 20140228102602) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "phone",                  :limit => 8
-    t.integer  "work_phone",             :limit => 8
+    t.string   "phone"
+    t.string   "work_phone"
     t.integer  "vat_id_number"
     t.string   "token"
     t.string   "lazy_id"
