@@ -7,6 +7,7 @@
   <%= f.input :firstname,   placeholder: 'First Name' ,:autofocus => true %>
   <%= f.input :lastname, placeholder: 'Last Name'%>
   <%= f.input :email, required: true, placeholder:'Email'%>
+  <%= f.input :phone, :as  => :string, :required  => true  %>
   <%= f.input :password, required: true,  placeholder: 'Password'%>
 </div>
 <div class="form-actions">
