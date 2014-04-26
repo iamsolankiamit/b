@@ -55,6 +55,7 @@ class OffersController < ApplicationController
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
       redirect_to :back, :notice => "Offer not updated successfully."
+      Rails.logger.debug("#{@offer.inspect} ==== #{@offer.errors}")
     end
   end
 
