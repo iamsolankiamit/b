@@ -57,7 +57,7 @@ class OffersController < ApplicationController
     if @offer.update_attributes(params[:offer])
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
-      Rails.logger.debug( "translation error #{@offer.inspect} ==== #{@offer.errors}")
+      Rails.logger.debug( "translation error ==== #{@offer.errors.full_messages}")
       redirect_to :back, :notice => "Offer not updated successfully. translation error #{@offer.inspect} ==== #{@offer.errors}"
     end
   end
