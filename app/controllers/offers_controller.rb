@@ -58,7 +58,7 @@ class OffersController < ApplicationController
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
       Rails.logger.debug( "translation error #{@offer.inspect} ==== #{@offer.errors}")
-      redirect_to :back, :notice => "Offer not updated successfully."
+      redirect_to :back, :notice => "Offer not updated successfully. translation error #{@offer.inspect} ==== #{@offer.errors}"
     end
   end
 
