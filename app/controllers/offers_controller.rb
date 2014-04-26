@@ -51,6 +51,9 @@ class OffersController < ApplicationController
       @amenity = @offer.build_amenity
       @amenity = @offer.create_amenity(params[:amenities])
     end
+    if !@offer.translations
+      @translations = @offer.create_translations(params[:translations])
+    end
     if @offer.update_attributes(params[:offer])
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
