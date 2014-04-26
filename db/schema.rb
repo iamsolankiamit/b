@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140421030816) do
+ActiveRecord::Schema.define(:version => 20140426015010) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20140421030816) do
     t.boolean  "is_verified",               :default => false
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
+    t.integer  "search_rank",               :default => 0
   end
 
   create_table "photos", :force => true do |t|
