@@ -23,9 +23,7 @@ class Offer < ActiveRecord::Base
 
   validates_presence_of :user_id, :nightly_rate_amount
 
-  validates_numericality_of :contact_phone_backup,
-    :contact_phone,
-    :max_nights,
+  validates_numericality_of :max_nights,
     :max_guest_count,
     :zip,
     :size,
