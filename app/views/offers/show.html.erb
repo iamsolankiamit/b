@@ -219,6 +219,26 @@
               <span class="icon-chevron-right"></span>
             </a>
           </div>
+          <!-- <div class="carousel-thumbs">
+            <ul>
+              <li>
+                <div class="col-xs-2">
+                  <a data-target="#carousel-main" data-slide-to="0" href="#">
+                    <%= image_tag photos.first.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
+                  </a>
+                </div>
+                </li>
+<% photos[1..-1].each_with_index do |photo, index| %>
+  <li>
+                <div class="col-xs-2">
+                  <a data-target="#carousel-main" data-slide-to="<%= index+1 %>" href="#">
+                    <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
+                  </a>
+                </div>
+                </li>
+            <% end %>
+            </ul>
+            </div> -->
           <div class="carousel slide" id="CarouselThumb">
             <div class="carousel-inner">
               <div class="item active car-thumb">
@@ -231,7 +251,7 @@
               <% photos[1..-1].each_with_index do |photo, index| %>
                 <div class="item car-thumb">
                 <div class="col-xs-2">
-                  <a data-target="#carousel-main" data-slide-to="<%= index %>" href="#">
+                  <a data-target="#carousel-main" data-slide-to="<%= index+1 %>" href="#">
                     <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
                   </a>
                 </div>
@@ -246,7 +266,7 @@
               <div class="row">
                 <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Accommodates</div> <div class="overview-details"><%= @offer.max_guest_count.nil? ? "" : @offer.max_guest_count  %></div></div>
                 <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bedrooms </div><div class="overview-details"><%= @offer.bedroom_count.nil? ? 1 : @offer.bedroom_count %></div></div>
-                <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bathrooms </div><div class="overview-details"><%= @offer.bed_count.nil? ? 1 : @offer.bed_count %></div></div>
+                <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bathrooms </div><div class="overview-details"><%= @offer.bathroom_count.nil? ? 1 : @offer.bathroom_count %></div></div>
                 <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Size </div><div class="overview-details"><%= @offer.size.nil? ? "Nil" : @offer.size %> <%= @offer.size_type.nil? ? "Sq. ft." : @offer.size_type.humanize %></div></div>
               </div>
             </div>

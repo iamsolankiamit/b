@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  before_save :set_email, :set_cancellation_policy, :set_contact
+  before_save :set_email, :set_cancellation_policy, :set_contact, :split_city
   before_update :set_email
   after_update :verified_listing
   attr_accessible :visiblity, :email, :contact_phone, :contact_phone_backup, :object_type, :size, :size_type, :bathroom_count, :max_guest_count, :bed_count, :bedroom_count, :bed_type, :allow_marketing, :street, :street_no, :address_addon, :city, :zip, :country_code_iso, :currency, :nightly_rate_amount, :weekly_rate_amount, :monthly_rate_amount, :extra_guest_charge_amount, :included_guest_count, :service_charge_amount, :cancelation_policy, :min_nights, :max_nights, :checkin_after, :checkout_before, :confidential_lng, :confidential_lat, :geo_precision, :translations_attributes, :user_id, :is_verified, :photos_attributes, :calendars_attributes, :amenity_attributes
@@ -44,6 +44,10 @@ class Offer < ActiveRecord::Base
     [street_no, street, address_addon, city, country].compact.join(', ')
   end
 
+def split_city
+ parts =  self.city.split(', ')
+self.city = parts[0]
+end
   def set_contact
     if self.contact_phone.nil?
       if !User.find(:all, :conditions => ['id=?', self.user_id]).first.phone.nil?

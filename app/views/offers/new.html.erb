@@ -18,3 +18,11 @@
   </div>
 </div>
 <% end %>
+<% content_for :js do %>
+  <script type="text/javascript" charset="utf-8">
+$("#offer_city").geocomplete({
+details: "#new_offer",
+detailsAttribute: "data-geo"
+});
+</script>
+<% end %>
