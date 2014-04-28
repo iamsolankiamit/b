@@ -44,10 +44,11 @@ class Offer < ActiveRecord::Base
     [street_no, street, address_addon, city, country].compact.join(', ')
   end
 
-def split_city
- parts =  self.city.split(', ')
-self.city = parts[0]
-end
+  def split_city
+    parts =  self.city.split(', ')
+    self.city = parts[0]
+  end
+
   def set_contact
     if self.contact_phone.nil?
       if !User.find(:all, :conditions => ['id=?', self.user_id]).first.phone.nil?

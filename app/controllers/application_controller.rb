@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
     uuid = rand(36**64).to_s(36)
     temp_email = "guest_#{uuid}@guest.com"
     u = User.create(:email => temp_email, :lazy_id => uuid, guest_account: true)
+    u.skip_confirmation!
     u.save(:validate => false)
     cookies[:uuid] = { :value => uuid, :path => '/', :expires => 5.years.from_now }
     u
