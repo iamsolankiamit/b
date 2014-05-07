@@ -40,7 +40,11 @@ class BookingsController < ApplicationController
           @booking.card_holder_name = params['name_on_card']
           @booking.transaction_number = notification.invoice
           @trip = Trip.find(@booking.trip_id)
-          UserMailer.trip_registered(current_user,@trip,@booking).deliver
+          host = User.find(@trip.host_id)
+          UserMailer.delay.host_acceptance(current_user,host,@trip,@booking)
+          UserMailer.guest_booking_done(current_user,@trip,@booking).deliver
+          SmsSender.guest_booking_done(current_user, @trip, @booking)
+          SmsSender.host_new_booking(current_user,host, @trip, @booking)
           redirect_to @trip
         else
           @booking.status = "failed"

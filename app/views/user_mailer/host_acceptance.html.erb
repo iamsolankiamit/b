@@ -1,0 +1,31 @@
+Greetings <%= @host.complete_name  %>
+
+You have new booking request for your property <%= link_to @offer.translations.first.title, offer_url(@offer)  %>.
+
+The booking details are as follows
+
+
+<table>
+  <tr>
+    <td>Checkin Date</td>
+    <td><%= @trip.checkin %></td>
+  </tr>
+  <tr>
+    <td>Checkout Date</td>
+    <td><%= @trip.checkout  %></td>
+  </tr>
+  <tr>
+    <td>Guest Name</td>
+    <td><%= @guest.complete_name %></td>
+  </tr>
+   <tr>
+    <td>No of Guest</td>
+    <td><%= @trip.guest_count %></td>
+  </tr>
+</table>
+
+To accept the request click on the link Below:
+<%= link_to trip_url(@trip), trip_url(@trip)  %>
+
+
+Thanks for using Roomnhouse Servicies

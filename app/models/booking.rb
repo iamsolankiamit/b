@@ -1,6 +1,7 @@
 class Booking < ActiveRecord::Base
   attr_accessible :booked_at, :card_holder_name, :processing_fee, :service_tax, :status, :total, :transaction_number, :trip_id, :weekly_rate, :nightly_rate_amount, :monthly_rate_amount, :included_guest_count, :extra_guest_charge_amount, :service_charge_amount, :per_night, :discount_amount
   belongs_to :trip
+
   def set_values(offer_id,checkin,checkout,guests,guest_id,trip_id)
     checkout = Date.strptime(checkout, "%m/%d/%Y")
     checkin = Date.strptime(checkin, "%m/%d/%Y")

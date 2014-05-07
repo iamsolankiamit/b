@@ -1,0 +1,9 @@
+Greetings <%= @guest.complete_name %>,
+
+Your booking request of <%= link_to @offer.translations.first.title, offer_url(@offer)  %> has been made. A payment of <%= @booking.total_amount  %> has been received by Roomnhouse.
+The booking will be confirmed withing 24 hours by the host. If not confirmed your payment will be reversed.
+
+Thanks for using Roomnhouse servicies.
+
+If you have any questions you can connect with us at support@roomnhouse.com or call us on +91-9022-543210 .
+
