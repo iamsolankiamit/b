@@ -32,15 +32,28 @@
                   Your New Offer(<%= @offer.id %>)
               <% end %>
               <% end %></h2>
+            <% if current_user.id == @trip.host_id && @trip.host_accepted == false %>
+              <%= simple_form_for(@trip, :wrapper => :bootstrap3_horizontal) do |f|  %> 
+                <%= f.input :host_accepted, :label => "Accept booking" %>
+                <%= f.button :submit, :value => "Confirm"  %>
+              <% end %>
+            <% end %>
             <% if @trip.host_accepted  %>
               <dl class="dl-horizontal">
                 <dt>Arrival:</dt><dd> <%= @trip.checkin.strftime("%B %d, %Y") if @trip.checkin %></dd>
                 <dt>Departure:</dt><dd> <%= @trip.checkout.strftime("%B %d, %Y") if @trip.checkout  %></dd>
                 <dt>Address:</dt><dd> <%= @offer.full_street_address %></dd>
+                <% if current_user.id == @trip.guest_id  %>
                 <dt>Host Name:</dt><dd> <%= @host.complete_name %></dd>
                 <dt>Host contact:</dt><dd> <%= @host.phone %></dd>
                 <dt>Host E-mail:</dt><dd> <%= @host.email %></dd>
-              </dl> 
+              <% end %>
+            <% if current_user.id == @trip.host_id  %>
+                <dt>Guest Name:</dt><dd> <%= @guest.complete_name %></dd>
+                <dt>Guest contact:</dt><dd> <%= @guest.phone %></dd>
+                <dt>Guest E-mail:</dt><dd> <%= @guest.email %></dd>
+              <% end %>
+              </dl>
             <% else  %>
               Host has not accpeted yet, check back later.
             <% end %>

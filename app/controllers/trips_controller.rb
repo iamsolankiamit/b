@@ -13,5 +13,13 @@ class TripsController < ApplicationController
     @trip = Trip.where(guest_id: current_user.id, id: params[:id]).first
     @offer = Offer.find(@trip.offer_id)
     @host = User.find(@trip.host_id)
+    @guest = User.find(@trip.guest_id)
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    if @trip.update_attributes(params[:trip])
+      redirect_to :back, :notice  =>  "Trip accepted, guest has been notified"
+    end
   end
 end
