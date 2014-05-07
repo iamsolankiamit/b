@@ -20,7 +20,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip])
       unless :host_accepted.nil?
-        UserMailer.delay.guest_notifier(:trip_id)
+        UserMailer.delay.guest_notifier(@trip.id)
       end
       redirect_to :back, :notice  =>  "Trip accepted, guest has been notified"
     end
