@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
     @booking = Booking.where(:trip_id => trip_id).first
     @host = User.find(@trip.host_id)
     @offer = Offer.find(@trip.offer_id)
-   mail(:to => guest.email, :subject => "Booking complete")
+   mail(:to => @guest.email, :subject => "Booking complete")
   end
 
   def receipt
