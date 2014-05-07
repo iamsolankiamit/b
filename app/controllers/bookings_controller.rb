@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
 
   def payu_return
     notification = PayuIn.notification(request.query_string, options = {:credential1 => $payu_merchant_id, :credential2 => $payu_secret_key, :params => params})
-    @booking = Booking.find(notification.invoice.to_i) # notification.invoice is order id/cart id which you have submited from payment direction page.
+    @booking = Booking.find(notification.invoice.to_i/98022) # notification.invoice is order id/cart id which you have submited from payment direction page.
     if notification.acknowledge
       begin
         if notification.complete?
@@ -42,9 +42,8 @@ class BookingsController < ApplicationController
           @trip = Trip.find(@booking.trip_id)
           host = User.find(@trip.host_id)
           UserMailer.delay.host_acceptance(current_user,host,@trip,@booking)
-          UserMailer.guest_booking_done(current_user,@trip,@booking).deliver
-          SmsSender.guest_booking_done(current_user, @trip, @booking)
-          SmsSender.host_new_booking(current_user,host, @trip, @booking)
+          UserMailer.delay.guest_booking_done(current_user,@trip,@booking)
+          user_sms = SmsSender.new(current_user,host,@trip,@booking)
           redirect_to @trip
         else
           @booking.status = "failed"

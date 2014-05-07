@@ -13,6 +13,7 @@ module Roomnhouse
   class Application < Rails::Application
 
     require Rails.root + 'lib/custom_exceptions'
+    require Rails.root + 'lib/sms_sender'
     config.exceptions_app = CustomExceptions.new Rails.public_path
 
     # Settings in config/environments/* take precedence over those specified here.

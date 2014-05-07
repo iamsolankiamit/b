@@ -1,8 +1,14 @@
 require 'net/http'
 require 'uri'
 class SmsSender
-  def guest_booking_done(guest, trip,booking)
 
+
+  def initialize(guest,host,trip,booking)
+    guest_booking_done_sms(guest,trip,booking)
+    host_new_booking(guest,host,trip,booking)
+  end
+
+  def guest_booking_done_sms(guest, trip,booking)
     str1 = "<?xml version='1.0' encoding='iso-8859-1'?>
 <smslist>
  <sms>
@@ -13,14 +19,12 @@ class SmsSender
   <accountusagetypeid>1</accountusagetypeid>
  </sms>
 </smslist>"
-    puts str1
     uri = URI("http://www.vibgyortel.in/apps/sendsms.jsp")
     http = Net::HTTP.new(uri.host,uri.port)
     response = http.post(uri.path,str1, initheader = {"Content-Type" => "application/xml"})
   end
 
   def host_new_booking(guest,host, trip, booking)
-
     str1 = "<?xml version='1.0' encoding='iso-8859-1'?>
 <smslist>
  <sms>
@@ -35,7 +39,6 @@ class SmsSender
     uri = URI("http://www.vibgyortel.in/apps/sendsms.jsp")
     http = Net::HTTP.new(uri.host,uri.port)
     response = http.post(uri.path,str1, initheader = {"Content-Type" => "application/xml"})
-
   end
 end
 
