@@ -32,6 +32,7 @@
                   Your New Offer(<%= @offer.id %>)
               <% end %>
               <% end %></h2>
+            <% if @trip.host_accepted  %>
               <dl class="dl-horizontal">
                 <dt>Arrival:</dt><dd> <%= @trip.checkin.strftime("%B %d, %Y") if @trip.checkin %></dd>
                 <dt>Departure:</dt><dd> <%= @trip.checkout.strftime("%B %d, %Y") if @trip.checkout  %></dd>
@@ -40,6 +41,9 @@
                 <dt>Host contact:</dt><dd> <%= @host.phone %></dd>
                 <dt>Host E-mail:</dt><dd> <%= @host.email %></dd>
               </dl> 
+            <% else  %>
+              Host has not accpeted yet, check back later.
+            <% end %>
             </div>
             <div class="col-lg-3 text-right">
               <ul class="list-unstyled" style="padding-top:20px;">
