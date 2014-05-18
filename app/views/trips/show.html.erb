@@ -33,7 +33,7 @@
               <% end %>
               <% end %></h2>
             <% if current_user.id == @trip.host_id && @trip.host_accepted == false %>
-              <%= simple_form_for(@trip, :wrapper => :bootstrap3_horizontal) do |f|  %> 
+              <%= simple_form_for(@trip, :wrapper => :bootstrap3_horizontal) do |f| %>
                 <%= f.input :host_accepted, :label => "Accept booking" %>
                 <%= f.button :submit, :value => "Confirm"  %>
               <% end %>
