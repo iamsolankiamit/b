@@ -16,6 +16,7 @@ group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 end
+gem 'rails_12factor'
 gem "paperclip"
 gem "aws-sdk"
 gem "s3_direct_upload"
