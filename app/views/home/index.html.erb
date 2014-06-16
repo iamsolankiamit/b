@@ -76,12 +76,12 @@
 <% content_for :body do %>
   <div class="container">
   <div class="row">
-      <!-- <div class="row" style="height:30px;"></div>
- <div class="col-lg-12">
+    <div class="row" style="height:30px;"></div>
+    <div class="col-lg-12">
       <% if session[:recently_viewed_offers] %>
-        <h3>My Viewed Rooms</h3>
+        <h3>Recently Booked on Roomnhouse</h3>
       <div class="row">
-        <% @recently_viewed_offers.each do |offer| %>
+        <% @offers.each do |offer| %>
           <div class="col-lg-3 col-sm-4 col-xs-6">
           <%= link_to offer, class: "thumbnail" do %>
             <div>
@@ -106,56 +106,15 @@
       </div>
     <% end %>
     </div>
-      <h3>Recently Booked</h3>
-      <div class="row">
-        <% @offers.each do |offer| %>
-          <div class="col-lg-3 col-sm-4 col-xs-6">
-          <%= link_to offer, class: "thumbnail" do %>
-            <div>
-            <div class="price-box">
-              <div class="price">
-                <sup><i class="icon-inr"></i></sup>
-                <%= offer.nightly_rate_amount  %>
-                <sup>INR</sup>
-              </div>
-              <div class="price-info">per night</div>
-            </div>
-          </div>
-          <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-          <div class="caption">
-            <div class="title"><%= offer.translations.first.title.titlecase %></div>
-            <div class="location"><%= offer.object_type.titlecase %></div>
-            <div class="location"><%= offer.city.titlecase %></div>
-          </div>
-        <% end %>
-        </div>
-      <% end %>
-      </div> -->
-      <div class="row" style="height:30px;"></div>
-    <div class="col-lg-3 col-md-4 hidden-sm hidden-xs">
-      <div class="list-group">
-        <h3 class="list-group-item">Popular Destinations</h3>
-        <a class="list-group-item" href="http://roomnhouse.com/search/mumbai">Mumbai</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/delhi">Delhi</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/goa">Goa</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/pune">Pune</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/bangalore">Bangalore</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/hyderabad">Hyderabad</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/kullu">Kullu</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/manali">Manali</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/jaipur">Jaipur</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/lonavala">Lonavala</a>
-        <a class="list-group-item" href="http://roomnhouse.com/search/srinagar">Srinagar</a>
-      </div>
-    </div>
-
-    <style  media="all">
+  </div>
+  <div class="row" style="height:30px;"></div>
+  <style  media="all">
 .popular-destinations .price-box{
   color: #fff;
   text-align: right;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 16px;
   padding: 5px;
   background-color: #212121;
   opacity: 0.8;
@@ -165,75 +124,166 @@
   font-size: 20px;
   font-weight: 100;
 }
+  </style>
+  <div class="popular-destinations row">
+    <div class="col-lg-7" >
+      <a href="/search/varanasi" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+        <div class="price-box">
+          <div class="price">
+            <sup><i class="icon-inr"></i></sup>
+            250.0
+            <sup>INR</sup>
+          </div> 
+          <div class="price-info">per night</div>
+        </div>
+        <%= image_tag 'destinations/varanasi-large.jpg', style: "max-height: 250px;width:100%;"  %>
+        <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
+          <h3 >Discover Varanasi</h3>
+          Dwell into Spirituality at the city of Gods
+        </div>
+        <div class="col-lg-4" style="padding:25px 0px 25px 80px;">
+          See Properties 
+        </div>
+      </a>
+    </div>
+
+    <div class="col-lg-5" >
+      <a href="/search/bangalore"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+        <div class="price-box">
+          <div class="price">
+            <sup><i class="icon-inr"></i></sup>
+            600.0
+            <sup>INR</sup>
+          </div> 
+          <div class="price-info">per night</div>
+        </div>
+        <%= image_tag 'destinations/bangalore-medium.jpg', style: "max-height: 250px;width:100%;"  %>
+        <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
+          <h3 >Explore Bangalore</h3>
+          Look around and see alot
+        </div>
+        <div class="col-lg-4" style="padding:25px 10px 10px 10px;">
+          See Properties 
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <div class="row" style="height:30px;"></div>
+  <div class="popular-destinations row">
+    <div class="col-lg-5" >
+      <a href="/search/jaipur"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+        <div class="price-box">
+          <div class="price">
+            <sup><i class="icon-inr"></i></sup>
+            700.0
+            <sup>INR</sup>
+          </div> 
+          <div class="price-info">per night</div>
+        </div>
+        <%= image_tag 'destinations/jaipur-medium.jpg', style: "max-height: 250px;width:100%;"  %>
+        <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
+          <h3 >Pink city Jaipur</h3>
+          Explore love and tradition.
+        </div>
+        <div class="col-lg-4" style="padding:25px 10px 10px 10px;">
+          See Properties 
+        </div>
+      </a>
+    </div>
+
+    <div class="col-lg-7" >
+      <a href="/search/kullu" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+        <div class="price-box">
+          <div class="price">
+            <sup><i class="icon-inr"></i></sup>
+            500.0
+            <sup>INR</sup>
+          </div> 
+          <div class="price-info">per night</div>
+        </div>
+        <%= image_tag 'destinations/Kullu-medium.jpg', style: "max-height: 250px;width:100%;"  %>
+        <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
+          <h3 >Freeze in Kullu-Manali</h3>
+          Romantic and astonishing place to be in.
+        </div>
+        <div class="col-lg-4" style="padding:25px 0px 25px 80px;">
+          See Properties 
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
+<div class="row" style="background:#fff; padding: 10px;margin:0px; padding-left:50px; margin-top: 30px;/*margin-bottom:-50px;*/ ">
+  <div class="col-lg-6 col-sm-12" style="padding-left:15px;">
+    <h4 style="font-weight:bold; font-size:24px;color:#111; padding-bottom:20px; padding-top:30px;">Why Roomnhouse?</h4>
+    <style >
+.why_rnh { padding:10px; padding-left:0px;}
+.why_rnh h5 { font-weight:bold; font-size: 16px; color: #111;}
+.popular_destinations li {
+  padding : 7px;
+  font-size: 16px;
+}
     </style>
-    <div class="popular-destinations">
-      <a href="/search/varanasi">
-        <div class="col-lg-9" style="overflow:hidden; background: #fff;border: 1px solid #ddd; padding:0px;">
-          <div class="price-box">
-            <div class="price">
-              <sup><i class="icon-inr"></i></sup>
-              1000.0
-              <sup>INR</sup>
-            </div> 
-            <div class="price-info">per night</div>
-          </div>
-          <%= image_tag 'destinations/varanasi-large.jpg', style: "max-height: 250px;width:100%;"  %>
-          <div class="col-lg-10" style="padding:10px; padding-left: 20px;">
-            <h3 >Discover Varanasi</h3>
-            Dwell into Spirituality at the city of Gods
-          </div>
-          <div class="col-lg-2" style="padding:25px 10px 10px 10px;">
-            See Properties 
-          </div>
-        </div>
-      </a>
-
-      <a href="/search/bangalore" >
-        <div class="col-lg-4" style="overflow:hidden; background: #fff;border: 1px solid #ddd; padding:0px;margin-top:30px;">
-          <div class="price-box">
-            <div class="price">
-              <sup><i class="icon-inr"></i></sup>
-              1000.0
-              <sup>INR</sup>
-            </div> 
-            <div class="price-info">per night</div>
-          </div>
-          <%= image_tag 'destinations/bangalore-medium.jpg', style: "max-height: 250px;width:100%;"  %>
-          <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
-            <h3 >Explore Bangalore</h3>
-            Look around and see alot
-          </div>
-          <div class="col-lg-4" style="padding:25px 10px 10px 10px;">
-            See Properties 
-          </div>
-        </div>
-      </a>
-
-
-      <a href="/search/kullu" >
-        <div class="col-lg-5 " style="overflow:hidden; background: #fff;border: 1px solid #ddd; padding:0px; margin-left: 15px; margin-right: -15px; margin-top:30px;">
-          <div class="price-box">
-            <div class="price">
-              <sup><i class="icon-inr"></i></sup>
-              1000.0
-              <sup>INR</sup>
-            </div> 
-            <div class="price-info">per night</div>
-          </div>
-          <%= image_tag 'destinations/Kullu-medium.jpg', style: "max-height: 250px;width:100%;"  %>
-          <div class="col-lg-8" style="padding:10px; padding-left: 20px;">
-            <h3 >Feel Kullu</h3>
-            Freeze around
-          </div>
-          <div class="col-lg-4" style="padding:25px 10px 10px 10px;">
-            See Properties 
-          </div>
-        </div>
-      </a>
-
+    <div class="why_rnh">
+      <h5><i class="icon-ok"></i> Trusted Online Bookings.</h5>
+      <p>Book securely from verified hosts.
+      <br />
+      <a href="/users/sign_up">Sign up today for your free account.</a>
+      </p>
+    </div>
+    <div class="why_rnh">
+      <h5><i class="icon-ok"></i> 24/7 Cutomer Support.</h5>
+      <p>No more worries, we are the for you always.</p>
+    </div>
+    <div class="why_rnh">
+      <h5><i class="icon-ok"></i> Manage Your Properties Easily.</h5>
+      <p>Handle your propeties in easy, simple and fast manner.
+      <br />
+      <a href="/offers/new">List your property now.</a>
+      </p>
     </div>
 
+  </div>
+  <div class="col-lg-6 hidden-sm hidden-xs">
+    <h4 style="font-weight:bold; font-size:24px;color:#111; padding-bottom:30px;padding-left:15px; padding-top:30px;"> Popular Destinations</h4>
+    <div class="col-lg-6 col-md-6 hidden-sm hidden-xs ">
+      <ul class="popular_destinations">
+        <li> <a href="http://roomnhouse.com/search/kullu">Kullu, Himachal</a></li>
+        <li> <a  href="http://roomnhouse.com/search/manali">Manali, Himachal</a></li>
+        <li> <a  href="http://roomnhouse.com/search/jaipur">Jaipur, Rajasthan</a></li>
+        <li> <a  href="http://roomnhouse.com/search/lonavala">Lonavala, Maharashtra</a></li>
+        <li><a  href="http://roomnhouse.com/search/hyderabad">Hyderabad, Andhra Pradesh</a></li>
+        <li><a  href="http://roomnhouse.com/search/bangalore">Bangalore, Karnataka</a></li>
+      </ul>
     </div>
+    <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
+      <ul class="popular_destinations">
+        <li> <a  href="http://roomnhouse.com/search/mumbai">Mumbai, Maharashtra</a></li>
+        <li><a  href="http://roomnhouse.com/search/delhi">Delhi, India</a></li>
+        <li><a  href="http://roomnhouse.com/search/goa">Goa, India</a></li>
+        <li><a  href="http://roomnhouse.com/search/pune">Pune, Maharashtra</a></li>
+        <li> <a  href="http://roomnhouse.com/search/srinagar">Srinagar</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div>
+  <div class="row" style="background: #fff; margin:0px; padding-top: 30px; padding-bottom:40px;border-top:1px solid #ccc;margin-bottom:-50px;">
+<div class="col-lg-6">
+      <h5 style="text-align:center; font-size:16px; font-weight: bold; color: #111;padding-bottom:15px;">As Seen On</h5>
+      <%= image_tag "pr/YourStory_Media-Logo.png", alt: "Trusted and verisigned transactions", height: '48'  %>
+      <%= image_tag "pr/livemint_logo.png", alt: "Trusted and verisigned transactions", height: '48'  %>
+      <%= image_tag "pr/NextBigWhat-logo.png", alt: "Trusted and verisigned transactions", height: '28'  %>
+    </div>
+
+    <div class="col-lg-6">
+      <h5 style="text-align:center; font-size:16px; font-weight: bold; color: #111; padding-bottom: 15px;">Secured Transactions</h5>
+      <%= image_tag "fotter_strip.jpg", alt: "Trusted and verisigned transactions"  %>
+    </div>
+  </div>
+</div>
   </div>
 </div>
 <% end %>
