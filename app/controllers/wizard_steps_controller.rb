@@ -7,7 +7,11 @@ class WizardStepsController < ApplicationController
     @photos = Photo.where(:offer_id =>@offer.id).all
     if @offer.user_id == current_or_guest_user.id
       if step.present?
+        if current_user && step == 'user'
+          redirect_to edit_offer_translations_path(@offer)
+        else
         render step
+        end
       else
         raise ActionController::RoutingError.new('Not Found')
       end
