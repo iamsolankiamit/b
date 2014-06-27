@@ -1,4 +1,6 @@
 Roomnhouse::Application.routes.draw do
+  get "payouts/index"
+
   match '/404', :to  =>  "errors#not_found"
   resources :inquiries do
     resources :messages

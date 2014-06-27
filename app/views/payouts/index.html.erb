@@ -1,0 +1,42 @@
+<% content_for :body do %>
+  <% if @payouts %>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Booking Id</th>
+      <th> Trip Id</th>
+      <th>Guest Id </th>
+      <th>Status </th>
+      <th> Transfer No</th>
+      <th> Commission</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @payouts.each do |payout| %>
+  <tr>
+    <td>
+      <%= payout.booking_id %>
+    </td>
+    <td>
+      <%= payout.trip_id %>
+    </td>
+    <td>
+      <%= payout.guest_id %>
+    </td>
+    <td>
+      <%= payout.status %>
+    </td>
+    <td>
+      <%= payout.transfer_no %>
+    </td>
+    <td>
+      <%= payout.commission %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+You Dont have any payouts yet
+<% end %>
+<% end %>

@@ -41,6 +41,9 @@ class BookingsController < ApplicationController
           @booking.transaction_number = notification.invoice
           @trip = Trip.find(@booking.trip_id)
           host = User.find(@trip.host_id)
+          commission = @booking.total*0.05
+          @payout = Payout.new(booking_id: @booking.id, trip_id: @trip.id, status: "Unpaid", guest_id: @trip.guest_id, commission: commission )
+          @payout.save
           UserMailer.delay.host_acceptance(current_user,host,@trip,@booking)
           UserMailer.delay.guest_booking_done(current_user,@trip,@booking)
           user_sms = SmsSender.new(current_user,host,@trip,@booking)

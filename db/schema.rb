@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140426015010) do
+ActiveRecord::Schema.define(:version => 20140627104953) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -209,6 +209,18 @@ ActiveRecord::Schema.define(:version => 20140426015010) do
     t.integer  "search_rank",               :default => 0
   end
 
+  create_table "payouts", :force => true do |t|
+    t.integer  "booking_id"
+    t.integer  "trip_id"
+    t.integer  "guest_id"
+    t.integer  "host_id"
+    t.integer  "transfer_no"
+    t.float    "commission"
+    t.string   "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "photos", :force => true do |t|
     t.string   "offer_id"
     t.text     "description"
@@ -307,6 +319,10 @@ ActiveRecord::Schema.define(:version => 20140426015010) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.integer  "account_no"
+    t.string   "bank_name"
+    t.string   "ifsc_code"
+    t.string   "bank_branch"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
