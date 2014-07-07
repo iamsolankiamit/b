@@ -21,6 +21,7 @@ Roomnhouse::Application.routes.draw do
   match '/privacy' => 'info#privacy'
   match '/howtohost' => 'info#howtohost'
   match '/whyhost' => 'info#whyhost'
+  match '/dabba-drive' => 'info#dabbadrive'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users do
