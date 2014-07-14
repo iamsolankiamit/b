@@ -319,7 +319,7 @@ ActiveRecord::Schema.define(:version => 20140627104953) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.integer  "account_no"
+    t.string   "account_no"
     t.string   "bank_name"
     t.string   "ifsc_code"
     t.string   "bank_branch"

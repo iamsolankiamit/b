@@ -1,0 +1,37 @@
+<% content_for :body do %>
+  <h2 style="padding: 20px 0px 0px 35px;">Payout Settings</h2>
+<p style="padding: 5px 0px 30px 35px;">Fill your payments details to recieve payments.</p>
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li ><a href="#">Dashboard</a></li>
+  <li><%= link_to 'Inbox', inquiries_path %></li>
+  <li><%= link_to 'My Trips', trips_path %></li>
+  <li><%= link_to 'My Properties', offers_path  %></li>
+  <li><%= link_to 'My Profile', edit_user_registration_path %></li>
+  <li class="active"><a href="#home" role="tab" data-toggle="tab" >Agent Payout</a></li>
+</ul>
+<div class="container">
+  <div class="row" style="padding-top:30px;">
+    <div class="col-md-2">
+      <div class="list-group">
+        <%= link_to 'Payout Details',payouts_index_path, class: 'list-group-item' %>
+        <%= link_to 'Payout Settings',payouts_edit_path, class: 'list-group-item active' %>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <%= simple_form_for(resource, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } },:as => resource_name, :url => registration_path(resource_name), :html => { :method => :put ,class: "form-horizontal"}) do |f| %>
+        <%= f.error_notification %>
+      <%= f.input :bank_name, :required => true  %> 
+      <%= f.input :bank_branch, :required  => true  %>
+      <%= f.input :ifsc_code, :as  => :string, :required  => true  %>
+      <%= f.input :account_no , :as  => :string %>
+              <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Update" %>
+      </div>
+
+    <% end %>
+    </div>
+  </div>
+</div>
+        <% end %>
