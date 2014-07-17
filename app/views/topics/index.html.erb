@@ -1,0 +1,13 @@
+<% content_for :body do %>
+  <div class="container">
+    <div class="row">
+      <h3>Frequently asked questions.</h3>
+      <ul>
+       <% @topics.each do |topic| %>
+    <li><%= link_to topic.name, help_topic_path(topic.id)  %></li>
+  <% end %>
+      </ul>
+
+    </div>
+  </div>
+  <% end %>
