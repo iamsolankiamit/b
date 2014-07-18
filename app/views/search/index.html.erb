@@ -40,13 +40,155 @@
 }
 </style>
 
+
+
+
+
 <div class="container">
   <div class="row">
     <div class="map-container hidden-xs" style="">
       <div id="search_page" ></div>
     </div>
+
+
+
     <div class="listing-container">
       <div class="container">
+
+
+
+
+<div class="col-md-6">
+
+  <head>
+      <meta charset="utf-8">
+      <title>jQuery UI Slider functionality</title>
+     
+   </head>
+
+   
+   <body>
+      <!-- HTML --> <form accept-charset="UTF-8" action="/search" class="form-horizontal" id="search_form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="0bdc/Sub9vPzNNaynOutkfrTyrnrtk5mu+uHuTkmyic="></div>
+          <div class="form-group">
+          <div class="col-sm-12"><label for="geolocation">Destination</label></div>
+          <div class="col-sm-12">
+            <input autocomplete="off" autofocus="autofocus" class="required form-control" id="geolocation" name="destination" placeholder="Where do you want to go?" required="required" type="search"></div>
+        </div>
+
+
+
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <input class="form-control hasDatepicker" id="checkin" name="checkin" placeholder="Check in" type="text">
+              <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+            <div class="input-group">
+              <input class="form-control hasDatepicker" id="checkout" name="checkout" placeholder="Check out" type="text">
+              <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <select class="form-control" id="guests" name="guests"><option value="1">1 Guest</option>
+<option value="2">2 Guests</option>
+<option value="3">3 Guests</option>
+<option value="4">4 Guests</option>
+<option value="5">5 Guests</option>
+<option value="6">6 Guests</option>
+<option value="7">7 Guests</option>
+<option value="8">8 Guests</option>
+<option value="9">9 Guests</option>
+<option value="10">10 Guests</option>
+<option value="11">11 Guests</option>
+<option value="12">12 Guests</option>
+<option value="13">13 Guests</option>
+<option value="14">14 Guests</option>
+<option value="15">15 Guests</option>
+<option value="16">16+ Guests</option></select>
+              <span class="input-group-addon"><i class="icon icon-group"></i></span>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="input-group">
+              <select class="form-control" id="bedrooms" name="bedrooms"><option value="1">1 Bedroom</option>
+<option value="2">2 Bedrooms</option>
+<option value="3">3 Bedrooms</option>
+<option value="4">4 Bedrooms</option>
+<option value="5">5 Bedrooms</option>
+<option value="6">6 Bedrooms</option></select>
+              <span class="input-group-addon"><i class="icon icon-room"></i></span>
+            </div>
+          </div>
+        </div>
+
+
+
+          <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <select class="form-control" id="bed_count" name="bed_count">
+<option value="1">1 bed Count</option>
+<option value="2">2 bed Count</option>
+<option value="3">3 bed Count</option>
+<option value="4">4 bed Count</option>
+<option value="5">5 bed Count</option>
+<option value="6">6 bed Count</option>
+<option value="7">7 bed Count</option>
+<option value="8">8 bed Count</option>
+<option value="9">9 bed Count</option>
+<option value="10">10 bed Count</option>
+<option value="11">11 bed Count</option>
+<option value="12">12 bed Count</option>
+<option value="13">13 bed Count</option>
+<option value="14">14 bed Count</option>
+<option value="15">15 bed Count</option>
+<option value="16">16+ bed Count</option>
+</select>
+<span class="input-group-addon"><i class="icon icon-room"></i></span>
+              
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+<label for="price">Price range:</label>
+         <input type="text" id="price_min" name="price_min" data-min= "<%= @price_min%>" 
+            style="border:0; color:#00000F; font-weight:bold;">
+            <input type="text" id="price_max" name="price_max"  data-max= "<%= @price_max%>"
+            style="border:0; color:#00000F; font-weight:bold;">
+         <div class="row">
+      <div  id="slider-3"></div>
+   </div>
+
+<hr>
+
+
+        <div class="form-group">
+          <div class="col-sm-12">
+            <input type="submit" class="form-control btn btn-primary" value="Search">
+          </div>
+        </div>
+
+</form>
+     
+     
+</div>
+         
+
+
+
         <div class="row">
           <% unless @offers.nil? %>
             <% @offers.each do |offer|  %>
@@ -87,3 +229,36 @@
   </div>
 </div>
 <% end %>
+
+
+
+
+<!--Slider-->
+<% content_for :js do%>
+
+ <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+      <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <!-- Javascript -->
+      <script>
+         $(function() {
+          minimum = $('#price_min').data('min');
+           maximum = $('#price_max').data('max');
+            $( "#slider-3" ).slider({
+               range:true,
+               min: parseInt(minimum),
+               max: parseInt(maximum),
+               values: [ minimum, maximum ],
+               slide: function( event, ui ) {
+                  $( "#price_min" ).val(  ui.values[ 0 ] );
+                  $( "#price_max" ).val(  ui.values[ 1 ] );
+               }
+           });
+           $( "#price_min" ).val(  $( "#slider-3" ).slider( "values", 0   ));
+           $( "#price_max" ).val(  $( "#slider-3" ).slider( "values", 1  ));
+         });
+
+      </script>
+
+
+
+<% end%>
