@@ -47,9 +47,17 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.firstname = auth.info.name   # assuming the user model has a name
-      uri = URI.parse(auth.info.image)
-      uri.scheme = 'https'
-      user.avatar = URI.parse(uri) # assuming the user model has an image
+      url = URI.parse(auth.info.image)
+
+      h = Net::HTTP.new url.host, url.port
+      h.use_ssl = url.scheme == 'https'
+
+      head = h.start do |u|
+          u.head url.path
+      end
+
+      new_url = head['location']
+      user.avatar = new_url # assuming the user model has an image
     end
   end
 
