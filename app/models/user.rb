@@ -41,29 +41,22 @@ class User < ActiveRecord::Base
   end
 
   validates_presence_of :firstname
-  def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-    user = User.where(:email => auth.info.email).first
-    if(user&&!user.provider)
-      user.update_attributes(provider:auth.provider,
-                             uid:auth.id
-                            )
-      user.save!
-    else
-      user = User.where(:provider => auth.provider, :uid => auth.uid).first
-      unless user
-        user = User.create(firstname:auth.extra.raw_info.first_name,
-                           lastname:auth.extra.raw_info.last_name,
-                           provider:auth.provider,
-                           phone:auth.phone,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
-                          )
-        user.avatar_remote_url=(auth.info.image)
-        user.save
+
+  def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.firstname = auth.info.name   # assuming the user model has a name
+      user.avatar_remote_url = auth.info.image # assuming the user model has an image
+    end
+  end
+
+  def self.new_with_session(params,session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
       end
     end
-    user
   end
 
   def complete_name
