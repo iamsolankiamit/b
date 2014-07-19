@@ -58,7 +58,7 @@
 
 
 
-<div class="col-md-6">
+<div class="col-md-12">
 
   <head>
       <meta charset="utf-8">
@@ -94,10 +94,14 @@
           </div>
         </div>
 
+
+
+
         <div class="form-group">
           <div class="col-xs-6">
             <div class="input-group">
-              <select class="form-control" id="guests" name="guests"><option value="1">1 Guest</option>
+              <select class="form-control" id="max_guest_count" name="max_guest_count">
+<option value="1">1 Guest</option>
 <option value="2">2 Guests</option>
 <option value="3">3 Guests</option>
 <option value="4">4 Guests</option>
@@ -112,13 +116,20 @@
 <option value="13">13 Guests</option>
 <option value="14">14 Guests</option>
 <option value="15">15 Guests</option>
-<option value="16">16+ Guests</option></select>
+<option value="16">16+ Guests</option>
+</select>
               <span class="input-group-addon"><i class="icon icon-group"></i></span>
             </div>
           </div>
+
+
+
+
+
           <div class="col-xs-6">
             <div class="input-group">
-              <select class="form-control" id="bedrooms" name="bedrooms"><option value="1">1 Bedroom</option>
+              <select class="form-control" id="bedrooms" name="bedrooms">
+<option value="1">1 Bedroom</option>
 <option value="2">2 Bedrooms</option>
 <option value="3">3 Bedrooms</option>
 <option value="4">4 Bedrooms</option>
@@ -128,6 +139,8 @@
             </div>
           </div>
         </div>
+
+
 
 
 
@@ -156,18 +169,62 @@
               
             </div>
           </div>
-        </div>
+      
 
 
 
+        
+          <div class="col-xs-6">
+            <div class="input-group">
+              <select class="form-control" id="bed_type" name="bed_type">
+<option value="real_bed">Real Bed</option>
+<option value="airbed">Air Bed</option>
+<option value="futon">Futon</option>
+<option value="pull_out">Pull-Out</option>
+<option value="couch">Couch</option>
+
+</select>
+<span class="input-group-addon"><i class="icon icon-room"></i></span>
+              
+            </div>
+          </div>
+
+           
+
+<hr>
+<hr>
+
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" name="amenities[breakfast]" value="true"> Breakfast
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" name="amenities[air_conditioning]" value="true"> Air conditioning
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" name = "amenities[smoking_allowed]" value="true"> Smoking Allowed
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox4" name = "amenities[cable_tv]" value="true"> Cable tv
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox5" name = "amenities[internet]" value="true"> Internet
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox6" name = "amenities[kitchen]" value="true"> Kitchen
+</label>
+
+
+
+
+           </div>
 
 
 
 <label for="price">Price range:</label>
          <input type="text" id="price_min" name="price_min" data-min= "<%= @price_min%>" 
-            style="border:0; color:#00000F; font-weight:bold;">
+            style="border:1; color:#00000F; font-weight:bold;">-
             <input type="text" id="price_max" name="price_max"  data-max= "<%= @price_max%>"
-            style="border:0; color:#00000F; font-weight:bold;">
+            style="border:1; color:#00000F; font-weight:bold;">
          <div class="row">
       <div  id="slider-3"></div>
    </div>
