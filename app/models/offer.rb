@@ -1,4 +1,7 @@
 class Offer < ActiveRecord::Base
+
+   max_paginates_per 100
+
   before_save :set_email, :set_cancellation_policy, :set_contact, :split_city
   before_update :set_email
   after_update :verified_listing
@@ -20,7 +23,20 @@ class Offer < ActiveRecord::Base
 
   has_one :amenity, :dependent => :destroy
   accepts_nested_attributes_for :amenity
+#----------------------------------------------------------------------
+  has_many :Pages
+  scope :sort_by_price_asc,lambda{order("offers.nightly_rate_amount ASC")}
+  scope :sort_by_price_dsc ,lambda{order("offers.nightly_rate_amount DESC")}        #since this is a model thst is why this will query database
+  scope :sort_by_recommended ,lambda{order("offers.search_rank DESC")}
 
+  def self.sorting(sort)
+    if sort == 'recommended'              
+      sort_by_recommended
+    else 
+      sort_by_price_asc
+     end
+  end
+#----------------------------------------------------------------------
   validates_presence_of :user_id, :nightly_rate_amount
 
   validates_numericality_of :max_nights,

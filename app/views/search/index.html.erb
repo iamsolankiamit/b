@@ -41,9 +41,6 @@
 </style>
 
 
-
-
-
 <div class="container">
   <div class="row">
     <div class="map-container hidden-xs" style="">
@@ -72,7 +69,7 @@
           <div class="form-group">
           <div class="col-sm-12"><label for="geolocation">Destination</label></div>
           <div class="col-sm-12">
-            <input autocomplete="off" autofocus="autofocus" class="required form-control" id="geolocation" name="destination" placeholder="Where do you want to go?" required="required" type="search"></div>
+            <input autocomplete="on" autofocus="autofocus" class="required form-control" id="geolocation" name="destination"  required="required" type="search" value="<%= params[:destination]%>"  ></div>
         </div>
 
 
@@ -100,7 +97,10 @@
         <div class="form-group">
           <div class="col-xs-6">
             <div class="input-group">
-              <select class="form-control" id="max_guest_count" name="max_guest_count">
+
+              <select class="form-control" id="max_guest_count" name="max_guest_count" >
+                
+<option value="0"> Select Guest Count</option>
 <option value="1">1 Guest</option>
 <option value="2">2 Guests</option>
 <option value="3">3 Guests</option>
@@ -129,6 +129,7 @@
           <div class="col-xs-6">
             <div class="input-group">
               <select class="form-control" id="bedrooms" name="bedrooms">
+<option value="0"> Bedroom Count</option>
 <option value="1">1 Bedroom</option>
 <option value="2">2 Bedrooms</option>
 <option value="3">3 Bedrooms</option>
@@ -148,6 +149,8 @@
           <div class="col-xs-6">
             <div class="input-group">
               <select class="form-control" id="bed_count" name="bed_count">
+
+<option value="0">Select Bed Count</option>
 <option value="1">1 bed Count</option>
 <option value="2">2 bed Count</option>
 <option value="3">3 bed Count</option>
@@ -177,6 +180,7 @@
           <div class="col-xs-6">
             <div class="input-group">
               <select class="form-control" id="bed_type" name="bed_type">
+<option value="">Select Bed Type</option>                
 <option value="real_bed">Real Bed</option>
 <option value="airbed">Air Bed</option>
 <option value="futon">Futon</option>
@@ -188,11 +192,28 @@
               
             </div>
           </div>
+        </div>
 
-           
+
+
+
+
+          <div class="form-group">
+          <div class="col-xs-6">
+            <div class="input-group">
+              <select class="form-control" id="filter" name="search_sort">
+<option value="recommended">Recommended!</option>
+<option value="nightly_rate_amount_asc">Prices-increasing</option>
+</select>
+              <span class="input-group-addon"><i class="icon icon-group"></i></span>
+            </div>
+          </div>
+
+
+          </div>
 
 <hr>
-<hr>
+
 
 <label class="checkbox-inline">
   <input type="checkbox" id="inlineCheckbox1" name="amenities[breakfast]" value="true"> Breakfast
@@ -215,14 +236,18 @@
 
 
 
+<hr>
+           
 
-           </div>
+
+
+
 
 
 
 <label for="price">Price range:</label>
          <input type="text" id="price_min" name="price_min" data-min= "<%= @price_min%>" 
-            style="border:1; color:#00000F; font-weight:bold;">-
+            style="border:1; color:#00000F; font-weight:bold;"> <b>-</b>
             <input type="text" id="price_max" name="price_max"  data-max= "<%= @price_max%>"
             style="border:1; color:#00000F; font-weight:bold;">
          <div class="row">
@@ -230,6 +255,9 @@
    </div>
 
 <hr>
+
+<%= paginate @offers ,:param_name => :page %>
+<%= link_to_next_page @offers, 'Next Page' %>
 
 
         <div class="form-group">
@@ -253,7 +281,7 @@
             data-lat="<%= offer.confidential_lat  %>"
             data-lng="<%= offer.confidential_lng %>"
             data-url="<%= offer_url(offer) %>"
-            data-price="<%= offer.nightly_rate_amount %>"
+            data-price="<%= offer.nightly_rate_amount %>"                    
             data-title="<%= offer.translations.first.title.titlecase %>"
             data-location="<%= offer.city.titlecase  %>"
             data-property-type="<%= offer.object_type.humanize.titlecase  %>"
