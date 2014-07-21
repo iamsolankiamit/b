@@ -221,7 +221,6 @@ ActiveRecord::Schema.define(:version => 20140717073417) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
-    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
