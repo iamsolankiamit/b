@@ -20,6 +20,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new
     @offer= Offer.find(params[ 'offer_id' ])
+    if params[:guests].to_i > @offer.max_guest_count
+      redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
+    else
     @checkin = DateTime.strptime(params['checkin'], "%m/%d/%Y")
     @checkout= DateTime.strptime(params['checkout'], "%m/%d/%Y")
     @trip = Trip.create( offer_id: params['offer_id'],guest_id: current_user.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[ 'guests' ])
@@ -27,6 +30,7 @@ class BookingsController < ApplicationController
     @booking.set_values(params['offer_id'],params['checkin'],params['checkout'],params['guests'],current_user.id, @trip.id)
     @guest = User.find(@trip.guest_id)
     redirect_to @booking
+    end
   end
 
   def payu_return
