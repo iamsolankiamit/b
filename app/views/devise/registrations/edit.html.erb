@@ -35,13 +35,62 @@
               <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
               <%= f.input :password_confirmation, :required => false %>
               <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+
+           
+
+              <%= f.input :age,:required => true %>
+
+              
+              <div class="control-group">
+              <%= f.label "Gender::" %>
+              <div class="controls">
+                <%= f.select(:gender, options_for_select([["Male","Male"],["Female","Female"]]))%>
+              </div>
+            </div>
+              
+
+
+              <div class="control-group">
+               <%= f.label "income::" %>
+                <div class="controls">
+                <%= f.select(:income, options_for_select([["<200000","<200000"],["<500000","<500000"],["<1000000","<1000000"],[">1000000","1000000"]]))%>
+              </div>
+            </div>
+
+
+                <div class="control-group">
+                 <%= f.label "Education::" %>
+                  <div class="controls">
+                <%= f.select(:education, options_for_select([["educated","educated"],["NOT-educated","NOT-educated"]]))%>
+
+                </div>
+              </div>
+
+                <%= f.input :occupation, :required => false %>
+
+              <%= f.input :location, :required => true %>
+
+                <div class="control-group">
+                 <%= f.label "family Status::" %>
+                 <div class="controls">
+                <%= f.select(:family_status, options_for_select([["Married","married"],["NOT-Married","NOT-Married"]]))%>
+</br>
+              </div>
+            </div>
+
+              
             </div>
 
          </div>
+
+
+
          <div class="col-lg-3 col-lg-offset-2">
              <%= image_tag resource.avatar.url(:medium) , :class  => "img-thumbnail" %>
          <%= f.input :avatar  %>
          </div>
+
+         <hr>
          <div class="row">
            <div class="col-lg-6 col-lg-offset-1">
              <div class="form-actions">

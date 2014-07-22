@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140627104953) do
+ActiveRecord::Schema.define(:version => 20140721120731) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -322,6 +322,12 @@ ActiveRecord::Schema.define(:version => 20140627104953) do
     t.string   "bank_name"
     t.string   "ifsc_code"
     t.string   "bank_branch"
+    t.integer  "age"
+    t.integer  "income"
+    t.string   "education"
+    t.string   "occupation"
+    t.string   "gender"
+    t.string   "family_status"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
