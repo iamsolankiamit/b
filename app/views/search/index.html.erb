@@ -88,10 +88,12 @@
               <div class="col-sm-9"><div  id="slider-3"></div>
                 <div class="row">
                   <div class="col-sm-4">
-                    <input type="text" id="search_price_min" class="form-control" name="search[price_min]" data-min= "<%= @price_min%>" disabled>
+                    <input type="text" id="search_price_min" class="form-control"data-min= "<%= @price_min%>" disabled>
+                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-min= "<%= @price_min%>" >
                   </div>
                   <div class="col-sm-4 col-sm-offset-4">
                     <input type="text" id="search_price_max" name="search[price_max]"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
+                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-min= "<%= @price_min%>" >
                   </div>
                 </div>
               </div>
@@ -211,11 +213,15 @@ max: parseInt(maximum),
 values: [ minimum, maximum ],
 slide: function( event, ui ) {
 $( "#search_price_min" ).val(  ui.values[ 0 ] );
+$( "#search_price_min_main" ).val(  ui.values[ 0 ] );
 $( "#search_price_max" ).val(  ui.values[ 1 ] );
+$( "#search_price_max_main" ).val(  ui.values[ 1 ] );
 }
 });
     $( "#search_price_min" ).val(  $( "#slider-3" ).slider( "values", 0   ));
+    $( "#search_price_min_main" ).val(  $( "#slider-3" ).slider( "values", 0   ));
     $( "#search_price_max" ).val(  $( "#slider-3" ).slider( "values", 1  ));
+    $( "#search_price_max_main" ).val(  $( "#slider-3" ).slider( "values", 1  ));
     $( "#search_checkin" ).datepicker({
 minDate:"0",
 defaultDate: "+1w",
