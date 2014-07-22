@@ -4,7 +4,7 @@ class SearchController < ApplicationController
     @price_min = Offer.near(params[:destination], 50).minimum(:nightly_rate_amount)
     @price_max = Offer.near(params[:destination], 50).maximum(:nightly_rate_amount)
     @offers = find_amenities if params[:amenities]
-    cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
+        cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
     cookies[:checkout] = params[:checkout] unless params[:checkout].nil?
   end
 
@@ -13,9 +13,9 @@ class SearchController < ApplicationController
     price_min = params[:price_min].to_i
     price_max = params[:price_max].to_i
     if params[:search][:amenities]
-      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count] , amenities: { breakfast: params[:search][:amenities][:breakfast] ,air_conditioning: params[:search][:amenities][:air_conditioning] , smoking_allowed: params[:search][:amenities][:smoking_allowed], cable_tv: params[:search][:amenities][:cable_tv] , internet: params[:search][:amenities][:internet] , kitchen: params[:search][:amenities][:kitchen]  })
+      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count] , amenities: { breakfast: params[:search][:amenities][:breakfast] ,air_conditioning: params[:search][:amenities][:air_conditioning] , smoking_allowed: params[:search][:amenities][:smoking_allowed], cable_tv: params[:search][:amenities][:cable_tv] , internet: params[:search][:amenities][:internet] , kitchen: params[:search][:amenities][:kitchen]  }, sort_by: params[:search][:sort_by])
     else
-      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count], sort_by: params[:search][:search_sort] )
+      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count], sort_by: params[:search][:sort_by] )
     end
   end
 
