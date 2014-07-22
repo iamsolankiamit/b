@@ -12,6 +12,7 @@ gem "omniauth-facebook"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
+
 group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
@@ -36,7 +37,7 @@ group :assets do
   gem "haml"
   gem "yui-compressor"
   gem 'sass-rails', '~> 3.2.3'
-  gem 'bootstrap-sass'
+  gem 'bootstrap-sass', '~> 3.1.1'
   gem 'asset_sync'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
