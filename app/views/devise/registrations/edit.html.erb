@@ -40,43 +40,54 @@
 
               <%= f.input :age,:required => true %>
 
+                <%= f.input :occupation, :required => false %>
+
               
-              <div class="control-group">
+
+              
+              <div class="form-group">
               <%= f.label "Gender::" %>
-              <div class="controls">
+              <div class="form-controls">
                 <%= f.select(:gender, options_for_select([["Male","Male"],["Female","Female"]]))%>
               </div>
             </div>
               
 
 
-              <div class="control-group">
+              <div class="form-group">
                <%= f.label "income::" %>
-                <div class="controls">
-                <%= f.select(:income, options_for_select([["<200000","<200000"],["<500000","<500000"],["<1000000","<1000000"],[">1000000","1000000"]]))%>
+                <div class="form-controls">
+                <%= f.select(:income, options_for_select([["2lacs",200000],["5lacs",500000],["10lacs",1000000],[">10lacs",1000001]]))%>
               </div>
             </div>
 
+            
+            
 
-                <div class="control-group">
+                
+                <div class="form-group">
                  <%= f.label "Education::" %>
-                  <div class="controls">
+                  <div class="form-controls">
                 <%= f.select(:education, options_for_select([["educated","educated"],["NOT-educated","NOT-educated"]]))%>
 
                 </div>
               </div>
 
-                <%= f.input :occupation, :required => false %>
+              
 
-              <%= f.input :location, :required => true %>
+              
 
-                <div class="control-group">
+                <div class="form-group">
                  <%= f.label "family Status::" %>
-                 <div class="controls">
+                 <div class="form-controls">
                 <%= f.select(:family_status, options_for_select([["Married","married"],["NOT-Married","NOT-Married"]]))%>
-</br>
+
               </div>
             </div>
+
+        
+
+
 
               
             </div>
@@ -97,7 +108,10 @@
               <%= f.button :submit, "Update" %>
             </div>
           <% end %>
-            <%= link_to "Back", :back %>
+
+          <div class= "form-group" align="center">
+            <%= link_to "<< Back", :back %>
+          </div>
         </div>
         </div>
         </div>

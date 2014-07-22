@@ -26,7 +26,7 @@ class Offer < ActiveRecord::Base
 #----------------------------------------------------------------------
   has_many :Pages
   scope :sort_by_price_asc,lambda{order("offers.nightly_rate_amount ASC")}
-  scope :sort_by_price_dsc ,lambda{order("offers.nightly_rate_amount DESC")}        #since this is a model thst is why this will query database
+  scope :sort_by_price_dsc ,lambda{order("offers.nightly_rate_amount DESC")}        #since this is a model that is why this will query database
   scope :sort_by_recommended ,lambda{order("offers.search_rank DESC")}
 
   def self.sorting(sort)
