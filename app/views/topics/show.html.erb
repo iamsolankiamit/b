@@ -1,0 +1,31 @@
+<% content_for :body do %>
+  <div class="container">
+    <div class="row">
+      <h3 class="text-center" style="padding-bottom: 0px; padding-top: 20px; color: #111; font-size: 24px; font-weight:bold;">Help Center</h3>
+      <hr />
+      <div class="col-sm-3">
+      <div class="list-group">
+        <a href="#" class="list-group-item disabled"><h4>Topics</h4></a>
+       <% @topics.each do |topic| %>
+         <%= link_to topic.name.titlecase, help_topic_path(topic.id), class: "list-group-item #{ topic.id == @topic.id ? 'active' : '' }" %>
+  <% end %>
+      </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Articles Under - <%= @topic.name.titlecase %></h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                
+ <% @articles.each do |article| %>
+    <li><%= link_to article.title.capitalize, help_article_path(article.id)  %></li>
+  <% end %>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<% end %>

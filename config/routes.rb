@@ -1,6 +1,20 @@
 Roomnhouse::Application.routes.draw do
-  get "payouts/index"
+
+  get "articles/index"
+
+  get "articles/show"
+
+  get "topics/index"
+
+  get "topics/show"
+
+  resource 'help', only: [:index] do
+    resources :topics, only: [:index, :show]
+    resources :articles, only: [:index, :show]
+  end
   get "payouts/edit"
+
+  resources :payouts, only: [:index, :edit]
 
   match '/404', :to  =>  "errors#not_found"
   resources :inquiries do
