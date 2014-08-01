@@ -146,7 +146,7 @@
             </div>
           </div>
 
-          <% unless @offers.nil? %>
+          <% unless @offers.empty? %>
             <% @offers.each do |offer|  %>
             <div data-offer-id="<%= offer.id  %>"
             data-lat="<%= offer.confidential_lat  %>"
