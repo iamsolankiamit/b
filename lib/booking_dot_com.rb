@@ -1,7 +1,7 @@
 class BookingDotCom
   def self.url_creator(destination,checkin,checkout,guests)
     base_url = "http://www.booking.com/searchresults.html"
-    aid = 38837
+    aid = 388378
     error_url = "http%3A%2F%2Fwww.booking.com%2F%3Faid%3D388378%3B"
     si = "ai%2Cco%2Cci%2Cre%2Cdi"
     lang = "en-gb"
