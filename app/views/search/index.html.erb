@@ -1,3 +1,6 @@
+<% content_for :title do %>
+  Search for vacation room, villas, and apartment rentals in <%= params[:destination].gsub(/-/,' ')%> and save on your reservations with Room N House today!
+<% end %>
 <% content_for :body do %>
   <style>
 .footer{
@@ -146,7 +149,7 @@
             </div>
           </div>
 
-          <% unless @offers.nil? %>
+          <% unless @offers.empty? %>
             <% @offers.each do |offer|  %>
             <div data-offer-id="<%= offer.id  %>"
             data-lat="<%= offer.confidential_lat  %>"

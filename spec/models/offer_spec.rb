@@ -25,11 +25,13 @@ describe Offer do
     FactoryGirl.build(:offer,nightly_rate_amount: nil).should be_invalid
   end
 
-  it "is invalid without country_code_iso"
+  it "is invalid without country_code_iso" do
+    FactoryGirl.build(:offer,country_code_iso: nil ).should be_invalid
+  end
 
   it "should return its current country when given correct Iso Code" do
-     offer = FactoryGirl.build(:offer,country_code_iso: "IN")
-     offer.country.should == "India"
+    offer = FactoryGirl.build(:offer,country_code_iso: "IN")
+    offer.country.should == "India"
   end
 
   it "should return its full street address" do

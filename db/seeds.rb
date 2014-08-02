@@ -13,3 +13,4 @@ open("http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt
     Country.create!(:name => name, :code => code)
   end
 end
+
