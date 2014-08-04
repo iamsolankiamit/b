@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  require 'booking_dot_com'
   def index
     @offers ||= find_offers.page params[:page]
     @price_min = Offer.near(params[:destination], 50).minimum(:nightly_rate_amount)
@@ -6,6 +7,9 @@ class SearchController < ApplicationController
     @offers = find_amenities if params[:amenities]
         cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
     cookies[:checkout] = params[:checkout] unless params[:checkout].nil?
+    if @offers.empty?
+      redirect_to BookingDotCom.url_creator(params[:destination],params[:checkin],params[:checkout],params[:guests])
+    end
   end
 
   def search

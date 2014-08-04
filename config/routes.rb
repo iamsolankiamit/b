@@ -1,5 +1,7 @@
 Roomnhouse::Application.routes.draw do
 
+  get "sitemaps/index"
+
   get "articles/index"
 
   get "articles/show"
@@ -7,6 +9,8 @@ Roomnhouse::Application.routes.draw do
   get "topics/index"
 
   get "topics/show"
+
+  get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
 
   resource 'help', only: [:index] do
     resources :topics, only: [:index, :show]

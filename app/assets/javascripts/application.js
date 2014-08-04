@@ -20,4 +20,5 @@
 //= require jquery.geocomplete.min.js
 //= require gmaps/google
 //= require markerclusterer.js
+//= require /mixpanel/mixpanel.js
 //= require_tree .
