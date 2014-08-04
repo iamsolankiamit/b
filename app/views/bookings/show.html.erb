@@ -5,6 +5,7 @@
   @guest = User.find(@trip.guest_id)
   @host = User.find(@trip.host_id)
 %>
+
 <div id="content">
     <div class="content_inner">
       <div class="content_container transp ">
@@ -122,11 +123,12 @@
                   <td class="txt" colspan=""><strong><%= @guest.email  %></strong></td>
                 </tr>
                 <tr>
-                  <td class="txt" width="50%"><i class="icon-phone icon-container-small"></i>Phone</td>
-                  <td class="txt" colspan=""><strong><%= @guest.phone  %></strong></td>
+                  <td class="txt" width="50%"><i class="icon-phone icon-container-small"></i>*Phone</td>
+                  <td class="txt" colspan=""  ><input type= "text" id= "phone"  value="<%= @guest.phone  %>"><button type="button" class="btn btn-primary" id = "edit_button">Edit</button> </input>  </td>
                 </tr>
                 </tbody>
               </table>
+
               <div id="payment">
               <% payment_service_for @booking.id, $payu_merchant_id,
                 :amount => @booking.total,
@@ -150,7 +152,8 @@
                   %>
                   <% service.return_url Rails.application.config.payu_return_url %>
                     <p>By Submitting a booking you accept the Room n House <a href="/terms">TERMS &amp; CONDITIONS </a>, <a href="/cancellation">CANCELLATION POLICY</a>, <a href="/privacy">PRIVACY POLICY</a> &amp; House rules</p>
-                    <input type="submit" class="button-bg" value="Complete Booking"/>
+
+                    <input type="submit" class="button-bg"  id="complete_booking"  value="Complete Booking" />
                   <% end %>
                   </div>
                   </div>
@@ -160,4 +163,56 @@
           </div><!-- end of class="content_container" -->
         </div><!-- end of class="content_inner" -->
       </div><!-- end of id="content" -->
+      
     <% end %>
+
+<%content_for :js do%>
+
+<script type="text/javascript">
+
+$(document).change(function(){
+
+var phone =  $('#phone').val();
+var button = $('#complete_booking');          
+
+          if(phone == '')
+          {
+           
+            button.attr('disabled','disabled')
+         }
+          else
+          {
+              button.removeAttr('disabled')
+          }
+});
+
+
+$('#edit_button').click(function(){
+
+  var phone = $('#phone').val();
+  $.ajax({
+        type: "PUT",
+        url: "/users",
+        dataType: "json",
+        data: {user: {id: <%= current_user.id%>,phone: phone}},
+
+        complete: function(){
+       setTimeout(
+                  function() 
+                  {
+                     location.reload();
+                  }, 0005);  
+      
+    },
+    success: function(){
+          //any action you want to add
+    },
+
+       
+    });
+
+});
+
+
+</script>
+<%end%>

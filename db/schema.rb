@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20140721120731) do
+ActiveRecord::Schema.define(:version => 20140726102648) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -176,6 +175,24 @@ ActiveRecord::Schema.define(:version => 20140721120731) do
     t.integer  "receiver_id"
   end
 
+  create_table "myreviews", :force => true do |t|
+    t.integer  "reviews_by_id"
+    t.integer  "reviews_to_id"
+    t.string   "host_reviews"
+    t.string   "guest_reviews"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "offerreviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "trip_id"
+    t.string   "offer_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "offers", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "visiblity"
@@ -254,6 +271,15 @@ ActiveRecord::Schema.define(:version => 20140721120731) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "reviewssystem", :force => true do |t|
+    t.integer  "reviews_by_id"
+    t.integer  "reviews_to_id"
+    t.string   "host_reviews"
+    t.string   "guest_reviews"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -295,6 +321,15 @@ ActiveRecord::Schema.define(:version => 20140721120731) do
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
     t.integer  "discount_id",        :default => 0
+  end
+
+  create_table "userreview", :force => true do |t|
+    t.integer  "by_id"
+    t.integer  "to_id"
+    t.string   "trip_id"
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

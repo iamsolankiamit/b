@@ -38,6 +38,7 @@
                 <%= f.button :submit, :value => "Confirm"  %>
               <% end %>
             <% end %>
+
             <% if @trip.host_accepted  %>
               <dl class="dl-horizontal">
                 <dt>Arrival:</dt><dd> <%= @trip.checkin.strftime("%B %d, %Y") if @trip.checkin %></dd>
@@ -57,13 +58,23 @@
             <% else  %>
               Host has not accpeted yet, check back later.
             <% end %>
+
+
             </div>
+
+
+
             <div class="col-lg-3 text-right">
               <ul class="list-unstyled" style="padding-top:20px;">
-                <li>
+              
                 <li><%= link_to  "View trip", trip_path(@trip) %></li>
+                <hr>
+                
+                  <li><%= link_to "Write reviews" , new_trip_offerreview_path(@trip) %></li>
+             
               </ul>
             </div>
+            <hr>
           </div>
         </div>
         </div>

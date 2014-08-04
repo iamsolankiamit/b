@@ -21,6 +21,11 @@ class OffersController < ApplicationController
     session[:recently_viewed_offers] ||= []
     session[:recently_viewed_offers] << @offer.id
     session[:recently_viewed_offers].delete_at(0) if session[:recently_viewed_offers].size > 4
+
+    
+    @review = Offerreview.where(offer_id: params[:id])
+
+
     @hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
       marker.lat offer.confidential_lat
       marker.lng offer.confidential_lng

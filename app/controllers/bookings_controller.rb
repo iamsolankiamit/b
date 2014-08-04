@@ -3,10 +3,21 @@ class BookingsController < ApplicationController
   load_and_authorize_resource
   skip_before_filter :verify_authenticity_token
   include ActiveMerchant::Billing::Integrations
+
+
   def new
+
+    @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
+
+  respond_to do |format|
+   format.json {render json: @requests}
   end
 
+  end
+
+
   def show
+    
     @booking = Booking.find(params[:id])
     @trip = Trip.find(@booking.trip_id)
     if @booking.created_at - Time.now > 15.minutes && @booking.status == "bounced"
@@ -15,6 +26,8 @@ class BookingsController < ApplicationController
     if @booking.status == "success"
       redirect_to @trip
     end
+
+   
   end
 
   def create
@@ -30,6 +43,8 @@ class BookingsController < ApplicationController
     @booking.set_values(params['offer_id'],params['checkin'],params['checkout'],params['guests'],current_user.id, @trip.id)
     @guest = User.find(@trip.guest_id)
     redirect_to @booking
+
+
     end
   end
 
@@ -62,3 +77,7 @@ class BookingsController < ApplicationController
     end
   end
 end
+
+
+
+

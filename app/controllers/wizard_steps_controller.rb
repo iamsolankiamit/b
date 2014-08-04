@@ -36,16 +36,22 @@ class WizardStepsController < ApplicationController
   private
 
   def authorize_offer
-    @offer = wizad_step_offer
+    @offer = wizard_step_offer
     if @offer.user_id != current_user.id
       raise ActionController::RoutingError.new('Forbidden')
     end
   end
 
+
+
   def wizard_step_offer
-    offer_class = "Offer::#{step.camelcase}".constantize rescue Offer
+    offer_class = "Offer::#{step.camelcase}".constantize
     offer_class.find(params[:offer_id])
   end
+
+
+
+
 
   def step
     STEPS.find {|a_step| a_step == params[:id].to_s.downcase}

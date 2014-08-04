@@ -3,7 +3,7 @@
   $("#total").html("<%= @booking.total - @booking.discount_amount %>");
   $("#payment").html("<div><%= @content.html_safe%></div>");
 <% else %>
-    if ($("p#error").length < 1)
+    if ($("p #error").length < 1)
       {
         $("#discount").append("<p id='error'>Sorry this is Invalid code</p>");
       }

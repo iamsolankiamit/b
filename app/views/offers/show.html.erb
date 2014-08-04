@@ -1,68 +1,68 @@
 <% content_for :title do %>
-  <% if @offer.translations.first.title.nil? %>
-  <%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
-  <% else %>
-  <%= @offer.translations.first.title.titlecase  %> in <%= @offer.city %>
-  <% end %>
+<% if @offer.translations.first.title.nil? %>
+<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse
+<% else %>
+<%= @offer.translations.first.title.titlecase  %> in <%= @offer.city %>
+<% end %>
 <% end %>
 <% content_for :meta_description do %>
-  <% if @offer.translations.first.description.nil? %>
-  "A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
-  <% else %>
-  "Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>"
-  <% end %>
+<% if @offer.translations.first.description.nil? %>
+"A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people"
+<% else %>
+"Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>"
+<% end %>
 <% end %>
 <% content_for :social do %>
-  <% if @offer.translations.first.title.nil? %>
-  <meta property="og:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
-  <% else %>
-  <meta property="og:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
-  <% end %>
+<% if @offer.translations.first.title.nil? %>
+<meta property="og:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
+<% else %>
+<meta property="og:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
+<% end %>
 <meta property="og:type" content="roomnhouse:listing">
 <meta property="og:url" content="<%= url_for(only_path: false)%>">
 <% if @offer.translations.first.description.nil? %>
-  <meta property="og:description" content="A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people">
-  <% else %>
-  <meta property="og:description" content="Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>">
-  <% end %>
+<meta property="og:description" content="A spacious vacation rental <%= @offer.object_type.humanize  %> near <%= @offer.city  %>, with <%= @offer.bed_count  %> beds, and can accommodate <%= @offer.max_guest_count %> people">
+<% else %>
+<meta property="og:description" content="Entire <%= @offer.object_type.humanize %> for <%= @offer.nightly_rate_amount %> INR. <%=h truncate(@offer.translations.first.description, length: 140)  %>">
+<% end %>
 <% if @offer.photos.first.image.nil? %>
-  <meta property="og:image" content="<%= asset_path("logo.png") %>">
-  <% else %>
-  <meta property="og:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
-  <% end %>
+<meta property="og:image" content="<%= asset_path("logo.png") %>">
+<% else %>
+<meta property="og:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
+<% end %>
 
 
 <meta property="twitter:card" content="photo">
 <meta property="twitter:url" content="<%= url_for(only_path: false)%>">
 <% if @offer.photos.first.image.nil? %>
-  <meta property="twitter:image" content="<%= asset_path("logo.png") %>">
-  <% else %>
-  <meta property="twitter:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
-  <% end %>
+<meta property="twitter:image" content="<%= asset_path("logo.png") %>">
+<% else %>
+<meta property="twitter:image" content="<%= @offer.photos.first.image.url(:slider2) %>">
+<% end %>
 
 <% if @offer.translations.first.title.nil? %>
-  <meta property="twitter:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
-  <% else %>
-  <meta property="twitter:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
-  <% end %>
+<meta property="twitter:title" content="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse">
+<% else %>
+<meta property="twitter:title" content="<%=h @offer.translations.first.title.titlecase %> in <%= @offer.city  %>">
+<% end %>
 <meta property="twitter:site" content="@roomnhouse">
 <% if @offer.photos.first.image.nil? %>
-  <link rel="image_src" href="<%= asset_path("logo.png") %>">
-  <% else %>
-  <link rel="image_src" href="<%= @offer.photos.first.image.url(:slider2) %>">
-  <% end %>
+<link rel="image_src" href="<%= asset_path("logo.png") %>">
+<% else %>
+<link rel="image_src" href="<%= @offer.photos.first.image.url(:slider2) %>">
+<% end %>
 
 <% end %>
 <% content_for :body do %>
 
-  <% @user = User.find(@offer.user_id) %>
+<% @user = User.find(@offer.user_id) %>
 <div class="container">
   <div class="row">
     <% unless current_user %>
-      <%= render "devise/sessions/new_modal"  %>
+    <%= render "devise/sessions/new_modal"  %>
     <%= render "devise/registrations/new_modal"  %>
-  <% else %>
-      <div id="inquiryForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inquiryFormLabel" aria-hidden="true">
+    <% else %>
+    <div id="inquiryForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="inquiryFormLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -70,7 +70,7 @@
             <h4 id="inquiryFormLabel" class="modal-title">Send Message to <%= @user.firstname.titlecase  %></h4>
           </div>
           <%= simple_form_for(@inquiry, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }) do |f| %>
-            <div class="modal-body">
+          <div class="modal-body">
             <div class="row">
               <div class="form-group">
                 <div class="col-sm-4">
@@ -90,11 +90,11 @@
               </div>
             </div>
             <%= f.simple_fields_for :messages do |t| %>
-              <div class="row">
+            <div class="row">
               <div class="form-group">
                 <div class="col-sm-12">
                   <p style="padding:15px 0px;">
-                  Tell <%= @user.firstname.titlecase  %> what you like about their place, what matters most about your accommodation, or ask them a question.
+                    Tell <%= @user.firstname.titlecase  %> what you like about their place, what matters most about your accommodation, or ask them a question.
                   </p>
                   <%= t.hidden_field :receiver_id , value: @offer.user_id%>
                   <%= t.hidden_field :sender_id , value: current_user.id%>
@@ -102,53 +102,81 @@
                 </div>
               </div>
             </div>
-          <% end %>
+            <% end %>
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
             <%= f.button :submit, :value => "Send Message", :class => 'btn btn-primary'%>
           </div>
-        <% end %>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+    <% end %>
+
+
+
     <div class="col-sm-4 col-sm-push-8">
       <div class="panel panel-default">
         <div class="container">
           <div class="row" itemprop="offers" itemscope itemtype="http://schema.org/Offer" style="padding-top:15px;">
             <div class="col-sm-7">
               <span class="price-display"><%= @offer.currency %> <span id="price1" itemprop="price"><%= @offer.nightly_rate_amount %></span>
-                <meta content="INR" itemprop="priceCurrency">
-                <i class="icon-inr"></i></span>
+
+              <meta content="INR" itemprop="priceCurrency">
+              <i class="icon-inr"></i></span>
+
             </div>
+          
+
             <div class="col-sm-5">
               <div class="form-group"><select id="Price_view_selector" class="form-control" name="">
-                  <option value="1" selected="selected">Per night</option>
-                  <option value="2">Per week</option>
-                  <option value="3">Per month</option>
+                <option value="1" selected="selected">Per night</option>
+                <option value="2">Per week</option>
+                <option value="3">Per month</option>
               </select></div>
             </div>
           </div>
+
           <div class="container">
             <div class="row">
-              <%= form_tag "/bookings", :method => 'post', role: "form", id: 'search_form' do %>
-                <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+              <%= form_tag "/bookings", :method => 'post', role: "form", id: 'search_form'  do %>
+              <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
+
+
               <div class="form-group">
                 <label for="checkin">Check-in</label>
-                <%= text_field_tag :checkin, params[:checkin],required: "required", class: "form-control", placeholder: "Select Date", value: cookies[:checkin]%>
+                <%= text_field_tag :checkin, params[:checkin],required: "required", class: "form-control", placeholder: "Select checkin Date", value: cookies[:checkin]%>
               </div>
+
+
               <div class="form-group">
                 <label for="checkout">Check-out</label>
-                <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "Select Date", value:cookies[:checkout]%>
+                <%= text_field_tag :checkout, params[:checkout],required: "required",class: "form-control", placeholder: "Select checkout Date", value:cookies[:checkout] %>
               </div>
-              <div class="form-group">
+
+
+
+              <div class="form-group">                
                 <label for="guests">Guests</label>
                 <%= select_tag :guests, options_for_select([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35],2),class: "form-control" %> 
+            
+              </div>
+
+
+              <div class="col-sm-7">
+                <span class="price-display hidden"> Total Amount = <%= @offer.currency %> <span id="price2" itemprop="price">00.00</span>
+
+                <meta content="INR" itemprop="priceCurrency">
+                <i class="icon-inr"></i></span>
+
+              
               </div>
               <div class="form-group"><input type="submit" class=" btn btn-danger btn-lg btn-block" value="Book Now" /></div>
+
             </div>
           </div>
+
 
         </div>
       </div>
@@ -160,11 +188,11 @@
           </div>
           <div class="row">
             <% if current_user %>
-              <button class="btn btn-lg btn-block" data-toggle="modal" data-target="#inquiryForm">Contact Host</button>
+            <button class="btn btn-lg btn-block" data-toggle="modal" data-target="#inquiryForm">Contact Host</button>
             <% else %>
             <button class="btn btn-lg btn-block" data-toggle="modal" data-target="#loginForm">Contact Host</button>
             <% end %>
-            </div>
+          </div>
         </div>
       </div>
 
@@ -174,19 +202,19 @@
         <div class="alert alert-info no-margin"><strong><i class="icon-phone"></i> Need help in booking? Talk to us! +91-9022-543210</strong></div>
         <div class="panel-body" itemscope itemtype="http://schema.org/Product">
           <% if @offer.photos.first.image.nil? %>
-            <meta itemprop="image" content="<%= asset_path("logo.png") %>">
-        <% else %>
-            <meta itemprop="image" content="<%= @offer.photos.first.image.url(:slider2) %>">
-        <% end %>
+          <meta itemprop="image" content="<%= asset_path("logo.png") %>">
+          <% else %>
+          <meta itemprop="image" content="<%= @offer.photos.first.image.url(:slider2) %>">
+          <% end %>
           <% if @offer.translations.exists? %>
-            <% if !@offer.translations.first.title.nil? %>
-            <h1 itemprop="name" title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
-        <% end %>
-        <% end %>
+          <% if !@offer.translations.first.title.nil? %>
+          <h1 itemprop="name" title="<%= @offer.bedroom_count  %>BHK,  <%= @offer.object_type.humanize  %> in <%= @offer.address_addon  %>, <%= @offer.city  %> for rent - Roomnhouse"><%= @offer.translations.first.title.titlecase %></h1>
+          <% end %>
+          <% end %>
           <h6>
             <% if !@offer.address_addon.nil? %>
-              <%= @offer.address_addon.titlecase %>
-          <% end %>,
+            <%= @offer.address_addon.titlecase %>
+            <% end %>,
             <%= @offer.city.titlecase  %>,
             <%= Country.where(code: @offer.country_code_iso).first.name.titlecase  %>
           </h6>
@@ -195,21 +223,21 @@
             <div class="carousel-inner">
               <% photos = @offer.photos%>
               <% if !photos.nil? %>
-                <%if !photos.first.nil? %>
-                <div class="item active">
+              <%if !photos.first.nil? %>
+              <div class="item active">
                 <%= image_tag photos.first.image.url(:slider) ,class: "img-responsive", :style => "width:100%", alt: "#{@offer.translations.first.title.titlecase}" %>
                 <div class="carousel-caption">
                 </div>
               </div>
-            <% end %>
+              <% end %>
               <% photos[1..-1].each do |photo| %>
-                <div class="item">
+              <div class="item">
                 <%= image_tag photo.image.url(:slider) ,class: "img-responsive", :style => "width:100%" , alt: "#{@offer.translations.first.title.titlecase}"%>
                 <div class="carousel-caption">
                 </div>
               </div>
-            <% end %>
-            <% end %>
+              <% end %>
+              <% end %>
             </div>
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-main" data-slide="prev">
@@ -238,7 +266,7 @@
                 </li>
             <% end %>
             </ul>
-            </div> -->
+          </div> -->
           <div class="carousel slide" id="CarouselThumb">
             <div class="carousel-inner">
               <div class="item active car-thumb">
@@ -249,14 +277,14 @@
                 </div>
               </div>
               <% photos[1..-1].each_with_index do |photo, index| %>
-                <div class="item car-thumb">
+              <div class="item car-thumb">
                 <div class="col-xs-2">
                   <a data-target="#carousel-main" data-slide-to="<%= index+1 %>" href="#">
                     <%= image_tag photo.image.url(:thumb), class: "img-responsive thumbnail", alt: "#{@offer.translations.first.title.titlecase}" %>
                   </a>
                 </div>
               </div>
-            <% end %>
+              <% end %>
             </div>
             <a class="left carousel-control" href="#CarouselThumb" data-slide="prev"><i class="icon-chevron-left"></i></a>
             <a class="right carousel-control" href="#CarouselThumb" data-slide="next"><i class="icon-chevron-right"></i></a>
@@ -280,12 +308,12 @@
             <div class="col-sm-8">
               <div class="headings-offer">Description:</div>
               <% if @offer.translations.exists? %>
-                <article><%= simple_format(@offer.translations.first.description) %></article>
-            <% end %>
+              <article><%= simple_format(@offer.translations.first.description) %></article>
+              <% end %>
               <div class="headings-offer">House Rules:</div>
               <% if @offer.translations.exists? %>
-                <article><%= simple_format(@offer.translations.first.rules) %></article>
-            <% end %>
+              <article><%= simple_format(@offer.translations.first.rules) %></article>
+              <% end %>
             </div>
             <div class="col-sm-4">
               <div class="headings-offer">Property Details:</div>
@@ -300,7 +328,7 @@
               </ul>
               <div class="headings-offer">Amenities:</div>
               <% if @offer.amenity %>
-                <% @amenity = @offer.amenity %>
+              <% @amenity = @offer.amenity %>
               <ul class="prop-details">
                 <li><i class="<%= @amenity.air_conditioning ? 'icon-ok' : 'icon-remove' %>"></i>Air Conditioning </li>
                 <li><i class="<%= @amenity.baby_cot ? 'icon-ok' : 'icon-remove' %>"></i>Baby Cot</li>
@@ -330,10 +358,26 @@
                 <li><i class="<%= @amenity.tv ? 'icon-ok' : 'icon-remove' %>"></i>TV</li>
                 <li><i class="<%= @amenity.washer ? 'icon-ok' : 'icon-remove' %>"></i>Washer</li> 
               </ul>
-            <% end %>
 
+              <% end %>
             </div>
           </div>
+
+          <div class="col-sm-12">
+            <div class= "heading-reviews"><h3>Reviews about the Space</h3></div>
+
+          <% if @review %>
+          <% @review.each do |t| %>
+
+            <div> <%= t.user_id%>   <%=t.offer_id%>   <%= t.trip_id%></div> 
+            <div><%= t.content%>  </div>
+
+            <%end%>
+            <%end%>
+
+          </div>
+
+
 
           <div class="col-sm-12">
             <div class="headings-offer">Map</div>
@@ -351,105 +395,116 @@
 <!-- end of id="content" -->
 <% end %>
 <% end %>
+
+
+
+
 <% content_for :js do %>
-  <script>
+<script>
+
+var date;
+$(function() {
+  $( "#inquirycheckin" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#inquirycheckout" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#inquirycheckout" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#inquirycheckin" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+
+  $( "#checkin" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkout" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#checkout" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    onClose: function( selectedDate ) {
+      $( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+});
+
+
+
+
 
 $(function() {
-    $( "#inquirycheckin" ).datepicker({
-minDate:"0",
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#inquirycheckout" ).datepicker( "option","minDate",selectedDate );
-}
-});
-    $( "#inquirycheckout" ).datepicker({
-minDate:"0",
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#inquirycheckin" ).datepicker( "option", "maxDate", selectedDate );
-}
-});
 
-    $( "#checkin" ).datepicker({
-minDate:"0",
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#checkout" ).datepicker( "option","minDate",selectedDate );
-}
-});
-$( "#checkout" ).datepicker({
-minDate:"0",
-defaultDate: "+1w",
-changeMonth: true,
-numberOfMonths: 1,
-onClose: function( selectedDate ) {
-$( "#checkin" ).datepicker( "option", "maxDate", selectedDate );
-}
-});
-});
-$(function() {
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
-      circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%= @offer.confidential_lng  %>, radius: 500}]);
-      handler.bounds.extendWith(circles);
-      handler.fitMapToBounds();
-      });
-    var nightly = <%= @offer.nightly_rate_amount.to_s  %>;
-    var weekly = <%= @offer.weekly_rate_amount.nil? ? @offer.nightly_rate_amount*7 : @offer.weekly_rate_amount.to_s  %>;
-    var monthly = <%= @offer.monthly_rate_amount.nil? ? @offer.nightly_rate_amount*30 : @offer.monthly_rate_amount.to_s %>;
+    circles = handler.addCircles([{"lat": <%= @offer.confidential_lat  %>, "lng": <%= @offer.confidential_lng  %>, radius: 500}]);
+    handler.bounds.extendWith(circles);
+    handler.fitMapToBounds();
+  });
+  var nightly = <%= @offer.nightly_rate_amount.to_s  %>;
+  var weekly = <%= @offer.weekly_rate_amount.nil? ? @offer.nightly_rate_amount*7 : @offer.weekly_rate_amount.to_s  %>;
+  var monthly = <%= @offer.monthly_rate_amount.nil? ? @offer.nightly_rate_amount*30 : @offer.monthly_rate_amount.to_s %>;
 
-    $('#Price_view_selector').on('change', function() {
-      if(this.value == 1)
-      {
+  $('#Price_view_selector').on('change', function() {
+    if(this.value == 1)
+    {
       $('#price1').text(nightly);
-      }
-      else if(this.value == 2)
-      {
+    }
+    else if(this.value == 2)
+    {
       $('#price1').text(weekly);
-      }
-      else if(this.value == 3)
-      {
+    }
+    else if(this.value == 3)
+    {
       $('#price1').text(monthly);
-      }
-      });
-    $('#CarouselThumb').carousel({
-interval: 9999
-})
+    }
+  });
+  $('#CarouselThumb').carousel({
+    interval: 9999
+  });
 
-$('.carousel .car-thumb').each(function(){
+  $('.carousel .car-thumb').each(function(){
     var next = $(this).next();
     if (!next.length) {
-    next = $(this).siblings(':first');
+      next = $(this).siblings(':first');
     }
     next.children(':first-child').clone().appendTo($(this));
 
     for (var i=0;i<4;i++) {
-    next=next.next();
-    if (!next.length) {
-    next = $(this).siblings(':first');
-    }
+      next=next.next();
+      if (!next.length) {
+        next = $(this).siblings(':first');
+      }
 
-    next.children(':first-child').clone().appendTo($(this));
+      next.children(':first-child').clone().appendTo($(this));
     }
-    });
-$('#calendar').fullCalendar({
-header: {
-left: 'prev',
-center: 'title',
-right: 'next'
-},
-defaultView: 'month',
-height: 500,
-viewDisplay   : function(view) {
-var now = new Date(); 
-var end = new Date();
+  });
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev',
+      center: 'title',
+      right: 'next'
+    },
+    defaultView: 'month',
+    height: 500,
+    viewDisplay   : function(view) {
+      var now = new Date(); 
+      var end = new Date();
 end.setMonth(now.getMonth() + 11); //Adjust as needed
 
 var cal_date_string = view.start.getMonth()+'/'+view.start.getFullYear();
@@ -464,19 +519,85 @@ else { jQuery('.fc-button-next').removeClass("fc-state-disabled"); }
 },
 eventSources: [
 {
-url: '/offers/<%= @offer.id  %>/calendar'
+  url: '/offers/<%= @offer.id  %>/calendar'
 }
 ],
-  timeFormat: 'h:mm t{ - h:mm t} ',
-  dragOpacity: "0.5",
-  eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
-    return updateEvent(event);
-  },
+timeFormat: 'h:mm t{ - h:mm t} ',
+dragOpacity: "0.5",
+eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+  return updateEvent(event);
+},
 eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
-               return updateEvent(event);
-             }
+ return updateEvent(event);
+}
 });
+
+
+var checkin_fill = $("#checkin").val();
+var checkout_fill = $("#checkout").val();
+
+   var offer = $("#offer_id").val();
+  var guests = $("#guests").val();
+
+if (checkin_fill != "" & checkout_fill != ""){
+ complete();
+};
+
+$("#checkin").change(function(){
+  checkin_fill = $("#checkin").val();
+  set_values();
 });
+
+$("#checkout").change(function(){
+  checkout_fill = $("#checkout").val();
+  set_values();
+});
+
+$("#guests").change(function(){
+  guests = $("#guests").val();  
+  set_values();
+
+  if(guests >= (<%= @offer.max_guest_count %>)+1 )
+  {
+    $("#guests").parent().addClass('has-error');
+}
+
+else{
+  $("#guests").parent().removeClass('has-error');
+
+}
+
+
+});
+
+
+  function complete(a,b,c,d){
+
+    $.getJSON("/bookings/new", {offer_id: a, checkin: b, checkout: c, guests: d})
+
+    .done(function(json){
+      console.log("data :" + json);
+      $("#price2").html(json).parent().removeClass('hidden');
+    }).fail(function( jqxhr, textStatus, error ) {
+      var err = textStatus + ", " + error;
+      console.log( "Request Failed: " + err );
+    });
+  };
+
+  function set_values(){ 
+   if(checkin_fill != "" & checkout_fill != ""){
+   complete(offer,checkin_fill,checkout_fill,guests);}
+ };
+
+
+
+});
+
 </script>
 <% end %>
+
+
+
+
+
 

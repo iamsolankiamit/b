@@ -1,5 +1,6 @@
 class Offer < ActiveRecord::Base
 
+  # coding: utf-8
    max_paginates_per 100
 
   before_save :set_email, :set_cancellation_policy, :set_contact, :split_city
@@ -13,6 +14,10 @@ class Offer < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   accepts_nested_attributes_for :photos, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
   belongs_to :user
+
+
+  has_many :offerreviews
+
 
   has_many :calendars, :dependent => :destroy
   accepts_nested_attributes_for :calendars, :allow_destroy => true,:reject_if => lambda { |attrs| attrs.all? { |key, value| value.blank? } }
@@ -40,7 +45,10 @@ class Offer < ActiveRecord::Base
      end
   end
 #----------------------------------------------------------------------
-  validates_presence_of :user_id, :nightly_rate_amount
+  validates_presence_of :user_id, :nightly_rate_amount, :max_guest_count  , :city 
+ # validates_presence_of  :email, :bedroom_count,:bed_type, :contact_phone 
+ #validates_presence_of :street,:street_no ,:address_addon 
+
 
   validates_numericality_of :max_nights,
     :max_guest_count,
@@ -50,7 +58,17 @@ class Offer < ActiveRecord::Base
     :monthly_rate_amount,
     :allow_nil => true
 
-  validates_numericality_of :nightly_rate_amount
+
+  validates :nightly_rate_amount, :numericality => { :greater_than => 0 }
+  validates :max_guest_count, :numericality => { :greater_than => 0 }
+  
+ 
+  validates_format_of :city,:without => /^[0-9]*$/   #here the city can't be only numerics
+#  validates_format_of :email,:with => /^.+@.+$/ 
+
+#  validates_format_of :contact_phone,:with => /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
+ 
+
   geocoded_by :full_street_address , :latitude => :confidential_lat, :longitude => :confidential_lng
 
   after_validation :geocode
@@ -111,4 +129,13 @@ class Offer < ActiveRecord::Base
       self.is_verified = true
     end
   end
+
+  def validate
+  if object_type == 'None'
+    errors.add_to_base("You must select the property")
+  end
+end
+
+
+
 end

@@ -8,6 +8,8 @@ Roomnhouse::Application.routes.draw do
 
   get "topics/show"
 
+
+
   resource 'help', only: [:index] do
     resources :topics, only: [:index, :show]
     resources :articles, only: [:index, :show]
@@ -28,8 +30,11 @@ Roomnhouse::Application.routes.draw do
   resources :bookings do
     post 'payu_return', on: :collection
   end
-  resources :reviews, only: [:new, :create, :update, :edit]
-  resources :trips
+
+
+  resources :trips do
+    resource :offerreview       #passing the offerreview here so that in the url trip_id can be used with offer reviews
+  end
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
@@ -56,6 +61,7 @@ Roomnhouse::Application.routes.draw do
     resource :details, only: [:edit,:update]
     resource :addresses, only: [:edit,:update]
     resource :pricing, only: [:edit,:update]
+
   end
   get '/search' => "search#index"
   post '/search' => "search#search"
