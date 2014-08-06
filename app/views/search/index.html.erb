@@ -1,5 +1,8 @@
-<% content_for :title do %>
+<% content_for :description do %>
   Search for vacation room, villas, and apartment rentals in <%= params[:destination].gsub(/-/,' ')%> and save on your reservations with Room N House today!
+<% end %>
+<% content_for :title do %>
+  Vacation Room Rentals in <%= params[:destination].split.first.capitalize %> | Room N House
 <% end %>
 <% content_for :body do %>
   <style>
