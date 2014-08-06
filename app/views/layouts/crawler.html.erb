@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+<title><%= content_for?(:title) ? yield(:title) : "India Vacation Apartment Rentals | Room N House" %></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<%= yield(:canonical) %>
+<% if content_for?(:meta_description) %>
+  <meta name="description" content=<%= yield(:meta_description) %>/>
+<% else %>
+  <meta name="description" content="Room N House helps you save when finding a place to stay in India. Rent and save on apartments, private rooms, or villas directly from the owners for your next vacation."/>
+<% end %>
+<meta property="fb:app_id" content="414645321969009">
+<meta property="og:site_name" content="RoomnHouse">
+<%= yield :social %>
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDfK1h2PFJnbz1QFkZoQr5w-wn3U2s4KFk&sensor=true&libraries=places"></script>
+<!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
+<%= csrf_meta_tags %>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
+<%= stylesheet_link_tag "application", :media => "all" %>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menubar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <%= link_to "RoomnHouse", root_path, class: "logo navbar-brand" %>
+  </div>
+  <div class="collapse navbar-collapse" id="menubar">
+    <ul class="nav navbar-nav navbar-right">
+      <li><a  class="disabled">Help line: 9022-543210</a></li>
+      <% unless current_user.present? %>
+        <li><%= link_to "Login", new_user_session_path  %></li>
+      <li><%= link_to "Signup", new_user_registration_path  %></li>
+    <% else %>
+        <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.complete_name  %> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "<i class='icon-container-small icon-list'></i>My Listings".html_safe, offers_path %></li>
+        <li><%= link_to "<i class='icon-container-small icon-cog'></i>Account Settings".html_safe, edit_user_registration_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "<i class='icon-container-small icon-off'></i>logout".html_safe, destroy_user_session_path %></li>
+      </ul>
+      </li>
+    <% end %>
+<style>
+  .offer-button{
+    border: 2px solid #5cb85c;
+    color: #5cb85c !important;
+    font-weight: 600;
+    padding: 10px !important;
+    margin: 5px;
+  }
+</style>
+
+      <li><%= link_to "List Your Space", new_offer_path, class: "btn offer-button " %></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+<div class="nav-cover"></div>
+
+<%= render 'layouts/flash_messages' %>
+<%= yield :header %>
+<%= yield :body%>
+<div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><h3 style="color:#111;padding-bottom:15px;">Company</h3></li>
+          <li><a href="http://www.roomnhouse.com/aboutus">About Us</a></li>
+          <li><a href="http://smartrecruiters.com/roomnhouse">Careers</a></li>
+          <li><a href="http://roomnhouse.com/cancellation">Cancellation Policy</a></li>
+          <li><a href="http://roomnhouse.com/support">Contact support</a></li>
+          <li><a href="http://roomnhouse.com/privacy">Privacy Policy</a></li>
+          <li><a href="http://roomnhouse.com/terms">Terms &amp; Condition</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><h3 style="color:#111;padding-bottom:15px;">Customer Service</h3></li>
+          <li><a href="http://roomnhouse.com/help/topics/1">Help Center</a></li>
+          <li><a href="http://roomnhouse.com/how">How it works</a></li>
+          <li><a href="http://roomnhouse.com/whyhost">Why Host</a></li>
+          <li><a href="http://roomnhouse.com/howtohost">How to Host</a></li>
+          <li><a href="http://roomnhouse.com/floods">For a Cause</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><h3 style="color:#111;padding-bottom:15px;">Join us on</h3></li>
+          <li><a href="http://blog.roomnhouse.com">Blog</a></li>
+          <li><a href="https://www.facebook.com/roomnhouse" rel="me">Facebook</a></li>
+          <li><a href="https://twitter.com/RoomNHouse" rel="me"> Twitter</a></li>
+          <li><a href="https://plus.google.com/u/0/108260865872924249293/" rel="me">Google Plus</a></li>
+          <li><a href="http://youtube.com/roomnhouse">Youtube</a></li>
+          <li><a href="https://instagram.com/roomnhouse">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><h3 style="color:#111;padding-bottom:15px;">Secured Payments</h3></li>
+        </ul>
+        <div class="payment"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "application" %>
+<%= yield :js %>
+<%= yield :scripts  %>
+</body>
+</html>
