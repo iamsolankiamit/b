@@ -1,4 +1,4 @@
-class Offerreview < ActiveRecord::Base
+class Review < ActiveRecord::Base
 
 attr_accessible :user_id,:trip_id,:offer_id,:content
 

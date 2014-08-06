@@ -7,6 +7,6 @@ class Trip < ActiveRecord::Base
   belongs_to :host, class_name: "User"
   validates_presence_of :offer_id, :guest_id, :host_id, :guest_count
 
-  has_many :offerreview
+  has_many :review
 
 end

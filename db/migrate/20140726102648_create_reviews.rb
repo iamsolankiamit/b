@@ -1,7 +1,7 @@
-class CreateOfferreviews < ActiveRecord::Migration
+class CreateReviews < ActiveRecord::Migration
   def change
   	
-  	create_table :offerreviews do |t|
+  	create_table :reviews do |t|
   		t.integer :user_id
   		t.integer :trip_id	
   		t.string :offer_id  

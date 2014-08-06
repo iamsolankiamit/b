@@ -33,7 +33,7 @@ Roomnhouse::Application.routes.draw do
 
 
   resources :trips do
-    resource :offerreview       #passing the offerreview here so that in the url trip_id can be used with offer reviews
+    resource :review       #passing the review here so that in the url trip_id can be used with offer reviews
   end
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'

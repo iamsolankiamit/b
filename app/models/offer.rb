@@ -16,7 +16,7 @@ class Offer < ActiveRecord::Base
   belongs_to :user
 
 
-  has_many :offerreviews
+  has_many :reviews
 
 
   has_many :calendars, :dependent => :destroy
