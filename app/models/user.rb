@@ -5,12 +5,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status
+
+
+  
   attr_reader :avatar_remote_url
   has_many :checkouts
   has_many :offers, :dependent => :destroy
   has_many :trips
   has_many :messages
+  has_many :reviews
   before_create :setup_default_role_for_new_users
   has_attached_file :avatar,
     :styles => {

@@ -35,20 +35,85 @@
               <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
               <%= f.input :password_confirmation, :required => false %>
               <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+
+           
+
+              <%= f.input :age,:required => true %>
+
+                <%= f.input :occupation, :required => false %>
+
+              
+
+              
+             
+
+
+             <%= f.input :gender , 
+          :as => :select, 
+          :collection => {
+            "Male" => "Male", 
+            "Female" => "Female" }, 
+            :include_blank => false %>
+              
+
+
+
+
+               <%= f.input :income , 
+          :as => :select, 
+          :collection => {
+            "2lacs" => "200000", 
+            "5lacs" => "500000",
+            "10lacs" => "1000000",
+            ">10lacs" => "1000001" }, 
+            :include_blank => false %>
+              
+
+               <%= f.input :education , 
+          :as => :select, 
+          :collection => {
+            "Educated" => "Educated", 
+            "NOT-Educated" => "NOT-Educated" }, 
+            :include_blank => false %>
+              
+            
+            
+
+                
+                <%= f.input :family_status , 
+          :as => :select, 
+          :collection => {
+            "Married" => "Married", 
+            "NOT-Married" => "NOT-Married" }, 
+            :include_blank => false %>
+
+        
+
+
+
+              
             </div>
 
          </div>
+
+
+
          <div class="col-lg-3 col-lg-offset-2">
              <%= image_tag resource.avatar.url(:medium) , :class  => "img-thumbnail" %>
          <%= f.input :avatar  %>
          </div>
+
+         <hr>
          <div class="row">
            <div class="col-lg-6 col-lg-offset-1">
              <div class="form-actions">
               <%= f.button :submit, "Update" %>
             </div>
           <% end %>
-            <%= link_to "Back", :back %>
+
+          <div class= "form-group" align="center">
+            <%= link_to "<< Back", :back %>
+          </div>
         </div>
         </div>
         </div>

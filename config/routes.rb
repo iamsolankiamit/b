@@ -1,39 +1,39 @@
 Roomnhouse::Application.routes.draw do
 
   get "sitemaps/index"
-
   get "articles/index"
-
   get "articles/show"
-
   get "topics/index"
-
   get "topics/show"
-
   get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
 
   resource 'help', only: [:index] do
     resources :topics, only: [:index, :show]
     resources :articles, only: [:index, :show]
   end
+
   get "payouts/edit"
 
   resources :payouts, only: [:index, :edit]
-
   match '/404', :to  =>  "errors#not_found"
+
   resources :inquiries do
     resources :messages
   end
-    resources :messages do
-      get 'inbox', on: :collection
-      get 'sent', on: :collection
-    end
+
+  resources :messages do
+    get 'inbox', on: :collection
+    get 'sent', on: :collection
+  end
 
   resources :bookings do
     post 'payu_return', on: :collection
   end
-  resources :reviews, only: [:new, :create, :update, :edit]
-  resources :trips
+
+  resources :trips do
+    resource :review       #passing the review here so that in the url trip_id can be used with offer reviews
+  end
+
   match '/support' => 'info#support'
   match '/terms' => 'info#terms'
   match '/cancellation' => 'info#cancellation'
@@ -42,10 +42,13 @@ Roomnhouse::Application.routes.draw do
   match '/whyhost' => 'info#whyhost'
   match '/dabba-drive' => 'info#dabbadrive'
   resources :floods
+
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+
   resources :users do
     get 'dashboard', on: :member
   end
+
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
   resources :discounts
@@ -61,6 +64,7 @@ Roomnhouse::Application.routes.draw do
     resource :addresses, only: [:edit,:update]
     resource :pricing, only: [:edit,:update]
   end
+
   get '/search' => "search#index"
   post '/search' => "search#search"
   match '/search/:destination' => "search#index", :as => :search, :via => [:get]

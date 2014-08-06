@@ -1,29 +1,293 @@
+
+
+
+
+
+
+<%content_for :js do %>
+<script type="text/javascript">
+
+function initialize() {
+  var map;
+  var marker;
+  var one =$("#offer_confidential_lat").val();
+  var two =$("#offer_confidential_lng").val();
+
+  if(one !== ""  &  two !== "") {
+
+    console.log(one+ " " + two);
+    create_map(one,two);
+  }else{
+    abcd();
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function create_map(latitude,longitude) {
+  
+  var latlng = new google.maps.LatLng(latitude, longitude);
+
+  var mapOptions = {
+    zoom: 16,
+    maxZoom:21,
+    minZoom: 10,
+    center: latlng,
+    zoomControl : false,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  map = new google.maps.Map(document.getElementById('geolocation'),
+    mapOptions);
+
+  marker = new google.maps.Marker({
+    position: latlng,
+    map: map,
+    clickable:true,
+    title: "Your Location!!"
+  });
+
+  google.maps.event.addListener(map, 'center_changed', function() {
+
+   var x = map.getCenter(); 
+   marker.setPosition(x);
+   $('#offer_confidential_lat').val(x.k);
+   $('#offer_confidential_lng').val(x.B);
+   
+  //   $( "#geolocation" ).blur( function() {
+  //   // Animation complete.
+  // });
+    // console.log(map.marker.getPosition());
+    // window.setTimeout(function() {
+    //   map.panTo(marker.getPosition());
+    // }, 5000);
+});
+}
+
+function abcd(){
+  var case1 = document.getElementById('offer_street').value;
+  var case2 = document.getElementById('offer_street_no').value;
+  var case3 = document.getElementById('offer_address_addon').value;
+  var case5 = document.getElementById('offer_zip').value;
+  var address;
+  if(case1== "" &  case2== "" & case3=="" & case5=="")
+  {
+    var case4 = document.getElementById('offer_city').value;
+    var case6 = document.getElementById('offer_country_code_iso').value;
+    address = case6.concat(case4);
+
+  }else{
+    address = mapsearch();
+  }
+  var abc;
+  var latitude;
+  var longitude;
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({'address': address},function (results,status){
+    if(status == google.maps.GeocoderStatus.OK){
+      console.log(results[0].geometry.location);
+      abc = results[0].geometry.location
+      latitude = abc.k;
+      longitude = abc.B;
+    //  console.log("dump");
+    create_map(latitude,longitude);
+  }
+  else {
+    console.log("Geocoding failed : " +status)
+  }
+  
+      // google.maps.event.addListener(window.map, 'mousedown', function() {
+
+      //   $("#geolocation").blur();
+      // });
+});   
+  function mapsearch() {
+
+    var case1 = document.getElementById('offer_street').value;
+    var case2 = document.getElementById('offer_street_no').value ;
+    var case3 = document.getElementById('offer_address_addon').value;
+    var n = document.getElementById('offer_zip').value;
+    var case5 =   n.toString();
+    var case4 = document.getElementById('offer_city').value;
+    var case6 = document.getElementById('offer_country_code_iso').value;
+    var address1 = case6.concat(case4,case5,case3,case2,case1);
+
+    return address1;
+  }
+}
+
+$("#offer_street").change(function(){
+
+  var street = $("#offer_street").val();
+
+  if (street.length > 1)
+  {
+    abcd();
+  }
+
+});
+
+$("#offer_street_no").change(function(){
+
+  var street_no = $("#offer_street").val();
+  if (street_no.length >1)
+  {
+    abcd();
+  }
+});
+
+$("#offer_address_addon").change(function(){
+
+  var addon = $("#offer_address_addon").val();
+  if (addon.length >1)
+  {
+    abcd();
+  }
+});
+
+$("#offer_zip").change(function(){
+
+  var zip = $("#offer_zip").val();
+  if (zip.length >1)
+  {
+    abcd();
+  }
+});
+
+</script>
+
+
+<% end %>
+
+
+
+
+
+
+
 <% content_for :body do %>
-  <div class="container">
+<div class="container">
   <div class="row">
-  <div class="col-sm-9">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="text-center">Location of Your Property</h3>
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="text-center">Location of Your Property</h3>
           <h4 class="text-center">Proper address help us locate you property efficiently, so there is less hassle</h4>
         </div>
         <div class="panel-body">
           <%= simple_form_for(@offer, :wrapper => :bootstrap3_horizontal, :as => :offer, :html => { :class => 'form-horizontal'}, :url => offer_wizard_step_path(@offer.id, params[:id])) do |f| %>
-  <%= f.error_messages %>
-    <%= f.input :street_no ,required: true, :as => :string, :label => "Room Name/ no./ Floor no.", placeholder: "ex Gayatri Niwas, or 3/10"%>
-    <%= f.input :street , :as => :string, required: true,:label => "Address Line 1", placeholder: "ex: building name, street name,etc."%>
-    <%= f.input :address_addon , :as => :string,required: true, :label => "Address line 2", placeholder: "ex: locality, nearby landmarks"%>
-    <%= f.input :city , :as => :string,required: true, placeholder: "ex: Mumbai"%>
-    <%= f.input :country_code_iso, :as => :select,required: true, :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false, :label => "Country" %>
-    <%= f.button :submit, 'Continue', :class => 'btn-primary'%>
-<% end %>
-</div>
-</div>
-</div>
-<div class="col-sm-3">
-      <%= render "help/why_list_sidebar"  %>
+          <%= f.error_messages %>
+
+          <%= f.input :street_no , :as => :string, :label => "Room Name/ no./ Floor no.", placeholder: "ex Gayatri Niwas, or 3/10",:hint => "*This field is required",:title => "a name is required", :required => true%>
+          <%= f.input :street , :as => :string, required: true,:label => "Address Line 1", placeholder: "ex: building name, street name,etc.",:hint => "*This field is required"%>
+          <%= f.input :address_addon , :as => :string, :label => "Address line 2", placeholder: "ex: locality, nearby landmarks" %>
+          <%= f.input :city , :as => :string,required: true, placeholder: "ex: Mumbai"%>
+          <%= f.input :zip , :as => :string  %>
+          <%= f.input :country_code_iso, :as => :select,required: true, :collection => Hash[Country.all.map{|c| [c.name,c.code]}], :include_blank => false, :label => "Country" %>
+
+
+          <%= f.hidden_field :confidential_lat, as: :string%>
+          <%= f.hidden_field :confidential_lng, as: :string%>
+
+
+          <%= f.button :submit, 'Continue', :class => 'btn-primary',:id => 'submit1'%>
+
+
+
+          <hr>
+
+          <div class="container"><b><p>Set your exact location on the map!......By holding click and moving the map!!</p></b>
+            <div style='width: 800px;'>
+              <div id="geolocation" style='width: 820px;border: 1px solid black; height: 400px'></div>
+            </div>
+
+
+            <% end %>
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <%= render "help/why_list_sidebar"  %>
       </div>
 
-</div>
-</div>
+
+    </div>
+
+
+  </div>
+
+  <% end %>
+
+
+
+  <% content_for :js do %>
+
+
+
+  <script type="text/javascript">
+// $(document).ready(function(){
+//   var street_no_error = 1;
+//   var street_error = 1;
+//   var button = $('#submit1')
+//   button.attr('disabled','disabled');
+
+
+//   $('#offer_street_no').change(function(e){
+//     var offer_street_no = $('#offer_street_no').val();
+
+//     if(offer_street_no.length < 1){
+
+//       street_no_error =1 ;
+//     }
+
+//     else if(offer_street_no == ''){
+//       street_no_error= 1;
+//     }
+
+//     else
+//     {
+//      street_no_error=0;
+//    }
+//    enable_submit_button();
+//  });
+
+
+//   $('#offer_street').change(function(e){
+//     var offer_street = $('#offer_street').val();
+
+//     if(offer_street.length < 1){
+
+//       street_error =1 ;
+//     }
+
+//     else if(offer_street == ''){
+//       street_no_error= 1;
+//     }
+
+//     else
+//     {
+//      street_error=0;
+//    }
+
+//    enable_submit_button();
+//  });
+
+//   function enable_submit_button(){
+//    if(street_no_error !=0 || street_error !=0){
+//     $('#submit1').atrr('disabled','disabled');
+//   }
+//   else{
+//     $('#submit1').removeAttr('disabled');
+//   }
+
+// };
+// });
+
+</script>
+
+
+
 <% end %>

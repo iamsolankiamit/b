@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717073417) do
+ActiveRecord::Schema.define(:version => 20140806075203) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -245,12 +245,12 @@ ActiveRecord::Schema.define(:version => 20140717073417) do
 #   Unknown type 'regclass' for column 'sequence'
 
   create_table "reviews", :force => true do |t|
-    t.integer  "reviewer_id"
-    t.integer  "reviewee_id"
+    t.integer  "user_id"
+    t.integer  "trip_id"
     t.string   "offer_id"
-    t.string   "review"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -336,6 +336,12 @@ ActiveRecord::Schema.define(:version => 20140717073417) do
     t.string   "bank_name"
     t.string   "ifsc_code"
     t.string   "bank_branch"
+    t.integer  "age"
+    t.integer  "income"
+    t.string   "education"
+    t.string   "occupation"
+    t.string   "gender"
+    t.string   "family_status"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
