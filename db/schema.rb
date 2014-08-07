@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140806075203) do
+ActiveRecord::Schema.define(:version => 20140806114445) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -249,8 +249,9 @@ ActiveRecord::Schema.define(:version => 20140806075203) do
     t.integer  "trip_id"
     t.string   "offer_id"
     t.string   "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "rating",     :default => 5
   end
 
   create_table "sessions", :force => true do |t|
