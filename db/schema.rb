@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140806075203) do
+ActiveRecord::Schema.define(:version => 20140726102648) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20140806075203) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
+    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
