@@ -1,0 +1,13 @@
+<div class="row">
+<div class="col-sm-5">
+<ul>
+{{#link-to 'users.new'}}Create New User {{/link-to}}
+{{#each user in controller}}
+<li>{{#link-to 'user' user}}{{user.firstname}} {{user.lastname}}{{/link-to}}</li>
+{{/each}}
+</ul>
+</div>
+<div class="col-sm-7">
+{{outlet}}
+</div>
+</div>

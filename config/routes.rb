@@ -1,11 +1,28 @@
 Roomnhouse::Application.routes.draw do
 
+  # get "admin/index"
+
   get "sitemaps/index"
   get "articles/index"
   get "articles/show"
   get "topics/index"
   get "topics/show"
   get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
+  namespace :admin do
+    get ""  => "admin#index"
+ 
+  namespace :api do
+    namespace :v1 do
+      resources :offers do
+        resource :translations
+        resources :photos
+      end
+      resources :users
+    end
+  end
+
+   get "users" => "api/v1/users#index"
+  end
 
   resource 'help', only: [:index] do
     resources :topics, only: [:index, :show]
@@ -48,6 +65,7 @@ Roomnhouse::Application.routes.draw do
   resources :users do
     get 'dashboard', on: :member
   end
+
 
   resources :aboutus, only: [:index]
   resources :how, only: [:index]
