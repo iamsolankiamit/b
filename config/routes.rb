@@ -10,18 +10,21 @@ Roomnhouse::Application.routes.draw do
   get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
   namespace :admin do
     get ""  => "admin#index"
- 
-  namespace :api do
-    namespace :v1 do
-      resources :offers do
-        resource :translations
-        resources :photos
+    
+    namespace :api do
+      namespace :v1 do
+        resources :offers do
+          resource :translations
+          resources :photos
+        end
+        resources :users
       end
-      resources :users
     end
-  end
 
-   get "users" => "api/v1/users#index"
+    get "/users/new" => "admin#index"
+    get "/users/:id" => "admin#index"
+    get "/offers/:id" => "admin#index"
+    get "/offers" => "admin#index"
   end
 
   resource 'help', only: [:index] do

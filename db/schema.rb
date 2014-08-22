@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140726102648) do
+ActiveRecord::Schema.define(:version => 20140821073755) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -343,6 +343,7 @@ ActiveRecord::Schema.define(:version => 20140726102648) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
+    t.integer  "lister_id"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status, :lister_id
 
 
   
@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   validates_attachment_file_name :avatar, :matches => [/png\Z/, /jpe?g\Z/]
 
-  ROLES = %w[admin default banned guest]
+  ROLES = %w[admin default banned guest lister]
   def avatar_remote_url=(url_value)
     self.avatar = URI.parse(url_value)
     @avatar_remote_url = url_value
