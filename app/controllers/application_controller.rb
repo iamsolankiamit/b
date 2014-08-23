@@ -3,8 +3,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_or_guest_user
   before_filter :store_location
+  before_filter :set_extra_url_for_affiliates
 
   layout :set_layout
+
+  def set_extra_url_for_affiliates
+    if params[:aid]
+    @extra_url_for_options = {aid: params[:aid]}
+    end
+  end
 
   def set_layout
     CrawlerDetection.crawler?(request.user_agent) ? 'crawler' : 'application'

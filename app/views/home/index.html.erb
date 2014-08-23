@@ -133,7 +133,7 @@
   </style>
   <div class="popular-destinations row">
     <div class="col-lg-7" >
-      <a href="/search/varanasi" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+      <a href="/search/varanasi<%= params[:aid] ? "/?aid=#{params[:aid]}" : ""  %>" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
         <div class="price-box">
           <div class="price">
             <sup><i class="icon-inr"></i></sup>
@@ -154,7 +154,7 @@
     </div>
 
     <div class="col-lg-5" >
-      <a href="/search/bangalore"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+      <a href="/search/bangalore<%= params[:aid] ? "/?aid=#{params[:aid]}" : ""  %>"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
         <div class="price-box">
           <div class="price">
             <sup><i class="icon-inr"></i></sup>
@@ -178,7 +178,7 @@
   <div class="row" style="height:30px;"></div>
   <div class="popular-destinations row">
     <div class="col-lg-5" >
-      <a href="/search/jaipur"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+      <a href="/search/jaipur<%= params[:aid] ? "/?aid=#{params[:aid]}" : ""  %>"  style="float:inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
         <div class="price-box">
           <div class="price">
             <sup><i class="icon-inr"></i></sup>
@@ -199,7 +199,7 @@
     </div>
 
     <div class="col-lg-7" >
-      <a href="/search/kullu" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
+      <a href="/search/kullu<%= params[:aid] ? "/?aid=#{params[:aid]}" : ""  %>" style="float: inherit;background: #fff;border: 1px solid #ddd; padding:0px;">
         <div class="price-box">
           <div class="price">
             <sup><i class="icon-inr"></i></sup>
