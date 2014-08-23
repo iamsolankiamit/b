@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
 
 
 	def create
-
 		@review = current_user.reviews.new(params[:review])
 		@review.trip_id = params[:trip_id]
 		@trip = Trip.find(params[:trip_id])

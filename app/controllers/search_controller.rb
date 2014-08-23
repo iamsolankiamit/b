@@ -4,7 +4,7 @@ class SearchController < ApplicationController
     @price_min = Offer.near(params[:destination], 50).minimum(:nightly_rate_amount)
     @price_max = Offer.near(params[:destination], 50).maximum(:nightly_rate_amount)
     @offers = find_amenities if params[:amenities]
-        cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
+    cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
     cookies[:checkout] = params[:checkout] unless params[:checkout].nil?
   end
 

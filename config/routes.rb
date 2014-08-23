@@ -67,4 +67,10 @@ Roomnhouse::Application.routes.draw do
   post '/search' => "search#search"
   match '/search/:destination' => "search#index", :as => :search, :via => [:get]
   root :to => "home#index"
+
+  resources :shouts do
+    get 'available', on: :collection
+  end
+  resources :shout_discounts
+
 end

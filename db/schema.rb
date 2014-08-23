@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140806114445) do
+ActiveRecord::Schema.define(:version => 20140818151051) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -263,6 +263,26 @@ ActiveRecord::Schema.define(:version => 20140806114445) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shout_discounts", :force => true do |t|
+    t.string   "offer_id"
+    t.integer  "offer_discount"
+    t.integer  "user_id"
+    t.integer  "shout_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "shouts", :force => true do |t|
+    t.string   "destination"
+    t.string   "city"
+    t.string   "country_code_iso"
+    t.decimal  "per_night"
+    t.string   "email"
+    t.string   "contact_phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "topics", :force => true do |t|
     t.string   "name"
