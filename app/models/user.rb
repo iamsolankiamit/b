@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :offers, :dependent => :destroy
   has_many :trips
   has_many :messages
+  has_many :reviews
   before_create :setup_default_role_for_new_users
   has_attached_file :avatar,
     :styles => {

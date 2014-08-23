@@ -18,6 +18,8 @@
   </div>
 </div>
 <% end %>
+
+
 <% content_for :js do %>
   <script type="text/javascript" charset="utf-8">
 $("#offer_city").geocomplete({
@@ -25,4 +27,71 @@ details: "#new_offer",
 detailsAttribute: "data-geo"
 });
 </script>
+<% end %>
+
+
+
+
+
+
+
+
+<% content_for :js do %>
+
+<script type="text/javascript">
+
+       $(document).ready(function(){
+          var max_guest_count_error = 1;
+          var nightly_rate_amount_error = 1;
+          
+          var button = $('#submit');
+          button.attr('disabled','disabled');
+
+
+          $('#offer_max_guest_count').change(function(e){
+                var offer_max_guest_count = $('#offer_max_guest_count').val();
+
+               if(offer_max_guest_count == ''){
+
+                    max_guest_count_error =1 ;
+                   }
+              
+              else
+              {
+               max_guest_count_error=0;
+              }
+              enable_submit_button();
+          });
+
+          $('#offer_nightly_rate_amount').change(function(e){
+                var offer_nightly_rate_amount = $('#offer_nightly_rate_amount').val();
+
+               if(offer_nightly_rate_amount == ''){
+
+                   nightly_rate_amount_error =1 ;
+                   }
+
+                else
+                {
+                 nightly_rate_amount_error=0;
+                }
+
+                enable_submit_button();
+            });
+
+                  function enable_submit_button(){
+               if(max_guest_count_error !==0 || nightly_rate_amount_error !==0 ){
+                    $('#submit').atrr('disabled','disabled');
+               }
+               else{
+                    $('#submit').removeAttr('disabled');
+               }
+
+          };
+             });
+
+</script>
+
+
+
 <% end %>

@@ -18,9 +18,8 @@ class OffersController < ApplicationController
     unless current_user
       session[:passthru] = offer_path(@offer)
     end
-    session[:recently_viewed_offers] ||= []
-    session[:recently_viewed_offers] << @offer.id
-    session[:recently_viewed_offers].delete_at(0) if session[:recently_viewed_offers].size > 4
+
+    @review = Review.where(offer_id: params[:id])
     @hash = Gmaps4rails.build_markers(@offer) do |offer, marker|
       marker.lat offer.confidential_lat
       marker.lng offer.confidential_lng
@@ -30,7 +29,6 @@ class OffersController < ApplicationController
   def new
     @offer = Offer.new
     @offer.photos.build
-
   end
 
   def create
@@ -57,8 +55,7 @@ class OffersController < ApplicationController
     if @offer.update_attributes(params[:offer])
       redirect_to :back, :notice  => "Successfully updated offer, fill in other information if missed."
     else
-      Rails.logger.debug( "translation error ==== #{@offer.errors.full_messages}")
-      redirect_to :back, :notice => "Offer not updated successfully. translation error === #{@offer.errors.full_messages}"
+      redirect_to :back, :notice => "Offer not updated successfully."
     end
   end
 

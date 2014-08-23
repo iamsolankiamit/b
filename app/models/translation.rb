@@ -7,4 +7,8 @@ class Translation < ActiveRecord::Base
   								:title_translated_by_google,
   								:offer_id
   belongs_to :offers
+
+ # validates_presence_of :title, :description
+
+
 end

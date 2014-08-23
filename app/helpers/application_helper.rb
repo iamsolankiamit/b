@@ -19,6 +19,52 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
+  def path_to(options={})
+    if @extra_url_for_options
+      options = case options
+                when String
+                  uri = Addressable::URI.new
+                  uri.query_values = @extra_url_for_options
+                  options + (options.index('?').nil? ? '?' : '&') + uri.query
+                when Hash
+                  options.reverse_merge(@extra_url_for_options)
+                else
+                  options
+                end
+    end
+    super
+  end
+
+  def _back_url(options={})
+    if @extra_url_for_options
+    options = case options
+              when String
+                uri= Addressable::URI.new
+                uri.query_values = @extra_url_for_options
+                options + (options.index('?').nil? ? '?' : '&') + uri.query
+              when Hash
+                options.reverse_merge(@extra_url_for_options)
+              else
+                options
+              end
+    end
+  end
+
+  def url_for(options={})
+    if @extra_url_for_options
+      options = case options
+                when String
+                  uri = Addressable::URI.new
+                  uri.query_values = @extra_url_for_options
+                  options + (options.index('?').nil? ? '?' : '&') + uri.query
+                when Hash
+                  options.reverse_merge(@extra_url_for_options)
+                else
+                  options
+                end
+    end
+    super
+  end
 
   def link_to_remove_fields(name, f, options = {})
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", options)

@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20140721120731) do
+ActiveRecord::Schema.define(:version => 20140726102648) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -222,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20140721120731) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
+    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -246,12 +246,12 @@ ActiveRecord::Schema.define(:version => 20140721120731) do
 #   Unknown type 'regclass' for column 'sequence'
 
   create_table "reviews", :force => true do |t|
-    t.integer  "reviewer_id"
-    t.integer  "reviewee_id"
+    t.integer  "user_id"
+    t.integer  "trip_id"
     t.string   "offer_id"
-    t.string   "review"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sessions", :force => true do |t|
