@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
+    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status
 
@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :firstname
 
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.email = auth.info.email
@@ -78,6 +79,22 @@ class User < ActiveRecord::Base
     "#{firstname} #{lastname}"
   end
 
+
+
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+    data = access_token.info
+    user = User.where(:email => data["email"]).first
+
+    # Uncomment the section below if you want users to be created if they don't exist
+    # unless user
+    #     user = User.create(name: data["name"],
+    #        email: data["email"],
+    #        password: Devise.friendly_token[0,20]
+    #     )
+    # end
+    user
+  end
+
   private
 
   def setup_default_role_for_new_users
@@ -85,4 +102,5 @@ class User < ActiveRecord::Base
       self.role = "default"
     end
   end
+
 end

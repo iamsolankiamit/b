@@ -44,6 +44,7 @@ Roomnhouse::Application.routes.draw do
   match '/dabba-drive' => 'info#dabbadrive'
   resources :floods
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+
   resources :users do
     get 'dashboard', on: :member
   end
