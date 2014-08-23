@@ -1,5 +1,4 @@
 require_dependency 'crawler_detection'
-require 'addressable/uri'
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_or_guest_user

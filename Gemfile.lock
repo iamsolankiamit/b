@@ -327,6 +327,7 @@ PLATFORMS
 
 DEPENDENCIES
   activemerchant!
+  addressable
   asset_sync
   aws-s3
   aws-sdk

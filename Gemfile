@@ -12,6 +12,7 @@ gem "omniauth-facebook"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
+gem 'addressable'
 
 group :production do
   gem 'newrelic_rpm'
