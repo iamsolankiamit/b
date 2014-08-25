@@ -14,8 +14,6 @@
 ActiveRecord::Schema.define(:version => 20140823164824) do
 
 
-
-
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
     t.boolean  "smoking_allowed"
