@@ -1,0 +1,1 @@
+$('#myTab a[href="#profile"]').tab('show');

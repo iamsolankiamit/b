@@ -1,0 +1,14 @@
+<% content_for :body do %>
+<hr>
+<ul>
+<% @shouts.each do |shout|%>
+	<li><%= link_to "#{shout.destination} for #{shout.per_night} with id: #{shout.id}", shout_path(shout.id)%></li><%= link_to "My Shouts",shout_discounts_path %><hr>
+<%end%>
+</ul>
+<%end%>
+
+
+<!--shout_path(shout.id)
+This is going to shouts#index when we see the routes
+then in the show action you are passing the shout_id
+-->

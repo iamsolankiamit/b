@@ -22,6 +22,9 @@
         <div class="text-center">Or..</div>
         <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook),class: "btn btn-primary btn-block" %>
       </div>
+      <div class="text-center">Or..</div>
+        <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
+      </div>
       <div class="modal-footer">
         <p>Already have an account? <a href="login" data-dismiss="modal" data-toggle="modal" data-target="#loginForm">Log in</a></p>
       </div>

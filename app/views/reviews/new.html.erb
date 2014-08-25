@@ -8,7 +8,19 @@
 <br>
 <h1>Your reviews are precious!!</h1>
 <br>
+
 <div class= "col-xs-6">
+	<i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i> <i class="icon-star"></i>
+	   <%= f.input :rating , 
+          :as => :select, 
+          :collection => {
+            "Very Poor" => "1", 
+            "Poor" => "2" ,
+            "Good" => "3" ,
+            "Very Good" => "4",
+            "Excellent" => "5"  }, 
+            :include_blank => false %>
+
 <%= f.text_area :content ,:class=>"form-control",:rows=>'10',:label => "PLZ SHARE :) ",:placeholder => "Enter your reviews here....." , :required => true %>
 
 <br>

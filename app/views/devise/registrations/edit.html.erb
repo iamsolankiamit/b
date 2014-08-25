@@ -36,17 +36,9 @@
               <%= f.input :password_confirmation, :required => false %>
               <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
 
-           
+              <%= f.input :age %>
 
-              <%= f.input :age,:required => true %>
-
-                <%= f.input :occupation, :required => false %>
-
-              
-
-              
-             
-
+                <%= f.input :occupation %>  
 
              <%= f.input :gender , 
           :as => :select, 
@@ -55,10 +47,6 @@
             "Female" => "Female" }, 
             :include_blank => false %>
               
-
-
-
-
                <%= f.input :income , 
           :as => :select, 
           :collection => {
@@ -75,29 +63,15 @@
             "Educated" => "Educated", 
             "NOT-Educated" => "NOT-Educated" }, 
             :include_blank => false %>
-              
-            
-            
 
-                
                 <%= f.input :family_status , 
           :as => :select, 
           :collection => {
             "Married" => "Married", 
             "NOT-Married" => "NOT-Married" }, 
             :include_blank => false %>
-
-        
-
-
-
-              
             </div>
-
          </div>
-
-
-
          <div class="col-lg-3 col-lg-offset-2">
              <%= image_tag resource.avatar.url(:medium) , :class  => "img-thumbnail" %>
          <%= f.input :avatar  %>

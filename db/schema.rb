@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(:version => 20140823164824) do
 
+
+
+
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
     t.boolean  "smoking_allowed"
@@ -268,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "rating",     :default => 5
+
   end
 
   create_table "rewards", :force => true do |t|
@@ -278,6 +282,7 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.integer  "trip_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+
   end
 
   create_table "sessions", :force => true do |t|

@@ -14,6 +14,10 @@ Devise.setup do |config|
 
   config.omniauth :facebook, "414645321969009", "cfecb8063ac3ce97bedcf229bb07e723", :strategy_class => OmniAuth::Strategies::Facebook, :image_size => 'large'
 
+require "omniauth-google-oauth2"
+
+  config.omniauth :google_oauth2, "90391904170-r3nneh5fif0d6t6hlq5k1po6af28jlge.apps.googleusercontent.com", "iqHlXMsUIAGxpx0i_sBn73EX", { }
+
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be

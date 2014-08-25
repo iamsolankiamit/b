@@ -1,0 +1,13 @@
+<%content_for :body do%>
+
+<% @shout.each do |t|%>
+<% if t.shout %>
+<div><%="Place: #{t.shout.destination}"%><br> 
+
+	<%="Rupees: #{t.shout.per_night}"%> <br> 
+	<%="offer id: #{t.offer_id}"%> <br> <%="id: #{t.shout.id}"%><br> <hr>
+</div>`
+<% end %>
+
+<%end%>
+<%end%>
