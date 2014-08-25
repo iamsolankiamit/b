@@ -1,5 +1,13 @@
 Roomnhouse::Application.routes.draw do
 
+
+  get "i/:id" => "invites#show"
+  get "i" =>"invites#index"
+  post "i" => "invites#index"
+
+
+
+
   get "sitemaps/index"
   get "articles/index"
   get "articles/show"

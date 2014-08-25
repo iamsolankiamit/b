@@ -1,0 +1,12 @@
+<% content_for :body do %>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1><%= @user.firstname %> <%= @user.lastname %> </h1>
+				<p>has given you 500 to join Roomnhouse.com</p>
+				<%= render "devise/registrations/new_modal" %>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#registrationForm">Signup now!</button>
+			</div>
+		</div>
+	</div>
+<% end %>
