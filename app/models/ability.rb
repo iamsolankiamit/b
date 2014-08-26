@@ -23,9 +23,9 @@ class Ability
       can :create, Booking
       can :manage, Inquiry
       can :manage, Message
-      can :manage, Invite
-      can :manage, Referal
-      can :manage, Referal_contacts
+      can :manage, :invite
+      can :manage, Referral
+      can :manage, ReferalEmail
       can :read, Offer
     else
       can :read, [Offer,User] # guest user
