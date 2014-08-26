@@ -41,4 +41,17 @@ class UserMailer < ActionMailer::Base
   def feedback
 
   end
+
+
+  def invites_mail(mail)
+    @referer = ReferalEmail.find(:referer_id)
+    mail(:to => @referer.emails, subject: "You have been refferred on RoomnHouse" )
+
+  def trip_end(trip_id)
+     @trip = Trip.find(trip_id)
+     @guest = User.find(@trip.guest_id)
+     @booking = Booking.where(:trip_id => trip_id).first
+     mail(:to => @guest.email, :subject => "Roomnhouse: Your trip with us!!")
+  end
+
 end

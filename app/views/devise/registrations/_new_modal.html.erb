@@ -13,6 +13,7 @@
             <%= f.input :lastname, :required => false , label: false,:autofocus => true ,placeholder: 'Last Name', :input_html => { :class => 'form-control' }%>
             <%= f.input :email, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' }%>
             <%= f.input :password, :required => false , label: false, placeholder: 'Password', :input_html => { :class => 'form-control' }%>
+            <%= f.hidden_field :referer_id, value: session[:referer_id] %>
           </div>
           <div class="form-actions">
             <%= f.button :submit, "Create An Account", class: 'btn btn-success btn-block' %>
@@ -20,6 +21,9 @@
         <% end %>
         <div class="text-center">Or..</div>
         <%= link_to "Connect with Facebook", user_omniauth_authorize_path(:facebook),class: "btn btn-primary btn-block" %>
+      </div>
+      <div class="text-center">Or..</div>
+        <%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %>
       </div>
       <div class="modal-footer">
         <p>Already have an account? <a href="login" data-dismiss="modal" data-toggle="modal" data-target="#loginForm">Log in</a></p>

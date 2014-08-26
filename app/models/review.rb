@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
 
-attr_accessible :user_id,:trip_id,:offer_id,:content
+attr_accessible :user_id,:trip_id,:offer_id,:content,:rating
 
 validates_uniqueness_of :trip_id
 

@@ -1,5 +1,13 @@
 Roomnhouse::Application.routes.draw do
 
+
+  get "i/:id" => "invites#show"
+  get "i" =>"invites#index"
+  post "i" => "invites#index"
+
+
+
+
   get "sitemaps/index"
   get "articles/index"
   get "articles/show"
@@ -69,4 +77,10 @@ Roomnhouse::Application.routes.draw do
   post '/search' => "search#search"
   match '/search/:destination' => "search#index", :as => :search, :via => [:get]
   root :to => "home#index"
+
+  resources :shouts do
+    get 'available', on: :collection
+  end
+  resources :shout_discounts
+
 end

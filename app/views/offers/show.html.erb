@@ -299,6 +299,13 @@
               </div>
             </div>
           </div>
+
+          <div class = "Rating">
+            <b>Ratings : </b>
+
+            <!--Average of all the ratings for a particular offer!!-->     
+          </div>
+
           <div class="property-overview">
             <span class=""><strong>Property Type:</strong> <%= @offer.object_type.humanize  %></span>
 
@@ -369,8 +376,9 @@
           <% if @review %>
           <% @review.each do |t| %>
 
-            <div> <%= t.user_id%>   <%=t.offer_id%>   <%= t.trip_id%></div> 
-            <div><%= t.content%>  </div>
+            <div> <%= t.user_id%>.   <%=t.offer_id%>   <%= t.trip_id%></div> 
+            <div>Content = <%= t.content%>  </div>
+            <div>Rating = <%= t.rating %> </div>
 
             <%end%>
             <%end%>

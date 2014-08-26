@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140726102648) do
+ActiveRecord::Schema.define(:version => 20140823164824) do
+
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -221,7 +222,6 @@ ActiveRecord::Schema.define(:version => 20140726102648) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
-    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -245,13 +245,42 @@ ActiveRecord::Schema.define(:version => 20140726102648) do
 # Could not dump table "pri_keys" because of following StandardError
 #   Unknown type 'regclass' for column 'sequence'
 
+  create_table "referal_emails", :force => true do |t|
+    t.string   "emails"
+    t.integer  "referer_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "referrals", :force => true do |t|
+    t.integer  "referer_id"
+    t.integer  "referee_id"
+    t.integer  "referer_reward_id"
+    t.integer  "referee_reward_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "reviews", :force => true do |t|
     t.integer  "user_id"
     t.integer  "trip_id"
     t.string   "offer_id"
     t.string   "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "rating",     :default => 5
+
+  end
+
+  create_table "rewards", :force => true do |t|
+    t.float    "reward_amount", :default => 0.0,   :null => false
+    t.integer  "rewardee_id"
+    t.boolean  "used",          :default => false, :null => false
+    t.datetime "used_on"
+    t.integer  "trip_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+
   end
 
   create_table "sessions", :force => true do |t|
@@ -263,6 +292,26 @@ ActiveRecord::Schema.define(:version => 20140726102648) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shout_discounts", :force => true do |t|
+    t.string   "offer_id"
+    t.integer  "offer_discount"
+    t.integer  "user_id"
+    t.integer  "shout_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "shouts", :force => true do |t|
+    t.string   "destination"
+    t.string   "city"
+    t.string   "country_code_iso"
+    t.decimal  "per_night"
+    t.string   "email"
+    t.string   "contact_phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "topics", :force => true do |t|
     t.string   "name"

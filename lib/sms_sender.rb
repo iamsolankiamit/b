@@ -6,6 +6,7 @@ class SmsSender
   def initialize(guest,host,trip,booking)
     guest_booking_done_sms(guest,trip,booking)
     host_new_booking(guest,host,trip,booking)
+    
   end
 
   def guest_booking_done_sms(guest, trip,booking)

@@ -1,0 +1,16 @@
+<% content_for :body do %>
+<hr>
+	<%= "#{@shout.destination} for #{@shout.per_night} with id: #{@shout.id}"%>
+
+	<hr>
+<% if @offers %>
+<%= simple_form_for :shout_discounts,url:'/shout_discounts',method: 'POST'  do |f|%>
+	<%= f.collection_check_boxes :offer_ids, @offers,  :id, :id %>  <!--Rails issue that a hidden input field is automatically included-->
+	<%=f.hidden_field :shout_id , value: @shout.id %>
+	<%=f.hidden_field :user_id %>
+<tr><input type="Submit" class="btn btn-primary" value="Shout Out Loud"></tr>
+<% end %>
+<% end %>
+<%end%>
+
+

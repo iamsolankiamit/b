@@ -1,0 +1,14 @@
+<%content_for :body do%>
+
+	<div class="container">
+	 <%= simple_form_for( @mail,:url => "/i",method: :post, :remote => true, :format => :html) do |f| %>
+
+	 <%= f.input :emails ,:class=>"form-control",:rows=>'10',:label => "Reffererring mail! ",:placeholder => "Enter mail id whom you want to refer :)" , :required => true %>
+	 <%=f.hidden_field :referer_id %>
+
+	 <%=f.button :submit ,"Happy Referring..." , :class => 'btn-primary'%>
+
+	</div>
+	 <%end%>
+
+<%end%>
