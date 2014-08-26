@@ -10,19 +10,14 @@ class InvitesController < ApplicationController
   end
 
   def index
-		@mail = ReferalEmail.new
-	 @referral = Referral.find(params[:referral_id])	
-		@mail.referer_id = @referral.id
-
+	 @referral = Referral.find(current_user.id)	
   end
 
   def emailer
-
-  	@mail = ReferalEmail.find(params[:emails])
+    refferal = ReferalEmail.add_manual_contacts(params[:referral_email][:referer_id], params[:referral_email][:email])
   	respond_to do |format|
-  		format.html {redirect_to :index, :notice=> "mail sent"  }
+  	  format.js 
   	end
-  	UserMailer.delay.invites_mail(@mail)
 
   end
  

@@ -8,6 +8,7 @@ gem "pg"
 gem "unf"
 gem "devise"
 gem "omniauth"
+gem "omnicontacts"
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 gem 'cancan'

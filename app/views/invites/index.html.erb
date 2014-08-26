@@ -1,14 +1,33 @@
 <%content_for :body do%>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-5">
+			<br><br>
+			<%= simple_form_for( :referral_email,:url => "/i/emailer",method: :post, :remote => true, :format => :html) do |f| %>
 
-	<div class="container">
-	 <%= simple_form_for( @mail,:url => "/i",method: :post, :remote => true, :format => :html) do |f| %>
+			<%= f.input :email ,:class=>"form-control",:rows=>'10',:label => "Reffererring mail! ",:placeholder => "Enter mail id whom you want to refer :)" , :required => true %>
 
-	 <%= f.input :emails ,:class=>"form-control",:rows=>'10',:label => "Reffererring mail! ",:placeholder => "Enter mail id whom you want to refer :)" , :required => true %>
-	 <%=f.hidden_field :referer_id %>
-
-	 <%=f.button :submit ,"Happy Referring..." , :class => 'btn-primary'%>
-
+			<%=f.button :submit ,"Happy Referring..." , :class => 'btn-primary'%>
+			<%= link_to "Refer Via Gmail", "contacts/gmail/", class: 'btn btn-danger' %>
+			<div class="fb-share-button" data-href="http://www.roomnhouse.com/i/<%= current_user.id %>" data-layout="button" data-witdh="100px"></div>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://roomnhouse.com/i/1" data-text="Join roomnhouse and get Rs. 500 discount" data-related="roomnhouse" data-hashtags="ttot">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		</div>
 	</div>
-	 <%end%>
+</div>
+<%end%>
 
 <%end%>
+
+<%content_for :js do %>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	<%end%>
