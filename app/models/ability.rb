@@ -21,6 +21,11 @@ class Ability
       can :manage, Trip, :guest_id => user.id
       can :manage, Booking, :trip => { :guest_id  => user.id}
       can :create, Booking
+      can :manage, Inquiry
+      can :manage, Message
+      can :manage, Invite
+      can :manage, Referal
+      can :manage, Referal_contacts
       can :read, Offer
     else
       can :read, [Offer,User] # guest user
