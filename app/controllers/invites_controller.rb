@@ -10,7 +10,6 @@ class InvitesController < ApplicationController
   end
 
   def index
-	 @referral = Referral.find(current_user.id)	
   end
 
   def emailer
