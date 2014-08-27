@@ -2,18 +2,38 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  #after_save :set_username
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :phone, :lazy_id, :guest_account, :work_phone, :location, :about, :provider, :uid, :name, :confirmed_at, :bank_name, :ifsc_code, :bank_branch, :account_no ,:age ,:gender, :income, :education ,:occupation, :family_status ,:slug
 
   attr_reader :referer_id
- 
+
+ #----------------------------------------------------------
+
+ extend FriendlyId
+  friendly_id :username, use: [:slugged]
+
+  def username
+    [
+      [self.firstname,self.lastname,Random.new.rand(1..10000)]
+    ]
+  end
+
+  
+
+# def set_username
+#   self.username = self.firstname
+#   self.username +=  "-" + self.lastname unless self.lastname.nil?
+#   self.username += "-" + self.id
+#   self.save!
+# end
 
 
+#-------------------------------------------------------------
 
   has_many :offers
-
 
   attr_reader :avatar_remote_url
   has_many :checkouts

@@ -14,6 +14,7 @@ gem "omniauth-facebook"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
+gem "friendly_id", "~> 4.0.10" 
 
 group :production do
   gem 'newrelic_rpm'
