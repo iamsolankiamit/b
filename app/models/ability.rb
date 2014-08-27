@@ -28,6 +28,7 @@ class Ability
       can :manage, ReferalEmail
       can :read, Offer
     else
+      can :create, Booking
       can :read, [Offer,User] # guest user
       can :create, [Offer]
     end

@@ -44,7 +44,7 @@ text-shadow: black 0px 0px 15px;
     <div class="row">
     <div class="col-sm-2 col-sm-offset-3"><%= link_to "Refer via Gmail", "contacts/gmail/", class: 'btn btn-danger btn-block invite-button' %></div>
     <div class="col-sm-2">
-     <a class="btn btn-block facebook-invite invite-button" href="http://www.facebook.com/dialog/feed?app_id=414645321969009&link=http://roomnhouse.com/i/<%= current_user.id%>&message=haha&display=popup&redirect_uri=http://roomnhouse.com/i" target="_blank">Share Via Facebook</a> </div>
+     <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/share?app_id=414645321969009&link=http://roomnhouse.com/i/<%= current_user.id%>display=popup&redirect_uri=http://roomnhouse.com/i" target="_blank">Share Via Facebook</a> </div>
    <div class="col-sm-2">
      <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/i/#{current_user.id}"  %>&via=roomnhouse&text=<%=URI.encode("Sign up on roomnhouse and get 500 travel credits")  %>">Share it on Twitter</a>
    </div>
