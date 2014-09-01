@@ -1,5 +1,5 @@
 <% content_for :body do %>
-  <div class="container">
+<div class="container">
   <div class="row">
     <div class="col-lg-3">
       <ul class="list-group">
@@ -14,10 +14,10 @@
         <div class="row">
           <div class="col-lg-4">
             <% if @offer.photos.exists?  %>
-              <%if !@offer.photos.first.nil? %>
-              <%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
-          <% end %>
-          <% end %>
+            <%if !@offer.photos.first.nil? %>
+            <%= image_tag @offer.photos.first.image.url(:medium) , class: "img-polaroid",style: "height:100px;width:150px" %>
+            <% end %>
+            <% end %>
           </div>
           <div class="col-lg-6">
             <h3>Your new listing (<%= @offer.id %>)</h3>
@@ -43,25 +43,55 @@
       </div>
     </div>
   </div>
-<% end %>
-  <% content_for :js do %>
-    <% javascript_tag do  %>
+
+
+  <div>
+    <div class="container">
+      <div class="row">
+        <!--Modal for the calender piece-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                Set Availability and Pricing
+              </div>
+              <div class="modal-body">
+                <div class="tab-content">
+                  <%= render :partial => '/calendars/newform' ,modal:true %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- End modal container -->
+
+
+   <!--  <iframe src="https://www.google.com/calendar/embed?src=nishant%40roomnhouse.com&ctz=Asia/Calcutta" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> -->
+
+
+    </div>
+    <% end %>
+    <% content_for :js do %>
+
+    <script >
     var updateEvent;
 
-  $(document).ready(function() {
-  return $('#calendar').fullCalendar({
-  editable: true,
-  header: {
-  left: 'prev',
-  center: 'title',
-  right: 'next'
-  },
-  defaultView: 'month',
-  height: 500,
-  selectable: true,
-  viewDisplay   : function(view) {
-  var now = new Date(); 
-  var end = new Date();
+    $(document).ready(function() {
+      return $('#calendar').fullCalendar({
+                 editable: true,
+        header: {
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        defaultView: 'month',
+        height: 500,
+        selectable: true,
+        viewDisplay   : function(view) {
+          var now = new Date(); 
+          var end = new Date();
   end.setMonth(now.getMonth() + 11); //Adjust as needed
 
   var cal_date_string = view.start.getMonth()+'/'+view.start.getFullYear();
@@ -73,21 +103,15 @@
 
   if(end_date_string == cal_date_string) { jQuery('.fc-button-next').addClass("fc-state-disabled"); }
   else { jQuery('.fc-button-next').removeClass("fc-state-disabled"); }
-  },
-  selectHelper: true,
-  select: function(start, end, allDay) {
-  var price = prompt('Enter price');
-  var availability = true;
-  if(price){
-  $.ajax( {
-  data:{'start':start,'end':end,'availability':availability, 'pricing':price},
-  type: 'POST',
-  url:'/offers/<%= @offer.id  %>/calendar',
-  success: function(){
-  },
-  error: function(response){
-  }
-  });}
+},
+selectHelper: true,
+select: function(start, end, allDay) {
+
+  $("#calendar_start").val(start.getDate()+"/"+(parseInt(start.getMonth())+1)+"/"+start.getFullYear());
+  $("#calendar_end").val(end.getDate()+"/"+(parseInt(end.getMonth())+1)+"/"+end.getFullYear());
+ //r price = prompt('Enter price');
+ abc();
+
 //  $('#calendar').fullCalendar('renderEvent',
 //  {
  // title: price,
@@ -96,33 +120,134 @@
 //  allDay: allDay
 //  }
 //  );
-  $('#calendar').fullCalendar('unselect');
-  },
-  eventSources: [
-  {
+$('#calendar').fullCalendar('unselect');
+},
+
+eventSources: [
+{
   url: '/offers/<%= @offer.id  %>/calendar'
-  }
-  ],
-  timeFormat: 'h:mm t{ - h:mm t} ',
-  dragOpacity: "0.5",
-  eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+}
+],
+timeFormat: 'h:mm t{ - h:mm t} ',
+dragOpacity: "0.5",
+eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
   return updateEvent(event);
-  },
-  eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+},
+eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
   return updateEvent(event);
-  }
+}
+});
+});
+
+updateEvent = function(the_event) {
+  return $.update("/offers/ <%= @offer.id  %>/calendar/" + the_event.id, {
+    event: {
+      pricing: the_event.title,
+      starts_at: "" + the_event.start,
+      ends_at: "" + the_event.end,
+      avaiability: the_event.description
+
+  
+    }
+
   });
+};
+
+
+
+</script>
+
+ <script > 
+// $('#calendar').fullCalendar({
+//  eventSources: [
+//             {
+//                 url: 'https://www.google.com/calendar/feeds/nishant%40roomnhouse.com/public/basic',
+//                 className: 'gcal-event',
+//                 color: '#3a87ad'
+//             }
+//         ]
+//  });
+// </script>
+<%end%>
+
+
+
+
+
+<%content_for :js do%>
+
+<script>
+function abc(){
+  $("#myModal").modal('show');
+
+}; 
+var x= $("#availability").bootstrapSwitch('state', true, false);
+
+$("#availability").value = true;
+x.on('switchChange.bootstrapSwitch',function(event, state) {
+  console.log(this); // DOM element
+  console.log(event); // jQuery event
+  console.log(state); // true | false
+  console.log(this.value);
+  this.value = state;
+  console.log(this.value);
+
+
+});
+
+$("form.calendar").bind('ajax:success', function(){
+  $("#calendar").fullCalendar("refetchEvents")
+  $("#myModal").modal('hide');
+});
+
+
+$(function() {
+  $( "#inquirycalendar_start" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: "dd/mm/yy",
+    onClose: function( selectedDate ) {
+      $( "#inquirycalendar_start" ).datepicker( "option","minDate",selectedDate );
+    }
+  });
+  $( "#inquirycalendar_end" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: "dd/mm/yy",
+    onClose: function( selectedDate ) {
+      $( "#inquirycalendar_end" ).datepicker( "option", "maxDate", selectedDate );
+    }
   });
 
-  updateEvent = function(the_event) {
-  return $.update("/offers/ <%= @offer.id  %>/calendar/" + the_event.id, {
-  event: {
-  pricing: the_event.title,
-  starts_at: "" + the_event.start,
-  ends_at: "" + the_event.end,
-  avaiability: the_event.description
-  }
+
+  $( "#calendar_start" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: "dd/mm/yy",
+    onClose: function( selectedDate ) {
+      $( "#calendar_start" ).datepicker( "option","minDate",selectedDate );
+    }
   });
-  };
+  $( "#calendar_end" ).datepicker({
+    minDate:"0",
+    defaultDate: "+1w",
+    changeMonth: true,
+    numberOfMonths: 1,
+    dateFormat: "dd/mm/yy",
+    onClose: function( selectedDate ) {
+      $( "#calendar_end" ).datepicker( "option", "maxDate", selectedDate );
+    }
+  });
+});
+
+
+
+</script>
+
 <% end %>
-<% end  %>

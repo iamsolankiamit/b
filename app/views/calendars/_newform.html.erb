@@ -1,0 +1,47 @@
+
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= simple_form_for(:calendar,url: offer_calendar_path, method: 'POST' , remote: true, html: {role: :form, 'data-model' => 'myModal'}) do |f| %>
+
+
+  
+  <div class="form-group">
+    <%= f.label :Startdate, class: 'control-label' %><br>
+    <%= f.input_field :start,:Placeholder => "MM/DD/YYYY",class: 'form-control' %>
+    <span class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :Enddate, class: 'control-label' %><br>
+    <%= f.input_field :end ,:Placeholder => "MM/DD/YYYY", class: 'form-control' %>
+    <span class="help-block"></span>
+  </div>
+
+   <div class="form-group">
+      <%= f.input :availability , 
+          :as => :select, 
+          :collection => {
+            "Yes" => "true", 
+            "No" => "false" }, 
+            :include_blank => false %>
+    <span class="help-block"></span>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :Price, class: 'control-label' %><br>
+    <%= f.input_field :price,:Placeholder => "price....", class: 'form-control' %>
+    <span class="help-block"></span>
+  </div>
+
+    <div class="form-group">
+   <%=hidden_field_tag :offer_id, value: @offer.id%>
+    <span class="help-block"></span>
+  </div>
+
+  <div class="form-group">
+     <input type="Submit" class="btn btn-primary calendar-update" value="Submit">
+  </div>
+
+<% end %>
+

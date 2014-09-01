@@ -23,13 +23,20 @@ class CalendarsController < ApplicationController
   end
 
   def create
-    start = params['start'].to_date
-    end_date = params['end'].to_date
+    start = params[:calendar][:start].to_date
+    end_date = params[:calendar][:end].to_date
+
+if params[:calendar][:price] == ""
+    price = Offer.find(params[:offer_id]).select(:nightly_rate_amount)
+  else
+    price = params[:calendar][:price]
+end
     start.upto(end_date) do |date|
-      @calendar = Calendar.update_or_create_by_date(date,true,params['pricing'].to_f,params['offer_id']) do |c|
-        c.pricing = params['pricing']
+      @calendar = Calendar.update_or_create_by_date(date,params[:calendar][:availability],price.to_f,params[:offer_id]) do |c|
+        c.pricing = params[:calendar][:price]
+        c.availability = params[:calendar][:availability]
       end
     end
-    render :json => @calendar
+    respond_to { |format| format.json {render  json: true} }
   end
 end
