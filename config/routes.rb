@@ -22,6 +22,7 @@ Roomnhouse::Application.routes.draw do
     end
 
     get "/users/new" => "admin#index"
+    get "/users/" => "admin#index"
     get "/users/:id" => "admin#index"
     get "/offers/:id" => "admin#index"
     get "/offers" => "admin#index"
