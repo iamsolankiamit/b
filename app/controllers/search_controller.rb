@@ -8,18 +8,22 @@ class SearchController < ApplicationController
     cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
     cookies[:checkout] = params[:checkout] unless params[:checkout].nil?
     if @offers.empty?
-      redirect_to BookingDotCom.url_creator(params[:destination],params[:checkin],params[:checkout],params[:guests])
+      # redirect_to BookingDotCom.url_creator(params[:destination],params[:checkin],params[:checkout],params[:guests])
     end
   end
 
   def search
-    destination = params[:search][:destination].gsub(/, /,'-').gsub(/ /,'-')
-    price_min = params[:search][:price_min].to_i
-    price_max = params[:search][:price_max].to_i
-    if params[:search][:amenities]
-      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count] , amenities: { breakfast: params[:search][:amenities][:breakfast] ,air_conditioning: params[:search][:amenities][:air_conditioning] , smoking_allowed: params[:search][:amenities][:smoking_allowed], cable_tv: params[:search][:amenities][:cable_tv] , internet: params[:search][:amenities][:internet] , kitchen: params[:search][:amenities][:kitchen]  }, sort_by: params[:search][:sort_by])
+    if params[:search][:destination]
+      destination = params[:search][:destination].gsub(/, /,'-').gsub(/ /,'-')
+      price_min = params[:search][:price_min].to_i
+      price_max = params[:search][:price_max].to_i
+      if params[:search][:amenities]
+        redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count] , amenities: { breakfast: params[:search][:amenities][:breakfast] ,air_conditioning: params[:search][:amenities][:air_conditioning] , smoking_allowed: params[:search][:amenities][:smoking_allowed], cable_tv: params[:search][:amenities][:cable_tv] , internet: params[:search][:amenities][:internet] , kitchen: params[:search][:amenities][:kitchen]  }, sort_by: params[:search][:sort_by])
+      else
+        redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count], sort_by: params[:search][:sort_by] )
+      end
     else
-      redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count], sort_by: params[:search][:sort_by] )
+      redirect_to root, :notice => "Please enter destination."
     end
   end
 
