@@ -1,12 +1,12 @@
 class UserMailer < ActionMailer::Base
   default from: "notifications@roomnhouse.com"
   def trip_registered(user,trip,booking)
-     @user = user
+    @user = user
     @host = User.find(trip.host_id)
     @trip = trip
     @booking = booking
     @offer = Offer.find(trip.offer_id)
-   mail(:to => user.email, :subject => "Booking complete")
+    mail(:to => user.email, :subject => "Booking complete")
   end
 
   def guest_booking_done(guest, trip,booking)
@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
     @booking = Booking.where(:trip_id => trip_id).first
     @host = User.find(@trip.host_id)
     @offer = Offer.find(@trip.offer_id)
-   mail(:to => @guest.email, :subject => "Booking complete")
+    mail(:to => @guest.email, :subject => "Booking complete")
   end
 
   def receipt
@@ -46,12 +46,13 @@ class UserMailer < ActionMailer::Base
   def invites_mail(mail)
     @referer = ReferalEmail.find(:referer_id)
     mail(:to => @referer.emails, subject: "You have been refferred on RoomnHouse" )
+  end
 
   def trip_end(trip_id)
-     @trip = Trip.find(trip_id)
-     @guest = User.find(@trip.guest_id)
-     @booking = Booking.where(:trip_id => trip_id).first
-     mail(:to => @guest.email, :subject => "Roomnhouse: Your trip with us!!")
+    @trip = Trip.find(trip_id)
+    @guest = User.find(@trip.guest_id)
+    @booking = Booking.where(:trip_id => trip_id).first
+    mail(:to => @guest.email, :subject => "Roomnhouse: Your trip with us!!")
   end
 
 end
