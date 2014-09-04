@@ -23,7 +23,7 @@ class SearchController < ApplicationController
         redirect_to search_path(destination,guests: params[:search][:guests],checkin: params[:search][:checkin], checkout: params[:search][:checkout], bedrooms: params[:search][:bedrooms], price_min: params[:search][:price_min] , price_max: params[:search][:price_max] , bed_count: params[:search][:bed_count] , bed_type: params[:search][:bed_type] , max_guest_count: params[:search][:max_guest_count], sort_by: params[:search][:sort_by] )
       end
     else
-      redirect_to root, :notice => "Please enter destination."
+      redirect_to :root, :notice => "Please enter destination."
     end
   end
 

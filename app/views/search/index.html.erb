@@ -161,7 +161,7 @@
 
 
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-placement="top" title="Help Yourself :)" data-target="#myModal">Shout Box!</button>
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-placement="top" title="Help Yourself :)" data-target="#myModal">Shout Box!</button> -->
 
             <div class="btn-group pull-right ">
               <%= link_to "Recommended",params.merge(sort_by: 'recommended'), class: "btn btn-default ", disabled:  current_page?(params.merge(sort_by: 'recommended')) ? true : false  %>
@@ -172,11 +172,7 @@
 
           <% unless @offers.empty? %>
             <% @offers.each do |offer|  %>
-            <div data-offer-id="<%= offer.id  %>"
-          <% unless @offers.nil? %>
-          <% @offers.each do |offer|  %>
           <div data-offer-id="<%= offer.id  %>"
-
             data-lat="<%= offer.confidential_lat  %>"
             data-lng="<%= offer.confidential_lng %>"
             data-url="<%= offer_url(offer) %>"
@@ -218,44 +214,10 @@
     </div>
   </div>
 </div>    <!--End of the page division-->
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-          <li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
-          <li><a href="#about" role="tab" data-toggle="tab">About</a></li>    
-        </ul>
-      </div>
-      <div class="modal-body">
-        <div class="tab-content">
-          <div class="tab-pane active" id="home"><b>Hey You Need Help! Our "SHOUTBOX" is ready to serve you.</b><hr>
-
-          
-           <%= render :partial => '/shouts/form' ,modal:true%>
-
-          </div>
-          <div class="tab-pane" id="profile">profile</div>
-          <div class="tab-pane" id="about">Shout Box making your search extremely simple!!</div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       
-      </div>
-    </div>
-  </div>
-</div>
-
 <% end %>
 
 
-<% content_for :js do%>
+<% content_for :js do %>
 
 <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
