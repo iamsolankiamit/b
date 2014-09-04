@@ -1,25 +1,53 @@
 <% content_for :body do %>
+  <div style="background: #e3e3e3;">
   <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <ul class="list-group">
-        <%= link_to "Dashboard",dashboard_user_path , class: "list-group-item" %>
-        <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
-        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
+    <div class="col-sm-12">
+      <ul class="nav nav-tabs">
+        <li class="active"><%= link_to "Dashboard",dashboard_path %></li>
+        <li><%= link_to "My Listings", offers_path %></li>
+        <li><%= link_to "Profile settings", edit_user_registration_path%></li>
       </ul>
     </div>
+    </div>
+    </div>
+    </div>
+  <div class="container">
+  <div class="row" style="padding:10px 0px;">
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+      <div class="panel-body">
+      <%= image_tag current_user.avatar.url(:medium_center), style: "width: 100%;background:white;" %>
+      <h2 class="text-center"><%= current_user.firstname.capitalize %></h2>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
 
-    <div class="col-lg-9">
-      <div class="main" style="margin-top:0px;">
-        <h2 class="text-center">Dash Board</h2>
-        <hr class=" offer-hr">
-        <div class="row">
-          <div class="col-lg-6 col-lg-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Alerts</h3>
+        </div>
+        <div class="panel-body">
             <%= link_to "Update your Phone No. to stay updated with your bookings and Guests", edit_user_registration_path if current_user.phone.nil? %>
             <%= link_to "Update your Profile Picture to be an authentic user", edit_user_registration_path if current_user.avatar.nil? %>
-          </div>
         </div>
       </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Messages</h3>
+        </div>
+        <div class="panel-body">
+          No new messages
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          Show some love refer your friends and get Rs. 500 credit for both of you.
+          <%= link_to "Refer a friend.", "/i/#{current_user.id}" , class: "btn btn-danger"  %>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 <% end %>

@@ -4,10 +4,6 @@ Roomnhouse::Application.routes.draw do
   get "i/:id" => "invites#show"
   get "i" =>"invites#index"
   post "i" => "invites#index"
-
-
-
-
   get "sitemaps/index"
   get "articles/index"
   get "articles/show"
@@ -53,8 +49,9 @@ Roomnhouse::Application.routes.draw do
 
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  match "/dashboard" => "users#dashboard"
   resources :users do
-    get 'dashboard', on: :member
+    get 'dashboard', on: :collection
   end
 
   resources :aboutus, only: [:index]
