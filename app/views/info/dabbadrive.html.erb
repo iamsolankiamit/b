@@ -1,7 +1,6 @@
 <% content_for :body do %>
   <div class="container">
   <div class="row">
-    
    <h2 class="text-center" style="padding-top: 30px;color: #111;font-weight:bold;font-size:24px;">Sharing is Caring</h2>
   <hr />
 <div class="row">
@@ -33,15 +32,10 @@
   <h3 class="text-center" style=" padding: 10px;font-weight:bold; font-size:16px;color:#111;">HERE IS WHAT WE CAN DO...TOGETHER</h3>
 
   <p>We at Room n House are not out to level the playfield, only to work towards creating a healthier 
-
   nation to live in. We believe in being a part of something that’s much bigger than ourselves, and we 
-
   try to achieve that by making someone else’s day, as we would, our own.
-
   It only takes 10 minutes of your entire day, to step out and put a smile on a little child's face. The 
-
   same child who you see on your way to work/college. 10 minutes and that little child becomes a 
-
   little healthier than before.</p>
   <h3 style="font-weight:bold; font-size:16px;color:#111;">Do you have those 10 minutes to give or are you really that busy?</h3>
   </div>
@@ -51,54 +45,51 @@
   <h5 class="text-center" style=" padding: 30px;font-weight:bold; font-size:24px;color:#111;">Enroll Now For Dabba Drive</h5>
   <div class="col-sm-6">
   <h5 class="text-center" style=" padding: 10px;font-weight:bold; font-size:16px;color:#111; padding-bottom:20px;">Registration Form</h5>
-  <form class="form-horizontal" role="form">
+  <form class="form-horizontal" action="/dabba_drive" method="POST" accept-charset="UTF-8">
 <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">Name</label>
+        <label for="name" class="col-sm-4 control-label">Name</label>
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Name">
+          <input type="text" class="form-control" id="name" name="dabba_drive[name]" placeholder="Name">
         </div>
       </div>
-
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+        <label for="email" class="col-sm-4 control-label">Email</label>
         <div class="col-sm-8">
-          <input type="name" class="form-control" id="inputEmail3" placeholder="Email">
+          <input type="email" class="form-control" id="email" name="dabba_drive[email]" placeholder="Email">
         </div>
       </div>
-       
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">Phone</label>
+        <label for="phone" class="col-sm-4 control-label">Phone</label>
         <div class="col-sm-8">
-          <input type="phone" class="form-control" id="inputEmail3" placeholder="Phone">
+          <input type="phone" class="form-control" id="phone" name="dabba_drive[phone]" placeholder="Phone">
         </div>
       </div>
-       
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">Address Line 1</label>
+        <label for="address_line_1" class="col-sm-4 control-label">Address Line 1</label>
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Address line 1">
+          <input type="text" class="form-control" id="address_line_1" name="dabba_drive[address_line_1]" placeholder="Address line 1">
         </div>
       </div>
-       
        <div class="form-group">
-        <label for="inputEmail3" class="col-sm-4 control-label">Address Line 2</label>
+        <label for="address_line_2" class="col-sm-4 control-label">Address Line 2</label>
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Address Line 2">
+          <input type="text" class="form-control" id="address_line_2" name="dabba_drive[address_line_2]" placeholder="Address Line 2">
         </div>
       </div>
       <div class="form-group">
-        <label class="radio-inline col-sm-offset-4 col-sm-3">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Apna Dabba
-          </label>
-          <label class="radio-inline col-sm-3">
-              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> RnH Dabba
-            </label>
+          <label for="dabba_type" class="control-label col-sm-4">Dabba Type</label>
+        <div class="col-sm-8">
+        <select class="form-control" name="dabba_drive[dabba_type]" id="dabba_type">
+          <option value="apna_dabba" Selected>Apna Dabba</option>
+          <option value="rnh_dabba">RnH Dabba</option>
+        </select>
+        </div>
       </div>
             <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
           <div class="checkbox">
             <label>
-              <input type="checkbox"> Accept Terms and condition
+              <input type="checkbox" id="terms" value="dabba_drive[terms_accepted]"> Accept Terms and condition
             </label>
           </div>
         </div>
@@ -113,7 +104,6 @@
   </div>
 
   <div class="col-sm-6" >
-  
   <h5 class="text-center" style=" padding: 10px;font-weight:bold; font-size:16px;color:#111;">Guidlines</h5>
   <ul class="popular_destinations text-left">
     <li style="padding:7px;"><i class="icon-ok"></i><strong>Step One :</strong> Enroll on the website, and provide all the necessary details</li>
