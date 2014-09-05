@@ -42,7 +42,6 @@ class UserMailer < ActionMailer::Base
 
   end
 
-
   def invites_mail(mail)
     @referer = ReferalEmail.find(:referer_id)
     mail(:to => @referer.emails, subject: "You have been refferred on RoomnHouse" )

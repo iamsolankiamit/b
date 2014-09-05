@@ -1,31 +1,22 @@
 class InvitesController < ApplicationController
 
+  before_filter :authenticate_user!, :only => [:index, :emailer] {unauthorized! if cannot? :manage, :invite}
   def show
-  	@user = User.find(params[:id])
-  	session[:referer_id] = params[:id]
-  end
-
-  def create
-  		
+    @user = User.find(params[:id])
+    session[:referer_id] = params[:id]
   end
 
   def index
-		@mail = ReferalEmail.new
-	 @referral = Referral.find(params[:referral_id])	
-		@mail.referer_id = @referral.id
-
   end
 
   def emailer
-
-  	@mail = ReferalEmail.find(params[:emails])
-  	respond_to do |format|
-  		format.html {redirect_to :index, :notice=> "mail sent"  }
-  	end
-  	UserMailer.delay.invites_mail(@mail)
+    refferal = ReferalEmail.add_manual_contacts(params[:referral_email][:referer_id], params[:referral_email][:email])
+    respond_to do |format|
+      format.js
+    end
 
   end
- 
+
 
 
 end

@@ -1,14 +1,69 @@
+<% content_for :title do %>
+  Invite your Friends to Roomnhouse
+<% end %>
 <%content_for :body do%>
-
-	<div class="container">
-	 <%= simple_form_for( @mail,:url => "/i",method: :post, :remote => true, :format => :html) do |f| %>
-
-	 <%= f.input :emails ,:class=>"form-control",:rows=>'10',:label => "Reffererring mail! ",:placeholder => "Enter mail id whom you want to refer :)" , :required => true %>
-	 <%=f.hidden_field :referer_id %>
-
-	 <%=f.button :submit ,"Happy Referring..." , :class => 'btn-primary'%>
-
-	</div>
-	 <%end%>
-
+  <style type="text/css" media="all">
+.invite_bg{
+  background: url(<%= image_path('invite_friends.jpg')  %>) center center;
+min-height: 600px;
+background-size: cover;
+min-zoom: inherit;
+background-color: bisque;
+background-blend-mode: multiply;  
+}
+.invite-button{
+text-align: center;
+margin: 20px 0px;
+}
+.facebook-invite{
+  background-color: #3B5998;
+  border: 1px solid #3b5998;
+  color:white;
+}
+.facebook-invite :hover{
+  backround-color: #3B5999;
+}
+.invite-overlay{
+  min-height: 600px;
+  background-color:rgba(0,0,0,0.5);
+}
+.invite-header{
+padding-top: 150px;
+text-align: center;
+font-size: 24px;
+color: white;
+line-height: 1;
+font-weight: 600;
+text-shadow: black 0px 0px 15px;
+}
+  </style>
+  <div class="invite_bg">
+    <div class="invite-overlay">
+    <h3 class="invite-header">Give 500 travel Credit on Roomnhouse to your friends.</br> Earn 500 travel credit for yourself when your they travel with us.</h3>
+    <div class="container">
+    <div class="row">
+    <div class="col-sm-2 col-sm-offset-3"><%= link_to "Refer via Gmail", "contacts/gmail/", class: 'btn btn-danger btn-block invite-button' %></div>
+    <div class="col-sm-2">
+     <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/share?app_id=414645321969009&link=http://roomnhouse.com/i/<%= current_user.id%>display=popup&redirect_uri=http://roomnhouse.com/i" target="_blank">Share Via Facebook</a> </div>
+   <div class="col-sm-2">
+     <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/i/#{current_user.id}"  %>&via=roomnhouse&text=<%=URI.encode("Sign up on roomnhouse and get 500 travel credits")  %>">Share it on Twitter</a>
+   </div>
+      </div>
+      </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row" style="padding-top:10px">
+    <div class="col-sm-6">
+      <%= simple_form_for(:referral_email,:url => "/i/emailer",method: :post, :remote => true, :format => :html) do |f| %>
+        <%= f.input :email ,:class=>"form-control", style: "border-radius:0px",:label => "Email",:placeholder => "Enter mail id whom you want to refer"%>
+      <%=f.button :submit ,"Invite" , :class => 'btn btn-primary'%>
+    </div>
+    <div class="col-sm-6">
+      <span>Your Referral Link is:</span>
+      <input type="text" name="Referral Link" id="" value="http://roomnhouse.com/i/<%= current_user.id  %>" readonly class="form-control" style="cursor:auto !important;background-color:white;border-radius:0px " />
+    </div>
+  </div>
+</div>
+<%end%>
 <%end%>

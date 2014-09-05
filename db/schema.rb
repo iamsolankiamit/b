@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140823164824) do
-
+ActiveRecord::Schema.define(:version => 20140826091936) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -222,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
+    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -269,7 +269,6 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "rating",     :default => 5
-
   end
 
   create_table "rewards", :force => true do |t|
@@ -280,7 +279,6 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.integer  "trip_id"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
-
   end
 
   create_table "sessions", :force => true do |t|
@@ -392,6 +390,8 @@ ActiveRecord::Schema.define(:version => 20140823164824) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
+    t.integer  "lister_id"
+    t.string   "slug"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
