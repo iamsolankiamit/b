@@ -46,7 +46,7 @@ text-shadow: black 0px 0px 15px;
     <div class="col-sm-2">
      <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/share?app_id=414645321969009&link=http://roomnhouse.com/i/<%= current_user.id%>display=popup&redirect_uri=http://roomnhouse.com/i" target="_blank">Share Via Facebook</a> </div>
    <div class="col-sm-2">
-     <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/i/#{current_user.id}"  %>&via=roomnhouse&text=<%=URI.encode("Sign up on roomnhouse and get 500 travel credits")  %>">Share it on Twitter</a>
+     <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/i/#{current_user.referral_code}"  %>&via=roomnhouse&text=<%=URI.encode("Sign up on roomnhouse and get 500 travel credits")  %>">Share it on Twitter</a>
    </div>
       </div>
       </div>
@@ -61,7 +61,7 @@ text-shadow: black 0px 0px 15px;
     </div>
     <div class="col-sm-6">
       <span>Your Referral Link is:</span>
-      <input type="text" name="Referral Link" id="" value="http://roomnhouse.com/i/<%= current_user.id  %>" readonly class="form-control" style="cursor:auto !important;background-color:white;border-radius:0px " />
+      <input type="text" name="Referral Link" id="" value="http://roomnhouse.com/i/<%= current_user.referral_code  %>" readonly class="form-control" style="cursor:auto !important;background-color:white;border-radius:0px " />
     </div>
   </div>
 </div>
