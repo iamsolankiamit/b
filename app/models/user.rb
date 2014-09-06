@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  after_save :set_referral_code
+  before_save :set_referral_code
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   # Setup accessible (or protected) attributes for your model
@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
 
   def set_referral_code
     self.referral_code = generate_referral_code
-    self.save!
   end
 
 # def set_username
