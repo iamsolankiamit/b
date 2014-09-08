@@ -8,12 +8,14 @@ gem "pg"
 gem "unf"
 gem "devise"
 gem "omniauth"
+gem "omnicontacts"
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 gem 'cancan'
 gem 'aws-s3'
 gem 'fog'
-
+gem 'addressable'
+gem "friendly_id", "~> 4.0.10" 
 group :production do
   gem 'newrelic_rpm'
   gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"

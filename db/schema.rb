@@ -11,7 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140827143015) do
+
+
+
+ActiveRecord::Schema.define(:version => 20140905061022) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -109,6 +112,18 @@ ActiveRecord::Schema.define(:version => 20140827143015) do
     t.string   "code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "dabba_drives", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "dabba_type"
+    t.boolean  "terms_accepted"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -221,6 +236,7 @@ ActiveRecord::Schema.define(:version => 20140827143015) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
+    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -389,6 +405,8 @@ ActiveRecord::Schema.define(:version => 20140827143015) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
+    t.integer  "lister_id"
+
     t.string   "slug"
   end
 

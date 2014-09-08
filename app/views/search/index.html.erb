@@ -1,11 +1,11 @@
 <% content_for :description do %>
-Search for vacation room, villas, and apartment rentals in <%= params[:destination].gsub(/-/,' ')%> and save on your reservations with Room N House today!
+  Search for vacation room, villas, and apartment rentals in <%= params[:destination].gsub(/-/,' ')%> and save on your reservations with Room N House today!
 <% end %>
 <% content_for :title do %>
-Vacation Room Rentals in <%= params[:destination].split.first.capitalize %> | Room N House
+  Vacation Room Rentals in <%= params[:destination].split.first.capitalize %> | Room N House
 <% end %>
 <% content_for :body do %>
-<style>
+  <style>
 .footer{
   display:none;
 }
@@ -69,251 +69,199 @@ Vacation Room Rentals in <%= params[:destination].split.first.capitalize %> | Ro
       <div class="container">
         <div class="col-md-12" >
           <%= simple_form_for :search, url: '/search', method: 'Post', id: 'search_form' do |f| %>
-          <div class="row search_form">
+            <div class="row search_form">
             <div class="form-group">
               <div class="col-sm-3">
                 <label class="form-label" style="margin-top:10px;">Destination:</label>
               </div>
 
               <div class="col-sm-9"><%= f.input_field :destination, value: params[:destination],as: :search, autofocus: true, placeholder: "Where do you want to go?", autocomplete: "off", required: "required", id: "geolocation", class: " col-sm-12 required form-control" %></div></div>
+          </div>
+          <div class="row search_form">
+            <div class="form-group">
+              <div class="col-sm-3">
+                <label class="form-label" style="margin-top:10px;">Trip</label>
+              </div>
+              <div class="col-sm-3"><%= f.input_field :checkin, as: :string, class: "col-sm-4", placeholder: "Check in"%></div>
+              <div class="col-sm-3"><%= f.input_field :checkout,as: :string,class: "col-sm-4", placeholder: "Check out"%></div>
+              <div class="col-sm-3"><%= f.input_field :max_guest_count,as: :select, selected: params[:max_guest_count], collection: {"No. of Guests" => 0, "1 Guest"=>1, "2 Guests"=>2, "3 Guests"=>3, "4 Guests"=>4, "5 Guests"=>5,"6 Guests"=>6, "7 Guests"=>7, "8 Guests"=>8, "9 Guests"=>9,"10 Guests"=>10, "11 Guests"=>11, "12 Guests"=>12,"13 Guests"=>13,"14 Guests"=>14,"15 Guests"=>15,"16+ Guests"=>16}, class: "col-sm-4", include_blank: false %></div>
+            </div>
+          </div>
+          <div class="row search_form">
+            <div class="form-group">
+              <div class="col-sm-3">
+                <label class="control-label" for="price" style="margin-top:10px;">Price range:</label>
+              </div>
+              <div class="col-sm-9"><div  id="slider-3"></div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <input type="text" id="search_price_min" class="form-control"data-min= "<%= @price_min%>" disabled>
+                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-min= "<%= @price_min%>" >
+                  </div>
+                  <div class="col-sm-4 col-sm-offset-4">
+                    <input type="text" id="search_price_max" name="search[price_max]" value="<%= params[:price_max]  %>"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
+                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-min= "<%= @price_min%>" >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapse" id="search_filter">
+            <div class="row search_form">
+              <div class="form-group">
+                <div class="col-sm-3"><label class="control-label" style="margin-top:10px;">Beds</label></div>
+                <div class="col-sm-3"><%= f.input_field :bedrooms, as: :select,selected: params[:bedrooms], collection: {"No. of Bedrooms" => 0,"1 Bedroom"=>1, "2 Bedrooms"=>2, "3 Bedrooms"=>3, "4 Bedrooms"=>4, "5 Bedrooms"=>5,"6 Bedrooms"=>6}, class: "form-control", include_blank: false %></div>
+                <div class="col-sm-3"><%= f.input_field :bed_count, as: :select, selected: params[:bed_count],collection: {"No. of Beds" => 0,"1 Bed"=>1, "2 Beds"=>2, "3 Beds"=>3, "4 Beds"=>4, "5 Beds"=>5,"6 Beds"=>6,"8 Beds"=>8,"9 Beds"=>9,"10 Beds"=>10,"11 Beds"=>11,"12 Beds"=>12,"13 Beds"=>13,"14 Beds"=>14,"15 Beds"=>15}, include_blank: false, class: "form-control" %></div>
+                <div class="col-sm-3"><%= f.input_field :bed_type , :as => :select, selected: params[:bed_type], :collection => {"Type of Beds" => "","Real Bed" => "real_bed", "Airbed" => "airbed", "Futon" => "futon", "Pull-Out" => "pull_out", "Couch" => "couch"}, :include_blank => false %></div>
+              </div>
             </div>
             <div class="row search_form">
               <div class="form-group">
                 <div class="col-sm-3">
-                  <label class="form-label" style="margin-top:10px;">Trip</label>
+                  <label class="form-label" style="margin-top:10px;">Amenities</label>
                 </div>
-                <div class="col-sm-3"><%= f.input_field :checkin, as: :string, class: "col-sm-4", placeholder: "Check in"%></div>
-                <div class="col-sm-3"><%= f.input_field :checkout,as: :string,class: "col-sm-4", placeholder: "Check out"%></div>
-                <div class="col-sm-3"><%= f.input_field :max_guest_count,as: :select, selected: params[:max_guest_count], collection: {"No. of Guests" => 0, "1 Guest"=>1, "2 Guests"=>2, "3 Guests"=>3, "4 Guests"=>4, "5 Guests"=>5,"6 Guests"=>6, "7 Guests"=>7, "8 Guests"=>8, "9 Guests"=>9,"10 Guests"=>10, "11 Guests"=>11, "12 Guests"=>12,"13 Guests"=>13,"14 Guests"=>14,"15 Guests"=>15,"16+ Guests"=>16}, class: "col-sm-4", include_blank: false %></div>
-
-                <div class="col-sm-9"><%= f.input_field :destination, as: :search, autofocus: true, placeholder: "Where do you want to go?", autocomplete: "off", required: "required", id: "geolocation", class: " col-sm-12 required form-control" %></div></div>
-              </div>
-              <div class="row search_form">
-                <div class="form-group">
-                  <div class="col-sm-3">
-                    <label class="form-label" style="margin-top:10px;">Trip</label>
-                  </div>
-                  <div class="col-sm-3"><%= f.input_field :checkin, as: :string, class: "col-sm-4", placeholder: "Check in"%></div>
-                  <div class="col-sm-3"><%= f.input_field :checkout,as: :string,class: "col-sm-4", placeholder: "Check out"%></div>
-                  <div class="col-sm-3"><%= f.input_field :max_guest_count,as: :select, collection: {"No. of Guests" => 0, "1 Guest"=>1, "2 Guests"=>2, "3 Guests"=>3, "4 Guests"=>4, "5 Guests"=>5,"6 Guests"=>6, "7 Guests"=>7, "8 Guests"=>8, "9 Guests"=>9,"10 Guests"=>10, "11 Guests"=>11, "12 Guests"=>12,"13 Guests"=>13,"14 Guests"=>14,"15 Guests"=>15,"16+ Guests"=>16}, class: "col-sm-4", include_blank: false %></div>
-                </div>
-              </div>
-              <div class="row search_form">
-                <div class="form-group">
-                  <div class="col-sm-3">
-                    <label class="control-label" for="price" style="margin-top:10px;">Price range:</label>
-                  </div>
-                  <div class="col-sm-9"><div  id="slider-3"></div>
-                  <div class="row">
-                    <div class="col-sm-4">
-                      <input type="text" id="search_price_min" class="form-control"data-min= "<%= @price_min%>" disabled>
-                      <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-min= "<%= @price_min%>" >
-                    </div>
-                    <div class="col-sm-4 col-sm-offset-4">
-                      <input type="text" id="search_price_max" name="search[price_max]" value="<%= params[:price_max]  %>"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
-                      <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-min= "<%= @price_min%>" >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="collapse" id="search_filter">
-              <div class="row search_form">
-                <div class="form-group">
-                  <div class="col-sm-3"><label class="control-label" style="margin-top:10px;">Beds</label></div>
-                  <div class="col-sm-3"><%= f.input_field :bedrooms, as: :select,selected: params[:bedrooms], collection: {"No. of Bedrooms" => 0,"1 Bedroom"=>1, "2 Bedrooms"=>2, "3 Bedrooms"=>3, "4 Bedrooms"=>4, "5 Bedrooms"=>5,"6 Bedrooms"=>6}, class: "form-control", include_blank: false %></div>
-                  <div class="col-sm-3"><%= f.input_field :bed_count, as: :select, selected: params[:bed_count],collection: {"No. of Beds" => 0,"1 Bed"=>1, "2 Beds"=>2, "3 Beds"=>3, "4 Beds"=>4, "5 Beds"=>5,"6 Beds"=>6,"8 Beds"=>8,"9 Beds"=>9,"10 Beds"=>10,"11 Beds"=>11,"12 Beds"=>12,"13 Beds"=>13,"14 Beds"=>14,"15 Beds"=>15}, include_blank: false, class: "form-control" %></div>
-                  <div class="col-sm-3"><%= f.input_field :bed_type , :as => :select, selected: params[:bed_type], :collection => {"Type of Beds" => "","Real Bed" => "real_bed", "Airbed" => "airbed", "Futon" => "futon", "Pull-Out" => "pull_out", "Couch" => "couch"}, :include_blank => false %></div>
-                </div>
-              </div>
-              <div class="row search_form">
-                <div class="form-group">
-                  <div class="col-sm-3">
-                    <label class="form-label" style="margin-top:10px;">Amenities</label>
-                  </div>
-                  <%= f.simple_fields_for :amenities do |t|  %>
+                <%= f.simple_fields_for :amenities do |t|  %>
                   <div class="col-sm-9">
-                    <div class="row">
-                      <div class="col-sm-4"><%= t.input :breakfast , as: :boolean%></div>
-                      <div class="col-sm-4"><%= t.input :air_condtioning, as: :boolean %></div>
-                      <div class="col-sm-4"><%= t.input :internet, as: :boolean %></div>
-                    </div>
+                  <div class="row">
+                    <div class="col-sm-4"><%= t.input :breakfast , as: :boolean%></div>
+                    <div class="col-sm-4"><%= t.input :air_condtioning, as: :boolean %></div>
+                    <div class="col-sm-4"><%= t.input :internet, as: :boolean %></div>
                   </div>
-                  <% end %>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <input type="submit" class="form-control btn btn-primary" value="Search">
-                </div>
-              </div>
               <% end %>
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12" style="background: white; padding:10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
-              <button type="button" id="filter" class="btn btn-default" data-toggle="collapse" data-target="#search_filter">
-                <i class="icon icon-reorder"></i>
-                <span>Show more filters</span>
-              </button>
-
-
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-placement="top" title="Help Yourself :)" data-target="#myModal">Shout Box!</button>
-
-              <div class="btn-group pull-right ">
-                <%= link_to "Recommended",params.merge(sort_by: 'recommended'), class: "btn btn-default ", disabled:  current_page?(params.merge(sort_by: 'recommended')) ? true : false  %>
-                <%= link_to "Price",params.merge(sort_by: 'price'), class: "btn btn-default ", disabled:  current_page?(params.merge(sort_by: 'price')) ? true : false  %>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="submit" class="form-control btn btn-primary" value="Search">
               </div>
             </div>
+          <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12" style="background: white; padding:10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
+            <button type="button" id="filter" class="btn btn-default" data-toggle="collapse" data-target="#search_filter">
+              <i class="icon icon-reorder"></i>
+              <span>Show more filters</span>
+            </button>
 
 
-            <% unless @offers.empty? %>
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-placement="top" title="Help Yourself :)" data-target="#myModal">Shout Box!</button> -->
+
+            <div class="btn-group pull-right">
+              <%= link_to "Recommended",params.merge(sort_by: 'recommended'), class: "btn btn-default ", disabled:  current_page?(params.merge(sort_by: 'recommended')) ? true : false  %>
+              <%= link_to "Price",params.merge(sort_by: 'price'), class: "btn btn-default ", disabled:  current_page?(params.merge(sort_by: 'price')) ? true : false  %>
+            </div>
+          </div>
+
+
+          <% unless @offers.empty? %>
             <% @offers.each do |offer|  %>
             <div data-offer-id="<%= offer.id  %>"
-              <% unless @offers.nil? %>
-              <% @offers.each do |offer|  %>
-              <div data-offer-id="<%= offer.id  %>"
-
-                data-lat="<%= offer.confidential_lat  %>"
-                data-lng="<%= offer.confidential_lng %>"
-                data-url="<%= offer_url(offer) %>"
-                data-price="<%= offer.nightly_rate_amount %>"
-                data-title="<%= offer.translations.first.title.titlecase %>"
-                data-location="<%= offer.city.titlecase  %>"
-                data-property-type="<%= offer.object_type.humanize.titlecase  %>"
-                data-image="<%= offer.photos.first.image.url(:searchimg)  %>"
-                class="listing col-md-6">
-                <%= link_to offer_path(offer), class: "thumbnail" do  %>
-                <div class="price-box">
-                  <div class="price">
-                    <sup><i class="icon-inr"></i></sup>
-                    <%= offer.nightly_rate_amount  %>
-                    <sup>INR</sup>
-                  </div>
-                  <div class="price-info">Per night</div>
-                </div>
-                <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive", alt: offer.translations.first.title.titlecase %>
-                <div class="caption">
-                  <div class="title"><%= offer.translations.first.title.titlecase  %> </div>
-                  <div class="location"><%= offer.object_type.titlecase %></div>
-                  <div class="location"><%= offer.city.titlecase %></div>
-                </div>
-                <% end %>
+            data-lat="<%= offer.confidential_lat  %>"
+            data-lng="<%= offer.confidential_lng %>"
+            data-url="<%= offer_url(offer) %>"
+            data-price="<%= offer.nightly_rate_amount %>"
+            data-title="<%= offer.translations.first.title.titlecase %>"
+            data-location="<%= offer.city.titlecase  %>"
+            data-property-type="<%= offer.object_type.humanize.titlecase  %>"
+            data-image="<%= offer.photos.first.image.url(:searchimg)  %>"
+            class="listing col-md-6">
+            <%= link_to offer_path(offer), class: "thumbnail" do  %>
+              <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= offer.nightly_rate_amount  %>
+                <sup>INR</sup>
               </div>
-              <% end %>
-              <% else %>
-              <p>There isn't any place available for your search criteria. </p>
-              <% end %><%end%>
+              <div class="price-info">Per night</div>
             </div>
-            <%end%>
-            <div class="row">
-              <div class="col-sm-12">
-                <%= paginate @offers ,:param_name => :page %>
-              </div>
+            <%= image_tag offer.photos.first.image.url(:searchimg), class: "img-responsive", alt: offer.translations.first.title.titlecase %>
+            <div class="caption">
+              <div class="title"><%= offer.translations.first.title.titlecase  %> </div>
+              <div class="location"><%= offer.object_type.titlecase %></div>
+              <div class="location"><%= offer.city.titlecase %></div>
             </div>
-
+          <% end %>
+          </div>
+        <% end %>
+        <% else %>
+            <p>There isn't any place available for your search criteria. </p>
+        <% end %>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= paginate @offers ,:param_name => :page %>
           </div>
         </div>
-      </div>
-    </div>    <!--End of the page division-->
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-              <li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
-              <li><a href="#about" role="tab" data-toggle="tab">About</a></li>    
-            </ul>
-          </div>
-          <div class="modal-body">
-            <div class="tab-content">
-              <div class="tab-pane active" id="home"><b>Hey You Need Help! Our "SHOUTBOX" is ready to serve you.</b><hr>
-
-
-               <%= render :partial => '/shouts/form' ,modal:true%>
-
-             </div>
-             <div class="tab-pane" id="profile">profile</div>
-             <div class="tab-pane" id="about">Shout Box making your search extremely simple!!</div>
-           </div>
-         </div>
-         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-        </div>
       </div>
     </div>
   </div>
+</div>    <!--End of the page division-->
+<% end %>
 
-  <% end %>
 
-
-
-  <% content_for :js do%>
+<% content_for :js do %>
 
   <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
-  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  <script>
-  $('#search_filter').on('shown.bs.collapse', function () {
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+$('#search_filter').on('shown.bs.collapse', function () {
     $("#filter span").text('Show less filters')
-  });
+    });
 
-  $('#search_filter').on('hidden.bs.collapse', function () {
+$('#search_filter').on('hidden.bs.collapse', function () {
     $("#filter span").text('Show more filters')
-  });
-  $(function() {
+    });
+$(function() {
     minimum = $('#search_price_min').data('min');
     maximum = $('#search_price_max').data('max');
     $( "#slider-3" ).slider({
-      range:true,
-      min: parseInt(minimum),
-      max: parseInt(maximum),
-      values: [ minimum, maximum ],
-      slide: function( event, ui ) {
-        $( "#search_price_min" ).val(  ui.values[ 0 ] );
-        $( "#search_price_min_main" ).val(  ui.values[ 0 ] );
-        $( "#search_price_max" ).val(  ui.values[ 1 ] );
-        $( "#search_price_max_main" ).val(  ui.values[ 1 ] );
-      }
-    });
+range:true,
+min: parseInt(minimum),
+max: parseInt(maximum),
+values: [ minimum, maximum ],
+slide: function( event, ui ) {
+$( "#search_price_min" ).val(  ui.values[ 0 ] );
+$( "#search_price_min_main" ).val(  ui.values[ 0 ] );
+$( "#search_price_max" ).val(  ui.values[ 1 ] );
+$( "#search_price_max_main" ).val(  ui.values[ 1 ] );
+}
+});
     $( "#search_price_min" ).val(  $( "#slider-3" ).slider( "values", 0   ));
     $( "#search_price_min_main" ).val(  $( "#slider-3" ).slider( "values", 0   ));
     $( "#search_price_max" ).val(  $( "#slider-3" ).slider( "values", 1  ));
     $( "#search_price_max_main" ).val(  $( "#slider-3" ).slider( "values", 1  ));
     $( "#search_checkin" ).datepicker({
-      minDate:"0",
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 1,
-      onClose: function( selectedDate ) {
-        $( "#search_checkout" ).datepicker( "option","minDate",selectedDate );
-      }
-    });
-    $( "#search_checkout" ).datepicker({
-      minDate:"0",
-      defaultDate: "+1w",
-      changeMonth: true,
-      numberOfMonths: 1,
-      onClose: function( selectedDate ) {
-        $( "#search_checkin" ).datepicker( "option", "maxDate", selectedDate );
-      }
-    });
-  });
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#search_checkout" ).datepicker( "option","minDate",selectedDate );
+}
+});
+$( "#search_checkout" ).datepicker({
+minDate:"0",
+defaultDate: "+1w",
+changeMonth: true,
+numberOfMonths: 1,
+onClose: function( selectedDate ) {
+$( "#search_checkin" ).datepicker( "option", "maxDate", selectedDate );
+}
+});
+});
 $("#geolocation").geocomplete();
 
 setTimeout(function() {
 
-  abc();
-}, 5000);
+    abc();
+    }, 5000);
 
 
 function abc(){
@@ -321,5 +269,4 @@ function abc(){
 }; 
 
 </script>
-
-<%end%>
+<% end%>

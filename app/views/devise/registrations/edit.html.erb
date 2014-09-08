@@ -1,16 +1,22 @@
 <% content_for :body do %>
+<div style="background: #e3e3e3;">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="nav nav-tabs">
+          <li><%= link_to "Dashboard",dashboard_path %></li>
+          <li><%= link_to "My Inbox", inquiries_path %></li>
+          <li><%= link_to "My Listings", offers_path %></li>
+          <li><%= link_to "My Trips", trips_path %></li>
+          <li class="active"><%= link_to "Profile settings", edit_user_registration_path%></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <ul class="list-group">
-        <%= link_to "Dashboard", offers_path, class: "list-group-item" %>
-        <%= link_to "My Listings", offers_path, class: "list-group-item active" %>
-        <%= link_to "My trips", trips_path, class: "list-group-item" %>
-        <%= link_to "Profile settings", edit_user_registration_path, class: "list-group-item" %>
-      </ul>
-    </div>
-
-    <div class="col-lg-9">
+      <div class="col-sm-12">
       <div class="main" style="margin-top:0px;">
         <h2 class="text-center">Profile Settings</h2>
         <hr class=" offer-hr">
