@@ -349,23 +349,6 @@
           </div>
 
           <div class="col-sm-12">
-            <div class= "heading-reviews"><h3>Reviews about the Space</h3></div>
-
-          <% if @review %>
-          <% @review.each do |t| %>
-
-            <div> <%= t.user_id%>.   <%=t.offer_id%>   <%= t.trip_id%></div> 
-            <div>Content = <%= t.content%>  </div>
-            <div>Rating = <%= t.rating %> </div>
-
-            <%end%>
-            <%end%>
-
-          </div>
-
-
-
-          <div class="col-sm-12">
             <div class="headings-offer">Map</div>
             <div id="map" style='height: 400px;'></div>
           </div>
