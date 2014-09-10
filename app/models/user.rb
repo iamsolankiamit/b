@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   end
 
   def set_referral_code
-    self.referral_code = generate_referral_code
+    unless referral_code
+      self.referral_code = generate_referral_code
+    end
   end
 
 # def set_username
