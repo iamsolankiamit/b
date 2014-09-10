@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [:index, :emailer] {authorized! if can :manage, :invite}
+  before_filter :authenticate_user!, :only => [:index, :emailer] {unauthorized! if cannot? :manage, :invite}
   def show
     @user = User.find(params[:id])
     session[:referer_id] = params[:id]
