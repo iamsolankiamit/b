@@ -23,4 +23,7 @@ class InfoController < ApplicationController
   def sunburn
 
   end
+  def sunburncomingsoon
+
+  end
 end

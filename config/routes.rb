@@ -33,6 +33,7 @@ Roomnhouse::Application.routes.draw do
   end
 
   match '/sunburngoa2014test' => 'info#sunburn'
+  match 'sunburngoa2014' => 'info#sunburncomingsoon'
   resources :messages do
     get 'inbox', on: :collection
     get 'sent', on: :collection
