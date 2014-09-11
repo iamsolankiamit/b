@@ -29,6 +29,7 @@ class PackagesController < ApplicationController
   # GET /packages/1.json
   def show
     @package = Package.find(params[:id])
+     offer_id = "wx1k7g"
     case params[:id] when 3
      offer_id = "wx1k7g"
     when 4
