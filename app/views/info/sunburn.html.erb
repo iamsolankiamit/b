@@ -1,6 +1,6 @@
 <% content_for :body do %>
 <div class="container">
-<div class="row">
+<div class="row" style="padding-top:30px;padding-bottom:20px;">
 <div class="col-sm-12">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -13,12 +13,17 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="..." alt="...">
+      <%= image_tag 'sunburn copy1.jpg', style: "width:100%"  %>
       <div class="carousel-caption">
       </div>
     </div>
     <div class="item">
-      <img src="..." alt="...">
+      <%= image_tag 'sunburn copy2.jpg' , style: "width:100%"   %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+<div class="item">
+      <%= image_tag 'sunburn copy3.jpg' , style: "width:100%"   %>
       <div class="carousel-caption">
       </div>
     </div>
@@ -33,12 +38,15 @@
   </a>
 </div>
 </div>
-<div class="row">
-  <div class="col-sm-6">
+<div class="row" style="padding-top:20px;">
+  <div class="col-sm-4">
     <a href="/packages" class="btn btn-block btn-danger">Book room packages</a>
   </div>
-<div class="col-sm-6">
-    <a href="/packages" class="btn btn-block btn-primary">Book custom room packages</a>
+<div class="col-sm-4">
+    <a href="/packages" class="btn btn-block btn-primary">Book custom room stays</a>
+  </div>
+<div class="col-sm-4">
+    <a href="/packages" class="btn btn-block btn-success">Sunburn Tickets</a>
   </div>
 </div>
 </div>
