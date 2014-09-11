@@ -30,21 +30,21 @@ class PackagesController < ApplicationController
   def show
     @package = Package.find(params[:id])
      offer_id = "wx1k7g"
-    case params[:id] when 3
+    case params[:id] when "3"
      offer_id = "wx1k7g"
-    when 4
+    when "4"
     offer_id="pwpjzg"
-    when 5
+    when "5"
     offer_id = "nt7ggg"
-    when 6
+    when "6"
     offer_id = "p7mfvg"
-    when 7
+    when "7"
     offer_id = "8h58ag"
-    when 8
+    when "8"
     offer_id = "mct5zg"
-    when 9
+    when "9"
     offer_id = "qybczg"
-    when 10
+    when "10"
     offer_id = "47r5qg"
     end
     @offer = Offer.find(offer_id)
