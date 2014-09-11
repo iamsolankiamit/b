@@ -1,55 +1,23 @@
 <% content_for :body do %>
-<h1>Listing packages</h1>
-
-<table>
-  <tr>
-    <th>Address line 2</th>
-    <th>Address line 1</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Bathroom count</th>
-    <th>Room count</th>
-    <th>Pax count</th>
-    <th>Price</th>
-    <th>Facilities</th>
-    <th>Unit count</th>
-    <th>Extra person allowed count</th>
-    <th>Extra person charge</th>
-    <th>Checkin</th>
-    <th>Checkout</th>
-    <th>Max guest</th>
-    <th>Package rate</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @packages.each do |package| %>
-  <tr>
-    <td><%= package.address_line_2 %></td>
-    <td><%= package.address_Line_1 %></td>
-    <td><%= package.email %></td>
-    <td><%= package.phone %></td>
-    <td><%= package.bathroom_count %></td>
-    <td><%= package.room_count %></td>
-    <td><%= package.pax_count %></td>
-    <td><%= package.price %></td>
-    <td><%= package.facilities %></td>
-    <td><%= package.unit_count %></td>
-    <td><%= package.extra_person_allowed_count %></td>
-    <td><%= package.extra_person_charge %></td>
-    <td><%= package.checkin %></td>
-    <td><%= package.checkout %></td>
-    <td><%= package.max_guest %></td>
-    <td><%= package.package_rate %></td>
-    <td><%= link_to 'Show', package %></td>
-    <td><%= link_to 'Edit', edit_package_path(package) %></td>
-    <td><%= link_to 'Destroy', package, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% @packages.each do |offer| %>
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to offer, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= offer.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per package</div>
+            </div>
+          </div>
+          <%= image_tag offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= offer.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= offer.package_rate  %> per person</div>
+          </div>
+        <% end %>
+        </div>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Package', new_package_path %>
 <% end %>
