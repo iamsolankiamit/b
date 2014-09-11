@@ -46,7 +46,7 @@ class PackageBookingsController < ApplicationController
   def create
     @package_booking = PackageBooking.new(params[:package_booking])
     @package = Package.find(params[:package_booking][:package_id])
-    if @package.unit_count < @package_booking.unit_count
+    if @package.unit_count < @package_booking.unit_count.to_i
       redirect_to :back
     else
       if (@package_booking.guest_count > @package.max_guest)
