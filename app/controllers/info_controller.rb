@@ -24,6 +24,6 @@ class InfoController < ApplicationController
 
   end
   def sunburncomingsoon
-
+    redirect_to '/search/vagator-goa'
   end
 end
