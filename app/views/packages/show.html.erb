@@ -1,4 +1,33 @@
 <% content_for :body do %>
+  <div class="container">
+    <div class="row">
+     <div class="col-sm-12">
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <%= image_tag @offer.photos.first.image.url(:slider), class: "img-responsive", :style => "width:100%"  %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <% @offer.photos[1..-1].each do |photo| %>
+    <div class="item">
+      <%= image_tag photo.image.url(:slider), class: "img-responsive", :style => "width:100%"  %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="icon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="icon-chevron-right"></span>
+  </a>
+</div>
+
   <%= @package.address_line_2 %>
   <%= @package.bathroom_count %>
   <%= @package.room_count %>
@@ -25,4 +54,6 @@
   <%= f.hidden_field :package_id, value: @package.id  %>
   <%= f.button :submit, value: "Book"  %>
 <% end  %>
+    </div>
+  </div>
 <% end %>
