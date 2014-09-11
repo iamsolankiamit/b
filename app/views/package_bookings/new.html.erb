@@ -1,7 +1,16 @@
 <% content_for :body do %>
-<h1>New package_booking</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', package_bookings_path %>
+<div class="container">
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab">Step 1</a></li>
+        <li><a href="" role="tab" disabled data-toggle="tab">Step 2</a></li>
+        <li><a href="" role="tab" disabled data-toggle="tab">Step 3</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="home">
+    <%= render 'form' %>
+        </div>
+        </div>
+  </div>
+</div>
 <% end %>
