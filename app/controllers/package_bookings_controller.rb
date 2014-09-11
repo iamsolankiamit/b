@@ -46,8 +46,15 @@ class PackageBookingsController < ApplicationController
   def create
     @package_booking = PackageBooking.new(params[:package_booking])
     @package = Package.find(params[:package_booking][:package_id])
+    if (@package_booking.guest_count > @package.max_guest_count)
+      redirect_to :back
+    else
+      if @package_booking.guest_count <= @package.pax_count
+    @package_booking.total = (@package.package_rate)*@package_booking.unit_count.to_i*1.1
+      else
     @extra_guest_charge =  @package.extra_person_charge*(@package_booking.guest_count - @package.pax_count )
     @package_booking.total = (@package.package_rate + @extra_guest_charge)*@package_booking.unit_count.to_i*1.1
+      end
     respond_to do |format|
       if @package_booking.save
         format.html { redirect_to edit_package_booking_path(@package_booking) }
@@ -56,6 +63,7 @@ class PackageBookingsController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @package_booking.errors, status: :unprocessable_entity }
       end
+    end
     end
   end
 
