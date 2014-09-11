@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20140905061022) do
+ActiveRecord::Schema.define(:version => 20140911020123) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -230,6 +229,43 @@ ActiveRecord::Schema.define(:version => 20140905061022) do
     t.integer  "search_rank",               :default => 0
   end
 
+  create_table "package_bookings", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "unit_count"
+    t.integer  "package_id"
+    t.integer  "total"
+    t.string   "status"
+    t.date     "booked_at"
+    t.string   "card_holder_name"
+    t.integer  "transaction_number"
+    t.integer  "guest_count"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "packages", :force => true do |t|
+    t.string   "address_line_2"
+    t.string   "address_Line_1"
+    t.string   "email"
+    t.string   "phone"
+    t.integer  "bathroom_count"
+    t.integer  "room_count"
+    t.integer  "pax_count"
+    t.integer  "price"
+    t.text     "facilities"
+    t.integer  "unit_count"
+    t.integer  "extra_person_allowed_count"
+    t.integer  "extra_person_charge"
+    t.integer  "checkin"
+    t.integer  "checkout"
+    t.integer  "max_guest"
+    t.integer  "package_rate"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
   create_table "payouts", :force => true do |t|
     t.integer  "booking_id"
     t.integer  "trip_id"
@@ -404,7 +440,6 @@ ActiveRecord::Schema.define(:version => 20140905061022) do
     t.string   "gender"
     t.string   "family_status"
     t.integer  "lister_id"
-
     t.string   "slug"
     t.string   "referral_code"
   end

@@ -1,5 +1,11 @@
 Roomnhouse::Application.routes.draw do
 
+  resources :package_bookings
+
+
+  resources :packages
+
+
   get "i/:id" => "invites#show"
   get "invites" =>"invites#index"
   post "i/emailer" => "invites#emailer"
@@ -26,6 +32,7 @@ Roomnhouse::Application.routes.draw do
     resources :messages
   end
 
+  match '/sunburngoa2014test' => 'info#sunburn'
   resources :messages do
     get 'inbox', on: :collection
     get 'sent', on: :collection

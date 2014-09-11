@@ -20,4 +20,7 @@ class InfoController < ApplicationController
   def dabbadrive
 
   end
+  def sunburn
+
+  end
 end

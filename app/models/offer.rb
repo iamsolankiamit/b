@@ -1,8 +1,5 @@
 class Offer < ActiveRecord::Base
-
-  # coding: utf-8
    max_paginates_per 100
-
   before_save :set_email, :set_cancellation_policy, :set_contact, :split_city
   before_update :set_email
   after_update :verified_listing
