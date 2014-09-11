@@ -1,35 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @package_booking.name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @package_booking.email %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @package_booking.phone %>
-</p>
-
-<p>
-  <b>Unit count:</b>
-  <%= @package_booking.unit_count %>
-</p>
-
-<p>
-  <b>Package:</b>
-  <%= @package_booking.package_id %>
-</p>
-
-<p>
-  <b>Total:</b>
-  <%= @package_booking.total %>
-</p>
-
-
-<%= link_to 'Edit', edit_package_booking_path(@package_booking) %> |
-<%= link_to 'Back', package_bookings_path %>
+<% content_for :body do %>
+  <div class="container">
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+      <li><a href="#home" role="tab" data-toggle="tab">Step 1</a></li>
+      <li><a href="" role="tab" data-toggle="tab">Step 2</a></li>
+      <li class="active"><a href="" role="tab" disabled data-toggle="tab">Step 3</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="home">
+        <h2>Booking successful</h2>
+        <dl>
+  <dt><b>Name:</b></dt>
+  <dd><%= @package_booking.name %></dd>
+  <dt><b>Email:</b></dt>
+  <dd><%= @package_booking.email %></dd>
+  <dt><b>Phone:</b></dt>
+  <dd><%= @package_booking.phone %></dd>
+  <dt><b>Packages Brought:</b></dt>
+  <dd><%= @package_booking.unit_count %></dd>
+  <dt><b>Package:</b></dt>
+  <dd><%= @package_booking.package_id %></dd>
+  <dt><b>Total:</b></dt>
+  <dd><%= @package_booking.total %></dd>
+  </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
