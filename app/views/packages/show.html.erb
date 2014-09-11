@@ -1,7 +1,7 @@
 <% content_for :body do %>
   <div class="container">
     <div class="row">
-     <div class="col-sm-12">
+     <div class="col-sm-7">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
   <div class="carousel-inner">
@@ -27,15 +27,18 @@
     <span class="icon-chevron-right"></span>
   </a>
 </div>
-
-  <%= @package.address_line_2 %>
-  <%= @package.bathroom_count %>
-  <%= @package.room_count %>
-  <%= @package.pax_count %>
-  <%= @package.price %>
-  <%= @package.facilities %>
-  <%= @package.unit_count %>
-  <b>Extra person allowed count:</b>
+<div class="col-sm-5">
+  <div class="row">
+    
+<%= simple_form_for(:package_booking, url: '/package_bookings/new', method: 'get') do |f|  %>
+  <%= f.input :guest_count %>
+  <%= f.input :unit_count  %>
+  <%= f.hidden_field :package_id, value: @package.id  %>
+  <%= f.button :submit, value: "Book"  %>
+<% end  %> 
+  </div>
+  <div class="row">
+<b>Extra person allowed count:</b>
   <%= @package.extra_person_allowed_count %>
   <b>Extra person charge:</b>
   <%= @package.extra_person_charge %>
@@ -47,13 +50,17 @@
   <%= @package.max_guest %>
   <b>Package rate:</b>
   <%= @package.package_rate %>
-
-<%= simple_form_for(:package_booking, url: '/package_bookings/new', method: 'get') do |f|  %>
-  <%= f.input :guest_count %>
-  <%= f.input :unit_count  %>
-  <%= f.hidden_field :package_id, value: @package.id  %>
-  <%= f.button :submit, value: "Book"  %>
-<% end  %>
-    </div>
+  Only <%= @package.unit_count %> left
+  </div>
+</div>
+<div class="row">
+  <%= @package.address_line_2 %>
+  <%= @package.bathroom_count %>
+  <%= @package.room_count %>
+  <%= @package.pax_count %>
+  <%= @package.price %>
+  <%= @package.facilities %>
+</div>
+      </div>
   </div>
 <% end %>
