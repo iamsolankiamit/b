@@ -29,12 +29,26 @@
 </div>
 <div class="col-sm-5">
   <div class="row">
-    
-<%= simple_form_for(:package_booking, url: '/package_bookings/new', method: 'get') do |f|  %>
-  <%= f.input :guest_count %>
-  <%= f.input :unit_count  %>
+    <span>Price: <%= @package.price %></span>
+<%= simple_form_for(:package_booking, url: '/package_bookings/new', class: "form-horizontal", method: 'get') do |f|  %>
+  <div class="form-group">
+<label for="" class="col-sm-4">No. of guest</label>
+  <div class="col-sm-8">
+  <%= f.input_field :guest_count, class: "form-control" %>
+</div>
+  </div>
+<div class="form-group">
+<label for="" class="col-sm-4">No. of guest</label>
+  <div class="col-sm-8">
+  <%= f.input_field :unit_count , class: "form-control" %>
+  </div>
+  </div>
   <%= f.hidden_field :package_id, value: @package.id  %>
-  <%= f.button :submit, value: "Book"  %>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+  <%= f.button :submit, value: "Book", class: "btn btn-primary"  %>
+  </div>
+  </div>
 <% end  %> 
   </div>
   <div class="row">
@@ -58,7 +72,6 @@
   <%= @package.bathroom_count %>
   <%= @package.room_count %>
   <%= @package.pax_count %>
-  <%= @package.price %>
   <%= @package.facilities %>
 </div>
       </div>
