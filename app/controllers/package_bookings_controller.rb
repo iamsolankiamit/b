@@ -46,24 +46,28 @@ class PackageBookingsController < ApplicationController
   def create
     @package_booking = PackageBooking.new(params[:package_booking])
     @package = Package.find(params[:package_booking][:package_id])
-    if (@package_booking.guest_count > @package.max_guest)
+    if @package.unit_count < @package_booking.unit_count
       redirect_to :back
     else
-      if @package_booking.guest_count <= @package.pax_count
-        @package_booking.total = (@package.price)*@package_booking.unit_count.to_i*3.70788
+      if (@package_booking.guest_count > @package.max_guest)
+        redirect_to :back
       else
-    @extra_guest_charge =  @package.extra_person_charge*(@package_booking.guest_count - @package.pax_count )
-    @package_booking.total = (@package.price + @extra_guest_charge)*@package_booking.unit_count.to_i*3.70788
+        if @package_booking.guest_count <= @package.pax_count
+          @package_booking.total = (@package.price)*@package_booking.unit_count.to_i*3.70788
+        else
+          @extra_guest_charge =  @package.extra_person_charge*(@package_booking.guest_count - @package.pax_count )
+          @package_booking.total = (@package.price + @extra_guest_charge)*@package_booking.unit_count.to_i*3.70788
+        end
+        respond_to do |format|
+          if @package_booking.save
+            format.html { redirect_to edit_package_booking_path(@package_booking) }
+            format.json { render json: @package_booking, status: :created, location: @package_booking }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @package_booking.errors, status: :unprocessable_entity }
+          end
+        end
       end
-    respond_to do |format|
-      if @package_booking.save
-        format.html { redirect_to edit_package_booking_path(@package_booking) }
-        format.json { render json: @package_booking, status: :created, location: @package_booking }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @package_booking.errors, status: :unprocessable_entity }
-      end
-    end
     end
   end
 
@@ -98,6 +102,8 @@ class PackageBookingsController < ApplicationController
   def payu_return
     notification = PayuIn.notification(request.query_string, options = {:credential1 => $payu_merchant_id, :credential2 => $payu_secret_key, :params => params})
     @booking = PackageBooking.find(notification.invoice.to_i) # notification.invoice is order id/cart id which you have submited from payment direction page.
+    @package = Package.find(@booking.package_id)
+    @package.unit_count -= @booking.unit_count
     if notification.acknowledge
       begin
         if notification.complete?
