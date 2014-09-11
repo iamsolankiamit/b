@@ -1,7 +1,7 @@
 <% content_for :body do %>
   <div class="container">
   <div class="row">
-    <div class="col-sm-7">
+    <div class="col-sm-8">
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
@@ -30,20 +30,19 @@
 <div class="row">
         <h3><%= @package.address_line_2 %></h3>
         <div class="property-overview">
-          <span><strong>No. of rooms</strong><%= @package.room_count %>
+          <span><strong>No. of rooms </strong><%= @package.room_count %>
 </span>
-          <span><strong>No. of bathrooms</strong><%= @package.bathroom_count %></span>
- Pax: <%= @package.pax_count %>
+          <span class="pull-right text-right"><strong>No. of bathrooms </strong><%= @package.bathroom_count %></span>
         </div>
         <div class="headings-offer">
           Facilities:
         </div>
-        <article class="text-align">
+        <article class="text-justify">
         <%= @package.facilities %></article>
       </div>
 
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-4">
         <div class="row">
           <div class="panel panel-default">
           <div class="panel-body">
@@ -63,7 +62,7 @@
           </div>
           <%= f.hidden_field :package_id, value: @package.id  %>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-4 col-sm-8">
               <%= f.button :submit, value: "Book", class: "btn btn-primary"  %>
             </div>
           </div>
@@ -99,9 +98,9 @@
                 <dd>
           <%= @package.checkin %>
                 </dd>
-                <dl>
+                <dt>
           <b>Checkout:</b>
-                </dl>
+                </dt>
                 <dd>
           <%= @package.checkout %>
                 </dd>
@@ -122,10 +121,10 @@ No of packages available
                 </dt>
                 <dd>
                 <%= @package.unit_count  %> 
-                
                 </dd>
                 </dl>
-   
+                <dt>Pax:</dt>
+                <dd><%= @package.pax_count %></dd>
             </div>
           </div>
                   </div>
