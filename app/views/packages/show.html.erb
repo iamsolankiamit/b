@@ -1,0 +1,83 @@
+<% content_for :body do %>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-7">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <%= image_tag @offer.photos.first.image.url(:slider), class: "img-responsive", :style => "width:100%"  %>
+            <div class="carousel-caption">
+            </div>
+          </div>
+          <% @offer.photos[1..-1].each do |photo| %>
+            <div class="item">
+            <%= image_tag photo.image.url(:slider), class: "img-responsive", :style => "width:100%"  %>
+            <div class="carousel-caption">
+            </div>
+          </div>
+        <% end %>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="icon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="icon-chevron-right"></span>
+        </a>
+      </div>
+<div class="row">
+        <h3><%= @package.address_line_2 %></h3>
+        <p class="text-align">
+        <%= @package.facilities %>
+</p>
+        <p>No of Rooms: <%= @package.room_count %>
+        Pax: <%= @package.pax_count %>
+No. of bathrooms:<%= @package.bathroom_count %>
+        </p>
+      </div>
+
+      </div>
+      <div class="col-sm-5">
+        <div class="row">
+          <span>Price: <%= @package.price %></span>
+          <%= simple_form_for(:package_booking, url: '/package_bookings/new', class: "form-horizontal", method: 'get') do |f|  %>
+            <div class="form-group">
+            <label for="" class="col-sm-4">No. of guest</label>
+            <div class="col-sm-8">
+              <%= f.input_field :guest_count, class: "form-control", value: @package.max_guest%>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-4">No. of packages</label>
+            <div class="col-sm-8">
+              <%= f.input_field :unit_count , class: "form-control", value: "1" %>
+            </div>
+          </div>
+          <%= f.hidden_field :package_id, value: @package.id  %>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.button :submit, value: "Book", class: "btn btn-primary"  %>
+            </div>
+          </div>
+        <% end  %> 
+        </div>
+        <div class="row">
+          <b>Extra person allowed count:</b>
+          <%= @package.extra_person_allowed_count %>
+          <b>Extra person charge:</b>
+          <%= @package.extra_person_charge %>
+          <b>Checkin:</b>
+          <%= @package.checkin %>
+          <b>Checkout:</b>
+          <%= @package.checkout %>
+          <b>Max guest:</b>
+          <%= @package.max_guest %>
+          <b>Package rate:</b>
+          <%= @package.package_rate %>
+          Only <%= @package.unit_count %> left
+        </div>
+          </div>
+  </div>
+<% end %>

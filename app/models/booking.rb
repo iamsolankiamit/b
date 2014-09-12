@@ -29,7 +29,7 @@ class Booking < ActiveRecord::Base
     @calendar = Calendar.between(checkin_date,checkout_date,@offer.id)
     if @calendar
       @calendar.each do |date|
-        if date != checkout_date
+        if date != checkout
           @host_fee -= self.per_night
           @host_fee = 0 if @host_fee < 0
           @host_fee += date.pricing
@@ -89,7 +89,7 @@ def request_values(offer_id,checkin,checkout,guests)
     @calendar = Calendar.between(checkin_date,checkout_date,@offer.id)
     if @calendar
       @calendar.each do |date|
-        if date != checkout_date
+        if date != checkout
           @host_fee -= self.per_night
           @host_fee = 0 if @host_fee < 0
           @host_fee += date.pricing

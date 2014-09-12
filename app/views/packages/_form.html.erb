@@ -1,0 +1,26 @@
+<%= simple_form_for(@package) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :address_line_2 %>
+    <%= f.input :address_Line_1 %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
+    <%= f.input :bathroom_count %>
+    <%= f.input :room_count %>
+    <%= f.input :pax_count %>
+    <%= f.input :price %>
+    <%= f.input :facilities %>
+    <%= f.input :unit_count %>
+    <%= f.input :extra_person_allowed_count %>
+    <%= f.input :extra_person_charge %>
+    <%= f.input :checkin %>
+    <%= f.input :checkout %>
+    <%= f.input :max_guest %>
+    <%= f.input :package_rate %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
