@@ -53,10 +53,10 @@ class PackageBookingsController < ApplicationController
         redirect_to :back
       else
         if @package_booking.guest_count <= @package.pax_count
-          @package_booking.total = (@package.price)*@package_booking.unit_count.to_i*3.70788
+          @package_booking.total = (@package.price)*@package_booking.unit_count.to_i*3*1.11236
         else
           @extra_guest_charge =  @package.extra_person_charge*(@package_booking.guest_count - @package.pax_count )
-          @package_booking.total = (@package.price + @extra_guest_charge)*@package_booking.unit_count.to_i*3.70788
+          @package_booking.total = (@package.price + @extra_guest_charge)*@package_booking.unit_count.to_i*3*1.11236
         end
         respond_to do |format|
           if @package_booking.save
