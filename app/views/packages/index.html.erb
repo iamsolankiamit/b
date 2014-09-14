@@ -1,172 +1,192 @@
 <% content_for :body do %>
   <div class="container">
-  <div class="row">
-    <h1>Ultra Luxirious Packages</h1>
-<div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package1, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package1.price  %>
-            <sup>INR</sup>
-          </div>
-          <div class="price-info">per person</div>
-        </div>
-      </div>
-      <%= image_tag @package1offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package1.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package1.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
+    <li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
+    <li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li><a href="#settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
 
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package7, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package7.price  %>
-            <sup>INR</sup>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="gold">
+      <div class="row">
+        <h1>Ultra Luxirious Packages</h1>
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package1, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package1.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
           </div>
-          <div class="price-info">per person</div>
+          <%= image_tag @package1offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package1.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package1.package_rate  %> per person</div>
+          </div>
+        <% end %>
         </div>
-      </div>
-      <%= image_tag @package7offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package7.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package7.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
 
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package8, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package8.price  %>
-            <sup>INR</sup>
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package7, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package7.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
           </div>
-          <div class="price-info">per person</div>
+          <%= image_tag @package7offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package7.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package7.package_rate  %> per person</div>
+          </div>
+        <% end %>
         </div>
-      </div>
-      <%= image_tag @package8offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package8.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package8.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
-    </div>
 
-    <div class="row">
-      <h1>Luxorious Packages</h1>
-<div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package2, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package2.price  %>
-            <sup>INR</sup>
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package8, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package8.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
           </div>
-          <div class="price-info">per person</div>
+          <%= image_tag @package8offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package8.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package8.package_rate  %> per person</div>
+          </div>
+        <% end %>
         </div>
       </div>
-      <%= image_tag @package2offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package2.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package2.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
 
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package3, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package3.price  %>
-            <sup>INR</sup>
-          </div>
-          <div class="price-info">per person</div>
-        </div>
-      </div>
-      <%= image_tag @package3offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package3.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package3.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
-</div>
-<div class="row">
-<h1>Economical</h1>  
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package4, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package4.price  %>
-            <sup>INR</sup>
-          </div>
-          <div class="price-info">per person</div>
-        </div>
-      </div>
-      <%= image_tag @package4offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package4.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package4.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
 
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package5, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package5.price  %>
-            <sup>INR</sup>
+    </div>
+    <div class="tab-pane" id="silver">
+      <div class="row">
+        <h1>Luxorious Packages</h1>
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package2, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package2.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
           </div>
-          <div class="price-info">per person</div>
+          <%= image_tag @package2offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package2.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package2.package_rate  %> per person</div>
+          </div>
+        <% end %>
+        </div>
+
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package3, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package3.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
+          </div>
+          <%= image_tag @package3offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package3.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package3.package_rate  %> per person</div>
+          </div>
+        <% end %>
         </div>
       </div>
-      <%= image_tag @package5offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package5.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package5.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
 
-    <div class="col-lg-3 col-sm-4 col-xs-6">
-      <%= link_to @package6, class: "thumbnail" do %>
-        <div>
-        <div class="price-box">
-          <div class="price">
-            <sup><i class="icon-inr"></i></sup>
-            <%= @package6.price  %>
-            <sup>INR</sup>
+    </div>
+    <div class="tab-pane" id="bronze">
+      <div class="row">
+        <h1>Economical</h1>  
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package4, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package4.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
           </div>
-          <div class="price-info">per person</div>
+          <%= image_tag @package4offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package4.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package4.package_rate  %> per person</div>
+          </div>
+        <% end %>
         </div>
-      </div>
-      <%= image_tag @package6offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
-      <div class="caption">
-        <div class="title">Only <%= @package6.unit_count %> packages left.</div>
-        <div class="location">For 3 nights and 4 days at <%= @package6.package_rate  %> per person</div>
-      </div>
-    <% end %>
-    </div>
 
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package5, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package5.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
+          </div>
+          <%= image_tag @package5offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package5.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package5.package_rate  %> per person</div>
+          </div>
+        <% end %>
+        </div>
+
+        <div class="col-lg-3 col-sm-4 col-xs-6">
+          <%= link_to @package6, class: "thumbnail" do %>
+            <div>
+            <div class="price-box">
+              <div class="price">
+                <sup><i class="icon-inr"></i></sup>
+                <%= @package6.price  %>
+                <sup>INR</sup>
+              </div>
+              <div class="price-info">per person</div>
+            </div>
+          </div>
+          <%= image_tag @package6offer.photos.first.image.url(:medium), class: "offer-image img-responsive" %>
+          <div class="caption">
+            <div class="title">Only <%= @package6.unit_count %> packages left.</div>
+            <div class="location">For 3 nights and 4 days at <%= @package6.package_rate  %> per person</div>
+          </div>
+        <% end %>
+        </div>
+
+      </div> 
+    </div>
   </div>
+
 </div>
   <% end %>
