@@ -16,21 +16,6 @@
   margin-top:30px;
   padding: 20px 10px;
 }
-.prop-details{
-  position: absolute;
-  bottom: 0;
-  padding: 55px 10px 5px 10px;
-  height: 100%;
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0,0,0,0)), color-stop(33.33333%, rgba(0,0,0,0)), color-stop(66.66667%, rgba(0,0,0,0)), color-stop(100%, rgba(0,0,0,0.6)));
-  background-image: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0.6));
-  background-image: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0.6));
-  background-image: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0.6));
-  background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0.6));
-}
 .sunburn{
   background: url(<%= image_path("sunburn.jpg")  %>) center center no-repeat fixed;
   background-size:cover;
@@ -54,11 +39,9 @@
           </div>
         </div>
         <%= image_tag @package1offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
-        <div class="prop-details">
+        <div class="caption">
           <div class="title">Only <%= @package1.unit_count %> packages left.</div>
           <div class="location">For 3 nights and 4 days at <%= @package1.package_rate  %> per person</div>
-        </div>
-        <div class="caption">
         </div>
       <% end %>
       </div>
