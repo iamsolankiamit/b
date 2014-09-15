@@ -12,7 +12,7 @@
 <%= stylesheet_link_tag "application",  :media => "all"  %>
 </head>
 <body>
-<video loop="loop" preload="auto" class="sleep-video" autoplay>
+<video loop="loop" preload="auto" mutted class="sleep-video" autoplay>
   <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.mp4" type="video/mp4">
   <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.ogg" type="video/ogg">
 </video>
@@ -50,34 +50,34 @@ body, html {
 </style>
 <div class="sunburn section">
   <div class="container">
-  <div class="row" style="margin-top:20%;">
-    <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
-      <a data-toggle="modal" data-target="#gold" href="">
-        <h1 class="text-center" style="padding-top:100px;">Gold</h1>
-        <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
-      </a>
-    </div>
-    <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
-      <a href="" data-toggle="modal" data-target="#silver">
-        <h1 class="text-center" style="padding-top:100px;">Silver</h1>
-        <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
-      </a>
-    </div>
-    <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
-      <a href="" data-toggle="modal" data-target="#bronze">
-        <h1 class="text-center" style="padding-top:100px;">Bronze</h1>
-        <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
-      </a>
-    </div>
-    <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
-      <a href="/search/vagator-goa">
-        <h1 class="text-center" style="padding-top:100px;">Custom Stays</h1>
-        <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
-      </a>
+    <div class="row" style="margin-top:20%;">
+      <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
+        <a data-toggle="modal" data-target="#gold" href="">
+          <h1 class="text-center" style="padding-top:100px;">Gold</h1>
+          <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
+        </a>
+      </div>
+      <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
+        <a href="" data-toggle="modal" data-target="#silver">
+          <h1 class="text-center" style="padding-top:100px;">Silver</h1>
+          <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
+        </a>
+      </div>
+      <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
+        <a href="" data-toggle="modal" data-target="#bronze">
+          <h1 class="text-center" style="padding-top:100px;">Bronze</h1>
+          <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
+        </a>
+      </div>
+      <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
+        <a href="/search/vagator-goa">
+          <h1 class="text-center" style="padding-top:100px;">Custom Stays</h1>
+          <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
+        </a>
+      </div>
     </div>
   </div>
 </div>
-  </div>
 <div class="container">
   <div class="row ">
     <!-- Modal -->
@@ -293,6 +293,66 @@ body, html {
 </div>
 
 <%= javascript_include_tag "application" %>
+<script type="text/javascript" charset="utf-8">
+;(function($) {
+
+    var pluginName = "cover";
+
+    function Cover (element, options) {
+    this.element = $(element);
+
+    $.extend(this, {
+container: this.element.parent(),
+ratio: this.element.height() / this.element.width()
+}, options);
+
+    this.set();
+    }
+
+    Cover.prototype = {
+set: function() {
+var height = this.container.height();
+var width = this.container.width();
+var fillWidth = this.ratio >= (height / width);
+
+if (fillWidth && !this.fillingWidth) {
+  this.fillingWidth = true;
+  this.element.css('width', '100%').css('height', 'auto');
+}
+
+if (!fillWidth) {
+  this.fillingWidth = false;
+  this.element.css('width', 'auto').css('height', '100%');
+}
+}
+};
+
+// Wrapper preventing multiple instantiations
+$.fn[pluginName] = function(options) {
+  return this.each(function() {
+      if (!$.data(this, "plugin_" + pluginName)) {
+      $.data(this, "plugin_" + pluginName, new Cover(this, options));
+      }
+
+      // Allow access to 'set' method
+      if (options === 'set') {
+      cover = $.data(this, 'plugin_' + pluginName).set();
+      }
+      });
+};
+
+})(jQuery);
+$(function() {
+    $('video').cover({
+ratio: 1080 / 1920
+});
+
+    $(window).resize(function() {
+      $('video').cover('set');
+      });
+    });
+
+</script>
 </body>
 </html>
 
