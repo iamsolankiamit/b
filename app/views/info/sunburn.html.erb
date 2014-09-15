@@ -1,36 +1,43 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Sunburn Goa 2014 | Roomnhouse</title>
-  </head>
-  <body>
-   <video class="sleep-video" autoplay>
-    <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.mp4" type="video/mp4">
-    <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.ogg" type="video/ogg">
-  </video>
-  <style type="text/css" media="all">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Sunburn Goa 2014 | Roomnhouse</title>
+<meta name="description" content="Room N House helps you save when finding a place to stay in India. Rent and save on apartments, private rooms, or villas directly from the owners for your next vacation."/>
+<meta property="fb:app_id" content="414645321969009">
+<meta property="og:site_name" content="RoomnHouse">
+<!-- rOQ0Yc6uutFk52GNSrVseQJBCdw -->
+<%= csrf_meta_tags %>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
+<%= stylesheet_link_tag "application",  :media => "all"  %>
+</head>
+<body>
+<video class="sleep-video" autoplay>
+  <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.mp4" type="video/mp4">
+  <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.ogg" type="video/ogg">
+</video>
+<style type="text/css" media="all">
 body, html {
-          padding: 0;
-          margin:0;
-          height: 100%;
-        }
-        .sleep-video {
-                    left: 0;
-                    top: 0;
-                    position: fixed;
-                    width: 100%;
-                    z-index: 1;
-                }
-
-                .section {
-                          width: 100%;
-                          height: 100%;
-                          background-attachment: fixed;
-                          background-size: 100% 100%;
-                          position: relative;
-                          background-color: white;
-                          z-index: 2;
-                        }
+  padding: 0;
+  margin:0;
+  height: 100%;
+}
+.sleep-video {
+  left: 0;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.section {
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  position: relative;
+  background-color: white;
+  z-index: 2;
+}
 
 .package-offer-image{
   width:100%;
@@ -41,16 +48,6 @@ body, html {
 .img-responsive{
   border-radius:0px;
   border:none;
-}
-.splits{
-  background: rgba(255,255,255,0.9);
-  box-shadow: white 0px 0px 20px;
-  margin-top:30px;
-  padding: 20px 10px;
-}
-.sunburn{
-  background: url(<%= image_path("sunburn.jpg")  %>) center center no-repeat fixed;
-  background-size:cover;
 }
 </style>
 <div class="sunburn section" style="height:100%">
@@ -294,6 +291,6 @@ body, html {
   </div>
   <!--/Row -->
 </div>
-  </body>
+</body>
 </html>
 
