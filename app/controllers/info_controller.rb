@@ -21,6 +21,7 @@ class InfoController < ApplicationController
 
   end
   def sunburn
+    layout false
     @package1 = Package.find(3)
     @package1offer = Offer.find("wx1k7g")
     @package2 = Package.find(4)

@@ -1,5 +1,37 @@
-<% content_for :body do %>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Sunburn Goa 2014 | Roomnhouse</title>
+  </head>
+  <body>
+   <video class="sleep-video" autoplay>
+    <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.mp4" type="video/mp4">
+    <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.ogg" type="video/ogg">
+  </video>
   <style type="text/css" media="all">
+body, html {
+          padding: 0;
+          margin:0;
+          height: 100%;
+        }
+        .sleep-video {
+                    left: 0;
+                    top: 0;
+                    position: fixed;
+                    width: 100%;
+                    z-index: 1;
+                }
+
+                .section {
+                          width: 100%;
+                          height: 100%;
+                          background-attachment: fixed;
+                          background-size: 100% 100%;
+                          position: relative;
+                          background-color: white;
+                          z-index: 2;
+                        }
+
 .package-offer-image{
   width:100%;
   padding:0px;
@@ -21,7 +53,7 @@
   background-size:cover;
 }
 </style>
-<div class="sunburn" style="height:100%">
+<div class="sunburn section" style="height:100%">
   <div class="row" style="margin-top:20%;">
     <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
       <a data-toggle="modal" data-target="#gold" href="">
@@ -262,4 +294,6 @@
   </div>
   <!--/Row -->
 </div>
-  <% end %>
+  </body>
+</html>
+
