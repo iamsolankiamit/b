@@ -21,7 +21,6 @@ class InfoController < ApplicationController
 
   end
   def sunburn
-    layout false
     @package1 = Package.find(3)
     @package1offer = Offer.find("wx1k7g")
     @package2 = Package.find(4)
@@ -40,7 +39,7 @@ class InfoController < ApplicationController
     @package8offer = Offer.find("47r5qg")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: false}
       format.json { render json: @packages }
     end
  
