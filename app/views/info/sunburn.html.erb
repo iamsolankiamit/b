@@ -12,10 +12,7 @@
 <%= stylesheet_link_tag "application",  :media => "all"  %>
 </head>
 <body>
-<video loop="loop" preload="auto" mutted class="sleep-video" autoplay>
-  <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.mp4" type="video/mp4">
-  <source src="https://a0.muscache.com/airbnb/static/Paris-P1-1.ogg" type="video/ogg">
-</video>
+<%= video_tag(["trailer.ogg", "trailer.flv"], size: "160x120", loop: "loop", preload: "auto", class: "sleep-video", autoplay: "true")  %>
 <style type="text/css" media="all">
 body, html {
   padding: 0;

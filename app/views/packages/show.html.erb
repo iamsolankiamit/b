@@ -42,12 +42,63 @@
           <div class="property-overview">
             <span class=""><strong><%= @package.address_line_2 %></strong></span>
           </div>
+          <div class="col-sm-8">
             <div class="headings-offer">
               Description:
             </div>
             <article class="text-justify">
               <%= @package.facilities %></article>
+
           </div>
+          <div class="col-sm-4">
+            <dl class="dl-horizontal">
+              <dt>
+              <b>Max Extra Guest:</b>
+              </dt>
+              <dd>
+              <%= @package.extra_person_allowed_count %>
+              </dd>
+              <dt>
+              <b>Extra person charge:</b>
+              </dt>
+              <dd>
+              <%= @package.extra_person_charge %>
+              </dd>
+              <dt>
+              <b>Checkin:</b>
+              </dt>
+              <dd>
+              <%= @package.checkin %>
+              </dd>
+              <dt>
+              <b>Checkout:</b>
+              </dt>
+              <dd>
+              <%= @package.checkout %>
+              </dd>
+              <dt>
+              <b>Max guest:</b>
+              </dt>
+              <dd>
+              <%= @package.max_guest %>
+              </dd>
+              <dt>
+              <b>Package rate:</b>
+              </dt>
+              <dd>
+              <%= @package.package_rate %>
+              </dd>
+              <dt>
+              No of packages available
+              </dt>
+              <dd>
+              <%= @package.unit_count  %> 
+              </dd>
+            <dt>Pax:</dt>
+            <dd><%= @package.pax_count %></dd>
+            </dl>
+          </div>
+                      </div>
         </div>
       </div>
 
@@ -122,53 +173,8 @@
             </div>
           </div>
           <div class="panel-body">
-            <dl class="dl-horizontal">
-              <dt>
-              <b>Max Extra Guest:</b>
-              </dt>
-              <dd>
-              <%= @package.extra_person_allowed_count %>
-              </dd>
-              <dt>
-              <b>Extra person charge:</b>
-              </dt>
-              <dd>
-              <%= @package.extra_person_charge %>
-              </dd>
-              <dt>
-              <b>Checkin:</b>
-              </dt>
-              <dd>
-              <%= @package.checkin %>
-              </dd>
-              <dt>
-              <b>Checkout:</b>
-              </dt>
-              <dd>
-              <%= @package.checkout %>
-              </dd>
-              <dt>
-              <b>Max guest:</b>
-              </dt>
-              <dd>
-              <%= @package.max_guest %>
-              </dd>
-              <dt>
-              <b>Package rate:</b>
-              </dt>
-              <dd>
-              <%= @package.package_rate %>
-              </dd>
-              <dt>
-              No of packages available
-              </dt>
-              <dd>
-              <%= @package.unit_count  %> 
-              </dd>
-            </dl>
-            <dt>Pax:</dt>
-            <dd><%= @package.pax_count %></dd>
-          </div>
+            
+         </div>
         </div>
       </div>
     </div>
