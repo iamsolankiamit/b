@@ -120,7 +120,7 @@
                           </div>
                           </div>
 
-            <%= simple_form_for(:package_booking, url: '/package_bookings/', class: "form-horizontal", method: 'post') do |f|  %>
+            <%= simple_form_for(:package_booking, url: '/package_bookings/',id: "payment", class: "form-horizontal", method: 'post', remote: true) do |f|  %>
               <div class="form-group">
               <label for="" class="col-sm-4">Name: </label>
               <div class="col-sm-8">
