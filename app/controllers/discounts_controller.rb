@@ -11,7 +11,7 @@ class DiscountsController < ApplicationController
     @offer = Offer.find(@trip.offer_id)
     respond_to do |format|
       format.js {
-        @content = render_to_string(:partial => 'payment').gsub("\"","'").gsub("\n","\\")
+        @content = render_to_string(:partial => 'payment').gsub(/"/,"'").gsub(/\n/," ")
       }
     end
   end

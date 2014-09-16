@@ -29,16 +29,16 @@
               <span class="icon-chevron-right"></span>
             </a>
           </div>
-         <div class="overview-cover">
+          <div class="overview-cover">
             <div class="container">
               <div class="row">
                 <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Rooms</div> <div class="overview-details"> <%= @package.room_count %></div></div>
-                  <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bathrooms </div><div class="overview-details"><%= @package.bathroom_count %></div></div>
-                  <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Check in </div><div class="overview-details">27<sup>th</sup> Dec.12 PM</div></div>
-                  <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Check out </div><div class="overview-details">30<sup>th</sup> Dec.12 PM</div></div>
-                </div>
+                <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Bathrooms </div><div class="overview-details"><%= @package.bathroom_count %></div></div>
+                <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Check in </div><div class="overview-details">27<sup>th</sup> Dec.12 PM</div></div>
+                <div class="overview col-sm-3 col-xs-6"><div class="overview-heading">Check out </div><div class="overview-details">30<sup>th</sup> Dec.12 PM</div></div>
               </div>
             </div>
+          </div>
           <div class="property-overview">
             <span class=""><strong><%= @package.address_line_2 %></strong></span>
           </div>
@@ -53,128 +53,85 @@
           <div class="col-sm-4">
             <dl class="dl-horizontal">
               <dt>
-              <b>Max Extra Guest:</b>
-              </dt>
-              <dd>
-              <%= @package.extra_person_allowed_count %>
-              </dd>
-              <dt>
-              <b>Extra person charge:</b>
-              </dt>
-              <dd>
-              <%= @package.extra_person_charge %>
-              </dd>
-              <dt>
-              <b>Checkin:</b>
-              </dt>
-              <dd>
-              <%= @package.checkin %>
-              </dd>
-              <dt>
-              <b>Checkout:</b>
-              </dt>
-              <dd>
-              <%= @package.checkout %>
-              </dd>
-              <dt>
               <b>Max guest:</b>
               </dt>
               <dd>
               <%= @package.max_guest %>
               </dd>
               <dt>
-              <b>Package rate:</b>
+              <b>Per Person price</b>
               </dt>
               <dd>
-              <%= @package.package_rate %>
+              <%= @package.package_rate %>INR
               </dd>
-              <dt>
-              No of packages available
-              </dt>
-              <dd>
-              <%= @package.unit_count  %> 
-              </dd>
-            <dt>Pax:</dt>
-            <dd><%= @package.pax_count %></dd>
             </dl>
           </div>
-                      </div>
         </div>
       </div>
+    </div>
 
     <div class="col-sm-4">
       <div class="row">
         <div class="panel panel-default">
           <div class="panel-body">
             <span class="price-display">Price: INR <span id="price1"> <%= @package.price %></span>
-                            <i class="icon-inr"></i></span>
-                           <div class="container">
-                          <div class="row">
-                          <span>Price based on <%= @package.pax_count  %> people, Extra Guest charge <%= @package.extra_person_charge  %> INR.</span>
-                          </div>
-                          </div>
+              <i class="icon-inr"></i></span>
+            <div class="container">
+              <div class="row">
+                <span>Price based on <%= @package.pax_count  %> people, Extra Guest charge <%= @package.extra_person_charge  %> INR.</span>
+              </div>
+            </div>
 
-                         <div class="container">
-                          <div class="row">
-                          <span><strong>Maximum Guest allowed: </strong><%= @package.max_guest  %> people.</span>
-                          </div>
-                          </div>
+            <div class="container">
+              <div class="row">
+                <span><strong>Maximum Guest allowed: </strong><%= @package.max_guest  %> people.</span>
+              </div>
+            </div>
+            <div id="payment">
+              <%= simple_form_for(:package_booking, url: '/package_bookings/', class: "form-horizontal", method: 'post', remote: true) do |f|  %>
+                <div class="form-group">
+                <label for="" class="col-sm-4">Name: </label>
+                <div class="col-sm-8">
+                  <%= f.input_field :name, class: "form-control"%>
+                </div>
+              </div>
 
-            <%= simple_form_for(:package_booking, url: '/package_bookings/',id: "payment", class: "form-horizontal", method: 'post', remote: true) do |f|  %>
               <div class="form-group">
-              <label for="" class="col-sm-4">Name: </label>
-              <div class="col-sm-8">
-                <%= f.input_field :name, class: "form-control"%>
+                <label for="" class="col-sm-4">Email</label>
+                <div class="col-sm-8">
+                  <%= f.input_field :email, class: "form-control"%>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="" class="col-sm-4">Email</label>
-              <div class="col-sm-8">
-                <%= f.input_field :email, class: "form-control"%>
+              <div class="form-group">
+                <label for="" class="col-sm-4">Phone</label>
+                <div class="col-sm-8">
+                  <%= f.input_field :phone, class: "form-control"%>
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="" class="col-sm-4">Phone</label>
-              <div class="col-sm-8">
-                <%= f.input_field :phone, class: "form-control"%>
+              <div class="form-group">
+                <label for="" class="col-sm-4">No. of guest</label>
+                <div class="col-sm-8">
+                  <%= f.input_field :guest_count, as: :select, collection: (@package.pax_count..@package.max_guest),include_blank: false, class: "form-control", value: @package.max_guest%>
+                </div>
               </div>
-            </div>
+              <div class="form-group">
+                <label for="" class="col-sm-4">No. of packages</label>
+                <div class="col-sm-8">
+                  <%= f.input_field :unit_count , as: :select,collection: (1..@package.unit_count),  class: "form-control", value: "1" , include_blank: false %>
+                </div>
+              </div>
+              <%= f.hidden_field :package_id, value: @package.id  %>
+              <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                  <%= f.button :submit, value: "Book", class: "btn btn-primary"  %>
+                </div>
+              </div>
+            <% end  %> 
 
-            <div class="form-group">
-              <label for="" class="col-sm-4">No. of guest</label>
-              <div class="col-sm-8">
-                <%= f.input_field :guest_count, as: :select, collection: (@package.pax_count..@package.max_guest),include_blank: false, class: "form-control", value: @package.max_guest%>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="" class="col-sm-4">No. of packages</label>
-              <div class="col-sm-8">
-                <%= f.input_field :unit_count , as: :select,collection: (1..@package.unit_count),  class: "form-control", value: "1" , include_blank: false %>
-              </div>
-            </div>
-            <%= f.hidden_field :package_id, value: @package.id  %>
-            <div class="form-group">
-              <div class="col-sm-offset-4 col-sm-8">
-                <%= f.button :submit, value: "Book", class: "btn btn-primary"  %>
-              </div>
-            </div>
-          <% end  %> 
-
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="panel-title">
-              Pricing Details
             </div>
           </div>
-          <div class="panel-body">
-            
-         </div>
         </div>
       </div>
     </div>

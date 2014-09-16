@@ -60,9 +60,9 @@ class PackageBookingsController < ApplicationController
         end
         respond_to do |format|
           if @package_booking.save
-            format.js { @content = render_to_string(:partial => 'payment').gsub("\"","'").gsub("\n","\\")}
-            format.html { redirect_to edit_package_booking_path(@package_booking) }
-            format.json { render json: @package_booking, status: :created, location: @package_booking }
+            format.js { 
+              @content = render_to_string(:partial => 'payment').gsub(/"/,"'").gsub(/\n/," ")
+            }
           else
             format.html { render action: "new" }
             format.json { render json: @package_booking.errors, status: :unprocessable_entity }
