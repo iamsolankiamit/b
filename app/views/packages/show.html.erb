@@ -74,11 +74,11 @@
       <div class="row">
         <div class="panel panel-default">
           <div class="panel-body">
-            <span class="price-display">Price: INR <span id="price1"> <%= @package.price %></span>
+            <span class="price-display">Price: INR <span id="price1"> <%= @package.price %> Per night.</span>
               <i class="icon-inr"></i></span>
             <div class="container">
               <div class="row">
-                <span>Price based on <%= @package.pax_count  %> people, Extra Guest charge <%= @package.extra_person_charge  %> INR.</span>
+                <span>Price based on <strong><%= @package.pax_count  %></strong> people, Extra Guest charge <strong><%= @package.extra_person_charge  %></strong> INR.</span>
               </div>
             </div>
 

@@ -20,7 +20,7 @@ body, html {
   height: 100%;
 }
 .modal-dailog{
-width: 900px;
+width: 900px !important;
 }
 .sleep-video {
   left: 0;
@@ -98,7 +98,6 @@ width: 900px;
       </div>
     </div>
     <div class="col-sm-12">
-      
     </div>
   </div>
 </div>
@@ -123,13 +122,12 @@ width: 900px;
                       <%= @package1.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package1offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package1.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package1.package_rate  %> per person</div>
+                  <div class="location"> <%= @package1.pax_count  %> to <%= @package1.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -143,13 +141,12 @@ width: 900px;
                       <%= @package7.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package7offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package7.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package7.package_rate  %> per person</div>
+                  <div class="location"> <%= @package7.pax_count  %> to <%= @package7.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -163,13 +160,12 @@ width: 900px;
                       <%= @package8.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package8offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package8.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package8.package_rate  %> per person</div>
+                  <div class="location"> <%= @package8.pax_count  %> to <%= @package8.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -200,13 +196,12 @@ width: 900px;
                       <%= @package2.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package2offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package2.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package2.package_rate  %> per person</div>
+                  <div class="location"> <%= @package2.pax_count  %> to <%= @package2.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -220,13 +215,12 @@ width: 900px;
                       <%= @package3.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package3offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package3.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package3.package_rate  %> per person</div>
+                  <div class="location"> <%= @package3.pax_count  %> to <%= @package3.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -257,13 +251,12 @@ width: 900px;
                       <%= @package4.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package4offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package4.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package4.package_rate  %> per person</div>
+                  <div class="location"> <%= @package4.pax_count  %> to <%= @package4.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -276,13 +269,12 @@ width: 900px;
                       <%= @package5.package_rate%>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package5offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package5.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package5.package_rate  %> per person</div>
+                  <div class="location"> <%= @package5.pax_count  %> to <%= @package5.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
@@ -296,13 +288,12 @@ width: 900px;
                       <%= @package6.package_rate  %>
                       <sup>INR</sup>
                     </div>
-                    <div class="price-info">per person</div>
+                    <div class="price-info">3 Days / person</div>
                   </div>
                 </div>
                 <%= image_tag @package6offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
                 <div class="caption">
-                  <div class="title">Only <%= @package6.unit_count %> packages left.</div>
-                  <div class="location">For 3 nights and 4 days at <%= @package6.package_rate  %> per person</div>
+                  <div class="location"> <%= @package6.pax_count  %> to <%= @package6.max_guest  %> Guests.</div>
                 </div>
               <% end %>
               </div>
