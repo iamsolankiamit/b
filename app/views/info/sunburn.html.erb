@@ -48,7 +48,7 @@ width: 900px;
   border:none;
 }
 .sunburnlogo{
-  background-image: <%= image_path("sunburnlogo.png")  %>;
+  background-image: url(<%= image_path("sunburnlogo.png")  %>);
   background-repeat: no-repeat;
   background-size: 100%;
 
@@ -67,11 +67,11 @@ width: 900px;
                     ">
                       <div class="col-lg-offset-4 col-lg-4">
                         <div class="sunburnlogo" style="
-                        height: 200px;width:100%;
+                        height: 100px;width:100%;
                         "></div>
                         </div>
                         </div>
-    <div class="row" style="margin-top:50px;;">
+    <div class="row" style="margin-top:50px;">
       <div class=" col-sm-offset-1 col-sm-2" style="height:200px;background:rgba(0,0,0,0.75);">
         <a data-toggle="modal" data-target="#gold" href="">
           <h1 class="text-center" style="padding-top:100px;">Gold</h1>
@@ -96,6 +96,9 @@ width: 900px;
           <h3 class="text-center">3N/4D starting from 15000 per person.</h3>
         </a>
       </div>
+    </div>
+    <div class="col-sm-12">
+      
     </div>
   </div>
 </div>
