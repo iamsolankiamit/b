@@ -51,7 +51,7 @@ class Booking < ActiveRecord::Base
       @host_fee += (guests.to_i - @offer.included_guest_count)*@offer.extra_guest_charge_amount*@number_of_days
     end
 
-    @processing_fee = @host_fee*0.08
+    @processing_fee = @host_fee*0.10
     @service_tax = @processing_fee*0.12
     @total = @processing_fee + @host_fee + @service_tax
     self.total = @total
