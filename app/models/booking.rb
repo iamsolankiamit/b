@@ -117,7 +117,6 @@ def request_values(offer_id,checkin,checkout,guests)
     self.total = @total
     self.service_tax = @service_tax
     self.processing_fee = @processing_fee
-    
     return @total
 
   end

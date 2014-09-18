@@ -87,24 +87,12 @@ class PackageBookingsController < ApplicationController
       end
     end
   end
-
-  # DELETE /package_bookings/1
-  # DELETE /package_bookings/1.json
-  def destroy
-    @package_booking = PackageBooking.find(params[:id])
-    @package_booking.destroy
-
-    respond_to do |format|
-      format.html { redirect_to package_bookings_url }
-      format.json { head :no_content }
-    end
-  end
-
   def payu_return
     notification = PayuIn.notification(request.query_string, options = {:credential1 => $payu_merchant_id, :credential2 => $payu_secret_key, :params => params})
     @booking = PackageBooking.find(notification.invoice.to_i/2000) # notification.invoice is order id/cart id which you have submited from payment direction page.
     @package = Package.find(@booking.package_id)
     @package.unit_count -= @booking.unit_count
+    @package.save
     if notification.acknowledge
       begin
         if notification.complete?
