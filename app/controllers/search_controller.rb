@@ -7,6 +7,8 @@ class SearchController < ApplicationController
     @offers = find_amenities if params[:amenities]
     cookies[:checkin] = params[:checkin] unless params[:checkin].nil?
     cookies[:checkout] = params[:checkout] unless params[:checkout].nil?
+    cookies[:price_minimum] = params[:price_min] unless params[:price_min].nil?
+    cookies[:price_maximum] = params[:price_max] unless params[:price_max].nil?
     if @offers.empty?
       # redirect_to BookingDotCom.url_creator(params[:destination],params[:checkin],params[:checkout],params[:guests])
     end
@@ -30,7 +32,7 @@ class SearchController < ApplicationController
   private
 
   def find_offers
-    Offer.near(params[:destination], 50).where(conditions).sorting(params[:search_sort])
+    Offer.near(params[:destination], 50).where(conditions).sorting(params[:sort_by])
   end
 
   def find_amenities

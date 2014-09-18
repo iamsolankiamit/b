@@ -270,7 +270,6 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
-    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -358,6 +357,11 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
     t.string   "contact_phone"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.date     "checkin"
+    t.date     "checkout"
+    t.integer  "guest_count"
   end
 
   create_table "topics", :force => true do |t|
@@ -439,7 +443,6 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
-    t.integer  "lister_id"
     t.string   "slug"
     t.string   "referral_code"
   end
@@ -447,5 +450,13 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "wishlists", :force => true do |t|
+    t.string   "title"
+    t.string   "offer_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

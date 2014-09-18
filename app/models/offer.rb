@@ -35,10 +35,10 @@ class Offer < ActiveRecord::Base
   def self.sorting(sort)
     if sort == 'recommended'              
       sort_by_recommended
-    elsif sort == 'recommended_asc'
-      sort_by_recommended_asc
-    else
+    elsif sort == 'price'
       sort_by_price_asc
+    else
+      sort_by_price_dsc
      end
   end
 #----------------------------------------------------------------------
