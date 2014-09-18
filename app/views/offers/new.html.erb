@@ -40,55 +40,42 @@ detailsAttribute: "data-geo"
 
 <script type="text/javascript">
 
-       $(document).ready(function(){
-          var max_guest_count_error = 1;
-          var nightly_rate_amount_error = 1;
-          
-          var button = $('#submit');
-          button.attr('disabled','disabled');
+$(document).ready(function(){
+  var max_guest_count_error = 1;
+  var nightly_rate_amount_error = 1;
+  var button = $('#submit');
+  button.attr('disabled','disabled');
 
+  var $offer_max_guest_count = $('#offer_max_guest_count');
+  var offer_max_guest_count_value = $offer_max_guest_count.val();
+  var $offer_nightly_rate_amount = $('#offer_nightly_rate_amount');
+  var offer_nightly_rate_amount_value = $offer_nightly_rate_amount.val();
 
-          $('#offer_max_guest_count').change(function(e){
-                var offer_max_guest_count = $('#offer_max_guest_count').val();
+  if (offer_max_guest_count_value !== '' || offer_nightly_rate_amount_value !== '') {
+    max_guest_count_error = 0;
+    nightly_rate_amount_error = 0;
+    enable_submit_button();
+  }
+  $offer_max_guest_count.change(function(e){
+    if($offer_max_guest_count.val() == ''){ max_guest_count_error = 1 ; }
+    else {
+      max_guest_count_error=0;
+      enable_submit_button();
+    }
+  });
 
-               if(offer_max_guest_count == ''){
+  $offer_nightly_rate_amount.change(function(e){
+    if($offer_nightly_rate_amount.val() == ''){ nightly_rate_amount_error =1 ;}
+    else {
+      nightly_rate_amount_error=0;
+      enable_submit_button();
+    }
+  });
 
-                    max_guest_count_error =1 ;
-                   }
-              
-              else
-              {
-               max_guest_count_error=0;
-              }
-              enable_submit_button();
-          });
-
-          $('#offer_nightly_rate_amount').change(function(e){
-                var offer_nightly_rate_amount = $('#offer_nightly_rate_amount').val();
-
-               if(offer_nightly_rate_amount == ''){
-
-                   nightly_rate_amount_error =1 ;
-                   }
-
-                else
-                {
-                 nightly_rate_amount_error=0;
-                }
-
-                enable_submit_button();
-            });
-
-                  function enable_submit_button(){
-               if(max_guest_count_error !==0 || nightly_rate_amount_error !==0 ){
-                    $('#submit').atrr('disabled','disabled');
-               }
-               else{
-                    $('#submit').removeAttr('disabled');
-               }
-
-          };
-             });
+  function enable_submit_button(){
+    if(max_guest_count_error == 0 && nightly_rate_amount_error == 0 ) { button.removeAttr('disabled'); }
+  };
+});
 
 </script>
 
