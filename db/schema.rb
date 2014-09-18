@@ -11,7 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
 ActiveRecord::Schema.define(:version => 20140911020123) do
 
   create_table "amenities", :force => true do |t|
@@ -444,8 +443,6 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
-    t.integer  "lister_id"
-
     t.string   "slug"
     t.string   "referral_code"
   end

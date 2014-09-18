@@ -96,12 +96,13 @@
                 <div class="row">
                   <div class="col-sm-4">
                     <input type="text" id="search_price_min" class="form-control"data-min= "<%= @price_min%>" disabled>
-                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-min= "<%= @price_min%>" >
+                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-minimum=" <%= cookies[:price_minimum] %> " data-min= "<%= @price_min%>" >
                   </div>
                   <div class="col-sm-4 col-sm-offset-4">
-                    <input type="text" id="search_price_max" name="search[price_max]" value="<%= params[:price_max]  %>"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
-                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-min= "<%= @price_min%>" >
+                    <input type="text" id="search_price_max" name="search[price_max]"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
+                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-maximum=" <%= cookies[:price_maximum] %> " data-min= "<%= @price_min%>" >
                   </div>
+
                 </div>
               </div>
             </div>
@@ -208,8 +209,11 @@
 
 <% content_for :js do %>
 
+
+
   <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 <script>
 $('#search_filter').on('shown.bs.collapse', function () {
     $("#filter span").text('Show less filters')
@@ -218,26 +222,37 @@ $('#search_filter').on('shown.bs.collapse', function () {
 $('#search_filter').on('hidden.bs.collapse', function () {
     $("#filter span").text('Show more filters')
     });
-$(function() {
-    minimum = $('#search_price_min').data('min');
-    maximum = $('#search_price_max').data('max');
-    $( "#slider-3" ).slider({
-range:true,
-min: parseInt(minimum),
-max: parseInt(maximum),
-values: [ minimum, maximum ],
-slide: function( event, ui ) {
-$( "#search_price_min" ).val(  ui.values[ 0 ] );
-$( "#search_price_min_main" ).val(  ui.values[ 0 ] );
-$( "#search_price_max" ).val(  ui.values[ 1 ] );
-$( "#search_price_max_main" ).val(  ui.values[ 1 ] );
-}
-});
-    $( "#search_price_min" ).val(  $( "#slider-3" ).slider( "values", 0   ));
-    $( "#search_price_min_main" ).val(  $( "#slider-3" ).slider( "values", 0   ));
-    $( "#search_price_max" ).val(  $( "#slider-3" ).slider( "values", 1  ));
-    $( "#search_price_max_main" ).val(  $( "#slider-3" ).slider( "values", 1  ));
-    $( "#search_checkin" ).datepicker({
+
+
+
+
+
+//--------------------------------------------------------
+$(document).ready(function() {
+ var minimum = $('#search_price_min').data('min');
+ var maximum = $('#search_price_max').data('max');
+
+
+  $( "#slider-3" ).slider({
+    range:true,
+    min: parseInt(minimum),
+    max: parseInt(maximum),
+    values: [ $( "#search_price_min_main" ).data('minimum'), $( "#search_price_max_main" ).data('maximum') ],
+    slide: function( event, ui ) {
+      $( "#search_price_min" ).val(  ui.values[ 0 ] );
+      $( "#search_price_min_main" ).val(  ui.values[ 0 ] );
+      $( "#search_price_max" ).val(  ui.values[ 1 ] );
+      $( "#search_price_max_main" ).val(  ui.values[ 1 ] );
+    }
+  });
+
+  $( "#search_price_min" ).val(  $( "#slider-3" ).slider( "values", 0 ));
+  $( "#search_price_min_main" ).val(  $( "#slider-3" ).slider( "values",0));
+  $( "#search_price_max" ).val(  $( "#slider-3" ).slider( "values", 1 ));
+  $( "#search_price_max_main" ).val(  $( "#slider-3" ).slider( "values", 1));
+
+
+$( "#search_checkin" ).datepicker({
 minDate:"0",
 defaultDate: "+1w",
 changeMonth: true,
@@ -256,6 +271,9 @@ $( "#search_checkin" ).datepicker( "option", "maxDate", selectedDate );
 }
 });
 });
+
+
+
 $("#geolocation").geocomplete();
 
 setTimeout(function() {
@@ -265,8 +283,26 @@ setTimeout(function() {
 
 
 function abc(){
+
   $("#myModal").modal('show');
+
 }; 
 
+
+    if (window.location.hash && window.location.hash == '#_=_') {
+        if (window.history && history.pushState) {
+            window.history.pushState("", document.title, window.location.pathname);
+        } else {
+            // Prevent scrolling by storing the page's current scroll offset
+            var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+            };
+            window.location.hash = '';
+            // Restore the scroll offset, should be flicker free
+            document.body.scrollTop = scroll.top;
+            document.body.scrollLeft = scroll.left;
+        }
+    }
 </script>
 <% end%>
