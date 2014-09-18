@@ -14,6 +14,7 @@ test:
   pool: 5
   username: fash
   password: amits0lank!
+  host: localhost
 
 
 production:
