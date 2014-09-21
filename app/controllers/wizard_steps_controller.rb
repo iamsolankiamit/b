@@ -16,7 +16,7 @@ class WizardStepsController < ApplicationController
         raise ActionController::RoutingError.new('Not Found')
       end
     else
-      redirect_to :back, :alert => "Not editable"
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
