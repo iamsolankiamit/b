@@ -1,7 +1,9 @@
 {{model.firstname}}<br />
 {{model.lastname}}<br />
 {{#each offer in model.offers }}
-{{offer}}<br />
+{{#each translation in offer.translations}}<br />
+{{translation.title}}
+{{/each}}
 {{/each}}
 <label for="email"> Email: </label>
 {{input type="text" class="form-control" value=model.email}}<br />

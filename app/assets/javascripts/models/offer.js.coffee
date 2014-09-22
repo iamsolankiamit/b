@@ -35,3 +35,5 @@ Roomnhouse.Offer = DS.Model.extend
   geo_precision: DS.attr('number')
   is_verified: DS.attr('boolean')
   user: DS.belongsTo('user')
+  translations: DS.hasMany('translation')
+  photos: DS.hasMany('photo')
