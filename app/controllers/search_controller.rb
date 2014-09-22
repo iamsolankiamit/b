@@ -15,7 +15,7 @@ class SearchController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @offers}
+      format.json { render json: @offers, except: [:email,:contact_phone]}
     end
   end
 
