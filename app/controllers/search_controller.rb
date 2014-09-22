@@ -12,6 +12,11 @@ class SearchController < ApplicationController
     if @offers.empty?
       # redirect_to BookingDotCom.url_creator(params[:destination],params[:checkin],params[:checkout],params[:guests])
     end
+
+    respond_to do |format|
+      format.html
+      format.json {@offers}
+    end
   end
 
   def search
