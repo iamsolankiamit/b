@@ -136,7 +136,7 @@
 
           <div class="container">
             <div class="row">
-              <%= form_tag "/bookings", :method => 'post', role: "form", id: 'search_form'  do %>
+              <%= form_tag "/bookings/new", :method => 'get', role: "form", id: 'search_form'  do %>
               <%= hidden_field_tag :offer_id,params[:offer_id], value: @offer.id %>
               <div class="form-group">
                 <label for="checkin">Check-in</label>
