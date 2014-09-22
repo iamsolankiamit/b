@@ -11,10 +11,12 @@ class Referral < ActiveRecord::Base
   private
 
   def setup_rewards
-  	referer_rewards = Reward.new(rewardee_id: :referer_id)
-  	referer_rewards.save!
-  	referee_rewards = Reward.new(rewardee_id: :referee_id)
-  	referee_rewards.save!
+    referer_rewards = Reward.new()
+    referer_rewards.rewardee_id = self.referer_id
+    referer_rewards.save!
+    referee_rewards = Reward.new()
+    referee_rewards.rewardee_id = self.referee_id
+    referee_rewards.save!
   end
 
 end

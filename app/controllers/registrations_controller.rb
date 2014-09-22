@@ -69,7 +69,7 @@ class RegistrationsController < Devise::RegistrationsController
         referral = Referral.new()
         referral.referer_id = referer.id
         referral.referee_id = resource.id
-        referral.save! rescue render :text => sign_up_params
+        referral.save!
       end
     end
   end
@@ -78,8 +78,8 @@ class RegistrationsController < Devise::RegistrationsController
   # ie if password or email was changed
   # extend this as needed
   def needs_password?(user, params)
-    if params[:user][:email] || params[:user][:password]
-      user.email != params[:user][:email] || !params[:user][:password].blank?
+    if params[:user][:password]
+      !params[:user][:password].blank?
     end
   end
 end

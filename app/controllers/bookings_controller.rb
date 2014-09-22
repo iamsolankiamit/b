@@ -1,23 +1,23 @@
 class BookingsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user! , except: [:new,:create,:show]
   load_and_authorize_resource
   skip_before_filter :verify_authenticity_token
   include ActiveMerchant::Billing::Integrations
 
 
   def new
-
-    @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
-
-  respond_to do |format|
-   format.json {render json: @requests}
-  end
-
+    # @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
+    @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
+      @total = 100
+    respond_to do |format|
+      format.html
+      format.json {render json: @requests}
+    end
   end
 
 
   def show
-    
+    session.delete(:passthru)
     @booking = Booking.find(params[:id])
     @trip = Trip.find(@booking.trip_id)
     if @booking.created_at - Time.now > 15.minutes && @booking.status == "bounced"
@@ -26,26 +26,50 @@ class BookingsController < ApplicationController
     if @booking.status == "success"
       redirect_to @trip
     end
-
-   
   end
 
   def create
-    @booking = Booking.new
-    @offer= Offer.find(params[ 'offer_id' ])
-    if params[:guests].to_i > @offer.max_guest_count
-      redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
+    if params[:user][:email].blank? || params[:user][:phone].blank?
+      redirect_to :back , notice: "Email and phone number can't be blank"
     else
-    @checkin = DateTime.strptime(params['checkin'], "%m/%d/%Y")
-    @checkout= DateTime.strptime(params['checkout'], "%m/%d/%Y")
-    @trip = Trip.create( offer_id: params['offer_id'],guest_id: current_user.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[ 'guests' ])
-    @trip.save!
-    @booking.set_values(params['offer_id'],params['checkin'],params['checkout'],params['guests'],current_user.id, @trip.id)
-    @guest = User.find(@trip.guest_id)
-    redirect_to @booking
-
-
+      if current_user
+        current_user.update_attributes(email: params[:user][:email], firstname: params[:user][:firstname], lastname: params[:user][:lastname])
+        current_user.save!
+        create_booking(current_user)
+      else
+        u = User.where(:email => params[:user][:email]).first
+        unless u
+          generated_password = Devise.friendly_token.first(8)
+          u = User.create(:email => params[:user][:email], 
+                          :firstname => params[:user][:firstname], 
+                          :lastname => params[:user][:lastname], 
+                          :password => generated_password)
+        else
+          u.update_attributes(email: params[:user][:email], firstname: params[:user][:firstname], lastname: params[:user][:lastname])
+        end
+        u.save!
+    @booking = Booking.new
+        session[:passthru] = bookings_path(@booking)
+        create_booking(u)
+        sign_in u
+      end
+      redirect_to @booking
     end
+  end
+
+  def create_booking(guest)
+    @offer= Offer.find(params[:user][:offer_id])
+    #if params[:user][:guests].to_i > @offer.max_guest_count
+     # redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
+   # else
+      @checkin = DateTime.strptime(params[:user][:checkin], "%m/%d/%Y")
+      @checkout= DateTime.strptime(params[:user][:checkout], "%m/%d/%Y")
+      @trip = Trip.create( offer_id: params[:user][:offer_id],guest_id: guest.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[:user][:guests])
+      @trip.save!
+      @booking.set_values(params[:user][:offer_id],params[:user][:checkin],params[:user][:checkout],params[:user][:guests],guest.id, @trip.id)
+      @guest = User.find(@trip.guest_id)
+   # end
+
   end
 
   def payu_return

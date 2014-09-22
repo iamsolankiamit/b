@@ -5,10 +5,11 @@ class Reward < ActiveRecord::Base
   belongs_to :rewardee , class_name: "User"
 
   def initialize
-  	self.reward_amount = 500.0
+    super
+    self.reward_amount = 500.0
   end
   def used?
-  	self.used
-	end
+    self.used
+  end
 
 end

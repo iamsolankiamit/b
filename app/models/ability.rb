@@ -27,9 +27,8 @@ class Ability
       can :manage, ReferalEmail
       can :read, Offer
     else
-      can :create, Booking
-      can :read, [Offer,User] # guest user
-      can :create, [Offer]
+      can :read, [Offer,User,Booking] # guest user
+      can :create, [Offer, Booking]
     end
 
     # The first argument to `can` is the action you are giving the user 

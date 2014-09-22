@@ -1,3 +1,48 @@
 <% content_for :body do %>
 
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center">Booking Details</h2>
+      <div class="col-md-6">
+        <div class="col-md-6">
+          <%= image_tag @offer.photos.first.image.url(:medium_center), class: "img-thumbnail", style: "width:100%;"  %>
+        </div>
+        <div class="col-md-6">
+        <h3><%= @offer.translations.first.title.capitalize  %></h3>
+        <dl class="dl-horizontal">
+<dt>Checkin</dt>
+          <dd><%= params[:checkin]  %></dd>
+
+<dt>Checkout</dt>
+          <dd><%= params[:checkout]  %></dd>
+
+          <dt>Guests</dt>
+          <dd><%= params[:guests]  %></dd>
+          <dt>Total</dt>
+          <dd><%= @total  %></dd>
+        </dl>
+        </div>
+      </div>
+      <div class="col-md-6">
+       <%= simple_form_for(:user, wrapper: :bootstrap3 , html: { class: "form-horizontal"},:as => :user, :url => "/bookings") do |f| %>
+          <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :firstname, :required => false, label: false, placeholder: 'First Name' ,:autofocus => true , :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.firstname : ''}" }%>
+          <%= f.input :lastname, :required => false , label: false,:autofocus => true ,placeholder: 'Last Name', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.lastname : ''}" }%>
+          <%= f.input :email, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.email : ''}" }%>
+          <%= f.input :phone, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.phone : ''}" }%>
+          <%= f.hidden_field :offer_id, value: params[:offer_id]  %>
+          <%= f.hidden_field :checkin, value: params[:checkin]  %>
+          <%= f.hidden_field :checkout, value: params[:checkout]  %>
+          <%= f.hidden_field :guests, value: params[:guests]  %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Confirm Details", class: 'btn btn-success btn-block' %>
+        </div>
+      <% end %>
+ 
+      </div>
+          </div>
+  </div>
+
 <% end %>
