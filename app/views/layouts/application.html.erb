@@ -42,20 +42,20 @@
 <%= stylesheet_link_tag "application", :media => "all" %>
 </head>
 <body>
-<% unless params[:aid] %>
+<% unless params[:aid] || cookies[:aid] %>
   <%= render "layouts/menubar"  %>
 <% else  %>
-  <%= render "layouts/a#{params[:aid]}_menubar" rescue nil  %>
+  <%= render "layouts/a#{params[:aid]}_menubar" rescue "layouts/menubar"  %>
 <% end %>
 <div class="nav-cover"></div>
 
 <%= render 'layouts/flash_messages' %>
 <%= yield :header %>
 <%= yield :body%>
-<% unless params[:aid]  %>
+<% unless params[:aid] || cookies[:aid] %>
   <%= render "layouts/footer" %>
 <% else %>
-  <%= render "layouts/a#{params[:aid]}_footer" rescue nil%>
+  <%= render "layouts/a#{params[:aid]}_footer" rescue "layouts/footer"%>
 <% end %>
   </div>
 </div>

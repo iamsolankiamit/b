@@ -5,7 +5,7 @@
       <h2 class="text-center">Booking Details</h2>
       <div class="col-md-6">
         <div class="col-md-6">
-          <%= image_tag @offer.photos.first.image.url(:medium_center), class: "img-thumbnail", style: "width:100%;"  %>
+          <%= image_tag @offer.photos.first.image.url(:medium), class: "img-thumbnail", style: "width:100%;"  %>
         </div>
         <div class="col-md-6">
         <h3><%= @offer.translations.first.title.capitalize  %></h3>
@@ -18,7 +18,7 @@
 
           <dt>Guests</dt>
           <dd><%= params[:guests]  %></dd>
-          <dt>Total</dt>
+          <dt>Total amount:</dt>
           <dd><%= @total  %></dd>
         </dl>
         </div>

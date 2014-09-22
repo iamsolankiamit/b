@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   layout :set_layout
 
   def set_extra_url_for_affiliates
-    if params[:aid]
+    if params[:aid] || cookies[:aid]
     @extra_url_for_options = {aid: params[:aid]}
     end
   end

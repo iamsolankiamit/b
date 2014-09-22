@@ -6,9 +6,9 @@ class BookingsController < ApplicationController
 
 
   def new
-    # @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
+    @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
     @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
-      @total = 100
+    @total = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
     respond_to do |format|
       format.html
       format.json {render json: @requests}
@@ -67,7 +67,10 @@ class BookingsController < ApplicationController
       @trip = Trip.create( offer_id: params[:user][:offer_id],guest_id: guest.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[:user][:guests])
       @trip.save!
       @booking.set_values(params[:user][:offer_id],params[:user][:checkin],params[:user][:checkout],params[:user][:guests],guest.id, @trip.id)
+      @booking.aid = params[:user][:aid] if params[:user][:aid]
+      @booking.save!
       @guest = User.find(@trip.guest_id)
+      cookies[:aid] = params[:user][:aid] if params[:user][:aid]
    # end
 
   end
