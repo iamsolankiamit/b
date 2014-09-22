@@ -3,6 +3,7 @@
   <div class="container">
     <div class="row">
       <h2 class="text-center">Booking Details</h2>
+      <h4 class="text-center">Enter your contact details to book.</h4>
       <div class="col-md-6">
         <div class="col-md-6">
           <%= image_tag @offer.photos.first.image.url(:medium), class: "img-thumbnail", style: "width:100%;"  %>
@@ -30,14 +31,14 @@
           <%= f.input :firstname, :required => false, label: false, placeholder: 'First Name' ,:autofocus => true , :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.firstname : ''}" }%>
           <%= f.input :lastname, :required => false , label: false,:autofocus => true ,placeholder: 'Last Name', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.lastname : ''}" }%>
           <%= f.input :email, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.email : ''}" }%>
-          <%= f.input :phone, :required => false , label: false, :autofocus => true , placeholder:'Email', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.phone : ''}" }%>
+          <%= f.input :phone, :required => false , label: false, :autofocus => true , placeholder:'Phone', :input_html => { :class => 'form-control' , value: "#{current_user ? current_user.phone : ''}" }%>
           <%= f.hidden_field :offer_id, value: params[:offer_id]  %>
           <%= f.hidden_field :checkin, value: params[:checkin]  %>
           <%= f.hidden_field :checkout, value: params[:checkout]  %>
           <%= f.hidden_field :guests, value: params[:guests]  %>
         </div>
         <div class="form-actions">
-          <%= f.button :submit, "Confirm Details", class: 'btn btn-success btn-block' %>
+          <%= f.button :submit, "Continue to payment", class: 'btn btn-success btn-block' %>
         </div>
       <% end %>
  
