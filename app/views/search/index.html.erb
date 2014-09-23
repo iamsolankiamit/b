@@ -76,6 +76,10 @@
               </div>
 
               <div class="col-sm-9"><%= f.input_field :destination, value: params[:destination],as: :search, autofocus: true, placeholder: "Where do you want to go?", autocomplete: "off", required: "required", id: "geolocation", class: " col-sm-12 required form-control" %></div></div>
+<% if params[:aid] %>
+            <%= f.hidden_field :aid, value: params[:aid]  %>
+          <% end %>
+
           </div>
           <div class="row search_form">
             <div class="form-group">
