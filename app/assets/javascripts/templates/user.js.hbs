@@ -1,8 +1,9 @@
 {{model.firstname}}<br />
 {{model.lastname}}<br />
 {{#each offer in model.offers }}
+{{offer.translations.first.title}}
 {{#each translation in offer.translations}}<br />
-{{translation.title}}
+<li>{{#link-to 'offer' offer}}{{translation.title}}{{/link-to}}</li>
 {{/each}}
 {{/each}}
 <label for="email"> Email: </label>

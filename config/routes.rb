@@ -26,6 +26,13 @@ Roomnhouse::Application.routes.draw do
     get "/users/:id" => "admin#index"
     get "/offers/:id" => "admin#index"
     get "/offers" => "admin#index"
+    get "/offers/new" => "admin#index"
+    get "/photos" => "admin#index"
+    get "/photos/:id" => "admin#index"
+    get "/photos/new" => "admin#index"
+    get "/translations" => "admin#index"
+    get "/translations/:id" => "admin#index"
+    get "/translations/new" => "admin#index"
   end
 
   resource 'help', only: [:index] do
