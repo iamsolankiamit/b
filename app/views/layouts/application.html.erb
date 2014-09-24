@@ -52,10 +52,12 @@
 <%= render 'layouts/flash_messages' %>
 <%= yield :header %>
 <%= yield :body%>
+<% unless content_for?(:footer) %>
 <% unless params[:aid] || cookies[:aid] %>
   <%= render "layouts/footer" %>
 <% else %>
   <%= render "layouts/a#{params[:aid]}_footer" rescue "layouts/footer"%>
+<% end %>
 <% end %>
   </div>
 </div>
