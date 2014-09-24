@@ -5,9 +5,9 @@ Roomnhouse.Router.reopen location: "history"
 Roomnhouse.Router.map ()->
   rootURL: '/'
   @resource 'users', path: '/admin/users', ->
-    @route 'new', path: 'users/new'
+    @route 'new', path: '/new'
     @resource 'user', path: '/:id'
 
   @resource 'offers', path: '/admin/offers', ->
-    @route 'new', path: 'offers/new'
+    @route 'new', path: '/new'
     @resource 'offer', path: '/:id'

@@ -1,11 +1,57 @@
-{{model.firstname}}<br />
-{{model.lastname}}<br />
-{{#each offer in model.offers }}
-{{offer.translations.first.title}}
-{{#each translation in offer.translations}}<br />
-<li>{{#link-to 'offer' offer}}{{translation.title}}{{/link-to}}</li>
-{{/each}}
-{{/each}}
-<label for="email"> Email: </label>
-{{input type="text" class="form-control" value=model.email}}<br />
-<button {{action "saveChanges" model}}>Submit</button>
+<h1 class="text-center">User Details</h1>
+<hr />
+<form class="form-horizontal">
+  <fieldset>
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="firstname" class="control-label">First Name:</label>
+      </div>
+      <div class="col-sm-8">
+{{input type="text" class="form-control" value=model.firstname}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="lastname" class="control-label">Last Name:</label>
+      </div>
+      <div class="col-sm-8">
+{{input type="text" class="form-control" value=model.lastname}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <label for="email" class="control-label">Email:</label>
+      </div>
+      <div class="col-sm-8">
+{{input type="text" class="form-control" value=model.email}}
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-8">
+    <button {{action "saveChanges" model}} class="btn btn-primary btn-block">Save Changes</button>
+      </div>
+    </div>
+    
+  </fieldset>
+</form>
+
+<h1 class="text-center">Offers</h1>
+<hr />
+
+<div class="list-group">
+  {{#link-to 'offers.new' classNames="list-group-item active"}}Create new offer{{/link-to}}
+  {{#each offer in model.offers }}
+    {{#each translation in offer.translations}}
+      {{#link-to 'offer' offer classNames="list-group-item"}}
+        {{#if translation.title}}
+          {{translation.title}}
+        {{else}}
+          {{offer.id}}
+        {{/if}}
+      {{/link-to}}
+    {{/each}}
+  {{/each}}
+</div>
