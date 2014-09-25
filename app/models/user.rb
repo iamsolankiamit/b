@@ -68,6 +68,14 @@ has_attached_file :avatar,
 
     validates_presence_of :firstname
 
+<<<<<<< HEAD
+=======
+  ROLES = %w[admin default banned guest lister]
+  def avatar_remote_url=(url_value)
+    self.avatar = URI.parse(url_value)
+    @avatar_remote_url = url_value
+  end
+>>>>>>> admin_host_listing
 
   #   def self.find_for_facebook_oauth(auth,signed_in_resource=nil)
   #     where(auth.slice(:provider, :uid)).first_or_create do |user|

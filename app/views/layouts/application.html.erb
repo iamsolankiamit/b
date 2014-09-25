@@ -40,6 +40,9 @@
       <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
 <%= stylesheet_link_tag "application", :media => "all" %>
+<%- if user_signed_in? %>
+    <meta name="current-user" content="<%= current_user.to_json(:only => [:id, :firstname, :lastname]) %>" />
+  <% end %>
 </head>
 <body>
 <% unless params[:aid] || cookies[:aid] %>

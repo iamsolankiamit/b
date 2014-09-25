@@ -58,3 +58,6 @@ group :test do
   gem "factory_girl_rails"
 end
 gem 'mixpanel-ruby'
+gem 'ember-rails'
+gem 'ember-source'
+gem "active_model_serializers"

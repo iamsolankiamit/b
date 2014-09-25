@@ -11,12 +11,41 @@ Roomnhouse::Application.routes.draw do
   post "i/emailer" => "invites#emailer"
 
   match "/contacts/:importer/callback" => "users/contacts_callbacks#importer"
+  # get "admin/index"
+
   get "sitemaps/index"
   get "articles/index"
   get "articles/show"
   get "topics/index"
   get "topics/show"
   get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
+  namespace :admin do
+    get ""  => "admin#index"
+    
+    namespace :api do
+      namespace :v1 do
+        resources :offers do
+        end
+
+          resources :translations
+          resources :photos
+        resources :users
+      end
+    end
+
+    get "/users/new" => "admin#index"
+    get "/users/" => "admin#index"
+    get "/users/:id" => "admin#index"
+    get "/offers/:id" => "admin#index"
+    get "/offers" => "admin#index"
+    get "/offers/new" => "admin#index"
+    get "/photos" => "admin#index"
+    get "/photos/:id" => "admin#index"
+    get "/photos/new" => "admin#index"
+    get "/translations" => "admin#index"
+    get "/translations/:id" => "admin#index"
+    get "/translations/new" => "admin#index"
+  end
 
   resource 'help', only: [:index] do
     resources :topics, only: [:index, :show]
@@ -63,6 +92,7 @@ Roomnhouse::Application.routes.draw do
   resources :users do
     get 'dashboard', on: :collection
   end
+
 
   resources :aboutus, only: [:index]
   resources :how, only: [:index]

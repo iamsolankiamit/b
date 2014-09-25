@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140911020123) do
+=======
+ActiveRecord::Schema.define(:version => 20140821073755) do
+>>>>>>> admin_host_listing
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -443,8 +447,12 @@ ActiveRecord::Schema.define(:version => 20140911020123) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
+<<<<<<< HEAD
     t.string   "slug"
     t.string   "referral_code"
+=======
+    t.integer  "lister_id"
+>>>>>>> admin_host_listing
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

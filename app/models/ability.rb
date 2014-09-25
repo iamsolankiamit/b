@@ -15,6 +15,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role == "admin"
       can :manage, :all
+      can :manage, Admin
     elsif user.role == "default"
       can :manage, Offer, :user_id => user.id
       can :manage, Trip, :guest_id => user.id
@@ -26,6 +27,7 @@ class Ability
       can :manage, Referral
       can :manage, ReferalEmail
       can :read, Offer
+      can :manage, Admin
     else
       can :read, [Offer,User,Booking] # guest user
       can :create, [Offer, Booking]
