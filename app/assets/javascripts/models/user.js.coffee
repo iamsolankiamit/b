@@ -4,4 +4,4 @@ Roomnhouse.User = DS.Model.extend
   lastname: DS.attr('string')
   email: DS.attr('string')
   phone: DS.attr('number')
-	offers: DS.hasMany('offer')
+  offers: DS.hasMany('offer')

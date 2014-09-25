@@ -1,5 +1,5 @@
 // Fetched from channel: canary, with url http://builds.emberjs.com/canary/ember-data.js
-// Fetched on: 2014-09-24T16:23:32Z
+// Fetched on: 2014-09-25T15:29:33Z
 (function(global){
 var define, requireModule, require, requirejs;
 

@@ -43,7 +43,7 @@
 
 <div class="list-group">
   {{#link-to 'offers.new' (query-params user_id=model.id) classNames="list-group-item active"}}Create new offer{{/link-to}}
-  {{log model}}
+  {{log model.offers}}
   {{#each offer in model.offers }}
     {{#each translation in offer.translations}}
       {{#link-to 'offer' offer classNames="list-group-item"}}

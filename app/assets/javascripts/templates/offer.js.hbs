@@ -36,6 +36,7 @@ geo precision: {{input type="text" class="form-control" value=model.geo_precisio
 User Id: {{input type="text" class="form-control" value=model.user.id}}<br/>
 Is verified: {{input type="text" class="form-control" value=model.is_verified}}<br/>
 {{#each translation in model.translations}}
+{{input type="hidden" class="form-control" value=translation.id}}<br/>
 Title: {{input type="text" class="form-control" value=translation.title}}<br/>
 Description: {{input type="text" class="form-control" value=translation.description}}<br/>
 {{/each}}

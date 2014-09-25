@@ -14,9 +14,10 @@ Roomnhouse::Application.routes.draw do
     namespace :api do
       namespace :v1 do
         resources :offers do
-          resource :translations
-          resources :photos
         end
+
+          resources :translations
+          resources :photos
         resources :users
       end
     end

@@ -4,5 +4,6 @@ Roomnhouse.OfferController = Ember.ObjectController.extend
   
 		saveChanges: -> 
       offer = @get('model')
-      console.log(offer.get('translations'))
+      firstTranslation = offer.get('translations.firstObject')
+      firstTranslation.save()
       offer.save()
