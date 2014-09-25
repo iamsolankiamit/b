@@ -26,6 +26,7 @@ Roomnhouse::Application.configure do
   config.static_cache_control = "public, max-age=2592000"
   config.action_controller.perform_caching = true
 
+  config.eager_load = true
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
@@ -34,7 +35,7 @@ Roomnhouse::Application.configure do
   config.assets.css_compressor = :yui
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
