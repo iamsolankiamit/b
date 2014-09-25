@@ -4,11 +4,9 @@ Roomnhouse.OffersNewController = Ember.Controller.extend
   user_id: null
   actions:
     createOffer: ->
-      offer = @store.createRecord 'offer', @get('fields')
-      if user_id
-        offer.user_id = user_id
-      else
-        offer.user_id = currentUser.id
-
+      user = @store.getById('user', @get('user_id'))
+      console.log(user)
+      offer = @store.createRecord('offer', @get('fields') )
+      offer.set('user', user)
       offer.save().then =>
         @transitionToRoute 'offer', offer

@@ -35,4 +35,8 @@ longitude: {{input type="text" class="form-control" value=model.confidential_lat
 geo precision: {{input type="text" class="form-control" value=model.geo_precision}}<br/>
 User Id: {{input type="text" class="form-control" value=model.user.id}}<br/>
 Is verified: {{input type="text" class="form-control" value=model.is_verified}}<br/>
+{{#each translation in model.translations}}
+Title: {{input type="text" class="form-control" value=translation.title}}<br/>
+Description: {{input type="text" class="form-control" value=translation.description}}<br/>
+{{/each}}
 <button {{action "saveChanges" model}}>Submit</button>

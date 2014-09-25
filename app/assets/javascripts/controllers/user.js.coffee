@@ -4,5 +4,5 @@ Roomnhouse.UserController = Ember.ObjectController.extend
   actions:
     saveChanges: -> 
       user = @get('model')
-      user.listerId = currentUser.id
+      user.set('listerId',@get('controllers.currentUser.content').id)
       user.save()

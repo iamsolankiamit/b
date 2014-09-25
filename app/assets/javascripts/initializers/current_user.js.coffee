@@ -8,4 +8,3 @@ Ember.Application.initializer
     if attributes
       user = store.push('user', store.serializerFor(Roomnhouse.User).normalize(Roomnhouse.User, JSON.parse(attributes)))
       controller = container.lookup('controller:currentUser').set('content',user)
-      container.typeInjection('controller', 'currentUser', 'controller:currentUser')
