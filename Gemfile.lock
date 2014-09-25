@@ -9,9 +9,9 @@ GIT
 
 GIT
   remote: https://github.com/getsentry/raven-ruby.git
-  revision: 86ca70aa61470d36a0544ced026bb676daea9e7e
+  revision: bd026531c390a7fbc71980871a7951bc0f2d737f
   specs:
-    sentry-raven (0.10.0)
+    sentry-raven (0.10.1)
       faraday (>= 0.7.6)
       uuidtools
 
@@ -43,13 +43,9 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-<<<<<<< HEAD
+    active_model_serializers (0.9.0)
+      activemodel (>= 3.2)
     active_utils (2.2.3)
-=======
-    active_model_serializers (0.8.1)
-      activemodel (>= 3.0)
-    active_utils (2.2.1)
->>>>>>> admin_host_listing
       activesupport (>= 2.3.11)
       i18n
     activemodel (3.2.12)
@@ -76,9 +72,9 @@ GEM
       builder
       mime-types
       xml-simple
-    aws-sdk (1.52.0)
-      aws-sdk-v1 (= 1.52.0)
-    aws-sdk-v1 (1.52.0)
+    aws-sdk (1.53.0)
+      aws-sdk-v1 (= 1.53.0)
+    aws-sdk-v1 (1.53.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     barber (0.4.2)
@@ -107,7 +103,7 @@ GEM
     daemon_controller (1.2.0)
     daemons (1.1.9)
     database_cleaner (1.3.0)
-    delayed_job (4.0.3)
+    delayed_job (4.0.4)
       activesupport (>= 3.0, < 4.2)
     delayed_job_active_record (4.0.2)
       activerecord (>= 3.0, < 4.2)
@@ -119,7 +115,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    ember-data-source (1.0.0.beta.8)
+    ember-data-source (1.0.0.beta.10)
       ember-source
     ember-rails (0.15.0)
       active_model_serializers
@@ -130,11 +126,11 @@ GEM
       handlebars-source (> 1.0.0)
       jquery-rails (>= 1.0.17)
       railties (>= 3.1)
-    ember-source (1.6.1)
+    ember-source (1.7.0)
       handlebars-source (~> 1.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.39.5)
+    excon (0.39.6)
     execjs (2.2.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -150,7 +146,7 @@ GEM
       fog-softlayer
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.5.0)
+    fog-brightbox (0.5.1)
       fog-core (~> 1.22)
       fog-json
       inflecto
@@ -172,7 +168,7 @@ GEM
     formatador (0.2.5)
     friendly_id (4.0.10.1)
       activerecord (>= 3.0, < 4.0)
-    geocoder (1.2.4)
+    geocoder (1.2.5)
     gmaps4rails (2.1.2)
     haml (4.0.5)
       tilt
@@ -181,12 +177,8 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-<<<<<<< HEAD
-    hashie (3.3.1)
-=======
     handlebars-source (1.3.0)
-    hashie (3.2.0)
->>>>>>> admin_host_listing
+    hashie (3.3.1)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
     hike (1.2.3)
@@ -212,14 +204,14 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
-    libv8 (3.16.14.5)
+    libv8 (3.16.14.7)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mixpanel-ruby (1.5.0)
-    money (6.2.1)
+    money (6.3.0)
       i18n (>= 0.6.4, <= 0.7.0.dev)
     multi_json (1.10.1)
     multi_xml (0.5.5)
@@ -258,7 +250,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
-    passenger (4.0.50)
+    passenger (4.0.52)
       daemon_controller (>= 1.2.0)
       rack
       rake (>= 0.8.1)
@@ -298,12 +290,12 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
-    rspec-core (3.1.2)
+    rspec-core (3.1.4)
       rspec-support (~> 3.1.0)
-    rspec-expectations (3.1.0)
+    rspec-expectations (3.1.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.1.0)
-    rspec-mocks (3.1.0)
+    rspec-mocks (3.1.1)
       rspec-support (~> 3.1.0)
     rspec-rails (3.1.0)
       actionpack (>= 3.0)
@@ -320,7 +312,7 @@ GEM
       rails (>= 3.1)
       sass-rails (>= 3.1)
     safe_yaml (1.0.3)
-    sass (3.4.3)
+    sass (3.4.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
