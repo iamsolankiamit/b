@@ -3,7 +3,7 @@ class Admin::Api::V1::OffersController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Offer.all
+    respond_with Offer.all.first
   end
 
   def show
