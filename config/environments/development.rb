@@ -39,6 +39,7 @@ Roomnhouse::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  config.assets.digest = false
   config.after_initialize do
     ActiveMerchant::Billing::Base.mode = :test
     $payu_merchant_id = ActiveMerchant::Billing::Integrations::PayuIn.merchant_id = 'C0Dr8m'
