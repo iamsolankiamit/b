@@ -1,0 +1,35 @@
+<% content_for :body do %>
+
+<div class="container">
+    <div class="row">
+<h1>All The Booking During Sunburn.</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Booking Id</th>
+    <th>Booking date</th>
+    <th>Name</th>
+    <th>Rate Per Night</th>
+    <th>Total Rate</th>
+    <th>Booking Fee</th>
+    <th>Booking fee w/o payment gateway</th>
+    <th>Sunburn Commision</th>
+  </tr>
+
+<% @sunburn_systems.each do |sunburn_system| %>
+  <tr>
+    <td><%= sunburn_system.booking_id %></td>
+    <td><%= sunburn_system.booking_date %></td>
+    <td><%= sunburn_system.name %></td>
+    <td><%= sunburn_system.rate %></td>
+    <td><%= sunburn_system.total %></td>
+    <td><%= sunburn_system.fee %></td>
+    <td><%= sunburn_system.feewopg %></td>
+    <td><%= sunburn_system.commission %></td>
+    </tr>
+<% end %>
+</table>
+
+    </div>
+</div>
+<% end %>
