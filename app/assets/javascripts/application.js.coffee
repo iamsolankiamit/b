@@ -13,6 +13,7 @@
 #= require ember
 #= require ember-data
 #= require_self
+#= require_tree .
 #= require ./store
 #= require_tree ./models
 #= require_tree ./controllers
@@ -22,7 +23,6 @@
 #= require_tree ./templates
 #= require_tree ./routes
 #= require ./router
-#= require_tree .
 
 # for more details see: http://emberjs.com/guides/application/
 window.Roomnhouse = Ember.Application.create(

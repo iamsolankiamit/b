@@ -35,18 +35,16 @@ gem "thin", :group => :development
 gem "passenger"
 gem 'simple_form'
 gem "letter_opener", :group => :development
-group :assets do
-  gem 'jquery-rails', '>=2.1'
-  gem 'jquery-ui-rails', '~> 3.0'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem "haml"
-  gem "yui-compressor"
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'bootstrap-sass', '~> 3.1.1'
-  gem 'asset_sync'
-  gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'jquery-rails', '>=2.1'
+gem 'jquery-ui-rails', '~> 3.0'
+gem 'coffee-rails', '~> 3.2.1'
+gem "haml"
+gem "yui-compressor"
+gem 'sass-rails', '~> 3.2.3'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'asset_sync'
+gem 'therubyracer', :platforms => :ruby
+gem 'uglifier', '>= 1.0.3'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'font-awesome-sass-rails'
