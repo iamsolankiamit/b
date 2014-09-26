@@ -12,10 +12,14 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20140911020123) do
 =======
 ActiveRecord::Schema.define(:version => 20140821073755) do
 >>>>>>> admin_host_listing
+=======
+ActiveRecord::Schema.define(:version => 20140926124328) do
+>>>>>>> origin/Sunburn_booking_system
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -366,6 +370,19 @@ ActiveRecord::Schema.define(:version => 20140821073755) do
     t.date     "checkin"
     t.date     "checkout"
     t.integer  "guest_count"
+  end
+
+  create_table "sunburn_systems", :force => true do |t|
+    t.integer  "booking_id"
+    t.date     "booking_date"
+    t.string   "name"
+    t.float    "rate"
+    t.float    "total"
+    t.float    "fee"
+    t.float    "feewopg"
+    t.float    "commission"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "topics", :force => true do |t|

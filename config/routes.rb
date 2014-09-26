@@ -1,10 +1,8 @@
 Roomnhouse::Application.routes.draw do
 
+  resources :sunburn_systems
   resources :package_bookings
-
-
   resources :packages
-
 
   get "i/:id" => "invites#show"
   get "invites" =>"invites#index"
@@ -119,5 +117,4 @@ Roomnhouse::Application.routes.draw do
     get 'available', on: :collection
   end
   resources :shout_discounts
-
 end

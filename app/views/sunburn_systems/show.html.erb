@@ -1,0 +1,53 @@
+<% content_for :body do %>
+<div class="container">
+  <div class="row">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Booking:</b>
+  <%= @sunburn_system.booking_id %>
+</p>
+
+<p>
+  <b>Booking date:</b>
+  <%= @sunburn_system.booking_date %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @sunburn_system.name %>
+</p>
+
+<p>
+  <b>Rate:</b>
+  <%= @sunburn_system.rate %>
+</p>
+
+<p>
+  <b>Total:</b>
+  <%= @sunburn_system.total %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%= @sunburn_system.fee %>
+</p>
+
+<p>
+  <b>Feewopg:</b>
+  <%= @sunburn_system.feewopg %>
+</p>
+
+<p>
+  <b>Commission:</b>
+  <%= @sunburn_system.commission %>
+</p>
+
+
+<%= link_to 'Edit', edit_sunburn_system_path(@sunburn_system) %> |
+<%= link_to 'Back', sunburn_systems_path %>
+
+  </div>
+</div>
+<% end %>
