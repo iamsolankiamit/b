@@ -1,4 +1,7 @@
 class SunburnSystemsController < ApplicationController
+
+  before_filter :authenticate_user!
+  load_and_authorize_resource
   # GET /sunburn_systems
   # GET /sunburn_systems.json
   def index

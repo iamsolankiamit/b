@@ -16,6 +16,10 @@ class Ability
     if user.role == "admin"
       can :manage, :all
       can :manage, Admin
+    elsif user.role == "sunburn_manager"
+      can :manage, Sunburn_systems
+    elsif user.role == "sunburn_affiliate"
+      can :read, Sunburn_systems
     elsif user.role == "default"
       can :manage, Offer, :user_id => user.id
       can :manage, Trip, :guest_id => user.id
