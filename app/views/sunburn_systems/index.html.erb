@@ -6,6 +6,7 @@
 
 <table class="table table-striped">
   <tr>
+    <th>S Id</th>
     <th>Booking Id</th>
     <th>Booking date</th>
     <th>Name</th>
@@ -18,6 +19,7 @@
 
 <% @sunburn_systems.each do |sunburn_system| %>
   <tr>
+    <td><%= sunburn_system.id %></td>
     <td><%= sunburn_system.booking_id %></td>
     <td><%= sunburn_system.booking_date %></td>
     <td><%= sunburn_system.name %></td>
