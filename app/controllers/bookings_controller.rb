@@ -6,12 +6,17 @@ class BookingsController < ApplicationController
 
 
   def new
-    @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
-    @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
-    @total = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
-    respond_to do |format|
-      format.html
-      format.json {render json: @requests}
+    cookies[:aid] = { value: params[:user][:aid], expires: 1.hour.from_now } if params[:user][:aid]
+    if params[:user][:guests].to_i > @offer.max_guest_count
+      redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
+    else
+      @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
+      @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
+      @total = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
+      respond_to do |format|
+        format.html
+        format.json {render json: @requests}
+      end
     end
   end
 
@@ -48,7 +53,7 @@ class BookingsController < ApplicationController
           u.update_attributes(email: params[:user][:email], firstname: params[:user][:firstname], lastname: params[:user][:lastname])
         end
         u.save!
-    @booking = Booking.new
+        @booking = Booking.new
         session[:passthru] = bookings_path(@booking)
         create_booking(u)
         sign_in u
@@ -59,20 +64,14 @@ class BookingsController < ApplicationController
 
   def create_booking(guest)
     @offer= Offer.find(params[:user][:offer_id])
-    #if params[:user][:guests].to_i > @offer.max_guest_count
-     # redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
-   # else
-      @checkin = DateTime.strptime(params[:user][:checkin], "%m/%d/%Y")
-      @checkout= DateTime.strptime(params[:user][:checkout], "%m/%d/%Y")
-      @trip = Trip.create( offer_id: params[:user][:offer_id],guest_id: guest.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[:user][:guests])
-      @trip.save!
-      @booking.set_values(params[:user][:offer_id],params[:user][:checkin],params[:user][:checkout],params[:user][:guests],guest.id, @trip.id)
-      @booking.aid = params[:user][:aid] if params[:user][:aid]
-      @booking.save!
-      @guest = User.find(@trip.guest_id)
-      cookies[:aid] = params[:user][:aid] if params[:user][:aid]
-   # end
-
+    @checkin = DateTime.strptime(params[:user][:checkin], "%m/%d/%Y")
+    @checkout= DateTime.strptime(params[:user][:checkout], "%m/%d/%Y")
+    @trip = Trip.create( offer_id: params[:user][:offer_id],guest_id: guest.id, host_id: @offer.user_id, checkin: @checkin,checkout: @checkout,guest_count: params[:user][:guests])
+    @trip.save!
+    @booking.set_values(params[:user][:offer_id],params[:user][:checkin],params[:user][:checkout],params[:user][:guests],guest.id, @trip.id)
+    @booking.aid = params[:user][:aid] if params[:user][:aid]
+    @booking.save!
+    @guest = User.find(@trip.guest_id)
   end
 
   def payu_return

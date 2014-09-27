@@ -55,7 +55,8 @@
 <%= render 'layouts/flash_messages' %>
 <%= yield :header %>
 <%= yield :body%>
-<% unless content_for?(:footer) %>
+<% if content_for?(:footer) %>
+<% else %>
 <% unless params[:aid] || cookies[:aid] %>
   <%= render "layouts/footer" %>
 <% else %>
