@@ -205,8 +205,10 @@ sunburnlogo.png: sunburnlogo-66a511c9baea3b3e36b5df16c248903d.png
 sunburnlogo/index.png: sunburnlogo-66a511c9baea3b3e36b5df16c248903d.png
 tree_big8.jpg: tree_big8-94a57b616f2945eedab76452bcc930e1.jpg
 tree_big8/index.jpg: tree_big8-94a57b616f2945eedab76452bcc930e1.jpg
-application.js: application-84e114735079f0c809a327111522ee58.js
-application/index.js: application-84e114735079f0c809a327111522ee58.js
+application.js: application-7423c4c10b255a2bc60c5cc1d9005236.js
+application/index.js: application-7423c4c10b255a2bc60c5cc1d9005236.js
+controllers/application.js: controllers/application-cde39318a2c8252c79cdb7d3570cf15c.js
+controllers/application/index.js: controllers/application-cde39318a2c8252c79cdb7d3570cf15c.js
 templates/application.js: templates/application-d65fdfbe2a522c52589060d5a7fd9ec3.js
 templates/application/index.js: templates/application-d65fdfbe2a522c52589060d5a7fd9ec3.js
 application.css: application-9f788482f1b07f6f352fe129df4c7c87.css
