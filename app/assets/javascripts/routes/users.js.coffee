@@ -1,2 +1,2 @@
 Roomnhouse.UsersRoute = Ember.Route.extend
-	model: -> @store.find 'user'
+  model: (params) -> @store.find 'user'

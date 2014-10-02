@@ -1,7 +1,7 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, controller_namespace)
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -11,8 +11,12 @@ class Ability
     #     can :read, :all
     #   end
     #
-
     user ||= User.new # guest user (not logged in)
+
+case controller_namespace
+when 'Admin'
+  can :manage, :all
+else
     if user.role == "admin"
       can :manage, :all
       can :manage, Admin
@@ -36,7 +40,7 @@ class Ability
       can :read, [Offer,User,Booking] # guest user
       can :create, [Offer, Booking]
     end
-
+end
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

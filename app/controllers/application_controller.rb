@@ -68,6 +68,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def current_ability
+    # I am sure there is a slicker way to capture the controller namespace
+    controller_name_segments = params[:controller].split('/')
+    controller_name_segments.pop
+    controller_namespace = controller_name_segments.join('/').camelize
+    Ability.new(current_user, controller_namespace)
+  end
+  
   def create_guest_user
     uuid = rand(36**64).to_s(36)
     temp_email = "guest_#{uuid}@guest.com"

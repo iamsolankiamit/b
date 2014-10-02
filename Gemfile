@@ -50,6 +50,7 @@ gem 'gmaps4rails'
 gem 'font-awesome-sass-rails'
 gem "jquery-fileupload-rails"
 gem "activemerchant", path: "lib/active_merchant"
+
 group :test do
   gem "rspec-rails"
   gem "database_cleaner"

@@ -3,7 +3,7 @@ class Admin::Api::V1::OffersController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Offer.join(:user).where('user.lister_id = ?',params[:id]).all
+    respond_with Offer.includes(:user).where('user.lister_id = ?',params[:id]).all
   end
 
   def show
@@ -14,6 +14,7 @@ class Admin::Api::V1::OffersController < ApplicationController
   end
 
   def create
+    @translation = Translation.new(params[:offer][:translations])
     respond_with :admin, :api, :v1, Offer.create!(offer_params)
   end
 

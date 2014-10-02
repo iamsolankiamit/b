@@ -1,20 +1,28 @@
-class Admin::Api::V1::UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
 
-  respond_to :json
+  before_filter :authenticate_user!
+  load_and_authorize_resource
+
+  respond_to :html
 
   def index
-    respond_with User.where("guest_account is ? and lister_id = ?", nil, params[:listerId])
+    respond_with User.where("guest_account is ? and lister_id = ?", nil, current_user.id)
   end
 
   def show
     respond_with user
   end
+  
+  def new
+    @users = User.where("guest_account is ? and lister_id = ?", nil, current_user.id)
+  end
+
   def edit
-  	respond_with user
+    respond_with user
   end
 
   def create
-    respond_with :admin, :api, :v1, User.create!(new_user_params)
+    respond_with :admin , User.create!(new_user_params)
   end
 
   def update

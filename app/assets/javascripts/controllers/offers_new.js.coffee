@@ -8,5 +8,7 @@ Roomnhouse.OffersNewController = Ember.Controller.extend
       console.log(user)
       offer = @store.createRecord('offer', @get('fields') )
       offer.set('user', user)
+      firstTranslation = @store.createRecord('translation',offer.get('translations.firstObject'))
+      firstTranslation.save()
       offer.save().then =>
         @transitionToRoute 'offer', offer
