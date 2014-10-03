@@ -6,8 +6,8 @@ class BookingsController < ApplicationController
 
 
   def new
-    if params[:user][:aid]
-      cookies[:aid] = { value: params[:user][:aid], expires: 1.hour.from_now } 
+    if params[:aid]
+      cookies[:aid] = { value: params[:aid], expires: 1.hour.from_now } 
     end
     if params[:user][:guests].to_i > @offer.max_guest_count
       redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
