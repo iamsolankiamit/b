@@ -6,14 +6,14 @@ class BookingsController < ApplicationController
 
 
   def new
+      @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
     if params[:aid]
       cookies[:aid] = { value: params[:aid], expires: 1.hour.from_now } 
     end
-    if params[:user][:guests].to_i > @offer.max_guest_count
+    if params[:guests].to_i > @offer.max_guest_count
       redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
     else
       @requests = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
-      @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
       @total = Booking.new.request_values(params[:offer_id],params[:checkin],params[:checkout],params[:guests])
       respond_to do |format|
         format.html
