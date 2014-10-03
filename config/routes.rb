@@ -19,11 +19,12 @@ Roomnhouse::Application.routes.draw do
   get "sitemap.xml" => "sitemaps#index", as: "sitemap", defaults: { format: "xml" }
 
   namespace :admin do
-    resources :users
-    resources :offers do
-      resource :translation
-      resources :photos
-      resources :amenities
+    resources :users do
+      resources :offers do
+        resource :translation
+        resources :photos
+        resources :amenities
+      end
     end
   end
 =begin

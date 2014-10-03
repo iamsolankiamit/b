@@ -6,7 +6,8 @@ class Admin::UsersController < ApplicationController
   respond_to :html
 
   def index
-    respond_with User.where("guest_account is ? and lister_id = ?", nil, current_user.id)
+    @users = User.where("guest_account is ? and lister_id = ?", nil, current_user.id)
+    respond_with @users
   end
 
   def show

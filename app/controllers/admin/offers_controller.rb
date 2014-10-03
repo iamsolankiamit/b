@@ -6,7 +6,8 @@ class Admin::OffersController < ApplicationController
   respond_to :html
 
   def index
-    respond_with Offer.includes(:user).where('user.lister_id = ?', current_user.id ).all
+    @offers =  Offer.where(:user_id => params[:user_id])
+    respond_with @offers
   end
 
   def show
