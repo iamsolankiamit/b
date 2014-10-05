@@ -11,7 +11,8 @@ class Admin::OffersController < ApplicationController
   end
 
   def show
-    respond_with offer
+    @offer = offer
+    respond_with @offer
   end
   
   def new

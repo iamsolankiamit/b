@@ -11,7 +11,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    respond_with user
+    @user = user
+    respond_with @user
   end
   
   def new
