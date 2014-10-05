@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    respond_with :admin , User.create!(new_user_params)
+    respond_with :admin , User.create!(new_user_params, lister_id: current_user.id)
   end
 
   def update

@@ -1,0 +1,35 @@
+<% content_for :body do %>
+<div class="container">
+  <div class="row">
+  <%= link_to "Back to Users", admin_users_path %>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <td>Id</td>
+            <td>Addressline 1</td>
+            <td>Address Line 2</td>
+            <td>Accommodation</td>
+            <td>Bedrooms</td>
+            <td>Nightly Rate</td>
+            <td>Edit Offer</td>
+            <td>Add Photos</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @offer.id %></td>
+            <td><%= @offer.street %></td>
+            <td><%= @offer.address_addon %></td>
+            <td><%= @offer.max_guest_count %></td>
+            <td><%= @offer.bedroom_count %></td>
+            <td><%= @offer.nightly_rate_amount %></td>
+            <td><%= link_to "Edit Offer", edit_admin_user_offer_path(@offer.user_id,@offer.id) %></td>
+            <td><%= link_to "Add Photos", new_admin_user_offer_photo_path(@offer.user_id,@offer.id) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<% end %>
