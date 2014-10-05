@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20140911020123) do
-=======
-ActiveRecord::Schema.define(:version => 20140821073755) do
->>>>>>> admin_host_listing
-=======
-ActiveRecord::Schema.define(:version => 20140926124328) do
->>>>>>> origin/Sunburn_booking_system
+ActiveRecord::Schema.define(:version => 20141005092224) do
 
   create_table "amenities", :force => true do |t|
     t.string   "offer_id",                :limit => 6
@@ -81,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20140926124328) do
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
     t.float    "discount_amount",           :default => 0.0
+    t.string   "aid"
   end
 
   create_table "calendars", :force => true do |t|
@@ -278,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20140926124328) do
     t.integer  "booking_id"
     t.integer  "trip_id"
     t.integer  "guest_id"
+    t.integer  "host_id"
     t.integer  "transfer_no"
     t.float    "commission"
     t.string   "status"
@@ -365,11 +359,6 @@ ActiveRecord::Schema.define(:version => 20140926124328) do
     t.string   "contact_phone"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.float    "latitude"
-    t.float    "longitude"
-    t.date     "checkin"
-    t.date     "checkout"
-    t.integer  "guest_count"
   end
 
   create_table "sunburn_systems", :force => true do |t|
@@ -464,24 +453,13 @@ ActiveRecord::Schema.define(:version => 20140926124328) do
     t.string   "occupation"
     t.string   "gender"
     t.string   "family_status"
-<<<<<<< HEAD
+    t.integer  "lister_id"
     t.string   "slug"
     t.string   "referral_code"
-=======
-    t.integer  "lister_id"
->>>>>>> admin_host_listing
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "wishlists", :force => true do |t|
-    t.string   "title"
-    t.string   "offer_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end
