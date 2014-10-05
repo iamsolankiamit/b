@@ -1,0 +1,32 @@
+<% content_for :body do %>
+<div class="container">
+  <div class="row">
+  <h1 class="text-center">All users</h1>
+  <%= link_to "Create User", new_admin_user_path  %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>First name</td>
+            <td>Last Name</td>
+            <td>Email Address</td>
+            <td>Phone Number</td>
+            <td>View Offers</td>
+            <td>Create Offer</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @user.firstname %></td>
+            <td><%= @user.lastname %></td>
+            <td><%= @user.email %></td>
+            <td><%= @user.phone %></td>
+            <td><%= link_to "View Offers", admin_user_offers_path(@user) %></td>
+            <td><%= link_to "Create Offer", new_admin_user_offer_path(@user) %></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+  </div>
+</div>
+<% end %>
