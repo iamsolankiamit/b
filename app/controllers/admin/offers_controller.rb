@@ -29,9 +29,7 @@ class Admin::OffersController < ApplicationController
 
   def create
     @offer = Offer.create!(offer_params)
-    # @offer.build_amenity
-    redirect_to admin_users_path
-    respond_with :admin, @offer
+    redirect_to admin_user_offer_photos_path(@offer.user_id,@offer.id)
   end
 
   def update
