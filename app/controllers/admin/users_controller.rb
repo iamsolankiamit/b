@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def create
-    respond_with :admin , User.create!(new_user_params, lister_id: current_user.id)
+    respond_with :admin , User.create!(new_user_params)
   end
 
   def update
@@ -50,6 +50,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def new_user_params
-    params[:user].merge(password: random_password)
+    params[:user].merge(password: random_password, lister_id: current_user.id)
   end
 end
