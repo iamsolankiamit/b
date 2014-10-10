@@ -30,7 +30,7 @@ Roomnhouse::Application.routes.draw do
 =begin
 namespace :admin do
     get ""  => "admin#index"
-    
+
     namespace :api do
       namespace :v1 do
         resources :offers do
@@ -93,6 +93,7 @@ namespace :admin do
   match '/howtohost' => 'info#howtohost'
   match '/whyhost' => 'info#whyhost'
   match '/dabba-drive' => 'info#dabbadrive'
+  match '/hire-car' => 'info#carhire'
   post '/dabba_drive' => 'dabba_drives#create'
   resources :floods
 

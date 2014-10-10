@@ -42,9 +42,11 @@ class InfoController < ApplicationController
       format.html { render layout: false}
       format.json { render json: @packages }
     end
- 
+
   end
   def sunburncomingsoon
     redirect_to '/search/vagator-goa'
+  end
+  def carhire
   end
 end
