@@ -1,15 +1,12 @@
 <% content_for :body do %>
 <div class="container">
   <div class="row">
-     
-<%= simple_form_for(@offer, :defaults => { :wrapper_html => {:class => 'form-group'}, :input_html => { :class => 'form-control' } }, url: admin_user_offers_path, method: 'post', html: {class: "form-horizontal"}) do |f| %>
+  <div class="col-sm-12">
+<%= simple_form_for(@offer, wrapper: :bootstrap3, url: admin_user_offers_path, method: 'post') do |f| %>
 <%= f.input :email, as: :email %>
 <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
-
 <%= f.input :contact_phone_backup, as: :string, label: "Alternate Phone no." %>
 <%= f.hidden_field :user_id, value: params[:user_id] %>
-
-
     <%= f.input :street_no , :as => :string, :label => "House no.",  hint: "street_no. addition is mandatory"%>
     <%= f.input :street , :as => :string ,  hint: "address line is necessary!"%>
     <%= f.input :address_addon , :as => :string, :label => "Address line 2"%>
@@ -157,30 +154,26 @@ collection: {
 <%= t.hidden_field :locale, :value => "en" %>
 <div class="form-group">
 <label class="string optional control-label" for="offer_translations_attributes_0_title">Title:</label>
-<%= t.text_field :title, :value => t.object.title, :class=>"string optional form-control", :size =>"50", :style => " width: 450px " %>
+<%= t.text_field :title, :value => t.object.title, :class=>"string optional form-control", :size =>"50"%>
 </div>
 
 
 <div class="form-group">
 <label class="string optional control-label" for="offer_translations_attributes_0_description">Description:</label>
-<%= t.text_area :description , :value => t.object.description, :class=>"string optional form-control", :size => 150, :style => " width: 450px " %>
+<%= t.text_area :description , :value => t.object.description, :class=>"string optional form-control", :size => 150%>
 </div>
 
 <div class="form-group">
 <label class="string optional control-label" for="offer_translations_attributes_0_rules">House Rules:</label>
-<%= t.text_area :rules , :value => t.object.rules, :class=>"string optional form-control", :size => 150, :style => " width: 450px " %>
+<%= t.text_area :rules , :value => t.object.rules, :class=>"string optional form-control", :size => 150 %>
 </div>
 <% end %>
-
-
       <div class="control-group">
         <div class="controls">
           <%= f.button :submit, :value => "Save", :class => 'btn-primary'%>
         </div>
       </div>
-
-
-
+  </div>
   </div>
 </div>
       <% end %>

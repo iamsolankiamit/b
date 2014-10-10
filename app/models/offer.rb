@@ -33,7 +33,7 @@ class Offer < ActiveRecord::Base
   scope :sort_by_recommended_asc ,lambda{order("offers.search_rank ASC")}
 
   def self.sorting(sort)
-    if sort == 'recommended'              
+    if sort == 'recommended'
       sort_by_recommended
     elsif sort == 'price'
       sort_by_price_asc
