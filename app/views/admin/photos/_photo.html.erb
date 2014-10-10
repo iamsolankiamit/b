@@ -1,0 +1,7 @@
+  <li class="col-lg-2">
+  <div class="thumbnail">
+    <%= image_tag @photo.direct_upload_url %>
+    <%= link_to " Delete", offer_photo_path(@photo.offer_id,@photo), :method => "delete"  %>
+  </div>
+  </li>
+
