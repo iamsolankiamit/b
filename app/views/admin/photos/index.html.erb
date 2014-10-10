@@ -1,15 +1,23 @@
 <% content_for :body do %>
-  <div id="something">
-    
-  </div>
-<%= s3_uploader_form callback_url: admin_user_offer_photos_url,id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
-            <%= file_field_tag :file, multiple: true %>
-          <% end %>
-            <div id="uploads_container"></div>
-            <script id="template-upload" type="text/x-tmpl">
+  <div class="container">
+  <div class="row">
+    <div id="something">
+
+    </div>
+    <div>
+
+      <%= s3_uploader_form callback_url: admin_user_offer_photos_url,id: "s3_uploader",callback_param: "photo[direct_upload_url]",expiration: 24.hours.from_now.utc.iso8601,max_file_size: 100.megabytes do %>
+        <%= file_field_tag :file, multiple: true %>
+    <% end %>
+      <div id="uploads_container"></div>
+      <script id="template-upload" type="text/x-tmpl">
 <div id="image_{%=o.unique_id%}" class="upload">
   <h5>{%=o.name%}</h5>
-  <div class="progress progress-striped active"><div class="progress-bar" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div></div>
+  <h3>{%console.log(o);%}</h3>
+  <div class="progress progress-striped active" id="progress"><div class="bar progress-bar" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div></div>
 </div>
-            </script>
-<% end %>
+      </script>
+    </div>
+  </div>
+</div>
+  <% end %>
