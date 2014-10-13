@@ -1,0 +1,36 @@
+<% content_for :body do %>
+  <div class="container">
+  <div class="row">
+    <% if @booking %>
+    <table class="table table-bordered table-striped table-responsive">
+      <thead>
+        <th>Booking Id</th>
+        <th>Booking date</th>
+        <th>Name</th>
+        <th>Rate Per Night</th>
+        <th>Total Rate</th>
+        <th>Booking Fee</th>
+        <th>Booking fee w/o payment gateway</th>
+        <th>Affiliate Commision</th>
+      </thead>
+      <tbody>
+      <% @booking.each do |a| %>
+        <tr>
+        <td><%= a.id %></td>
+        <td><%= a.booked_at %></td>
+        <td><%= a.trip.guest.firstname %></td>
+        <td><%= a.per_night %></td>
+        <td><%= a.total %></td>
+        <td><%= a.processing_fee %></td>
+        <td><%= a.processing_fee*0.75 %></td>
+        <td><%= a.processing_fee*0.75*0.35 %></td>
+      </tr>
+    <% end %>
+      </tbody>
+    </table>
+  <% else %>
+      <p>Currently there are no bookings.</p>
+  <% end %>
+  </div>
+</div>
+<% end %>

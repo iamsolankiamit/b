@@ -19,6 +19,8 @@ def set_referral_code
   end
 end
 
+has_one :affiliate
+
 # def set_username
 #   self.username = self.firstname
 #   self.username +=  "-" + self.lastname unless self.lastname.nil?

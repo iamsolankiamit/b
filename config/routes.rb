@@ -1,5 +1,7 @@
 Roomnhouse::Application.routes.draw do
 
+  resources :affiliates
+
   resources :sunburn_systems
   resources :package_bookings
   resources :packages

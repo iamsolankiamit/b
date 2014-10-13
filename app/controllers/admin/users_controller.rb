@@ -14,7 +14,7 @@ class Admin::UsersController < ApplicationController
     @user = user
     respond_with @user
   end
-  
+
   def new
     @users = User.where("guest_account is ? and lister_id = ?", nil, current_user.id)
   end

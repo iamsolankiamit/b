@@ -28,6 +28,7 @@ else
       can :manage, Offer, :user_id => user.id
       can :manage, Trip, :guest_id => user.id
       can :manage, Booking, :trip => { :guest_id  => user.id}
+      can :read, Affiliate, :user_id => user.id
       can :create, Booking
       can :manage, Inquiry
       can :manage, Message
