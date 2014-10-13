@@ -1,7 +1,7 @@
 <% content_for :body do %>
   <div class="container">
   <div class="row">
-    <% if @booking %>
+    <% if @bookings %>
     <table class="table table-bordered table-striped table-responsive">
       <thead>
         <th>Booking Id</th>
@@ -14,7 +14,7 @@
         <th>Affiliate Commision</th>
       </thead>
       <tbody>
-      <% @booking.each do |a| %>
+      <% @bookings.each do |a| %>
         <tr>
         <td><%= a.id %></td>
         <td><%= a.booked_at %></td>
