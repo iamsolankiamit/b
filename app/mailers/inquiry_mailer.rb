@@ -4,6 +4,6 @@ class InquiryMailer < ActionMailer::Base
     @inquiry = inquiry
     @host = User.find(host_id)
     @offer = Offer.find(inquiry.offer_id)
-    mail(:to => user.email, :subject => "Booking complete")
+    mail(:to => @host.email, :subject => "You have new Inquiry")
   end
 end
