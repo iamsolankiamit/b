@@ -14,8 +14,9 @@ class InquiriesController < ApplicationController
 
   def create
     @inquiry = Inquiry.new(params[:inquiry])
+
     if @inquiry.save!
-      InquiryMailer.new_inquiry(@inquiry, params[:inquiry][:messages_attributes][0][:receiver_id])
+      InquiryMailer.new_inquiry(@inquiry, @inquiry.messages.first.receiver_id)
       redirect_to @inquiry
     else
       redirect_to :back
