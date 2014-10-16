@@ -1,0 +1,5 @@
+Hi <%= @host.firstname %>,
+
+You have new Inquiry about your property <%= link_to @offer.id, offers_path(@offer) %>. check it out on <%= link_to inquiries_path(@inquiry), inquiries_path(@inquiry) %>.
+
+Thanks for choosing Roomnhouse.
