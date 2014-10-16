@@ -8,8 +8,13 @@ class InquiriesController < ApplicationController
     @inquiry = Inquiry.find(params[:id])
     @offer = Offer.find(@inquiry.offer_id)
     @messages = @inquiry.messages.all.sort_by(&:created_at).reverse
-    @guest = User.find(@inquiry.guest_id)
-    @host = User.find(@inquiry.host_id)
+    if @inquiry.guest_id
+      @guest = User.find(@inquiry.guest_id)
+      @host = User.find(@inquiry.host_id)
+    else
+      @guest =User.find(@inquiry.messages.first.sender_id)
+      @host =User.find(@inquiry.messages.first.receiver_id)
+    end
   end
 
   def create
