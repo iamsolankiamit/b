@@ -17,7 +17,7 @@ class InquiriesController < ApplicationController
     @inquiry.guest_id = @inquiry.messages.first.sender_id
     @inquiry.host_id = @inquiry.messages.first.receiver_id
     if @inquiry.save!
-      InquiryMailer.new_inquiry(@inquiry, @inquiry.messages.first.receiver_id)
+      InquiryMailer.new_inquiry(@inquiry, @inquiry.messages.first.receiver_id).deliver
       redirect_to @inquiry
     else
       redirect_to :back
