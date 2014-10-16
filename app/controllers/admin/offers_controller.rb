@@ -14,7 +14,7 @@ class Admin::OffersController < ApplicationController
     @offer = offer
     respond_with @offer
   end
-  
+
   def new
     @offer = Offer.new()
     @offer.photos.build
@@ -43,7 +43,7 @@ class Admin::OffersController < ApplicationController
   private
 
   def offer
-    Offer.find(params[:id])
+    Offer.includes(:translations,:amenity,:photos).find(params[:id])
   end
 
   def offer_params
