@@ -52,6 +52,18 @@ class PackagesController < ApplicationController
     offer_id = "1a4q5g"
     when "13"
     offer_id = "9j0rng"
+    when "14"
+    offer_id = "c1knfg"
+    when "15"
+    offer_id = "yx6mhg"
+    when "16"
+    offer_id = "9fqnyg"
+    when "17"
+    offer_id = "s1w23g"
+    when "18"
+    offer_id = "j2ycqg"
+    when "19"
+    offer_id = "dfjhkg"
     end
     @offer = Offer.find(offer_id)
     respond_to do |format|
