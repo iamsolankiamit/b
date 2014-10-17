@@ -37,6 +37,12 @@ class InfoController < ApplicationController
     @package7offer = Offer.find("qybczg")
     @package8 = Package.find(10)
     @package8offer = Offer.find("47r5qg")
+    @package9 = Package.find(11)
+    @package9offer = Offer.find("fs31fg")
+    @package10 = Package.find(12)
+    @package10offer = Offer.find("1a4q5g")
+    @package11 = Package.find(13)
+    @package11offer = Offer.find("9j0rng")
 
     respond_to do |format|
       format.html { render layout: false}
