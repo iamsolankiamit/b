@@ -11,7 +11,7 @@ class Admin::OffersController < ApplicationController
   end
 
   def show
-    @offer = offer
+    @offer = Offer.includes(:translations,:amenity,:photos).find(params[:offer_id][:id])
     respond_with @offer
   end
 
