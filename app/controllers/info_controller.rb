@@ -55,6 +55,8 @@ class InfoController < ApplicationController
     @package16offer = Offer.find("j2ycqg")
     @package17 = Package.find(19)
     @package17offer = Offer.find("dfjhkg")
+    @package18 = Package.find(19)
+    @package18offer = Offer.find("dfjhkg")
 
     respond_to do |format|
       format.html { render layout: false}

@@ -545,6 +545,25 @@ body, html {
         <div class="modal-body">
           <div class="row">
 
+            <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package18, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package18.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package18offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package18.pax_count  %> to <%= @package18.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
+
           <div class="col-lg-3 col-sm-4 col-xs-6">
               <%= link_to @package9, class: "thumbnail" do %>
                 <div>
