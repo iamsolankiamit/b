@@ -40,7 +40,7 @@ class Admin::OffersController < ApplicationController
     if !@offer.translations
       @translations = @offer.create_translations(params[:translations])
     end
-    @offer = @offer.update_attributes(offer,offer_params)
+    @offer = @offer.update_attributes(params[:offer])
     redirect_to admin_user_offer_path(@offer.user_id, @offer.id)
   end
 
