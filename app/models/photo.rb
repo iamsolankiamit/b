@@ -96,7 +96,7 @@ class Photo < ActiveRecord::Base
       s3 = AWS::S3.new
 
       if post_process_required?
-        self.image = URI.parse(URI.escape(direct_upload_url))
+        self.image = URI.parse(CGI.escape(direct_upload_url))
       else
         paperclip_file_path = "photos/images/#{id_parition}/original/#{direct_upload_url_data[:filename]}"
         s3.buckets[Rails.configuration.aws[:bucket]].objects[paperclip_file_path].copy_from(direct_upload_url_data[:path])
