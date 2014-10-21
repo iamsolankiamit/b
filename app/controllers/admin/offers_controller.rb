@@ -44,7 +44,7 @@ class Admin::OffersController < ApplicationController
   private
 
   def offer
-    Offer.includes(:translations,:amenity,:photos).find(params[:id])
+    Offer.find(params[:id])
   end
 
   def offer_params
