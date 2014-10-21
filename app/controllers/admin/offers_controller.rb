@@ -3,8 +3,6 @@ class Admin::OffersController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
 
-  respond_to :html
-
   def index
     @offers =  Offer.where(:user_id => params[:user_id])
   end
@@ -41,11 +39,15 @@ class Admin::OffersController < ApplicationController
       @translations = @offer.create_translations(params[:translations])
     end
     @offer = @offer.update_attributes(params[:offer])
-    redirect_to admin_user_offer_path(@offer.user_id, @offer.id)
+     if @offer.update_attributes(params[:offer])
+      redirect_to admin_user_offer_path @offer.user_id, @offer.id , :notice  => "Successfully updated offer, fill in other information if missed."
+
+    else
+      redirect_to :back, :notice => "Offer not updated successfully."
+    end
   end
 
   def destroy
-    respond_with offer.destroy
   end
 
   private
