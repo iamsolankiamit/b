@@ -3,7 +3,9 @@ Roomnhouse::Application.routes.draw do
   resources :affiliates
 
   resources :sunburn_systems
-  resources :package_bookings
+  resources :package_bookings do
+    post 'payu_return', on: :collection
+  end
   resources :packages
 
   get "i/:id" => "invites#show"
