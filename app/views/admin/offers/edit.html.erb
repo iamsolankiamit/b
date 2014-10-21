@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
   <div class="col-sm-12">
-<%= simple_form_for(@offer, wrapper: :bootstrap3, url: admin_user_offers_path, method: 'post') do |f| %>
+<%= simple_form_for(@offer, wrapper: :bootstrap3, url: admin_user_offer_path, method: 'put') do |f| %>
 <%= f.input :email, as: :email %>
 <%= f.input :contact_phone, as: :string, hint: "Contact Phone no. is required" %>
 <%= f.input :contact_phone_backup, as: :string, label: "Alternate Phone no." %>
