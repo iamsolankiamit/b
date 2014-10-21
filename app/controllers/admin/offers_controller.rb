@@ -7,12 +7,10 @@ class Admin::OffersController < ApplicationController
 
   def index
     @offers =  Offer.where(:user_id => params[:user_id])
-    respond_with @offers
   end
 
   def show
     @offer = Offer.includes(:translations,:amenity,:photos).find(params[:id])
-    respond_with @offer
   end
 
   def new
@@ -20,11 +18,10 @@ class Admin::OffersController < ApplicationController
     @offer.photos.build
     @offer.translations.build
     @offer.build_amenity
-    respond_with @offer
   end
 
   def edit
-    respond_with offer
+    @offer = Offer.find(params[:id])
   end
 
   def create
