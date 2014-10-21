@@ -33,15 +33,13 @@ class Admin::OffersController < ApplicationController
     @offer = Offer.find(params[:id])
     if !@offer.amenity
       @amenity = @offer.build_amenity
-      @amenity = @offer.create_amenity(params[:amenities])
+      @amenity = @offer.create_amenity(params[:offer][:amenity_attributes])
     end
     if !@offer.translations
       @translations = @offer.create_translations(params[:translations])
     end
-    @offer = @offer.update_attributes(params[:offer])
      if @offer.update_attributes(params[:offer])
       redirect_to admin_user_offer_path @offer.user_id, @offer.id , :notice  => "Successfully updated offer, fill in other information if missed."
-
     else
       redirect_to :back, :notice => "Offer not updated successfully."
     end
