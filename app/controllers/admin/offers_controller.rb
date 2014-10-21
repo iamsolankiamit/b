@@ -33,7 +33,8 @@ class Admin::OffersController < ApplicationController
   end
 
   def update
-    respond_with Offer.update(offer,offer_params)
+    @offer = Offer.update!(offer,offer_params)
+    redirect_to admin_user_offer_path(@offer.user_id, @offer.id)
   end
 
   def destroy
