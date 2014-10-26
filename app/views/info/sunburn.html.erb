@@ -392,7 +392,7 @@ body, html {
             </div>
 
             <div class="col-lg-3 col-sm-4 col-xs-6">
-              <%= link_to @package15, class: "thumbnail" do %>
+              <a href="" disabled class="disabled thumbnail">
                 <div>
                 <div class="price-box">
                   <div class="price">
@@ -405,9 +405,9 @@ body, html {
               </div>
               <%= image_tag @package15offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
               <div class="caption">
-                <div class="location"> <%= @package15.pax_count  %> to <%= @package15.max_guest  %> Guests.</div>
+                  <div class="location" style="color:#d9534f">Sold Out.</div>
               </div>
-            <% end %>
+            </a>
             </div>
 
                       <div class="col-lg-3 col-sm-4 col-xs-6">
