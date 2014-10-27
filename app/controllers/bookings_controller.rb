@@ -27,13 +27,11 @@ class BookingsController < ApplicationController
     session.delete(:passthru)
     @booking = Booking.find(params[:id])
     @trip = Trip.find(@booking.trip_id)
-    host = User.find(@trip.host_id)
-    user_sms = SmsSender.new(current_user,host,@trip,@booking)
     if @booking.created_at - Time.now > 15.minutes && @booking.status == "bounced"
-      redirect_to @trip, :notice => "#{@gres} + #{@hres}"
+      redirect_to @trip
     end
     if @booking.status == "success"
-      redirect_to @trip, :notice => "#{@gres} + #{@hres}"
+      redirect_to @trip
     end
   end
 
