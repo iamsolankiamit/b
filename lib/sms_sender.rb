@@ -22,8 +22,10 @@ class SmsSender
   end
 
   def http_get(domain,path,params)
-    return Net::HTTP.get(domain, "#{path}?".concat(params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&'))) if not params.nil?
-    return Net::HTTP.get(domain, path)
+    uri = URI("#{domain}#{path}")
+    uri.query = URI.encode_www_form(params)
+    req = Net::HTTP.get_response(uri) if not params.nil?
+    return req
   end
 
   def host_new_booking(guest,host, trip, booking)
