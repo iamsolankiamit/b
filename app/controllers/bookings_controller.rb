@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
   def new
       @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
     if params[:aid]
-      cookies[:aid] = { value: params[:aid], expires: 1.hour.from_now } 
+      cookies[:aid] = { value: params[:aid], expires: 1.hour.from_now }
     end
     if params[:guests].to_i > @offer.max_guest_count
       redirect_to @offer, notice: "maximum no of Guest allowed is #{@offer.max_guest_count}"
@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
     session.delete(:passthru)
     @booking = Booking.find(params[:id])
     @trip = Trip.find(@booking.trip_id)
+    user_sms = SmsSender.new(current_user,@trip.host_id,@trip,@booking)
     if @booking.created_at - Time.now > 15.minutes && @booking.status == "bounced"
       redirect_to @trip
     end
@@ -47,9 +48,9 @@ class BookingsController < ApplicationController
         u = User.where(:email => params[:user][:email]).first
         unless u
           generated_password = Devise.friendly_token.first(8)
-          u = User.create(:email => params[:user][:email], 
-                          :firstname => params[:user][:firstname], 
-                          :lastname => params[:user][:lastname], 
+          u = User.create(:email => params[:user][:email],
+                          :firstname => params[:user][:firstname],
+                          :lastname => params[:user][:lastname],
                           :password => generated_password)
         else
           u.update_attributes(email: params[:user][:email], firstname: params[:user][:firstname], lastname: params[:user][:lastname])
