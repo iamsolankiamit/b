@@ -17,11 +17,10 @@ class TripsController < ApplicationController
     if @trip.update_attributes(params[:trip])
       unless :host_accepted.nil?
         UserMailer.delay.guest_notifier(@trip.id)
-
-        checkout = Date.strptime(@trip.checkout, "%Y/%m/%d")
-        created_at = Date.strptime(@trip.created_at, "%Y/%m/%d")   
-        number_of_days = @trip.checkout.mjd - @trip.created_at.to_date.mjd      
-        UserMailer.delay(run_at: number_of_days.days.from_now).trip_end(@trip.id)
+        # checkout = Date.strptime(@trip.checkout, "%Y/%m/%d")
+        # created_at = Date.strptime(@trip.created_at, "%Y/%m/%d")
+        # number_of_days = @trip.checkout.mjd - @trip.created_at.to_date.mjd
+        # UserMailer.delay(run_at: number_of_days.days.from_now).trip_end(@trip.id)
       end
       redirect_to :back, :notice  =>  "Trip accepted, guest has been notified"
     end
