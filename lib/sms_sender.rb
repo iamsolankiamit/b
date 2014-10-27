@@ -24,7 +24,8 @@ class SmsSender
   def http_get(domain,path,params)
     uri = URI("#{domain}#{path}")
     uri.query = URI.encode_www_form(params)
-    req = Net::HTTP.get_response(uri) if not params.nil?
+    req = Net::HTTP.get_response(uri)
+    Rails.logger.debug "some objects #{uri.inspect} #{uri.to_s} #{req.to_s} #{req.inspect}"
     return req
   end
 
