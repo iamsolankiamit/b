@@ -18,7 +18,7 @@ class SmsSender
     domain = "http://trans.boommail.in"
     path = "/SmsStatuswithId.aspx"
     params = {mobile: mobile,pass: pass,senderid: senderId, to: to, msg: message}
-    http_get(domain,path,params)
+    @gres = http_get(domain,path,params)
   end
 
   def http_get(domain,path,params)
@@ -37,7 +37,7 @@ class SmsSender
     domain = "http://trans.boommail.in"
     path = "/SmsStatuswithId.aspx"
     params = {mobile: mobile,pass: pass,senderid: senderId, to: to, msg: message}
-    http_get(domain,path,params)
+    @hres = http_get(domain,path,params)
   end
 end
 
