@@ -18,21 +18,12 @@ class SmsSender
     domain = "http://trans.boommail.in"
     path = "/SmsStatuswithId.aspx"
     params = {mobile: mobile,pass: pass,senderid: senderId, to: to, msg: message}
-    http_get(domain,path,params,2)
+    http_get(domain,path,params)
   end
 
-  def http_get(domain,path,params,retry_attempts = 0)
-    request = Net::HTTP.get(domain, "#{path}?".concat(params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&'))) if not params.nil?
-
-  rescue SocketError => error
-    if retry_attempts > 0
-      retry_attempts -= 1
-      sleep 2
-      retry
-    end
-    raise
-  end
-    return request
+  def http_get(domain,path,params)
+    return Net::HTTP.get(domain, "#{path}?".concat(params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&'))) if not params.nil?
+    return Net::HTTP.get(domain, path)
   end
 
   def host_new_booking(guest,host, trip, booking)
@@ -44,7 +35,7 @@ class SmsSender
     domain = "http://trans.boommail.in"
     path = "/SmsStatuswithId.aspx"
     params = {mobile: mobile,pass: pass,senderid: senderId, to: to, msg: message}
-    http_get(domain,path,params,2)
+    http_get(domain,path,params)
   end
 end
 
