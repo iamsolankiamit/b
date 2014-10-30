@@ -1,8 +1,8 @@
 <% content_for :description do %>
-  Search for vacation room, villas, and apartment rentals in <%= params[:destination].gsub(/-/,' ')%> and save on your reservations with Room N House today!
+  Search for vacation room, villas, and apartment rentals in <%= params[:destination] ? params[:destination].gsub(/-/,' ') : "India" %> and save on your reservations with Room N House today!
 <% end %>
 <% content_for :title do %>
-  Vacation Room Rentals in <%= params[:destination].split.first.capitalize %> | Room N House
+  Vacation Room Rentals in <%= params[:destination] ? params[:destination].split.first.capitalize : "India" %> | Room N House
 <% end %>
 <% content_for :body do %>
   <style>
@@ -100,11 +100,11 @@
                 <div class="row">
                   <div class="col-sm-4">
                     <input type="text" id="search_price_min" class="form-control"data-min= "<%= @price_min%>" disabled>
-                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-minimum=" <%= cookies[:price_minimum] %> " data-min= "<%= @price_min%>" >
+                    <input type="hidden" id="search_price_min_main" class="form-control" name="search[price_min]" data-minimum=" <%= @price_min %> " data-min= "<%= @price_min%>" >
                   </div>
                   <div class="col-sm-4 col-sm-offset-4">
                     <input type="text" id="search_price_max" name="search[price_max]"  class="form-control text-right" data-max= "<%= @price_max%>" disabled>
-                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-maximum=" <%= cookies[:price_maximum] %> " data-min= "<%= @price_min%>" >
+                    <input type="hidden" id="search_price_max_main" class="form-control" name="search[price_max]" data-maximum=" <%= @price_max %> " data-min= "<%= @price_max%>" >
                   </div>
 
                 </div>
@@ -293,7 +293,7 @@ function abc(){
 
   $("#myModal").modal('show');
 
-}; 
+};
 
 
     if (window.location.hash && window.location.hash == '#_=_') {
