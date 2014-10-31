@@ -39,17 +39,19 @@ Invite your Friends to Roomnhouse
 </style>
 <div class="invite_bg">
   <div class="invite-overlay">
-    <h3 class="invite-header">Martin Garrix is ccoming to Mumbai and you could be there too!</h3>
+  <h3 class="invite-header">Martin Garrix is coming to Mumbai and you could be there too!</h3>
     <div class="container">
       <div class="row">
         <p>Complete the Following actions to participate.</p>
       </div>
       <div class="row">
-        <div class="col-sm-2 col-sm-offset-3"><%= link_to "Refer via Gmail", "contacts/gmail/", class: 'btn btn-danger btn-block invite-button' %></div>
-        <div class="col-sm-2">
-         <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/feed?app_id=414645321969009&link=http://roomnhouse.com/contest&display=popup&redirect_uri=http://roomnhouse.com/contest" target="_blank">Share Via Facebook</a> </div>
-         <div class="col-sm-2">
-           <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/contest"  %>&via=roomnhouse&text=<%=URI.encode("Martin Garrix, is coming to Mumbai/Delhi, I'm going, are you?")  %>">Share it on Twitter</a>
+        <div class="col-sm-2 col-sm-offset-5"><%= link_to "1. Refer via Gmail", "contacts/gmail/", class: 'btn btn-danger btn-block invite-button' %></div>
+        </div><div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
+         <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/feed?app_id=414645321969009&link=http://roomnhouse.com/contest&display=popup&redirect_uri=http://roomnhouse.com/contest" target="_blank">2. Share via Facebook</a> </div>
+        </div><div class="row">
+         <div class="col-sm-2 col-sm-offset-5">
+           <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/contest"  %>&via=roomnhouse&text=<%=URI.encode("Martin Garrix, is coming to Mumbai/Delhi, I'm going, are you?")  %>">3. Share it on Twitter</a>
          </div>
        </div>
      </div>
