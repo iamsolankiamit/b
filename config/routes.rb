@@ -99,6 +99,7 @@ namespace :admin do
   match '/dabba-drive' => 'info#dabbadrive'
   match '/hire-car' => 'info#carhire'
   post '/dabba_drive' => 'dabba_drives#create'
+  match '/contest' => 'info#contest'
   resources :floods
 
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }

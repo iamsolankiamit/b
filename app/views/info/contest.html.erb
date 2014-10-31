@@ -1,0 +1,59 @@
+<% content_for :title do %>
+  Invite your Friends to Roomnhouse
+<% end %>
+<%content_for :body do%>
+  <style type="text/css" media="all">
+.invite_bg{
+  background: url(<%= image_path('martin.png')  %>) center center;
+min-height: 600px;
+background-size: cover;
+min-zoom: inherit;
+background-color: bisque;
+background-blend-mode: multiply;
+}
+.invite-button{
+text-align: center;
+margin: 20px 0px;
+}
+.facebook-invite{
+  background-color: #3B5998;
+  border: 1px solid #3b5998;
+  color:white;
+}
+.facebook-invite :hover{
+  backround-color: #3B5999;
+}
+.invite-overlay{
+  min-height: 600px;
+  background-color:rgba(0,0,0,0.5);
+}
+.invite-header{
+padding-top: 150px;
+text-align: center;
+font-size: 24px;
+color: white;
+line-height: 1;
+font-weight: 600;
+text-shadow: black 0px 0px 15px;
+}
+  </style>
+  <div class="invite_bg">
+    <div class="invite-overlay">
+    <h3 class="invite-header">Martin Garrix is ccoming to Mumbai and you could be there too!</h3>
+    <div class="container">
+    <div class="row">
+      <p>Complete the Following actions to participate.</p>
+    </div>
+    <div class="row">
+    <div class="col-sm-2 col-sm-offset-3"><%= link_to "Refer via Gmail", "contacts/gmail/", class: 'btn btn-danger btn-block invite-button' %></div>
+    <div class="col-sm-2">
+     <a class="btn btn-block facebook-invite invite-button" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=368,width=585');return false;" href="http://www.facebook.com/dialog/feed?app_id=414645321969009&link=http://roomnhouse.com/contest&display=popup&redirect_uri=http://roomnhouse.com/contest" target="_blank">Share Via Facebook</a> </div>
+   <div class="col-sm-2">
+     <a class="btn btn-block btn-info invite-button" href="https://twitter.com/intent/tweet?url=<%= "http://roomnhouse.com/contest"  %>&via=roomnhouse&text=<%=URI.encode("Martin Garrix, is coming to Mumbai/Delhi, I'm going, are you?")  %>">Share it on Twitter</a>
+   </div>
+      </div>
+      </div>
+    </div>
+</div>
+<%end%>
+<%end%>

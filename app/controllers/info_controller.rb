@@ -20,6 +20,9 @@ class InfoController < ApplicationController
   def dabbadrive
 
   end
+  def contest
+
+  end
   def sunburn
     @package1 = Package.find(3)
     @package1offer = Offer.find("wx1k7g")
