@@ -5,7 +5,7 @@ class SunburnSystemsController < ApplicationController
   # GET /sunburn_systems
   # GET /sunburn_systems.json
   def index
-    @sunburn_systems = SunburnSystem.all.order(:id)
+    @sunburn_systems = SunburnSystem.order(:id).all
 
     respond_to do |format|
       format.html # index.html.erb
