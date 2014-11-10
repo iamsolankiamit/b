@@ -116,7 +116,7 @@ body, html {
       <%= link_to "Hire A Car", 'http://roomnhouse.com/hire-car', class: "btn btn-block btn-default", style: "background: rgba(255,255,255,0.50);" %>
     </div>
       <div class="col-sm-5 col-sm-offset-1" style="padding: 0px; padding-top: 10px;">
-      <%= link_to "Book Sunburn Tickets", 'http://www.muzenly.com/sunburn-tickets-roomnhouse.html', class: "btn btn-block btn-default", style: "background: rgba(255,255,255,0.50);" %>
+      <%= link_to "Book Sunburn Tickets", 'http://in.bookmyshow.com/concerts/sunburn/goa/?&utm_source=mumb_sta_ev_sunburn_goa_2014_110914', class: "btn btn-block btn-default", style: "background: rgba(255,255,255,0.50);" %>
     </div>
     </div>
     <div class="row" style="margin-top:170px;">
@@ -241,6 +241,26 @@ body, html {
         </div>
         <div class="modal-body">
           <div class="row">
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package23, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package23.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package23offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package23.pax_count  %> to <%= @package23.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
+
             <div class="col-lg-3 col-sm-4 col-xs-6">
               <a href="" disabled class="disabled thumbnail">
                 <div>
@@ -333,6 +353,25 @@ body, html {
         </div>
         <div class="modal-body">
           <div class="row">
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package25, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package25.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package25offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package25.pax_count  %> to <%= @package25.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
 
                       <div class="col-lg-3 col-sm-4 col-xs-6">
               <%= link_to @package12, class: "thumbnail" do %>
@@ -545,23 +584,100 @@ body, html {
         <div class="modal-body">
           <div class="row">
 
-            <div class="col-lg-3 col-sm-4 col-xs-6">
-              <a href="" disabled class="disabled thumbnail">
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package19, class: "thumbnail" do %>
                 <div>
                 <div class="price-box">
                   <div class="price">
                     <sup><i class="icon-inr"></i></sup>
-                    <%= @package18.package_rate%>
+                    <%= @package19.package_rate%>
                     <sup>INR</sup>
                   </div>
                   <div class="price-info">3 Days / person</div>
                 </div>
               </div>
-              <%= image_tag @package18offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <%= image_tag @package19offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
               <div class="caption">
-                  <div class="location" style="color:#d9534f">Sold Out.</div>
+                <div class="location"> <%= @package19.pax_count  %> to <%= @package19.max_guest  %> Guests.</div>
               </div>
-              </a>
+            <% end %>
+            </div>
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package20, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package20.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package20offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package20.pax_count  %> to <%= @package20.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package21, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package21.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package21offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package21.pax_count  %> to <%= @package21.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package22, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package22.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package22offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package22.pax_count  %> to <%= @package22.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
+            </div>
+
+          <div class="col-lg-3 col-sm-4 col-xs-6">
+              <%= link_to @package24, class: "thumbnail" do %>
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package24.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package24offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                <div class="location"> <%= @package24.pax_count  %> to <%= @package24.max_guest  %> Guests.</div>
+              </div>
+            <% end %>
             </div>
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
@@ -581,6 +697,26 @@ body, html {
                 <div class="location"> <%= @package9.pax_count  %> to <%= @package9.max_guest  %> Guests.</div>
               </div>
             <% end %>
+            </div>
+
+
+            <div class="col-lg-3 col-sm-4 col-xs-6">
+              <a href="" disabled class="disabled thumbnail">
+                <div>
+                <div class="price-box">
+                  <div class="price">
+                    <sup><i class="icon-inr"></i></sup>
+                    <%= @package18.package_rate%>
+                    <sup>INR</sup>
+                  </div>
+                  <div class="price-info">3 Days / person</div>
+                </div>
+              </div>
+              <%= image_tag @package18offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
+              <div class="caption">
+                  <div class="location" style="color:#d9534f">Sold Out.</div>
+              </div>
+              </a>
             </div>
 
             <div class="col-lg-3 col-sm-4 col-xs-6">

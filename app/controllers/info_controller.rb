@@ -60,6 +60,20 @@ class InfoController < ApplicationController
     @package17offer = Offer.find("dfjhkg")
     @package18 = Package.find(20)
     @package18offer = Offer.find("nwet9g")
+    @package19 = Package.find(21)
+    @package19offer = Offer.find("7gkx3g")
+    @package20 = Package.find(22)
+    @package20offer = Offer.find("gbm1bg")
+    @package21 = Package.find(23)
+    @package21offer = Offer.find("px57ag")
+    @package22 = Package.find(24)
+    @package22offer = Offer.find("dr85hg")
+    @package23 = Package.find(25)
+    @package23offer = Offer.find("cbf5tg")
+    @package24 = Package.find(26)
+    @package24offer = Offer.find("c9gbzg")
+    @package25 = Package.find(27)
+    @package25offer = Offer.find("fmsazg")
 
     respond_to do |format|
       format.html { render layout: false}
