@@ -1,2 +1,8 @@
-<h1>Emails#index</h1>
-<p>Find me in app/views/emails/index.html.erb</p>
+<% content_for :body do %>
+  <div class="container">
+    <div class="row">
+      <p>Mails have been scheduled to be sent in batches of 50000 per hour.</p>
+      <p><%= link_to "Add More Emails", new_email_path, class: "btn btn-primary" %></p>
+    </div>
+  </div>
+<% end %>

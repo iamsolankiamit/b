@@ -1,7 +1,11 @@
 <% content_for :body do %>
-  <% form_for @email do |f| -%>
-    <%= f.file_field "email_doc" %>
-    <%= f.file_field "file" %>
+<div class="container">
+  <div class="row">
+  <%= simple_form_for @email do |f|-%>
+    <%= f.input :email_doc, as: :file, label: "Email Content File (html Format)" %>
+    <%= f.input :file, label: "Email Data (Xlx,xlsx or csv Format)" %>
     <button type="Submit"> Submit</button>
-  <% end -%>
+  <% end %>
+  </div>
+</div>
 <% end %>
