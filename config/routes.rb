@@ -1,5 +1,7 @@
 Roomnhouse::Application.routes.draw do
 
+  resources :emails
+
   resources :affiliates
 
   resources :sunburn_systems

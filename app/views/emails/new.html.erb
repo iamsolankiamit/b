@@ -1,0 +1,7 @@
+<% content_for :body do %>
+  <% form_for @email do |f| -%>
+    <%= f.file_field "email_doc" %>
+    <%= f.file_field "file" %>
+    <button type="Submit"> Submit</button>
+  <% end -%>
+<% end %>
