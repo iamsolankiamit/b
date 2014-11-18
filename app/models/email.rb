@@ -24,7 +24,7 @@ class Email < ActiveRecord::Base
     s3_host_alias: 'dm1w09da1rt65.cloudfront.net',
     :path => "/:class/:attachment/:id_partition/:style/:filename"
 
-    validates_attachment_content_type :file, :content_type => /\Axls|xlsx|csv|txt/
-    validates_attachment_content_type :email_doc, :content_type => /\Ahtml/
+    validates_attachment_content_type :file, :content_type => /\Aapplication\/vnd\.ms\-excel|application\/vnd\.openxmlformats\-officedocument\.spreadsheetml\.sheet|text\/csv\r\n|text\/csv\n|text\/csv|text/
+    validates_attachment_content_type :email_doc, :content_type => /\Atext\/html/
 
 end
