@@ -25,6 +25,6 @@ class Email < ActiveRecord::Base
     :path => "/:class/:attachment/:id_partition/:style/:filename"
 
     validates_attachment_content_type :file, :content_type => /\Axls|xlsx|csv|txt/
-    validates_attachment_content_type :email_doc, :content_type => /\Aapplication\/pdf/
+    validates_attachment_content_type :email_doc, :content_type => /\Ahtml/
 
 end
