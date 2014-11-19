@@ -58,11 +58,22 @@
   cursor: pointer;
 }
 </style>
+<style>
+  @media screen and (max-width: 768px) {
+    .listing-container{
+      width:100%;
+    }
+    .map-container{
+      width:0%;
+      display: none;
+    }
+  }
+</style>
 
 
 <div class="container">
   <div class="row">
-    <div class="map-container hidden-xs" style="">
+    <div class="map-container hidden-xs">
       <div id="search_page" ></div>
     </div>
     <div class="listing-container">
