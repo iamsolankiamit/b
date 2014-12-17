@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141118062545) do
+ActiveRecord::Schema.define(:version => 20141217093531) do
 
   create_table "affiliates", :force => true do |t|
     t.integer  "a_id"
@@ -479,6 +479,7 @@ ActiveRecord::Schema.define(:version => 20141118062545) do
     t.integer  "lister_id"
     t.string   "slug"
     t.string   "referral_code"
+    t.string   "email_token"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

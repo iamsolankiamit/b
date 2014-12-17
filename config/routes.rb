@@ -86,6 +86,7 @@ namespace :admin do
 
   resources :bookings do
     post 'payu_return', on: :collection
+    get 'email', on: :collection
   end
 
   resources :trips do

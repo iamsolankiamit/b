@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
 
   def new
-      @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
+    @offer = Offer.includes(:photos, :translations).find(params[:offer_id])
     if params[:aid]
       cookies[:aid] = { value: params[:aid], expires: 1.hour.from_now }
     end
@@ -48,9 +48,9 @@ class BookingsController < ApplicationController
         unless u
           generated_password = Devise.friendly_token.first(8)
           u = User.create(:email => params[:user][:email],
-                          :firstname => params[:user][:firstname],
-                          :lastname => params[:user][:lastname],
-                          :password => generated_password)
+            :firstname => params[:user][:firstname],
+            :lastname => params[:user][:lastname],
+            :password => generated_password)
         else
           u.update_attributes(email: params[:user][:email], firstname: params[:user][:firstname], lastname: params[:user][:lastname])
         end
@@ -62,6 +62,28 @@ class BookingsController < ApplicationController
       end
       redirect_to @booking
     end
+  end
+
+  def email
+    email = params[:e]
+    token = params[:t]
+    trip_id = params[:b]
+    ans = params[:a]
+    trip = Trip.find(trip_id)
+    user = User.where(email: email).first
+    if user.email_token == token
+      if ans = y
+        trip.host_accepted = true
+        UserMailer.guest_notifier(trip_id)
+      else
+        trip.host_accepted = false if ans = n
+      end
+      user.email_token = ""
+      sign_in_and_redirect(user, trips_path(trip), notice: "Your response is noted")
+    else
+      redirect_to :root, :notice => "You are not authorized"
+    end
+
   end
 
   def create_booking(guest)
