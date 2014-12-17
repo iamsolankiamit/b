@@ -71,7 +71,6 @@ class BookingsController < ApplicationController
     trip_id = params[:b]
     ans = params[:a]
     trip = Trip.find(trip_id)
-    session[:passthru] = trip_path(trip)
     user = User.where(email: email).first
     Rails.logger = Logger.new(STDOUT)
     Rails.logger.debug(user)
@@ -83,7 +82,8 @@ class BookingsController < ApplicationController
         trip.host_accepted = false
       end
       user.email_token = ""
-      sign_in user
+      session[:passthru] = trip_path(trip)
+      sign_in_and_redirect user
     else
       redirect_to :root, :notice => "You are not authorized"
     end
