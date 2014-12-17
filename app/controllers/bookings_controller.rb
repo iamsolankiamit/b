@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  require 'uri'
   before_filter :authenticate_user! , except: [:new,:create,:show, :email]
   load_and_authorize_resource
   skip_before_filter :verify_authenticity_token
@@ -65,7 +66,7 @@ class BookingsController < ApplicationController
   end
 
   def email
-    email = params[:e]
+    email = URI.decode(params[:e])
     token = params[:t]
     trip_id = params[:b]
     ans = params[:a]
