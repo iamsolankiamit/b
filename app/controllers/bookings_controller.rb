@@ -82,7 +82,7 @@ class BookingsController < ApplicationController
         trip.host_accepted = false
       end
       user.email_token = ""
-      sign_in_and_redirect(user, trips_path(trip), notice: "Your response is noted")
+      sign_in_and_redirect(user, trip_path(trip), notice: "Your response is noted")
     else
       redirect_to :root, :notice => "You are not authorized"
     end
