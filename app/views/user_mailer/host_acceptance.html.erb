@@ -25,9 +25,9 @@ The booking details are as follows:
 </table>
 
 To accept the request click on the link Below:
-<%= link_to 'YES', trip_url(@trip, e: @guest.email,t: @guest.email_token,b: @trip.id,a: 'y')  %>
+<%= link_to 'YES', email_bookings_url(e: @guest.email,t: @guest.email_token,b: @trip.id,a: 'y')  %>
 To Decline click No.
-<%= link_to 'NO', trip_url(@trip, e: @guest.email,t: @guest.email_token,b: @trip.id,a: 'n')  %>
+<%= link_to 'NO', email_bookings_url(e: @guest.email,t: @guest.email_token,b: @trip.id,a: 'n')  %>
 
 
 Thanks for using Roomnhouse Services.
