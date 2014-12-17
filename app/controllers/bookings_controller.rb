@@ -75,11 +75,11 @@ class BookingsController < ApplicationController
     Rails.logger = Logger.new(STDOUT)
     Rails.logger.debug(user)
     if user.email_token == token
-      if ans = y
+      if ans == 'y'
         trip.host_accepted = true
         UserMailer.guest_notifier(trip_id)
       else
-        trip.host_accepted = false if ans = n
+        trip.host_accepted = false
       end
       user.email_token = ""
       sign_in_and_redirect(user, trips_path(trip), notice: "Your response is noted")
