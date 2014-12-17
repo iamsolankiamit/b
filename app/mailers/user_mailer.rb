@@ -22,6 +22,7 @@ class UserMailer < ActionMailer::Base
     @trip = trip
     @booking = booking
     @guest.email_token = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+    @guest.save
     @offer =Offer.find(trip.offer_id)
     mail(:to => @host.email, :subject => "Roomnhouse: Booking request")
   end
