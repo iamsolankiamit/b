@@ -72,14 +72,14 @@ class BookingsController < ApplicationController
     ans = params[:a]
     trip = Trip.find(trip_id)
     user = User.where(email: email).first
-    Rails.logger = Logger.new(STDOUT)
-    Rails.logger.debug(user)
     if user.email_token == token
       if ans == 'y'
         trip.host_accepted = true
+        trip.save
         UserMailer.guest_notifier(trip_id)
       else
         trip.host_accepted = false
+        trip.save
       end
       user.email_token = ""
       session[:passthru] = trip_path(trip)

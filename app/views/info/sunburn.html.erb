@@ -112,7 +112,10 @@ body, html {
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-5 col-sm-offset-1" style="padding: 0px; padding-top: 10px;">
+      <div class="col-sm-2 col-sm-offset-1" style="padding: 0px; padding-top: 10px;">
+      <%= link_to "Hire A bike", 'http://rentabike.in/sunburn_booking.php', class: "btn btn-block btn-default", style: "background: rgba(255,255,255,0.50);" %>
+    </div>
+      <div class="col-sm-2 col-sm-offset-1" style="padding: 0px; padding-top: 10px;">
       <%= link_to "Hire A Car", 'http://roomnhouse.com/hire-car', class: "btn btn-block btn-default", style: "background: rgba(255,255,255,0.50);" %>
     </div>
       <div class="col-sm-5 col-sm-offset-1" style="padding: 0px; padding-top: 10px;">
@@ -586,7 +589,7 @@ body, html {
 
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
-              <%= link_to @package19, class: "thumbnail" do %>
+              <a href="" disabled class="disabled thumbnail">
                 <div>
                 <div class="price-box">
                   <div class="price">
@@ -599,9 +602,9 @@ body, html {
               </div>
               <%= image_tag @package19offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
               <div class="caption">
-                <div class="location"> <%= @package19.pax_count  %> to <%= @package19.max_guest  %> Guests.</div>
+                  <div class="location" style="color:#d9534f">Sold Out.</div>
               </div>
-            <% end %>
+              </a>
             </div>
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
@@ -643,7 +646,7 @@ body, html {
             </div>
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
-              <%= link_to @package22, class: "thumbnail" do %>
+              <a href="" disabled class="disabled thumbnail">
                 <div>
                 <div class="price-box">
                   <div class="price">
@@ -656,13 +659,14 @@ body, html {
               </div>
               <%= image_tag @package22offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
               <div class="caption">
-                <div class="location"> <%= @package22.pax_count  %> to <%= @package22.max_guest  %> Guests.</div>
+                  <div class="location" style="color:#d9534f">Sold Out.</div>
               </div>
-            <% end %>
+</a>
             </div>
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
-              <%= link_to @package24, class: "thumbnail" do %>
+              <a href="" disabled class="disabled thumbnail">
+
                 <div>
                 <div class="price-box">
                   <div class="price">
@@ -675,9 +679,9 @@ body, html {
               </div>
               <%= image_tag @package24offer.photos.first.image.url(:medium), class: "package-offer-image img-responsive" %>
               <div class="caption">
-                <div class="location"> <%= @package24.pax_count  %> to <%= @package24.max_guest  %> Guests.</div>
+                  <div class="location" style="color:#d9534f">Sold Out.</div>
               </div>
-            <% end %>
+            </a>
             </div>
 
           <div class="col-lg-3 col-sm-4 col-xs-6">
