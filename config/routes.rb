@@ -78,7 +78,7 @@ namespace :admin do
   end
 
   # match '/sunburngoa2014test' => 'info#sunburn'
-  match '/sunburngoa2014' => 'info#sunburn'
+  match '/sunburngoa2014' => 'home#index'
   resources :messages do
     get 'inbox', on: :collection
     get 'sent', on: :collection
