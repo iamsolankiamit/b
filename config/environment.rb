@@ -13,7 +13,7 @@ ActionMailer::Base.smtp_settings = {
 
 
 # Initialize the rails application
-Roomnhouse::Application.initialize!
+Bnbhub::Application.initialize!
 
 # Initialize ActiveMerchant config
 require 'active_merchant/billing/integrations/action_view_helper'

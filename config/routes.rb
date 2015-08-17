@@ -1,4 +1,4 @@
-Roomnhouse::Application.routes.draw do
+Bnbhub::Application.routes.draw do
 
   resources :emails
 

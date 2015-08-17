@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Roomnhouse::Application.load_tasks
+Bnbhub::Application.load_tasks

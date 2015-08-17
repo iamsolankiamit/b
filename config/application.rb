@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Roomnhouse
+module Bnbhub
   class Application < Rails::Application
 
     require Rails.root + 'lib/custom_exceptions'
